@@ -1,0 +1,30 @@
+{
+    "cortex-debug.gdbPath.linux": "/opt/st/stm32cubeide_1.9.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.linux64_1.0.0.202111181127/tools/bin/arm-none-eabi-gdb",
+    "cortex-debug.JLinkGDBServerPath": "/opt/st/stm32cubeide_1.9.0/plugins/com.st.stm32cube.ide.mcu.externaltools.jlink.linux64_2.0.200.202202231230/tools/bin/JLinkGDBServer",
+    "cortex-debug.stutilPath": "/home/nd94/Projects/stm32/stlink/bin/st-util",
+    "files.associations": {
+        "main.h": "c",
+        "dma.h": "c",
+        "cmsis_os.h": "c",
+        "rcl.h": "c",
+        "stm32f4xx_hal.h": "c",
+        "array": "c",
+        "deque": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "task.h": "c",
+        "microros_tasks.h": "c",
+        "error_handling.h": "c",
+        "stdint.h": "c",
+        "freertos.h": "c",
+        "i2c.h": "c",
+        "*.ipp": "c",
+        "cstdio": "c",
+        "*.tcc": "c",
+        "usart.h": "c"
+    },
+    
+}
