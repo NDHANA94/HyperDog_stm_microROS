@@ -1,0 +1,1253 @@
+ARM GAS  /tmp/ccOCEVbv.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"pca9685.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.PCA9685_SetBit,"ax",%progbits
+  18              		.align	1
+  19              		.global	PCA9685_SetBit
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	PCA9685_SetBit:
+  27              	.LVL0:
+  28              	.LFB235:
+  29              		.file 1 "App/pca9685.c"
+   1:App/pca9685.c **** /*
+   2:App/pca9685.c **** ********************************************************************************
+   3:App/pca9685.c **** *
+   4:App/pca9685.c **** * Created on: March 15, 2022
+   5:App/pca9685.c **** *     Author: Nipun Dhananjaya Weerakkodi -> nipun.dhananjaya@gmail.com
+   6:App/pca9685.c **** ********************************************************************************
+   7:App/pca9685.c **** */
+   8:App/pca9685.c **** 
+   9:App/pca9685.c **** #include "main.h"
+  10:App/pca9685.c **** #include "i2c.h"
+  11:App/pca9685.c **** 
+  12:App/pca9685.c **** #include "pca9685.h"
+  13:App/pca9685.c **** #include "math.h"
+  14:App/pca9685.c **** 
+  15:App/pca9685.c **** I2C_HandleTypeDef *pca9685_i2c;
+  16:App/pca9685.c **** 
+  17:App/pca9685.c **** 
+  18:App/pca9685.c **** 
+  19:App/pca9685.c **** PCA9685_STATUS PCA9685_SetBit(uint8_t Register, uint8_t Bit, uint8_t Value)
+  20:App/pca9685.c **** {
+  30              		.loc 1 20 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 20 1 is_stmt 0 view .LVU1
+  35 0000 70B5     		push	{r4, r5, r6, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 4, -16
+ARM GAS  /tmp/ccOCEVbv.s 			page 2
+
+
+  39              		.cfi_offset 5, -12
+  40              		.cfi_offset 6, -8
+  41              		.cfi_offset 14, -4
+  42 0002 86B0     		sub	sp, sp, #24
+  43              	.LCFI1:
+  44              		.cfi_def_cfa_offset 40
+  45 0004 0D46     		mov	r5, r1
+  21:App/pca9685.c **** 	uint8_t tmp;
+  46              		.loc 1 21 2 is_stmt 1 view .LVU2
+  22:App/pca9685.c **** 	if(Value) Value = 1;
+  47              		.loc 1 22 2 view .LVU3
+  48              		.loc 1 22 4 is_stmt 0 view .LVU4
+  49 0006 1646     		mov	r6, r2
+  50 0008 02B1     		cbz	r2, .L2
+  51              		.loc 1 22 18 view .LVU5
+  52 000a 0126     		movs	r6, #1
+  53              	.L2:
+  54              	.LVL1:
+  23:App/pca9685.c **** 
+  24:App/pca9685.c **** 	if(HAL_OK != HAL_I2C_Mem_Read(pca9685_i2c, PCA9685_ADDRESS, Register, 1, &tmp, 1, 10))
+  55              		.loc 1 24 2 is_stmt 1 view .LVU6
+  56              		.loc 1 24 15 is_stmt 0 view .LVU7
+  57 000c 84B2     		uxth	r4, r0
+  58 000e 0A23     		movs	r3, #10
+  59 0010 0293     		str	r3, [sp, #8]
+  60 0012 0123     		movs	r3, #1
+  61 0014 0193     		str	r3, [sp, #4]
+  62 0016 0DF11702 		add	r2, sp, #23
+  63 001a 0092     		str	r2, [sp]
+  64 001c 2246     		mov	r2, r4
+  65 001e 8021     		movs	r1, #128
+  66              	.LVL2:
+  67              		.loc 1 24 15 view .LVU8
+  68 0020 1348     		ldr	r0, .L9
+  69              	.LVL3:
+  70              		.loc 1 24 15 view .LVU9
+  71 0022 0068     		ldr	r0, [r0]
+  72 0024 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+  73              	.LVL4:
+  74              		.loc 1 24 4 view .LVU10
+  75 0028 10B1     		cbz	r0, .L8
+  25:App/pca9685.c **** 	{
+  26:App/pca9685.c **** 		return PCA9685_ERROR;
+  76              		.loc 1 26 10 view .LVU11
+  77 002a 0120     		movs	r0, #1
+  78              	.LVL5:
+  79              	.L3:
+  27:App/pca9685.c **** 	}
+  28:App/pca9685.c **** 	tmp &= ~((1<<PCA9685_MODE1_RESTART_BIT)|(1<<Bit));
+  29:App/pca9685.c **** 	tmp |= (Value&1)<<Bit;
+  30:App/pca9685.c **** 
+  31:App/pca9685.c **** 	if(HAL_OK != HAL_I2C_Mem_Write(pca9685_i2c, PCA9685_ADDRESS, Register, 1, &tmp, 1, 10))
+  32:App/pca9685.c **** 	{
+  33:App/pca9685.c **** 		return PCA9685_ERROR;
+  34:App/pca9685.c **** 	}
+  35:App/pca9685.c **** 
+  36:App/pca9685.c **** 	return PCA9685_OK;
+ARM GAS  /tmp/ccOCEVbv.s 			page 3
+
+
+  37:App/pca9685.c **** }
+  80              		.loc 1 37 1 view .LVU12
+  81 002c 06B0     		add	sp, sp, #24
+  82              	.LCFI2:
+  83              		.cfi_remember_state
+  84              		.cfi_def_cfa_offset 16
+  85              		@ sp needed
+  86 002e 70BD     		pop	{r4, r5, r6, pc}
+  87              	.LVL6:
+  88              	.L8:
+  89              	.LCFI3:
+  90              		.cfi_restore_state
+  28:App/pca9685.c **** 	tmp |= (Value&1)<<Bit;
+  91              		.loc 1 28 2 is_stmt 1 view .LVU13
+  28:App/pca9685.c **** 	tmp |= (Value&1)<<Bit;
+  92              		.loc 1 28 44 is_stmt 0 view .LVU14
+  93 0030 0123     		movs	r3, #1
+  94 0032 03FA05F1 		lsl	r1, r3, r5
+  28:App/pca9685.c **** 	tmp |= (Value&1)<<Bit;
+  95              		.loc 1 28 41 view .LVU15
+  96 0036 61F07F02 		orn	r2, r1, #127
+  28:App/pca9685.c **** 	tmp |= (Value&1)<<Bit;
+  97              		.loc 1 28 6 view .LVU16
+  98 003a 9DF81710 		ldrb	r1, [sp, #23]	@ zero_extendqisi2
+  99 003e 21EA0201 		bic	r1, r1, r2
+ 100 0042 49B2     		sxtb	r1, r1
+  29:App/pca9685.c **** 
+ 101              		.loc 1 29 2 is_stmt 1 view .LVU17
+  29:App/pca9685.c **** 
+ 102              		.loc 1 29 15 is_stmt 0 view .LVU18
+ 103 0044 1E40     		ands	r6, r6, r3
+ 104              	.LVL7:
+  29:App/pca9685.c **** 
+ 105              		.loc 1 29 18 view .LVU19
+ 106 0046 06FA05F5 		lsl	r5, r6, r5
+  29:App/pca9685.c **** 
+ 107              		.loc 1 29 6 view .LVU20
+ 108 004a 0D43     		orrs	r5, r5, r1
+ 109 004c 8DF81750 		strb	r5, [sp, #23]
+  31:App/pca9685.c **** 	{
+ 110              		.loc 1 31 2 is_stmt 1 view .LVU21
+  31:App/pca9685.c **** 	{
+ 111              		.loc 1 31 15 is_stmt 0 view .LVU22
+ 112 0050 0A22     		movs	r2, #10
+ 113 0052 0292     		str	r2, [sp, #8]
+ 114 0054 0193     		str	r3, [sp, #4]
+ 115 0056 0DF11702 		add	r2, sp, #23
+ 116 005a 0092     		str	r2, [sp]
+ 117 005c 2246     		mov	r2, r4
+ 118 005e 8021     		movs	r1, #128
+ 119 0060 0348     		ldr	r0, .L9
+ 120 0062 0068     		ldr	r0, [r0]
+ 121 0064 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 122              	.LVL8:
+  31:App/pca9685.c **** 	{
+ 123              		.loc 1 31 4 view .LVU23
+ 124 0068 0028     		cmp	r0, #0
+ARM GAS  /tmp/ccOCEVbv.s 			page 4
+
+
+ 125 006a DFD0     		beq	.L3
+  33:App/pca9685.c **** 	}
+ 126              		.loc 1 33 10 view .LVU24
+ 127 006c 0120     		movs	r0, #1
+ 128 006e DDE7     		b	.L3
+ 129              	.L10:
+ 130              		.align	2
+ 131              	.L9:
+ 132 0070 00000000 		.word	pca9685_i2c
+ 133              		.cfi_endproc
+ 134              	.LFE235:
+ 136              		.section	.text.PCA9685_SoftwareReset,"ax",%progbits
+ 137              		.align	1
+ 138              		.global	PCA9685_SoftwareReset
+ 139              		.syntax unified
+ 140              		.thumb
+ 141              		.thumb_func
+ 142              		.fpu fpv4-sp-d16
+ 144              	PCA9685_SoftwareReset:
+ 145              	.LFB236:
+  38:App/pca9685.c **** 
+  39:App/pca9685.c **** PCA9685_STATUS PCA9685_SoftwareReset(void)
+  40:App/pca9685.c **** {
+ 146              		.loc 1 40 1 is_stmt 1 view -0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 8
+ 149              		@ frame_needed = 0, uses_anonymous_args = 0
+ 150 0000 00B5     		push	{lr}
+ 151              	.LCFI4:
+ 152              		.cfi_def_cfa_offset 4
+ 153              		.cfi_offset 14, -4
+ 154 0002 85B0     		sub	sp, sp, #20
+ 155              	.LCFI5:
+ 156              		.cfi_def_cfa_offset 24
+  41:App/pca9685.c **** 	uint8_t cmd =  0x06;
+ 157              		.loc 1 41 2 view .LVU26
+ 158              		.loc 1 41 10 is_stmt 0 view .LVU27
+ 159 0004 0623     		movs	r3, #6
+ 160 0006 8DF80F30 		strb	r3, [sp, #15]
+  42:App/pca9685.c **** 	if(HAL_OK == HAL_I2C_Master_Transmit(pca9685_i2c, 0x00, &cmd, 1, 10))
+ 161              		.loc 1 42 2 is_stmt 1 view .LVU28
+ 162              		.loc 1 42 15 is_stmt 0 view .LVU29
+ 163 000a 0A23     		movs	r3, #10
+ 164 000c 0093     		str	r3, [sp]
+ 165 000e 0123     		movs	r3, #1
+ 166 0010 0DF10F02 		add	r2, sp, #15
+ 167 0014 0021     		movs	r1, #0
+ 168 0016 0448     		ldr	r0, .L14
+ 169 0018 0068     		ldr	r0, [r0]
+ 170 001a FFF7FEFF 		bl	HAL_I2C_Master_Transmit
+ 171              	.LVL9:
+ 172              		.loc 1 42 4 view .LVU30
+ 173 001e 00B1     		cbz	r0, .L12
+  43:App/pca9685.c **** 	{
+  44:App/pca9685.c **** 		return PCA9685_OK;
+  45:App/pca9685.c **** 	}
+  46:App/pca9685.c **** 	return PCA9685_ERROR;
+ARM GAS  /tmp/ccOCEVbv.s 			page 5
+
+
+ 174              		.loc 1 46 9 view .LVU31
+ 175 0020 0120     		movs	r0, #1
+ 176              	.L12:
+  47:App/pca9685.c **** }
+ 177              		.loc 1 47 1 view .LVU32
+ 178 0022 05B0     		add	sp, sp, #20
+ 179              	.LCFI6:
+ 180              		.cfi_def_cfa_offset 4
+ 181              		@ sp needed
+ 182 0024 5DF804FB 		ldr	pc, [sp], #4
+ 183              	.L15:
+ 184              		.align	2
+ 185              	.L14:
+ 186 0028 00000000 		.word	pca9685_i2c
+ 187              		.cfi_endproc
+ 188              	.LFE236:
+ 190              		.section	.text.PCA9685_SleepMode,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	PCA9685_SleepMode
+ 193              		.syntax unified
+ 194              		.thumb
+ 195              		.thumb_func
+ 196              		.fpu fpv4-sp-d16
+ 198              	PCA9685_SleepMode:
+ 199              	.LVL10:
+ 200              	.LFB237:
+  48:App/pca9685.c **** 
+  49:App/pca9685.c **** PCA9685_STATUS PCA9685_SleepMode(uint8_t Enable)
+  50:App/pca9685.c **** {
+ 201              		.loc 1 50 1 is_stmt 1 view -0
+ 202              		.cfi_startproc
+ 203              		@ args = 0, pretend = 0, frame = 0
+ 204              		@ frame_needed = 0, uses_anonymous_args = 0
+ 205              		.loc 1 50 1 is_stmt 0 view .LVU34
+ 206 0000 08B5     		push	{r3, lr}
+ 207              	.LCFI7:
+ 208              		.cfi_def_cfa_offset 8
+ 209              		.cfi_offset 3, -8
+ 210              		.cfi_offset 14, -4
+ 211 0002 0246     		mov	r2, r0
+  51:App/pca9685.c **** 	return PCA9685_SetBit(PCA9685_MODE1, PCA9685_MODE1_SLEEP_BIT, Enable);
+ 212              		.loc 1 51 2 is_stmt 1 view .LVU35
+ 213              		.loc 1 51 9 is_stmt 0 view .LVU36
+ 214 0004 0421     		movs	r1, #4
+ 215 0006 0020     		movs	r0, #0
+ 216              	.LVL11:
+ 217              		.loc 1 51 9 view .LVU37
+ 218 0008 FFF7FEFF 		bl	PCA9685_SetBit
+ 219              	.LVL12:
+  52:App/pca9685.c **** }
+ 220              		.loc 1 52 1 view .LVU38
+ 221 000c 08BD     		pop	{r3, pc}
+ 222              		.cfi_endproc
+ 223              	.LFE237:
+ 225              		.section	.text.PCA9685_RestartMode,"ax",%progbits
+ 226              		.align	1
+ 227              		.global	PCA9685_RestartMode
+ARM GAS  /tmp/ccOCEVbv.s 			page 6
+
+
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 231              		.fpu fpv4-sp-d16
+ 233              	PCA9685_RestartMode:
+ 234              	.LVL13:
+ 235              	.LFB238:
+  53:App/pca9685.c **** 
+  54:App/pca9685.c **** PCA9685_STATUS PCA9685_RestartMode(uint8_t Enable)
+  55:App/pca9685.c **** {
+ 236              		.loc 1 55 1 is_stmt 1 view -0
+ 237              		.cfi_startproc
+ 238              		@ args = 0, pretend = 0, frame = 0
+ 239              		@ frame_needed = 0, uses_anonymous_args = 0
+ 240              		.loc 1 55 1 is_stmt 0 view .LVU40
+ 241 0000 08B5     		push	{r3, lr}
+ 242              	.LCFI8:
+ 243              		.cfi_def_cfa_offset 8
+ 244              		.cfi_offset 3, -8
+ 245              		.cfi_offset 14, -4
+ 246 0002 0246     		mov	r2, r0
+  56:App/pca9685.c **** 	return PCA9685_SetBit(PCA9685_MODE1, PCA9685_MODE1_RESTART_BIT, Enable);
+ 247              		.loc 1 56 2 is_stmt 1 view .LVU41
+ 248              		.loc 1 56 9 is_stmt 0 view .LVU42
+ 249 0004 0721     		movs	r1, #7
+ 250 0006 0020     		movs	r0, #0
+ 251              	.LVL14:
+ 252              		.loc 1 56 9 view .LVU43
+ 253 0008 FFF7FEFF 		bl	PCA9685_SetBit
+ 254              	.LVL15:
+  57:App/pca9685.c **** }
+ 255              		.loc 1 57 1 view .LVU44
+ 256 000c 08BD     		pop	{r3, pc}
+ 257              		.cfi_endproc
+ 258              	.LFE238:
+ 260              		.section	.text.PCA9685_AutoIncrement,"ax",%progbits
+ 261              		.align	1
+ 262              		.global	PCA9685_AutoIncrement
+ 263              		.syntax unified
+ 264              		.thumb
+ 265              		.thumb_func
+ 266              		.fpu fpv4-sp-d16
+ 268              	PCA9685_AutoIncrement:
+ 269              	.LVL16:
+ 270              	.LFB239:
+  58:App/pca9685.c **** 
+  59:App/pca9685.c **** PCA9685_STATUS PCA9685_AutoIncrement(uint8_t Enable)
+  60:App/pca9685.c **** {
+ 271              		.loc 1 60 1 is_stmt 1 view -0
+ 272              		.cfi_startproc
+ 273              		@ args = 0, pretend = 0, frame = 0
+ 274              		@ frame_needed = 0, uses_anonymous_args = 0
+ 275              		.loc 1 60 1 is_stmt 0 view .LVU46
+ 276 0000 08B5     		push	{r3, lr}
+ 277              	.LCFI9:
+ 278              		.cfi_def_cfa_offset 8
+ 279              		.cfi_offset 3, -8
+ARM GAS  /tmp/ccOCEVbv.s 			page 7
+
+
+ 280              		.cfi_offset 14, -4
+ 281 0002 0246     		mov	r2, r0
+  61:App/pca9685.c **** 	return PCA9685_SetBit(PCA9685_MODE1, PCA9685_MODE1_AI_BIT, Enable);
+ 282              		.loc 1 61 2 is_stmt 1 view .LVU47
+ 283              		.loc 1 61 9 is_stmt 0 view .LVU48
+ 284 0004 0521     		movs	r1, #5
+ 285 0006 0020     		movs	r0, #0
+ 286              	.LVL17:
+ 287              		.loc 1 61 9 view .LVU49
+ 288 0008 FFF7FEFF 		bl	PCA9685_SetBit
+ 289              	.LVL18:
+  62:App/pca9685.c **** }
+ 290              		.loc 1 62 1 view .LVU50
+ 291 000c 08BD     		pop	{r3, pc}
+ 292              		.cfi_endproc
+ 293              	.LFE239:
+ 295              		.section	.text.PCA9685_SubaddressRespond,"ax",%progbits
+ 296              		.align	1
+ 297              		.global	PCA9685_SubaddressRespond
+ 298              		.syntax unified
+ 299              		.thumb
+ 300              		.thumb_func
+ 301              		.fpu fpv4-sp-d16
+ 303              	PCA9685_SubaddressRespond:
+ 304              	.LVL19:
+ 305              	.LFB240:
+  63:App/pca9685.c **** 
+  64:App/pca9685.c **** PCA9685_STATUS PCA9685_SubaddressRespond(SubaddressBit Subaddress, uint8_t Enable)
+  65:App/pca9685.c **** {
+ 306              		.loc 1 65 1 is_stmt 1 view -0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 0, uses_anonymous_args = 0
+ 310              		.loc 1 65 1 is_stmt 0 view .LVU52
+ 311 0000 08B5     		push	{r3, lr}
+ 312              	.LCFI10:
+ 313              		.cfi_def_cfa_offset 8
+ 314              		.cfi_offset 3, -8
+ 315              		.cfi_offset 14, -4
+ 316 0002 0A46     		mov	r2, r1
+  66:App/pca9685.c **** 	return PCA9685_SetBit(PCA9685_MODE1, Subaddress, Enable);
+ 317              		.loc 1 66 2 is_stmt 1 view .LVU53
+ 318              		.loc 1 66 9 is_stmt 0 view .LVU54
+ 319 0004 0146     		mov	r1, r0
+ 320              	.LVL20:
+ 321              		.loc 1 66 9 view .LVU55
+ 322 0006 0020     		movs	r0, #0
+ 323              	.LVL21:
+ 324              		.loc 1 66 9 view .LVU56
+ 325 0008 FFF7FEFF 		bl	PCA9685_SetBit
+ 326              	.LVL22:
+  67:App/pca9685.c **** }
+ 327              		.loc 1 67 1 view .LVU57
+ 328 000c 08BD     		pop	{r3, pc}
+ 329              		.cfi_endproc
+ 330              	.LFE240:
+ 332              		.section	.text.PCA9685_AllCallRespond,"ax",%progbits
+ARM GAS  /tmp/ccOCEVbv.s 			page 8
+
+
+ 333              		.align	1
+ 334              		.global	PCA9685_AllCallRespond
+ 335              		.syntax unified
+ 336              		.thumb
+ 337              		.thumb_func
+ 338              		.fpu fpv4-sp-d16
+ 340              	PCA9685_AllCallRespond:
+ 341              	.LVL23:
+ 342              	.LFB241:
+  68:App/pca9685.c **** 
+  69:App/pca9685.c **** PCA9685_STATUS PCA9685_AllCallRespond(uint8_t Enable)
+  70:App/pca9685.c **** {
+ 343              		.loc 1 70 1 is_stmt 1 view -0
+ 344              		.cfi_startproc
+ 345              		@ args = 0, pretend = 0, frame = 0
+ 346              		@ frame_needed = 0, uses_anonymous_args = 0
+ 347              		.loc 1 70 1 is_stmt 0 view .LVU59
+ 348 0000 08B5     		push	{r3, lr}
+ 349              	.LCFI11:
+ 350              		.cfi_def_cfa_offset 8
+ 351              		.cfi_offset 3, -8
+ 352              		.cfi_offset 14, -4
+ 353 0002 0246     		mov	r2, r0
+  71:App/pca9685.c **** 	return PCA9685_SetBit(PCA9685_MODE1, PCA9685_MODE1_ALCALL_BIT, Enable);
+ 354              		.loc 1 71 2 is_stmt 1 view .LVU60
+ 355              		.loc 1 71 9 is_stmt 0 view .LVU61
+ 356 0004 0021     		movs	r1, #0
+ 357 0006 0846     		mov	r0, r1
+ 358              	.LVL24:
+ 359              		.loc 1 71 9 view .LVU62
+ 360 0008 FFF7FEFF 		bl	PCA9685_SetBit
+ 361              	.LVL25:
+  72:App/pca9685.c **** }
+ 362              		.loc 1 72 1 view .LVU63
+ 363 000c 08BD     		pop	{r3, pc}
+ 364              		.cfi_endproc
+ 365              	.LFE241:
+ 367              		.global	__aeabi_f2d
+ 368              		.global	__aeabi_dmul
+ 369              		.global	__aeabi_ddiv
+ 370              		.global	__aeabi_dsub
+ 371              		.global	__aeabi_d2f
+ 372              		.global	__aeabi_dadd
+ 373              		.global	__aeabi_d2uiz
+ 374              		.section	.text.PCA9685_SetPwmFrequency,"ax",%progbits
+ 375              		.align	1
+ 376              		.global	PCA9685_SetPwmFrequency
+ 377              		.syntax unified
+ 378              		.thumb
+ 379              		.thumb_func
+ 380              		.fpu fpv4-sp-d16
+ 382              	PCA9685_SetPwmFrequency:
+ 383              	.LVL26:
+ 384              	.LFB242:
+  73:App/pca9685.c **** 
+  74:App/pca9685.c **** //
+  75:App/pca9685.c **** //	Frequency - Hz value
+ARM GAS  /tmp/ccOCEVbv.s 			page 9
+
+
+  76:App/pca9685.c **** //
+  77:App/pca9685.c **** PCA9685_STATUS PCA9685_SetPwmFrequency(uint16_t Frequency)
+  78:App/pca9685.c **** {
+ 385              		.loc 1 78 1 is_stmt 1 view -0
+ 386              		.cfi_startproc
+ 387              		@ args = 0, pretend = 0, frame = 8
+ 388              		@ frame_needed = 0, uses_anonymous_args = 0
+ 389              		.loc 1 78 1 is_stmt 0 view .LVU65
+ 390 0000 10B5     		push	{r4, lr}
+ 391              	.LCFI12:
+ 392              		.cfi_def_cfa_offset 8
+ 393              		.cfi_offset 4, -8
+ 394              		.cfi_offset 14, -4
+ 395 0002 86B0     		sub	sp, sp, #24
+ 396              	.LCFI13:
+ 397              		.cfi_def_cfa_offset 32
+  79:App/pca9685.c **** 	// Run PCA9685_SoftwareReset() before running this
+  80:App/pca9685.c **** 
+  81:App/pca9685.c **** 	float PrescalerVal;
+ 398              		.loc 1 81 2 is_stmt 1 view .LVU66
+  82:App/pca9685.c **** 	uint8_t Prescale;
+ 399              		.loc 1 82 2 view .LVU67
+  83:App/pca9685.c **** 
+  84:App/pca9685.c **** 	if(Frequency >= 1526)
+ 400              		.loc 1 84 2 view .LVU68
+ 401              		.loc 1 84 4 is_stmt 0 view .LVU69
+ 402 0004 40F2F553 		movw	r3, #1525
+ 403 0008 9842     		cmp	r0, r3
+ 404 000a 1CD9     		bls	.L27
+  85:App/pca9685.c **** 	{
+  86:App/pca9685.c **** 		Prescale = 0x03;
+ 405              		.loc 1 86 3 is_stmt 1 view .LVU70
+ 406              		.loc 1 86 12 is_stmt 0 view .LVU71
+ 407 000c 0323     		movs	r3, #3
+ 408 000e 8DF81730 		strb	r3, [sp, #23]
+ 409              	.LVL27:
+ 410              	.L28:
+  87:App/pca9685.c **** 	}
+  88:App/pca9685.c **** 	else if(Frequency <= 24)
+  89:App/pca9685.c **** 	{
+  90:App/pca9685.c **** 		Prescale = 0xFF;
+  91:App/pca9685.c **** 	}
+  92:App/pca9685.c **** 	else
+  93:App/pca9685.c **** 	{
+  94:App/pca9685.c **** 		PrescalerVal = (25000000 / (4096.0 * (float)Frequency)) - 1;
+  95:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+  96:App/pca9685.c **** 	}
+  97:App/pca9685.c **** 
+  98:App/pca9685.c **** 	//
+  99:App/pca9685.c **** 	//	To change the frequency, PCA9685 have to be in Sleep mode.
+ 100:App/pca9685.c **** 	//
+ 101:App/pca9685.c **** 	PCA9685_SleepMode(1);
+ 411              		.loc 1 101 2 is_stmt 1 view .LVU72
+ 412 0012 0120     		movs	r0, #1
+ 413 0014 FFF7FEFF 		bl	PCA9685_SleepMode
+ 414              	.LVL28:
+ 102:App/pca9685.c **** 	HAL_I2C_Mem_Write(pca9685_i2c, PCA9685_ADDRESS, PCA9685_PRESCALE, 1, &Prescale, 1, 10); // Write P
+ARM GAS  /tmp/ccOCEVbv.s 			page 10
+
+
+ 415              		.loc 1 102 2 view .LVU73
+ 416 0018 0A23     		movs	r3, #10
+ 417 001a 0293     		str	r3, [sp, #8]
+ 418 001c 0124     		movs	r4, #1
+ 419 001e 0194     		str	r4, [sp, #4]
+ 420 0020 0DF11703 		add	r3, sp, #23
+ 421 0024 0093     		str	r3, [sp]
+ 422 0026 2346     		mov	r3, r4
+ 423 0028 FE22     		movs	r2, #254
+ 424 002a 8021     		movs	r1, #128
+ 425 002c 2048     		ldr	r0, .L31+8
+ 426 002e 0068     		ldr	r0, [r0]
+ 427 0030 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 428              	.LVL29:
+ 103:App/pca9685.c **** 	PCA9685_SleepMode(0);
+ 429              		.loc 1 103 2 view .LVU74
+ 430 0034 0020     		movs	r0, #0
+ 431 0036 FFF7FEFF 		bl	PCA9685_SleepMode
+ 432              	.LVL30:
+ 104:App/pca9685.c **** 	PCA9685_RestartMode(1);
+ 433              		.loc 1 104 2 view .LVU75
+ 434 003a 2046     		mov	r0, r4
+ 435 003c FFF7FEFF 		bl	PCA9685_RestartMode
+ 436              	.LVL31:
+ 105:App/pca9685.c **** 	return PCA9685_OK;
+ 437              		.loc 1 105 2 view .LVU76
+ 106:App/pca9685.c **** }
+ 438              		.loc 1 106 1 is_stmt 0 view .LVU77
+ 439 0040 0020     		movs	r0, #0
+ 440 0042 06B0     		add	sp, sp, #24
+ 441              	.LCFI14:
+ 442              		.cfi_remember_state
+ 443              		.cfi_def_cfa_offset 8
+ 444              		@ sp needed
+ 445 0044 10BD     		pop	{r4, pc}
+ 446              	.LVL32:
+ 447              	.L27:
+ 448              	.LCFI15:
+ 449              		.cfi_restore_state
+  88:App/pca9685.c **** 	{
+ 450              		.loc 1 88 7 is_stmt 1 view .LVU78
+  88:App/pca9685.c **** 	{
+ 451              		.loc 1 88 9 is_stmt 0 view .LVU79
+ 452 0046 1828     		cmp	r0, #24
+ 453 0048 03D8     		bhi	.L29
+  90:App/pca9685.c **** 	}
+ 454              		.loc 1 90 3 is_stmt 1 view .LVU80
+  90:App/pca9685.c **** 	}
+ 455              		.loc 1 90 12 is_stmt 0 view .LVU81
+ 456 004a FF23     		movs	r3, #255
+ 457 004c 8DF81730 		strb	r3, [sp, #23]
+ 458 0050 DFE7     		b	.L28
+ 459              	.L29:
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 460              		.loc 1 94 3 is_stmt 1 view .LVU82
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 461              		.loc 1 94 40 is_stmt 0 view .LVU83
+ARM GAS  /tmp/ccOCEVbv.s 			page 11
+
+
+ 462 0052 07EE900A 		vmov	s15, r0	@ int
+ 463 0056 F8EE677A 		vcvt.f32.u32	s15, s15
+ 464 005a 17EE900A 		vmov	r0, s15
+ 465              	.LVL33:
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 466              		.loc 1 94 40 view .LVU84
+ 467 005e FFF7FEFF 		bl	__aeabi_f2d
+ 468              	.LVL34:
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 469              		.loc 1 94 38 view .LVU85
+ 470 0062 0022     		movs	r2, #0
+ 471 0064 134B     		ldr	r3, .L31+12
+ 472 0066 FFF7FEFF 		bl	__aeabi_dmul
+ 473              	.LVL35:
+ 474 006a 0246     		mov	r2, r0
+ 475 006c 0B46     		mov	r3, r1
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 476              		.loc 1 94 28 view .LVU86
+ 477 006e 0EA1     		adr	r1, .L31
+ 478 0070 D1E90001 		ldrd	r0, [r1]
+ 479 0074 FFF7FEFF 		bl	__aeabi_ddiv
+ 480              	.LVL36:
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 481              		.loc 1 94 59 view .LVU87
+ 482 0078 0022     		movs	r2, #0
+ 483 007a 0F4B     		ldr	r3, .L31+16
+ 484 007c FFF7FEFF 		bl	__aeabi_dsub
+ 485              	.LVL37:
+  94:App/pca9685.c **** 		Prescale = floor(PrescalerVal + 0.5);
+ 486              		.loc 1 94 16 view .LVU88
+ 487 0080 FFF7FEFF 		bl	__aeabi_d2f
+ 488              	.LVL38:
+  95:App/pca9685.c **** 	}
+ 489              		.loc 1 95 3 is_stmt 1 view .LVU89
+  95:App/pca9685.c **** 	}
+ 490              		.loc 1 95 14 is_stmt 0 view .LVU90
+ 491 0084 FFF7FEFF 		bl	__aeabi_f2d
+ 492              	.LVL39:
+  95:App/pca9685.c **** 	}
+ 493              		.loc 1 95 14 view .LVU91
+ 494 0088 0022     		movs	r2, #0
+ 495 008a 0C4B     		ldr	r3, .L31+20
+ 496 008c FFF7FEFF 		bl	__aeabi_dadd
+ 497              	.LVL40:
+ 498 0090 41EC100B 		vmov	d0, r0, r1
+ 499 0094 FFF7FEFF 		bl	floor
+ 500              	.LVL41:
+ 501 0098 51EC100B 		vmov	r0, r1, d0
+  95:App/pca9685.c **** 	}
+ 502              		.loc 1 95 12 view .LVU92
+ 503 009c FFF7FEFF 		bl	__aeabi_d2uiz
+ 504              	.LVL42:
+ 505 00a0 8DF81700 		strb	r0, [sp, #23]
+ 506 00a4 B5E7     		b	.L28
+ 507              	.L32:
+ 508 00a6 00BF     		.align	3
+ 509              	.L31:
+ARM GAS  /tmp/ccOCEVbv.s 			page 12
+
+
+ 510 00a8 00000000 		.word	0
+ 511 00ac 84D77741 		.word	1098372996
+ 512 00b0 00000000 		.word	pca9685_i2c
+ 513 00b4 0000B040 		.word	1085276160
+ 514 00b8 0000F03F 		.word	1072693248
+ 515 00bc 0000E03F 		.word	1071644672
+ 516              		.cfi_endproc
+ 517              	.LFE242:
+ 519              		.section	.text.PCA9685_SetPwm,"ax",%progbits
+ 520              		.align	1
+ 521              		.global	PCA9685_SetPwm
+ 522              		.syntax unified
+ 523              		.thumb
+ 524              		.thumb_func
+ 525              		.fpu fpv4-sp-d16
+ 527              	PCA9685_SetPwm:
+ 528              	.LVL43:
+ 529              	.LFB243:
+ 107:App/pca9685.c **** 
+ 108:App/pca9685.c **** PCA9685_STATUS PCA9685_SetPwm(uint8_t Channel, uint16_t OnTime, uint16_t OffTime)
+ 109:App/pca9685.c **** {
+ 530              		.loc 1 109 1 is_stmt 1 view -0
+ 531              		.cfi_startproc
+ 532              		@ args = 0, pretend = 0, frame = 8
+ 533              		@ frame_needed = 0, uses_anonymous_args = 0
+ 534              		.loc 1 109 1 is_stmt 0 view .LVU94
+ 535 0000 00B5     		push	{lr}
+ 536              	.LCFI16:
+ 537              		.cfi_def_cfa_offset 4
+ 538              		.cfi_offset 14, -4
+ 539 0002 87B0     		sub	sp, sp, #28
+ 540              	.LCFI17:
+ 541              		.cfi_def_cfa_offset 32
+ 110:App/pca9685.c **** 	uint8_t RegisterAddress;
+ 542              		.loc 1 110 2 is_stmt 1 view .LVU95
+ 111:App/pca9685.c **** 	uint8_t Message[4];
+ 543              		.loc 1 111 2 view .LVU96
+ 112:App/pca9685.c **** 
+ 113:App/pca9685.c **** 	RegisterAddress = PCA9685_LED0_ON_L + (4 * Channel);
+ 544              		.loc 1 113 2 view .LVU97
+ 545              		.loc 1 113 38 is_stmt 0 view .LVU98
+ 546 0004 8000     		lsls	r0, r0, #2
+ 547              	.LVL44:
+ 548              		.loc 1 113 38 view .LVU99
+ 549 0006 C0B2     		uxtb	r0, r0
+ 550              		.loc 1 113 18 view .LVU100
+ 551 0008 0630     		adds	r0, r0, #6
+ 552              	.LVL45:
+ 114:App/pca9685.c **** 	Message[0] = OnTime & 0xFF;
+ 553              		.loc 1 114 2 is_stmt 1 view .LVU101
+ 554              		.loc 1 114 13 is_stmt 0 view .LVU102
+ 555 000a 8DF81410 		strb	r1, [sp, #20]
+ 115:App/pca9685.c **** 	Message[1] = OnTime>>8;
+ 556              		.loc 1 115 2 is_stmt 1 view .LVU103
+ 557              		.loc 1 115 13 is_stmt 0 view .LVU104
+ 558 000e 090A     		lsrs	r1, r1, #8
+ 559              	.LVL46:
+ARM GAS  /tmp/ccOCEVbv.s 			page 13
+
+
+ 560              		.loc 1 115 13 view .LVU105
+ 561 0010 8DF81510 		strb	r1, [sp, #21]
+ 116:App/pca9685.c **** 	Message[2] = OffTime & 0xFF;
+ 562              		.loc 1 116 2 is_stmt 1 view .LVU106
+ 563              		.loc 1 116 13 is_stmt 0 view .LVU107
+ 564 0014 8DF81620 		strb	r2, [sp, #22]
+ 117:App/pca9685.c **** 	Message[3] = OffTime>>8;
+ 565              		.loc 1 117 2 is_stmt 1 view .LVU108
+ 566              		.loc 1 117 13 is_stmt 0 view .LVU109
+ 567 0018 120A     		lsrs	r2, r2, #8
+ 568              	.LVL47:
+ 569              		.loc 1 117 13 view .LVU110
+ 570 001a 8DF81720 		strb	r2, [sp, #23]
+ 118:App/pca9685.c **** 
+ 119:App/pca9685.c **** 	if(HAL_OK != HAL_I2C_Mem_Write(pca9685_i2c, PCA9685_ADDRESS, RegisterAddress, 1, Message, 4, 10))
+ 571              		.loc 1 119 2 is_stmt 1 view .LVU111
+ 572              		.loc 1 119 15 is_stmt 0 view .LVU112
+ 573 001e 0A23     		movs	r3, #10
+ 574 0020 0293     		str	r3, [sp, #8]
+ 575 0022 0423     		movs	r3, #4
+ 576 0024 0193     		str	r3, [sp, #4]
+ 577 0026 05AB     		add	r3, sp, #20
+ 578 0028 0093     		str	r3, [sp]
+ 579 002a 0123     		movs	r3, #1
+ 580 002c 00F0FE02 		and	r2, r0, #254
+ 581 0030 8021     		movs	r1, #128
+ 582 0032 0548     		ldr	r0, .L38
+ 583              	.LVL48:
+ 584              		.loc 1 119 15 view .LVU113
+ 585 0034 0068     		ldr	r0, [r0]
+ 586 0036 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 587              	.LVL49:
+ 588              		.loc 1 119 4 view .LVU114
+ 589 003a 10B9     		cbnz	r0, .L37
+ 590              	.L34:
+ 120:App/pca9685.c **** 	{
+ 121:App/pca9685.c **** 		return PCA9685_ERROR;
+ 122:App/pca9685.c **** 	}
+ 123:App/pca9685.c **** 
+ 124:App/pca9685.c **** 	return PCA9685_OK;
+ 125:App/pca9685.c **** }
+ 591              		.loc 1 125 1 view .LVU115
+ 592 003c 07B0     		add	sp, sp, #28
+ 593              	.LCFI18:
+ 594              		.cfi_remember_state
+ 595              		.cfi_def_cfa_offset 4
+ 596              		@ sp needed
+ 597 003e 5DF804FB 		ldr	pc, [sp], #4
+ 598              	.L37:
+ 599              	.LCFI19:
+ 600              		.cfi_restore_state
+ 121:App/pca9685.c **** 	}
+ 601              		.loc 1 121 10 view .LVU116
+ 602 0042 0120     		movs	r0, #1
+ 603 0044 FAE7     		b	.L34
+ 604              	.L39:
+ 605 0046 00BF     		.align	2
+ARM GAS  /tmp/ccOCEVbv.s 			page 14
+
+
+ 606              	.L38:
+ 607 0048 00000000 		.word	pca9685_i2c
+ 608              		.cfi_endproc
+ 609              	.LFE243:
+ 611              		.section	.text.PCA9685_SetPin,"ax",%progbits
+ 612              		.align	1
+ 613              		.global	PCA9685_SetPin
+ 614              		.syntax unified
+ 615              		.thumb
+ 616              		.thumb_func
+ 617              		.fpu fpv4-sp-d16
+ 619              	PCA9685_SetPin:
+ 620              	.LVL50:
+ 621              	.LFB244:
+ 126:App/pca9685.c **** 
+ 127:App/pca9685.c **** PCA9685_STATUS PCA9685_SetPin(uint8_t Channel, uint16_t Value, uint8_t Invert)
+ 128:App/pca9685.c **** {
+ 622              		.loc 1 128 1 is_stmt 1 view -0
+ 623              		.cfi_startproc
+ 624              		@ args = 0, pretend = 0, frame = 0
+ 625              		@ frame_needed = 0, uses_anonymous_args = 0
+ 626              		.loc 1 128 1 is_stmt 0 view .LVU118
+ 627 0000 08B5     		push	{r3, lr}
+ 628              	.LCFI20:
+ 629              		.cfi_def_cfa_offset 8
+ 630              		.cfi_offset 3, -8
+ 631              		.cfi_offset 14, -4
+ 129:App/pca9685.c ****   if(Value > 4095) Value = 4095;
+ 632              		.loc 1 129 3 is_stmt 1 view .LVU119
+ 633              		.loc 1 129 5 is_stmt 0 view .LVU120
+ 634 0002 B1F5805F 		cmp	r1, #4096
+ 635 0006 01D3     		bcc	.L41
+ 636              		.loc 1 129 26 view .LVU121
+ 637 0008 40F6FF71 		movw	r1, #4095
+ 638              	.LVL51:
+ 639              	.L41:
+ 130:App/pca9685.c **** 
+ 131:App/pca9685.c ****   if (Invert) {
+ 640              		.loc 1 131 3 is_stmt 1 view .LVU122
+ 641              		.loc 1 131 6 is_stmt 0 view .LVU123
+ 642 000c C2B1     		cbz	r2, .L42
+ 132:App/pca9685.c ****     if (Value == 0) {
+ 643              		.loc 1 132 5 is_stmt 1 view .LVU124
+ 644              		.loc 1 132 8 is_stmt 0 view .LVU125
+ 645 000e 59B1     		cbz	r1, .L50
+ 133:App/pca9685.c ****       // Special value for signal fully on.
+ 134:App/pca9685.c ****       return PCA9685_SetPwm(Channel, 4096, 0);
+ 135:App/pca9685.c ****     }
+ 136:App/pca9685.c ****     else if (Value == 4095) {
+ 646              		.loc 1 136 10 is_stmt 1 view .LVU126
+ 647              		.loc 1 136 13 is_stmt 0 view .LVU127
+ 648 0010 40F6FF73 		movw	r3, #4095
+ 649 0014 9942     		cmp	r1, r3
+ 650 0016 0DD0     		beq	.L51
+ 137:App/pca9685.c ****       // Special value for signal fully off.
+ 138:App/pca9685.c ****     	return PCA9685_SetPwm(Channel, 0, 4096);
+ 139:App/pca9685.c ****     }
+ARM GAS  /tmp/ccOCEVbv.s 			page 15
+
+
+ 140:App/pca9685.c ****     else {
+ 141:App/pca9685.c ****     	return PCA9685_SetPwm(Channel, 0, 4095-Value);
+ 651              		.loc 1 141 6 is_stmt 1 view .LVU128
+ 652              		.loc 1 141 13 is_stmt 0 view .LVU129
+ 653 0018 C1F57F61 		rsb	r1, r1, #4080
+ 654              	.LVL52:
+ 655              		.loc 1 141 13 view .LVU130
+ 656 001c 0F31     		adds	r1, r1, #15
+ 657 001e 8AB2     		uxth	r2, r1
+ 658              	.LVL53:
+ 659              		.loc 1 141 13 view .LVU131
+ 660 0020 0021     		movs	r1, #0
+ 661 0022 FFF7FEFF 		bl	PCA9685_SetPwm
+ 662              	.LVL54:
+ 663              	.L44:
+ 142:App/pca9685.c ****     }
+ 143:App/pca9685.c ****   }
+ 144:App/pca9685.c ****   else {
+ 145:App/pca9685.c ****     if (Value == 4095) {
+ 146:App/pca9685.c ****       // Special value for signal fully on.
+ 147:App/pca9685.c ****     	return PCA9685_SetPwm(Channel, 4096, 0);
+ 148:App/pca9685.c ****     }
+ 149:App/pca9685.c ****     else if (Value == 0) {
+ 150:App/pca9685.c ****       // Special value for signal fully off.
+ 151:App/pca9685.c ****     	return PCA9685_SetPwm(Channel, 0, 4096);
+ 152:App/pca9685.c ****     }
+ 153:App/pca9685.c ****     else {
+ 154:App/pca9685.c ****     	return PCA9685_SetPwm(Channel, 0, Value);
+ 155:App/pca9685.c ****     }
+ 156:App/pca9685.c ****   }
+ 157:App/pca9685.c **** }
+ 664              		.loc 1 157 1 view .LVU132
+ 665 0026 08BD     		pop	{r3, pc}
+ 666              	.LVL55:
+ 667              	.L50:
+ 134:App/pca9685.c ****     }
+ 668              		.loc 1 134 7 is_stmt 1 view .LVU133
+ 134:App/pca9685.c ****     }
+ 669              		.loc 1 134 14 is_stmt 0 view .LVU134
+ 670 0028 0022     		movs	r2, #0
+ 671              	.LVL56:
+ 134:App/pca9685.c ****     }
+ 672              		.loc 1 134 14 view .LVU135
+ 673 002a 4FF48051 		mov	r1, #4096
+ 674              	.LVL57:
+ 134:App/pca9685.c ****     }
+ 675              		.loc 1 134 14 view .LVU136
+ 676 002e FFF7FEFF 		bl	PCA9685_SetPwm
+ 677              	.LVL58:
+ 134:App/pca9685.c ****     }
+ 678              		.loc 1 134 14 view .LVU137
+ 679 0032 F8E7     		b	.L44
+ 680              	.LVL59:
+ 681              	.L51:
+ 138:App/pca9685.c ****     }
+ 682              		.loc 1 138 6 is_stmt 1 view .LVU138
+ 138:App/pca9685.c ****     }
+ARM GAS  /tmp/ccOCEVbv.s 			page 16
+
+
+ 683              		.loc 1 138 13 is_stmt 0 view .LVU139
+ 684 0034 4FF48052 		mov	r2, #4096
+ 685              	.LVL60:
+ 138:App/pca9685.c ****     }
+ 686              		.loc 1 138 13 view .LVU140
+ 687 0038 0021     		movs	r1, #0
+ 688              	.LVL61:
+ 138:App/pca9685.c ****     }
+ 689              		.loc 1 138 13 view .LVU141
+ 690 003a FFF7FEFF 		bl	PCA9685_SetPwm
+ 691              	.LVL62:
+ 138:App/pca9685.c ****     }
+ 692              		.loc 1 138 13 view .LVU142
+ 693 003e F2E7     		b	.L44
+ 694              	.LVL63:
+ 695              	.L42:
+ 145:App/pca9685.c ****       // Special value for signal fully on.
+ 696              		.loc 1 145 5 is_stmt 1 view .LVU143
+ 145:App/pca9685.c ****       // Special value for signal fully on.
+ 697              		.loc 1 145 8 is_stmt 0 view .LVU144
+ 698 0040 40F6FF73 		movw	r3, #4095
+ 699 0044 9942     		cmp	r1, r3
+ 700 0046 05D0     		beq	.L52
+ 149:App/pca9685.c ****       // Special value for signal fully off.
+ 701              		.loc 1 149 10 is_stmt 1 view .LVU145
+ 149:App/pca9685.c ****       // Special value for signal fully off.
+ 702              		.loc 1 149 13 is_stmt 0 view .LVU146
+ 703 0048 51B9     		cbnz	r1, .L47
+ 151:App/pca9685.c ****     }
+ 704              		.loc 1 151 6 is_stmt 1 view .LVU147
+ 151:App/pca9685.c ****     }
+ 705              		.loc 1 151 13 is_stmt 0 view .LVU148
+ 706 004a 4FF48052 		mov	r2, #4096
+ 707              	.LVL64:
+ 151:App/pca9685.c ****     }
+ 708              		.loc 1 151 13 view .LVU149
+ 709 004e FFF7FEFF 		bl	PCA9685_SetPwm
+ 710              	.LVL65:
+ 151:App/pca9685.c ****     }
+ 711              		.loc 1 151 13 view .LVU150
+ 712 0052 E8E7     		b	.L44
+ 713              	.LVL66:
+ 714              	.L52:
+ 147:App/pca9685.c ****     }
+ 715              		.loc 1 147 6 is_stmt 1 view .LVU151
+ 147:App/pca9685.c ****     }
+ 716              		.loc 1 147 13 is_stmt 0 view .LVU152
+ 717 0054 0022     		movs	r2, #0
+ 718              	.LVL67:
+ 147:App/pca9685.c ****     }
+ 719              		.loc 1 147 13 view .LVU153
+ 720 0056 4FF48051 		mov	r1, #4096
+ 721              	.LVL68:
+ 147:App/pca9685.c ****     }
+ 722              		.loc 1 147 13 view .LVU154
+ 723 005a FFF7FEFF 		bl	PCA9685_SetPwm
+ 724              	.LVL69:
+ARM GAS  /tmp/ccOCEVbv.s 			page 17
+
+
+ 147:App/pca9685.c ****     }
+ 725              		.loc 1 147 13 view .LVU155
+ 726 005e E2E7     		b	.L44
+ 727              	.LVL70:
+ 728              	.L47:
+ 154:App/pca9685.c ****     }
+ 729              		.loc 1 154 6 is_stmt 1 view .LVU156
+ 154:App/pca9685.c ****     }
+ 730              		.loc 1 154 13 is_stmt 0 view .LVU157
+ 731 0060 0A46     		mov	r2, r1
+ 732              	.LVL71:
+ 154:App/pca9685.c ****     }
+ 733              		.loc 1 154 13 view .LVU158
+ 734 0062 0021     		movs	r1, #0
+ 735              	.LVL72:
+ 154:App/pca9685.c ****     }
+ 736              		.loc 1 154 13 view .LVU159
+ 737 0064 FFF7FEFF 		bl	PCA9685_SetPwm
+ 738              	.LVL73:
+ 154:App/pca9685.c ****     }
+ 739              		.loc 1 154 13 view .LVU160
+ 740 0068 DDE7     		b	.L44
+ 741              		.cfi_endproc
+ 742              	.LFE244:
+ 744              		.section	.text.PCA9685_SetServoAngle,"ax",%progbits
+ 745              		.align	1
+ 746              		.global	PCA9685_SetServoAngle
+ 747              		.syntax unified
+ 748              		.thumb
+ 749              		.thumb_func
+ 750              		.fpu fpv4-sp-d16
+ 752              	PCA9685_SetServoAngle:
+ 753              	.LVL74:
+ 754              	.LFB245:
+ 158:App/pca9685.c **** 
+ 159:App/pca9685.c **** #ifdef PCA9685_SERVO_MODE
+ 160:App/pca9685.c **** PCA9685_STATUS PCA9685_SetServoAngle(uint8_t Channel, float Angle)
+ 161:App/pca9685.c **** {
+ 755              		.loc 1 161 1 is_stmt 1 view -0
+ 756              		.cfi_startproc
+ 757              		@ args = 0, pretend = 0, frame = 0
+ 758              		@ frame_needed = 0, uses_anonymous_args = 0
+ 759              		.loc 1 161 1 is_stmt 0 view .LVU162
+ 760 0000 10B5     		push	{r4, lr}
+ 761              	.LCFI21:
+ 762              		.cfi_def_cfa_offset 8
+ 763              		.cfi_offset 4, -8
+ 764              		.cfi_offset 14, -4
+ 765 0002 0446     		mov	r4, r0
+ 162:App/pca9685.c **** 	float Value;
+ 766              		.loc 1 162 2 is_stmt 1 view .LVU163
+ 163:App/pca9685.c **** 	if(Angle < MIN_ANGLE) Angle = MIN_ANGLE;
+ 767              		.loc 1 163 2 view .LVU164
+ 768              		.loc 1 163 4 is_stmt 0 view .LVU165
+ 769 0004 B5EEC00A 		vcmpe.f32	s0, #0
+ 770 0008 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 771 000c 28D4     		bmi	.L59
+ARM GAS  /tmp/ccOCEVbv.s 			page 18
+
+
+ 772              	.LVL75:
+ 773              	.L54:
+ 164:App/pca9685.c **** 	if(Angle > MAX_ANGLE) Angle = MAX_ANGLE;
+ 774              		.loc 1 164 2 is_stmt 1 view .LVU166
+ 775              		.loc 1 164 4 is_stmt 0 view .LVU167
+ 776 000e DFED1A7A 		vldr.32	s15, .L60+16
+ 777 0012 B4EEE70A 		vcmpe.f32	s0, s15
+ 778 0016 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 779 001a 01DD     		ble	.L55
+ 780              		.loc 1 164 30 view .LVU168
+ 781 001c B0EE670A 		vmov.f32	s0, s15
+ 782              	.LVL76:
+ 783              	.L55:
+ 165:App/pca9685.c **** 
+ 166:App/pca9685.c **** 	Value = (Angle - MIN_ANGLE) * ((float)SERVO_MAX - (float)SERVO_MIN) / (MAX_ANGLE - MIN_ANGLE) + (f
+ 784              		.loc 1 166 2 is_stmt 1 view .LVU169
+ 785              		.loc 1 166 17 is_stmt 0 view .LVU170
+ 786 0020 10EE100A 		vmov	r0, s0
+ 787              	.LVL77:
+ 788              		.loc 1 166 17 view .LVU171
+ 789 0024 FFF7FEFF 		bl	__aeabi_f2d
+ 790              	.LVL78:
+ 791              		.loc 1 166 30 view .LVU172
+ 792 0028 0FA3     		adr	r3, .L60
+ 793 002a D3E90023 		ldrd	r2, [r3]
+ 794 002e FFF7FEFF 		bl	__aeabi_dmul
+ 795              	.LVL79:
+ 796              		.loc 1 166 70 view .LVU173
+ 797 0032 0FA3     		adr	r3, .L60+8
+ 798 0034 D3E90023 		ldrd	r2, [r3]
+ 799 0038 FFF7FEFF 		bl	__aeabi_ddiv
+ 800              	.LVL80:
+ 801              		.loc 1 166 96 view .LVU174
+ 802 003c 0022     		movs	r2, #0
+ 803 003e 0F4B     		ldr	r3, .L60+20
+ 804 0040 FFF7FEFF 		bl	__aeabi_dadd
+ 805              	.LVL81:
+ 806              		.loc 1 166 8 view .LVU175
+ 807 0044 FFF7FEFF 		bl	__aeabi_d2f
+ 808              	.LVL82:
+ 809 0048 07EE900A 		vmov	s15, r0
+ 810              	.LVL83:
+ 167:App/pca9685.c **** 
+ 168:App/pca9685.c **** 	return PCA9685_SetPin(Channel, (uint16_t)Value, 0);
+ 811              		.loc 1 168 2 is_stmt 1 view .LVU176
+ 812              		.loc 1 168 9 is_stmt 0 view .LVU177
+ 813 004c FCEEE77A 		vcvt.u32.f32	s15, s15
+ 814 0050 0022     		movs	r2, #0
+ 815 0052 17EE903A 		vmov	r3, s15	@ int
+ 816 0056 99B2     		uxth	r1, r3
+ 817 0058 2046     		mov	r0, r4
+ 818              	.LVL84:
+ 819              		.loc 1 168 9 view .LVU178
+ 820 005a FFF7FEFF 		bl	PCA9685_SetPin
+ 821              	.LVL85:
+ 169:App/pca9685.c **** }
+ 822              		.loc 1 169 1 view .LVU179
+ARM GAS  /tmp/ccOCEVbv.s 			page 19
+
+
+ 823 005e 10BD     		pop	{r4, pc}
+ 824              	.LVL86:
+ 825              	.L59:
+ 163:App/pca9685.c **** 	if(Angle > MAX_ANGLE) Angle = MAX_ANGLE;
+ 826              		.loc 1 163 30 view .LVU180
+ 827 0060 9FED070A 		vldr.32	s0, .L60+24
+ 828              	.LVL87:
+ 163:App/pca9685.c **** 	if(Angle > MAX_ANGLE) Angle = MAX_ANGLE;
+ 829              		.loc 1 163 30 view .LVU181
+ 830 0064 D3E7     		b	.L54
+ 831              	.L61:
+ 832 0066 00BF     		.align	3
+ 833              	.L60:
+ 834 0068 00000000 		.word	0
+ 835 006c 00A07940 		.word	1081712640
+ 836 0070 00000000 		.word	0
+ 837 0074 00E07040 		.word	1081139200
+ 838 0078 00008743 		.word	1132920832
+ 839 007c 00005940 		.word	1079574528
+ 840 0080 00000000 		.word	0
+ 841              		.cfi_endproc
+ 842              	.LFE245:
+ 844              		.section	.text.PCA9685_Init,"ax",%progbits
+ 845              		.align	1
+ 846              		.global	PCA9685_Init
+ 847              		.syntax unified
+ 848              		.thumb
+ 849              		.thumb_func
+ 850              		.fpu fpv4-sp-d16
+ 852              	PCA9685_Init:
+ 853              	.LVL88:
+ 854              	.LFB246:
+ 170:App/pca9685.c **** #endif
+ 171:App/pca9685.c **** 
+ 172:App/pca9685.c **** 
+ 173:App/pca9685.c **** PCA9685_STATUS PCA9685_Init(I2C_HandleTypeDef *hi2c)
+ 174:App/pca9685.c **** {
+ 855              		.loc 1 174 1 is_stmt 1 view -0
+ 856              		.cfi_startproc
+ 857              		@ args = 0, pretend = 0, frame = 0
+ 858              		@ frame_needed = 0, uses_anonymous_args = 0
+ 859              		.loc 1 174 1 is_stmt 0 view .LVU183
+ 860 0000 10B5     		push	{r4, lr}
+ 861              	.LCFI22:
+ 862              		.cfi_def_cfa_offset 8
+ 863              		.cfi_offset 4, -8
+ 864              		.cfi_offset 14, -4
+ 865 0002 0446     		mov	r4, r0
+ 175:App/pca9685.c **** 	pca9685_i2c = hi2c;
+ 866              		.loc 1 175 2 is_stmt 1 view .LVU184
+ 867              		.loc 1 175 14 is_stmt 0 view .LVU185
+ 868 0004 074B     		ldr	r3, .L66
+ 869 0006 1860     		str	r0, [r3]
+ 176:App/pca9685.c **** 	PCA9685_SoftwareReset();
+ 870              		.loc 1 176 2 is_stmt 1 view .LVU186
+ 871 0008 FFF7FEFF 		bl	PCA9685_SoftwareReset
+ 872              	.LVL89:
+ARM GAS  /tmp/ccOCEVbv.s 			page 20
+
+
+ 177:App/pca9685.c **** 	PCA9685_SetPwmFrequency(47); // 50Hz is made with 47 
+ 873              		.loc 1 177 2 view .LVU187
+ 874 000c 2F20     		movs	r0, #47
+ 875 000e FFF7FEFF 		bl	PCA9685_SetPwmFrequency
+ 876              	.LVL90:
+ 178:App/pca9685.c **** 	PCA9685_AutoIncrement(1);
+ 877              		.loc 1 178 2 view .LVU188
+ 878 0012 0120     		movs	r0, #1
+ 879 0014 FFF7FEFF 		bl	PCA9685_AutoIncrement
+ 880              	.LVL91:
+ 179:App/pca9685.c **** 	if (hi2c->ErrorCode == 0 ){
+ 881              		.loc 1 179 2 view .LVU189
+ 882              		.loc 1 179 10 is_stmt 0 view .LVU190
+ 883 0018 236C     		ldr	r3, [r4, #64]
+ 884              		.loc 1 179 5 view .LVU191
+ 885 001a 0BB9     		cbnz	r3, .L64
+ 180:App/pca9685.c **** 		return PCA9685_OK;
+ 886              		.loc 1 180 10 view .LVU192
+ 887 001c 0020     		movs	r0, #0
+ 888              	.L63:
+ 181:App/pca9685.c **** 	}
+ 182:App/pca9685.c **** 	else{
+ 183:App/pca9685.c **** 		return PCA9685_ERROR;
+ 184:App/pca9685.c **** 	}
+ 185:App/pca9685.c **** 	
+ 186:App/pca9685.c **** } 
+ 889              		.loc 1 186 1 view .LVU193
+ 890 001e 10BD     		pop	{r4, pc}
+ 891              	.LVL92:
+ 892              	.L64:
+ 183:App/pca9685.c **** 	}
+ 893              		.loc 1 183 10 view .LVU194
+ 894 0020 0120     		movs	r0, #1
+ 895 0022 FCE7     		b	.L63
+ 896              	.L67:
+ 897              		.align	2
+ 898              	.L66:
+ 899 0024 00000000 		.word	pca9685_i2c
+ 900              		.cfi_endproc
+ 901              	.LFE246:
+ 903              		.comm	pca9685_i2c,4,4
+ 904              		.text
+ 905              	.Letext0:
+ 906              		.file 2 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h"
+ 907              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+ 908              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 909              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 910              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 911              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 912              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 913              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 914              		.file 10 "Core/Inc/i2c.h"
+ 915              		.file 11 "App/pca9685.h"
+ 916              		.file 12 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h"
+ 917              		.file 13 "/usr/include/newlib/sys/_types.h"
+ 918              		.file 14 "/usr/include/newlib/sys/reent.h"
+ 919              		.file 15 "/usr/include/newlib/sys/lock.h"
+ARM GAS  /tmp/ccOCEVbv.s 			page 21
+
+
+ 920              		.file 16 "/usr/include/newlib/math.h"
+ARM GAS  /tmp/ccOCEVbv.s 			page 22
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 pca9685.c
+     /tmp/ccOCEVbv.s:18     .text.PCA9685_SetBit:0000000000000000 $t
+     /tmp/ccOCEVbv.s:26     .text.PCA9685_SetBit:0000000000000000 PCA9685_SetBit
+     /tmp/ccOCEVbv.s:132    .text.PCA9685_SetBit:0000000000000070 $d
+                            *COM*:0000000000000004 pca9685_i2c
+     /tmp/ccOCEVbv.s:137    .text.PCA9685_SoftwareReset:0000000000000000 $t
+     /tmp/ccOCEVbv.s:144    .text.PCA9685_SoftwareReset:0000000000000000 PCA9685_SoftwareReset
+     /tmp/ccOCEVbv.s:186    .text.PCA9685_SoftwareReset:0000000000000028 $d
+     /tmp/ccOCEVbv.s:191    .text.PCA9685_SleepMode:0000000000000000 $t
+     /tmp/ccOCEVbv.s:198    .text.PCA9685_SleepMode:0000000000000000 PCA9685_SleepMode
+     /tmp/ccOCEVbv.s:226    .text.PCA9685_RestartMode:0000000000000000 $t
+     /tmp/ccOCEVbv.s:233    .text.PCA9685_RestartMode:0000000000000000 PCA9685_RestartMode
+     /tmp/ccOCEVbv.s:261    .text.PCA9685_AutoIncrement:0000000000000000 $t
+     /tmp/ccOCEVbv.s:268    .text.PCA9685_AutoIncrement:0000000000000000 PCA9685_AutoIncrement
+     /tmp/ccOCEVbv.s:296    .text.PCA9685_SubaddressRespond:0000000000000000 $t
+     /tmp/ccOCEVbv.s:303    .text.PCA9685_SubaddressRespond:0000000000000000 PCA9685_SubaddressRespond
+     /tmp/ccOCEVbv.s:333    .text.PCA9685_AllCallRespond:0000000000000000 $t
+     /tmp/ccOCEVbv.s:340    .text.PCA9685_AllCallRespond:0000000000000000 PCA9685_AllCallRespond
+     /tmp/ccOCEVbv.s:375    .text.PCA9685_SetPwmFrequency:0000000000000000 $t
+     /tmp/ccOCEVbv.s:382    .text.PCA9685_SetPwmFrequency:0000000000000000 PCA9685_SetPwmFrequency
+     /tmp/ccOCEVbv.s:510    .text.PCA9685_SetPwmFrequency:00000000000000a8 $d
+     /tmp/ccOCEVbv.s:520    .text.PCA9685_SetPwm:0000000000000000 $t
+     /tmp/ccOCEVbv.s:527    .text.PCA9685_SetPwm:0000000000000000 PCA9685_SetPwm
+     /tmp/ccOCEVbv.s:607    .text.PCA9685_SetPwm:0000000000000048 $d
+     /tmp/ccOCEVbv.s:612    .text.PCA9685_SetPin:0000000000000000 $t
+     /tmp/ccOCEVbv.s:619    .text.PCA9685_SetPin:0000000000000000 PCA9685_SetPin
+     /tmp/ccOCEVbv.s:745    .text.PCA9685_SetServoAngle:0000000000000000 $t
+     /tmp/ccOCEVbv.s:752    .text.PCA9685_SetServoAngle:0000000000000000 PCA9685_SetServoAngle
+     /tmp/ccOCEVbv.s:834    .text.PCA9685_SetServoAngle:0000000000000068 $d
+     /tmp/ccOCEVbv.s:845    .text.PCA9685_Init:0000000000000000 $t
+     /tmp/ccOCEVbv.s:852    .text.PCA9685_Init:0000000000000000 PCA9685_Init
+     /tmp/ccOCEVbv.s:899    .text.PCA9685_Init:0000000000000024 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Mem_Read
+HAL_I2C_Mem_Write
+HAL_I2C_Master_Transmit
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_ddiv
+__aeabi_dsub
+__aeabi_d2f
+__aeabi_dadd
+__aeabi_d2uiz
+floor

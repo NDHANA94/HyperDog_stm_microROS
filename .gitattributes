@@ -1,0 +1,2 @@
+Drivers/STM32F4xx_HAL_Driver filter=lfs diff=lfs merge=lfs -text
+Drivers/CMSIS filter=lfs diff=lfs merge=lfs -text

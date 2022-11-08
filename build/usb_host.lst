@@ -1,0 +1,350 @@
+ARM GAS  /tmp/ccbiB6VL.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"usb_host.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.USBH_UserProcess,"ax",%progbits
+  18              		.align	1
+  19              		.arch armv7e-m
+  20              		.syntax unified
+  21              		.thumb
+  22              		.thumb_func
+  23              		.fpu fpv4-sp-d16
+  25              	USBH_UserProcess:
+  26              	.LVL0:
+  27              	.LFB243:
+  28              		.file 1 "USB_HOST/App/usb_host.c"
+   1:USB_HOST/App/usb_host.c **** /* USER CODE BEGIN Header */
+   2:USB_HOST/App/usb_host.c **** /**
+   3:USB_HOST/App/usb_host.c ****   ******************************************************************************
+   4:USB_HOST/App/usb_host.c ****   * @file            : usb_host.c
+   5:USB_HOST/App/usb_host.c ****   * @version         : v1.0_Cube
+   6:USB_HOST/App/usb_host.c ****   * @brief           : This file implements the USB Host
+   7:USB_HOST/App/usb_host.c ****   ******************************************************************************
+   8:USB_HOST/App/usb_host.c ****   * @attention
+   9:USB_HOST/App/usb_host.c ****   *
+  10:USB_HOST/App/usb_host.c ****   * Copyright (c) 2022 STMicroelectronics.
+  11:USB_HOST/App/usb_host.c ****   * All rights reserved.
+  12:USB_HOST/App/usb_host.c ****   *
+  13:USB_HOST/App/usb_host.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:USB_HOST/App/usb_host.c ****   * in the root directory of this software component.
+  15:USB_HOST/App/usb_host.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:USB_HOST/App/usb_host.c ****   *
+  17:USB_HOST/App/usb_host.c ****   ******************************************************************************
+  18:USB_HOST/App/usb_host.c ****   */
+  19:USB_HOST/App/usb_host.c **** /* USER CODE END Header */
+  20:USB_HOST/App/usb_host.c **** 
+  21:USB_HOST/App/usb_host.c **** /* Includes ------------------------------------------------------------------*/
+  22:USB_HOST/App/usb_host.c **** 
+  23:USB_HOST/App/usb_host.c **** #include "usb_host.h"
+  24:USB_HOST/App/usb_host.c **** #include "usbh_core.h"
+  25:USB_HOST/App/usb_host.c **** #include "usbh_cdc.h"
+  26:USB_HOST/App/usb_host.c **** 
+  27:USB_HOST/App/usb_host.c **** /* USER CODE BEGIN Includes */
+  28:USB_HOST/App/usb_host.c **** 
+  29:USB_HOST/App/usb_host.c **** /* USER CODE END Includes */
+  30:USB_HOST/App/usb_host.c **** 
+ARM GAS  /tmp/ccbiB6VL.s 			page 2
+
+
+  31:USB_HOST/App/usb_host.c **** /* USER CODE BEGIN PV */
+  32:USB_HOST/App/usb_host.c **** /* Private variables ---------------------------------------------------------*/
+  33:USB_HOST/App/usb_host.c **** 
+  34:USB_HOST/App/usb_host.c **** /* USER CODE END PV */
+  35:USB_HOST/App/usb_host.c **** 
+  36:USB_HOST/App/usb_host.c **** /* USER CODE BEGIN PFP */
+  37:USB_HOST/App/usb_host.c **** /* Private function prototypes -----------------------------------------------*/
+  38:USB_HOST/App/usb_host.c **** 
+  39:USB_HOST/App/usb_host.c **** /* USER CODE END PFP */
+  40:USB_HOST/App/usb_host.c **** 
+  41:USB_HOST/App/usb_host.c **** /* USB Host core handle declaration */
+  42:USB_HOST/App/usb_host.c **** USBH_HandleTypeDef hUsbHostFS;
+  43:USB_HOST/App/usb_host.c **** ApplicationTypeDef Appli_state = APPLICATION_IDLE;
+  44:USB_HOST/App/usb_host.c **** 
+  45:USB_HOST/App/usb_host.c **** /*
+  46:USB_HOST/App/usb_host.c ****  * -- Insert your variables declaration here --
+  47:USB_HOST/App/usb_host.c ****  */
+  48:USB_HOST/App/usb_host.c **** /* USER CODE BEGIN 0 */
+  49:USB_HOST/App/usb_host.c **** 
+  50:USB_HOST/App/usb_host.c **** /* USER CODE END 0 */
+  51:USB_HOST/App/usb_host.c **** 
+  52:USB_HOST/App/usb_host.c **** /*
+  53:USB_HOST/App/usb_host.c ****  * user callback declaration
+  54:USB_HOST/App/usb_host.c ****  */
+  55:USB_HOST/App/usb_host.c **** static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
+  56:USB_HOST/App/usb_host.c **** 
+  57:USB_HOST/App/usb_host.c **** /*
+  58:USB_HOST/App/usb_host.c ****  * -- Insert your external function declaration here --
+  59:USB_HOST/App/usb_host.c ****  */
+  60:USB_HOST/App/usb_host.c **** /* USER CODE BEGIN 1 */
+  61:USB_HOST/App/usb_host.c **** 
+  62:USB_HOST/App/usb_host.c **** /* USER CODE END 1 */
+  63:USB_HOST/App/usb_host.c **** 
+  64:USB_HOST/App/usb_host.c **** /**
+  65:USB_HOST/App/usb_host.c ****   * Init USB host library, add supported class and start the library
+  66:USB_HOST/App/usb_host.c ****   * @retval None
+  67:USB_HOST/App/usb_host.c ****   */
+  68:USB_HOST/App/usb_host.c **** void MX_USB_HOST_Init(void)
+  69:USB_HOST/App/usb_host.c **** {
+  70:USB_HOST/App/usb_host.c ****   /* USER CODE BEGIN USB_HOST_Init_PreTreatment */
+  71:USB_HOST/App/usb_host.c **** 
+  72:USB_HOST/App/usb_host.c ****   /* USER CODE END USB_HOST_Init_PreTreatment */
+  73:USB_HOST/App/usb_host.c **** 
+  74:USB_HOST/App/usb_host.c ****   /* Init host Library, add supported class and start the library. */
+  75:USB_HOST/App/usb_host.c ****   if (USBH_Init(&hUsbHostFS, USBH_UserProcess, HOST_FS) != USBH_OK)
+  76:USB_HOST/App/usb_host.c ****   {
+  77:USB_HOST/App/usb_host.c ****     Error_Handler();
+  78:USB_HOST/App/usb_host.c ****   }
+  79:USB_HOST/App/usb_host.c ****   if (USBH_RegisterClass(&hUsbHostFS, USBH_CDC_CLASS) != USBH_OK)
+  80:USB_HOST/App/usb_host.c ****   {
+  81:USB_HOST/App/usb_host.c ****     Error_Handler();
+  82:USB_HOST/App/usb_host.c ****   }
+  83:USB_HOST/App/usb_host.c ****   if (USBH_Start(&hUsbHostFS) != USBH_OK)
+  84:USB_HOST/App/usb_host.c ****   {
+  85:USB_HOST/App/usb_host.c ****     Error_Handler();
+  86:USB_HOST/App/usb_host.c ****   }
+  87:USB_HOST/App/usb_host.c ****   /* USER CODE BEGIN USB_HOST_Init_PostTreatment */
+ARM GAS  /tmp/ccbiB6VL.s 			page 3
+
+
+  88:USB_HOST/App/usb_host.c **** 
+  89:USB_HOST/App/usb_host.c ****   /* USER CODE END USB_HOST_Init_PostTreatment */
+  90:USB_HOST/App/usb_host.c **** }
+  91:USB_HOST/App/usb_host.c **** 
+  92:USB_HOST/App/usb_host.c **** /*
+  93:USB_HOST/App/usb_host.c ****  * user callback definition
+  94:USB_HOST/App/usb_host.c ****  */
+  95:USB_HOST/App/usb_host.c **** static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
+  96:USB_HOST/App/usb_host.c **** {
+  29              		.loc 1 96 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  97:USB_HOST/App/usb_host.c ****   /* USER CODE BEGIN CALL_BACK_1 */
+  98:USB_HOST/App/usb_host.c ****   switch(id)
+  34              		.loc 1 98 3 view .LVU1
+  35 0000 0429     		cmp	r1, #4
+  36 0002 0CD0     		beq	.L2
+  37 0004 0529     		cmp	r1, #5
+  38 0006 02D0     		beq	.L3
+  39 0008 0229     		cmp	r1, #2
+  40 000a 04D0     		beq	.L6
+  41              	.L1:
+  99:USB_HOST/App/usb_host.c ****   {
+ 100:USB_HOST/App/usb_host.c ****   case HOST_USER_SELECT_CONFIGURATION:
+ 101:USB_HOST/App/usb_host.c ****   break;
+ 102:USB_HOST/App/usb_host.c **** 
+ 103:USB_HOST/App/usb_host.c ****   case HOST_USER_DISCONNECTION:
+ 104:USB_HOST/App/usb_host.c ****   Appli_state = APPLICATION_DISCONNECT;
+ 105:USB_HOST/App/usb_host.c ****   break;
+ 106:USB_HOST/App/usb_host.c **** 
+ 107:USB_HOST/App/usb_host.c ****   case HOST_USER_CLASS_ACTIVE:
+ 108:USB_HOST/App/usb_host.c ****   Appli_state = APPLICATION_READY;
+ 109:USB_HOST/App/usb_host.c ****   break;
+ 110:USB_HOST/App/usb_host.c **** 
+ 111:USB_HOST/App/usb_host.c ****   case HOST_USER_CONNECTION:
+ 112:USB_HOST/App/usb_host.c ****   Appli_state = APPLICATION_START;
+ 113:USB_HOST/App/usb_host.c ****   break;
+ 114:USB_HOST/App/usb_host.c **** 
+ 115:USB_HOST/App/usb_host.c ****   default:
+ 116:USB_HOST/App/usb_host.c ****   break;
+ 117:USB_HOST/App/usb_host.c ****   }
+ 118:USB_HOST/App/usb_host.c ****   /* USER CODE END CALL_BACK_1 */
+ 119:USB_HOST/App/usb_host.c **** }
+  42              		.loc 1 119 1 is_stmt 0 view .LVU2
+  43 000c 7047     		bx	lr
+  44              	.L3:
+ 104:USB_HOST/App/usb_host.c ****   break;
+  45              		.loc 1 104 3 is_stmt 1 view .LVU3
+ 104:USB_HOST/App/usb_host.c ****   break;
+  46              		.loc 1 104 15 is_stmt 0 view .LVU4
+  47 000e 064B     		ldr	r3, .L7
+  48 0010 0322     		movs	r2, #3
+  49 0012 1A70     		strb	r2, [r3]
+ 105:USB_HOST/App/usb_host.c **** 
+  50              		.loc 1 105 3 is_stmt 1 view .LVU5
+ARM GAS  /tmp/ccbiB6VL.s 			page 4
+
+
+  51 0014 7047     		bx	lr
+  52              	.L6:
+ 108:USB_HOST/App/usb_host.c ****   break;
+  53              		.loc 1 108 3 view .LVU6
+ 108:USB_HOST/App/usb_host.c ****   break;
+  54              		.loc 1 108 15 is_stmt 0 view .LVU7
+  55 0016 044B     		ldr	r3, .L7
+  56 0018 0222     		movs	r2, #2
+  57 001a 1A70     		strb	r2, [r3]
+ 109:USB_HOST/App/usb_host.c **** 
+  58              		.loc 1 109 3 is_stmt 1 view .LVU8
+  59 001c 7047     		bx	lr
+  60              	.L2:
+ 112:USB_HOST/App/usb_host.c ****   break;
+  61              		.loc 1 112 3 view .LVU9
+ 112:USB_HOST/App/usb_host.c ****   break;
+  62              		.loc 1 112 15 is_stmt 0 view .LVU10
+  63 001e 024B     		ldr	r3, .L7
+  64 0020 0122     		movs	r2, #1
+  65 0022 1A70     		strb	r2, [r3]
+ 113:USB_HOST/App/usb_host.c **** 
+  66              		.loc 1 113 3 is_stmt 1 view .LVU11
+  67              		.loc 1 119 1 is_stmt 0 view .LVU12
+  68 0024 F2E7     		b	.L1
+  69              	.L8:
+  70 0026 00BF     		.align	2
+  71              	.L7:
+  72 0028 00000000 		.word	.LANCHOR0
+  73              		.cfi_endproc
+  74              	.LFE243:
+  76              		.section	.text.MX_USB_HOST_Init,"ax",%progbits
+  77              		.align	1
+  78              		.global	MX_USB_HOST_Init
+  79              		.syntax unified
+  80              		.thumb
+  81              		.thumb_func
+  82              		.fpu fpv4-sp-d16
+  84              	MX_USB_HOST_Init:
+  85              	.LFB242:
+  69:USB_HOST/App/usb_host.c ****   /* USER CODE BEGIN USB_HOST_Init_PreTreatment */
+  86              		.loc 1 69 1 is_stmt 1 view -0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90 0000 08B5     		push	{r3, lr}
+  91              	.LCFI0:
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 3, -8
+  94              		.cfi_offset 14, -4
+  75:USB_HOST/App/usb_host.c ****   {
+  95              		.loc 1 75 3 view .LVU14
+  75:USB_HOST/App/usb_host.c ****   {
+  96              		.loc 1 75 7 is_stmt 0 view .LVU15
+  97 0002 0122     		movs	r2, #1
+  98 0004 0B49     		ldr	r1, .L17
+  99 0006 0C48     		ldr	r0, .L17+4
+ 100 0008 FFF7FEFF 		bl	USBH_Init
+ARM GAS  /tmp/ccbiB6VL.s 			page 5
+
+
+ 101              	.LVL1:
+  75:USB_HOST/App/usb_host.c ****   {
+ 102              		.loc 1 75 6 view .LVU16
+ 103 000c 48B9     		cbnz	r0, .L14
+ 104              	.L10:
+  79:USB_HOST/App/usb_host.c ****   {
+ 105              		.loc 1 79 3 is_stmt 1 view .LVU17
+  79:USB_HOST/App/usb_host.c ****   {
+ 106              		.loc 1 79 7 is_stmt 0 view .LVU18
+ 107 000e 0B49     		ldr	r1, .L17+8
+ 108 0010 0948     		ldr	r0, .L17+4
+ 109 0012 FFF7FEFF 		bl	USBH_RegisterClass
+ 110              	.LVL2:
+  79:USB_HOST/App/usb_host.c ****   {
+ 111              		.loc 1 79 6 view .LVU19
+ 112 0016 38B9     		cbnz	r0, .L15
+ 113              	.L11:
+  83:USB_HOST/App/usb_host.c ****   {
+ 114              		.loc 1 83 3 is_stmt 1 view .LVU20
+  83:USB_HOST/App/usb_host.c ****   {
+ 115              		.loc 1 83 7 is_stmt 0 view .LVU21
+ 116 0018 0748     		ldr	r0, .L17+4
+ 117 001a FFF7FEFF 		bl	USBH_Start
+ 118              	.LVL3:
+  83:USB_HOST/App/usb_host.c ****   {
+ 119              		.loc 1 83 6 view .LVU22
+ 120 001e 30B9     		cbnz	r0, .L16
+ 121              	.L9:
+  90:USB_HOST/App/usb_host.c **** 
+ 122              		.loc 1 90 1 view .LVU23
+ 123 0020 08BD     		pop	{r3, pc}
+ 124              	.L14:
+  77:USB_HOST/App/usb_host.c ****   }
+ 125              		.loc 1 77 5 is_stmt 1 view .LVU24
+ 126 0022 FFF7FEFF 		bl	Error_Handler
+ 127              	.LVL4:
+ 128 0026 F2E7     		b	.L10
+ 129              	.L15:
+  81:USB_HOST/App/usb_host.c ****   }
+ 130              		.loc 1 81 5 view .LVU25
+ 131 0028 FFF7FEFF 		bl	Error_Handler
+ 132              	.LVL5:
+ 133 002c F4E7     		b	.L11
+ 134              	.L16:
+  85:USB_HOST/App/usb_host.c ****   }
+ 135              		.loc 1 85 5 view .LVU26
+ 136 002e FFF7FEFF 		bl	Error_Handler
+ 137              	.LVL6:
+  90:USB_HOST/App/usb_host.c **** 
+ 138              		.loc 1 90 1 is_stmt 0 view .LVU27
+ 139 0032 F5E7     		b	.L9
+ 140              	.L18:
+ 141              		.align	2
+ 142              	.L17:
+ 143 0034 00000000 		.word	USBH_UserProcess
+ 144 0038 00000000 		.word	hUsbHostFS
+ 145 003c 00000000 		.word	CDC_Class
+ARM GAS  /tmp/ccbiB6VL.s 			page 6
+
+
+ 146              		.cfi_endproc
+ 147              	.LFE242:
+ 149              		.global	Appli_state
+ 150              		.comm	hUsbHostFS,996,4
+ 151              		.section	.bss.Appli_state,"aw",%nobits
+ 152              		.set	.LANCHOR0,. + 0
+ 155              	Appli_state:
+ 156 0000 00       		.space	1
+ 157              		.text
+ 158              	.Letext0:
+ 159              		.file 2 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h"
+ 160              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+ 161              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 162              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 163              		.file 6 "USB_HOST/App/usb_host.h"
+ 164              		.file 7 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h"
+ 165              		.file 8 "/usr/include/newlib/sys/_types.h"
+ 166              		.file 9 "/usr/include/newlib/sys/reent.h"
+ 167              		.file 10 "/usr/include/newlib/sys/lock.h"
+ 168              		.file 11 "/usr/include/newlib/stdlib.h"
+ 169              		.file 12 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 170              		.file 13 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_def.h"
+ 171              		.file 14 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ctlreq.h"
+ 172              		.file 15 "Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc/usbh_cdc.h"
+ 173              		.file 16 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.h"
+ 174              		.file 17 "Core/Inc/main.h"
+ARM GAS  /tmp/ccbiB6VL.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usb_host.c
+     /tmp/ccbiB6VL.s:18     .text.USBH_UserProcess:0000000000000000 $t
+     /tmp/ccbiB6VL.s:25     .text.USBH_UserProcess:0000000000000000 USBH_UserProcess
+     /tmp/ccbiB6VL.s:72     .text.USBH_UserProcess:0000000000000028 $d
+     /tmp/ccbiB6VL.s:77     .text.MX_USB_HOST_Init:0000000000000000 $t
+     /tmp/ccbiB6VL.s:84     .text.MX_USB_HOST_Init:0000000000000000 MX_USB_HOST_Init
+     /tmp/ccbiB6VL.s:143    .text.MX_USB_HOST_Init:0000000000000034 $d
+                            *COM*:00000000000003e4 hUsbHostFS
+     /tmp/ccbiB6VL.s:155    .bss.Appli_state:0000000000000000 Appli_state
+     /tmp/ccbiB6VL.s:156    .bss.Appli_state:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+USBH_Init
+USBH_RegisterClass
+USBH_Start
+Error_Handler
+CDC_Class

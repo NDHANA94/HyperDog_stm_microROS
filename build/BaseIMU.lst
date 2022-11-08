@@ -1,0 +1,608 @@
+ARM GAS  /tmp/ccpH2Y4n.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"BaseIMU.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text._readByte,"ax",%progbits
+  18              		.align	1
+  19              		.global	_readByte
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	_readByte:
+  27              	.LVL0:
+  28              	.LFB235:
+  29              		.file 1 "App/IMU/BaseIMU.c"
+   1:App/IMU/BaseIMU.c **** #include "BaseIMU.h"
+   2:App/IMU/BaseIMU.c **** 
+   3:App/IMU/BaseIMU.c **** 
+   4:App/IMU/BaseIMU.c **** I2C_HandleTypeDef *imu_i2c;
+   5:App/IMU/BaseIMU.c **** 
+   6:App/IMU/BaseIMU.c **** 
+   7:App/IMU/BaseIMU.c **** 
+   8:App/IMU/BaseIMU.c **** uint8_t _readByte(uint16_t regAddress) {
+  30              		.loc 1 8 40 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 8
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 8 40 is_stmt 0 view .LVU1
+  35 0000 00B5     		push	{lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 14, -4
+  39 0002 87B0     		sub	sp, sp, #28
+  40              	.LCFI1:
+  41              		.cfi_def_cfa_offset 32
+  42 0004 0246     		mov	r2, r0
+   9:App/IMU/BaseIMU.c ****     uint8_t data;
+  43              		.loc 1 9 5 is_stmt 1 view .LVU2
+  10:App/IMU/BaseIMU.c **** 
+  11:App/IMU/BaseIMU.c ****     if (HAL_OK != HAL_I2C_Mem_Read(imu_i2c, DEVICE_ID, regAddress, 1, &data, 1, 10)){
+  44              		.loc 1 11 5 view .LVU3
+  45              		.loc 1 11 19 is_stmt 0 view .LVU4
+  46 0006 0A23     		movs	r3, #10
+  47 0008 0293     		str	r3, [sp, #8]
+ARM GAS  /tmp/ccpH2Y4n.s 			page 2
+
+
+  48 000a 0123     		movs	r3, #1
+  49 000c 0193     		str	r3, [sp, #4]
+  50 000e 0DF11701 		add	r1, sp, #23
+  51 0012 0091     		str	r1, [sp]
+  52 0014 F521     		movs	r1, #245
+  53 0016 0848     		ldr	r0, .L5
+  54              	.LVL1:
+  55              		.loc 1 11 19 view .LVU5
+  56 0018 0068     		ldr	r0, [r0]
+  57 001a FFF7FEFF 		bl	HAL_I2C_Mem_Read
+  58              	.LVL2:
+  59              		.loc 1 11 8 view .LVU6
+  60 001e 20B9     		cbnz	r0, .L4
+  61              	.L2:
+  12:App/IMU/BaseIMU.c ****         HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+  13:App/IMU/BaseIMU.c ****     }
+  14:App/IMU/BaseIMU.c ****     // _wire->beginTransmission(_slaveAddress);
+  15:App/IMU/BaseIMU.c ****     // _wire->write(regAddress);
+  16:App/IMU/BaseIMU.c ****     // _wire->endTransmission();
+  17:App/IMU/BaseIMU.c ****     // _wire->requestFrom(_slaveAddress, 1u);
+  18:App/IMU/BaseIMU.c ****     // data = _wire->read();
+  19:App/IMU/BaseIMU.c ****     return data;
+  62              		.loc 1 19 5 is_stmt 1 view .LVU7
+  20:App/IMU/BaseIMU.c **** }
+  63              		.loc 1 20 1 is_stmt 0 view .LVU8
+  64 0020 9DF81700 		ldrb	r0, [sp, #23]	@ zero_extendqisi2
+  65 0024 07B0     		add	sp, sp, #28
+  66              	.LCFI2:
+  67              		.cfi_remember_state
+  68              		.cfi_def_cfa_offset 4
+  69              		@ sp needed
+  70 0026 5DF804FB 		ldr	pc, [sp], #4
+  71              	.L4:
+  72              	.LCFI3:
+  73              		.cfi_restore_state
+  12:App/IMU/BaseIMU.c ****         HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+  74              		.loc 1 12 9 is_stmt 1 view .LVU9
+  75 002a 4FF40051 		mov	r1, #8192
+  76 002e 0348     		ldr	r0, .L5+4
+  77 0030 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+  78              	.LVL3:
+  79 0034 F4E7     		b	.L2
+  80              	.L6:
+  81 0036 00BF     		.align	2
+  82              	.L5:
+  83 0038 00000000 		.word	imu_i2c
+  84 003c 000C0240 		.word	1073875968
+  85              		.cfi_endproc
+  86              	.LFE235:
+  88              		.section	.text.readDeviceID,"ax",%progbits
+  89              		.align	1
+  90              		.global	readDeviceID
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  94              		.fpu fpv4-sp-d16
+  96              	readDeviceID:
+ARM GAS  /tmp/ccpH2Y4n.s 			page 3
+
+
+  97              	.LFB236:
+  21:App/IMU/BaseIMU.c **** 
+  22:App/IMU/BaseIMU.c **** 
+  23:App/IMU/BaseIMU.c **** uint8_t readDeviceID(){
+  98              		.loc 1 23 23 view -0
+  99              		.cfi_startproc
+ 100              		@ args = 0, pretend = 0, frame = 0
+ 101              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102 0000 08B5     		push	{r3, lr}
+ 103              	.LCFI4:
+ 104              		.cfi_def_cfa_offset 8
+ 105              		.cfi_offset 3, -8
+ 106              		.cfi_offset 14, -4
+  24:App/IMU/BaseIMU.c ****     return _readByte(BASE_IMU_WHO_AM_I);
+ 107              		.loc 1 24 5 view .LVU11
+ 108              		.loc 1 24 12 is_stmt 0 view .LVU12
+ 109 0002 0F20     		movs	r0, #15
+ 110 0004 FFF7FEFF 		bl	_readByte
+ 111              	.LVL4:
+  25:App/IMU/BaseIMU.c **** }
+ 112              		.loc 1 25 1 view .LVU13
+ 113 0008 08BD     		pop	{r3, pc}
+ 114              		.cfi_endproc
+ 115              	.LFE236:
+ 117              		.section	.text.readX,"ax",%progbits
+ 118              		.align	1
+ 119              		.global	readX
+ 120              		.syntax unified
+ 121              		.thumb
+ 122              		.thumb_func
+ 123              		.fpu fpv4-sp-d16
+ 125              	readX:
+ 126              	.LFB237:
+  26:App/IMU/BaseIMU.c **** 
+  27:App/IMU/BaseIMU.c **** int16_t readX() {
+ 127              		.loc 1 27 17 is_stmt 1 view -0
+ 128              		.cfi_startproc
+ 129              		@ args = 0, pretend = 0, frame = 0
+ 130              		@ frame_needed = 0, uses_anonymous_args = 0
+ 131 0000 10B5     		push	{r4, lr}
+ 132              	.LCFI5:
+ 133              		.cfi_def_cfa_offset 8
+ 134              		.cfi_offset 4, -8
+ 135              		.cfi_offset 14, -4
+  28:App/IMU/BaseIMU.c ****     return _readByte(BASE_IMU_OUT_X_H) << 8 | _readByte(BASE_IMU_OUT_X_L);
+ 136              		.loc 1 28 5 view .LVU15
+ 137              		.loc 1 28 12 is_stmt 0 view .LVU16
+ 138 0002 2920     		movs	r0, #41
+ 139 0004 FFF7FEFF 		bl	_readByte
+ 140              	.LVL5:
+ 141              		.loc 1 28 40 view .LVU17
+ 142 0008 0402     		lsls	r4, r0, #8
+ 143              		.loc 1 28 47 view .LVU18
+ 144 000a 2820     		movs	r0, #40
+ 145 000c FFF7FEFF 		bl	_readByte
+ 146              	.LVL6:
+ 147 0010 00B2     		sxth	r0, r0
+ARM GAS  /tmp/ccpH2Y4n.s 			page 4
+
+
+ 148              		.loc 1 28 45 view .LVU19
+ 149 0012 2043     		orrs	r0, r0, r4
+  29:App/IMU/BaseIMU.c **** }
+ 150              		.loc 1 29 1 view .LVU20
+ 151 0014 00B2     		sxth	r0, r0
+ 152 0016 10BD     		pop	{r4, pc}
+ 153              		.cfi_endproc
+ 154              	.LFE237:
+ 156              		.section	.text.readY,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	readY
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 162              		.fpu fpv4-sp-d16
+ 164              	readY:
+ 165              	.LFB238:
+  30:App/IMU/BaseIMU.c **** 
+  31:App/IMU/BaseIMU.c **** int16_t readY() {
+ 166              		.loc 1 31 17 is_stmt 1 view -0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170 0000 10B5     		push	{r4, lr}
+ 171              	.LCFI6:
+ 172              		.cfi_def_cfa_offset 8
+ 173              		.cfi_offset 4, -8
+ 174              		.cfi_offset 14, -4
+  32:App/IMU/BaseIMU.c ****     return _readByte(BASE_IMU_OUT_Y_H) << 8 | _readByte(BASE_IMU_OUT_Y_L);
+ 175              		.loc 1 32 5 view .LVU22
+ 176              		.loc 1 32 12 is_stmt 0 view .LVU23
+ 177 0002 2B20     		movs	r0, #43
+ 178 0004 FFF7FEFF 		bl	_readByte
+ 179              	.LVL7:
+ 180              		.loc 1 32 40 view .LVU24
+ 181 0008 0402     		lsls	r4, r0, #8
+ 182              		.loc 1 32 47 view .LVU25
+ 183 000a 2A20     		movs	r0, #42
+ 184 000c FFF7FEFF 		bl	_readByte
+ 185              	.LVL8:
+ 186 0010 00B2     		sxth	r0, r0
+ 187              		.loc 1 32 45 view .LVU26
+ 188 0012 2043     		orrs	r0, r0, r4
+  33:App/IMU/BaseIMU.c **** }
+ 189              		.loc 1 33 1 view .LVU27
+ 190 0014 00B2     		sxth	r0, r0
+ 191 0016 10BD     		pop	{r4, pc}
+ 192              		.cfi_endproc
+ 193              	.LFE238:
+ 195              		.section	.text.readZ,"ax",%progbits
+ 196              		.align	1
+ 197              		.global	readZ
+ 198              		.syntax unified
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.fpu fpv4-sp-d16
+ 203              	readZ:
+ARM GAS  /tmp/ccpH2Y4n.s 			page 5
+
+
+ 204              	.LFB239:
+  34:App/IMU/BaseIMU.c **** 
+  35:App/IMU/BaseIMU.c **** int16_t readZ() {
+ 205              		.loc 1 35 17 is_stmt 1 view -0
+ 206              		.cfi_startproc
+ 207              		@ args = 0, pretend = 0, frame = 0
+ 208              		@ frame_needed = 0, uses_anonymous_args = 0
+ 209 0000 10B5     		push	{r4, lr}
+ 210              	.LCFI7:
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 4, -8
+ 213              		.cfi_offset 14, -4
+  36:App/IMU/BaseIMU.c ****     return _readByte(BASE_IMU_OUT_Z_H) << 8 | _readByte(BASE_IMU_OUT_Z_L);
+ 214              		.loc 1 36 5 view .LVU29
+ 215              		.loc 1 36 12 is_stmt 0 view .LVU30
+ 216 0002 2D20     		movs	r0, #45
+ 217 0004 FFF7FEFF 		bl	_readByte
+ 218              	.LVL9:
+ 219              		.loc 1 36 40 view .LVU31
+ 220 0008 0402     		lsls	r4, r0, #8
+ 221              		.loc 1 36 47 view .LVU32
+ 222 000a 2C20     		movs	r0, #44
+ 223 000c FFF7FEFF 		bl	_readByte
+ 224              	.LVL10:
+ 225 0010 00B2     		sxth	r0, r0
+ 226              		.loc 1 36 45 view .LVU33
+ 227 0012 2043     		orrs	r0, r0, r4
+  37:App/IMU/BaseIMU.c **** }
+ 228              		.loc 1 37 1 view .LVU34
+ 229 0014 00B2     		sxth	r0, r0
+ 230 0016 10BD     		pop	{r4, pc}
+ 231              		.cfi_endproc
+ 232              	.LFE239:
+ 234              		.section	.text._writeByte,"ax",%progbits
+ 235              		.align	1
+ 236              		.global	_writeByte
+ 237              		.syntax unified
+ 238              		.thumb
+ 239              		.thumb_func
+ 240              		.fpu fpv4-sp-d16
+ 242              	_writeByte:
+ 243              	.LVL11:
+ 244              	.LFB241:
+  38:App/IMU/BaseIMU.c **** 
+  39:App/IMU/BaseIMU.c **** void readXYZ(int16_t* x, int16_t* y, int16_t* z) {
+  40:App/IMU/BaseIMU.c ****     uint8_t data[6];
+  41:App/IMU/BaseIMU.c ****     _readBytes(0x80 | BASE_IMU_OUT_X_L, data, 6);
+  42:App/IMU/BaseIMU.c ****     x = data[1] << 8 | data[0];
+  43:App/IMU/BaseIMU.c ****     y = data[3] << 8 | data[2];
+  44:App/IMU/BaseIMU.c ****     z = data[5] << 8 | data[4];
+  45:App/IMU/BaseIMU.c **** }
+  46:App/IMU/BaseIMU.c **** 
+  47:App/IMU/BaseIMU.c **** 
+  48:App/IMU/BaseIMU.c **** 
+  49:App/IMU/BaseIMU.c **** void _writeByte(uint16_t regAddress, uint8_t data) {
+ 245              		.loc 1 49 52 is_stmt 1 view -0
+ 246              		.cfi_startproc
+ARM GAS  /tmp/ccpH2Y4n.s 			page 6
+
+
+ 247              		@ args = 0, pretend = 0, frame = 8
+ 248              		@ frame_needed = 0, uses_anonymous_args = 0
+ 249              		.loc 1 49 52 is_stmt 0 view .LVU36
+ 250 0000 00B5     		push	{lr}
+ 251              	.LCFI8:
+ 252              		.cfi_def_cfa_offset 4
+ 253              		.cfi_offset 14, -4
+ 254 0002 87B0     		sub	sp, sp, #28
+ 255              	.LCFI9:
+ 256              		.cfi_def_cfa_offset 32
+ 257 0004 0246     		mov	r2, r0
+ 258 0006 8DF81710 		strb	r1, [sp, #23]
+  50:App/IMU/BaseIMU.c ****     
+  51:App/IMU/BaseIMU.c ****     if(HAL_OK != HAL_I2C_Mem_Write(imu_i2c, DEVICE_ID, regAddress, 1, &data, 1, 10)){
+ 259              		.loc 1 51 5 is_stmt 1 view .LVU37
+ 260              		.loc 1 51 18 is_stmt 0 view .LVU38
+ 261 000a 0A23     		movs	r3, #10
+ 262 000c 0293     		str	r3, [sp, #8]
+ 263 000e 0123     		movs	r3, #1
+ 264 0010 0193     		str	r3, [sp, #4]
+ 265 0012 0DF11701 		add	r1, sp, #23
+ 266              	.LVL12:
+ 267              		.loc 1 51 18 view .LVU39
+ 268 0016 0091     		str	r1, [sp]
+ 269 0018 F521     		movs	r1, #245
+ 270              	.LVL13:
+ 271              		.loc 1 51 18 view .LVU40
+ 272 001a 0748     		ldr	r0, .L19
+ 273              	.LVL14:
+ 274              		.loc 1 51 18 view .LVU41
+ 275 001c 0068     		ldr	r0, [r0]
+ 276 001e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 277              	.LVL15:
+ 278              		.loc 1 51 7 view .LVU42
+ 279 0022 10B9     		cbnz	r0, .L18
+ 280              	.L15:
+  52:App/IMU/BaseIMU.c ****         HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+  53:App/IMU/BaseIMU.c ****     }
+  54:App/IMU/BaseIMU.c **** }
+ 281              		.loc 1 54 1 view .LVU43
+ 282 0024 07B0     		add	sp, sp, #28
+ 283              	.LCFI10:
+ 284              		.cfi_remember_state
+ 285              		.cfi_def_cfa_offset 4
+ 286              		@ sp needed
+ 287 0026 5DF804FB 		ldr	pc, [sp], #4
+ 288              	.L18:
+ 289              	.LCFI11:
+ 290              		.cfi_restore_state
+  52:App/IMU/BaseIMU.c ****         HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+ 291              		.loc 1 52 9 is_stmt 1 view .LVU44
+ 292 002a 4FF40051 		mov	r1, #8192
+ 293 002e 0348     		ldr	r0, .L19+4
+ 294 0030 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 295              	.LVL16:
+ 296              		.loc 1 54 1 is_stmt 0 view .LVU45
+ 297 0034 F6E7     		b	.L15
+ARM GAS  /tmp/ccpH2Y4n.s 			page 7
+
+
+ 298              	.L20:
+ 299 0036 00BF     		.align	2
+ 300              	.L19:
+ 301 0038 00000000 		.word	imu_i2c
+ 302 003c 000C0240 		.word	1073875968
+ 303              		.cfi_endproc
+ 304              	.LFE241:
+ 306              		.section	.text._readBytes,"ax",%progbits
+ 307              		.align	1
+ 308              		.global	_readBytes
+ 309              		.syntax unified
+ 310              		.thumb
+ 311              		.thumb_func
+ 312              		.fpu fpv4-sp-d16
+ 314              	_readBytes:
+ 315              	.LVL17:
+ 316              	.LFB242:
+  55:App/IMU/BaseIMU.c **** 
+  56:App/IMU/BaseIMU.c **** void _readBytes(uint16_t regAddress, uint8_t* data, uint8_t length) {
+ 317              		.loc 1 56 69 is_stmt 1 view -0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321              		.loc 1 56 69 is_stmt 0 view .LVU47
+ 322 0000 00B5     		push	{lr}
+ 323              	.LCFI12:
+ 324              		.cfi_def_cfa_offset 4
+ 325              		.cfi_offset 14, -4
+ 326 0002 85B0     		sub	sp, sp, #20
+ 327              	.LCFI13:
+ 328              		.cfi_def_cfa_offset 24
+  57:App/IMU/BaseIMU.c ****     if(HAL_OK != HAL_I2C_Mem_Write(imu_i2c, DEVICE_ID, regAddress, 1, data, length, 10)){
+ 329              		.loc 1 57 5 is_stmt 1 view .LVU48
+ 330              		.loc 1 57 18 is_stmt 0 view .LVU49
+ 331 0004 0A23     		movs	r3, #10
+ 332 0006 0293     		str	r3, [sp, #8]
+ 333 0008 0192     		str	r2, [sp, #4]
+ 334 000a 0091     		str	r1, [sp]
+ 335 000c 0123     		movs	r3, #1
+ 336 000e 0246     		mov	r2, r0
+ 337              	.LVL18:
+ 338              		.loc 1 57 18 view .LVU50
+ 339 0010 F521     		movs	r1, #245
+ 340              	.LVL19:
+ 341              		.loc 1 57 18 view .LVU51
+ 342 0012 0748     		ldr	r0, .L25
+ 343              	.LVL20:
+ 344              		.loc 1 57 18 view .LVU52
+ 345 0014 0068     		ldr	r0, [r0]
+ 346 0016 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 347              	.LVL21:
+ 348              		.loc 1 57 7 view .LVU53
+ 349 001a 10B9     		cbnz	r0, .L24
+ 350              	.L21:
+  58:App/IMU/BaseIMU.c ****         HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+  59:App/IMU/BaseIMU.c ****     }
+  60:App/IMU/BaseIMU.c **** }
+ARM GAS  /tmp/ccpH2Y4n.s 			page 8
+
+
+ 351              		.loc 1 60 1 view .LVU54
+ 352 001c 05B0     		add	sp, sp, #20
+ 353              	.LCFI14:
+ 354              		.cfi_remember_state
+ 355              		.cfi_def_cfa_offset 4
+ 356              		@ sp needed
+ 357 001e 5DF804FB 		ldr	pc, [sp], #4
+ 358              	.L24:
+ 359              	.LCFI15:
+ 360              		.cfi_restore_state
+  58:App/IMU/BaseIMU.c ****         HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
+ 361              		.loc 1 58 9 is_stmt 1 view .LVU55
+ 362 0022 4FF40051 		mov	r1, #8192
+ 363 0026 0348     		ldr	r0, .L25+4
+ 364 0028 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 365              	.LVL22:
+ 366              		.loc 1 60 1 is_stmt 0 view .LVU56
+ 367 002c F6E7     		b	.L21
+ 368              	.L26:
+ 369 002e 00BF     		.align	2
+ 370              	.L25:
+ 371 0030 00000000 		.word	imu_i2c
+ 372 0034 000C0240 		.word	1073875968
+ 373              		.cfi_endproc
+ 374              	.LFE242:
+ 376              		.section	.text.readXYZ,"ax",%progbits
+ 377              		.align	1
+ 378              		.global	readXYZ
+ 379              		.syntax unified
+ 380              		.thumb
+ 381              		.thumb_func
+ 382              		.fpu fpv4-sp-d16
+ 384              	readXYZ:
+ 385              	.LVL23:
+ 386              	.LFB240:
+  39:App/IMU/BaseIMU.c ****     uint8_t data[6];
+ 387              		.loc 1 39 50 is_stmt 1 view -0
+ 388              		.cfi_startproc
+ 389              		@ args = 0, pretend = 0, frame = 8
+ 390              		@ frame_needed = 0, uses_anonymous_args = 0
+  39:App/IMU/BaseIMU.c ****     uint8_t data[6];
+ 391              		.loc 1 39 50 is_stmt 0 view .LVU58
+ 392 0000 00B5     		push	{lr}
+ 393              	.LCFI16:
+ 394              		.cfi_def_cfa_offset 4
+ 395              		.cfi_offset 14, -4
+ 396 0002 83B0     		sub	sp, sp, #12
+ 397              	.LCFI17:
+ 398              		.cfi_def_cfa_offset 16
+  40:App/IMU/BaseIMU.c ****     _readBytes(0x80 | BASE_IMU_OUT_X_L, data, 6);
+ 399              		.loc 1 40 5 is_stmt 1 view .LVU59
+  41:App/IMU/BaseIMU.c ****     x = data[1] << 8 | data[0];
+ 400              		.loc 1 41 5 view .LVU60
+ 401 0004 0622     		movs	r2, #6
+ 402              	.LVL24:
+  41:App/IMU/BaseIMU.c ****     x = data[1] << 8 | data[0];
+ 403              		.loc 1 41 5 is_stmt 0 view .LVU61
+ARM GAS  /tmp/ccpH2Y4n.s 			page 9
+
+
+ 404 0006 6946     		mov	r1, sp
+ 405              	.LVL25:
+  41:App/IMU/BaseIMU.c ****     x = data[1] << 8 | data[0];
+ 406              		.loc 1 41 5 view .LVU62
+ 407 0008 A820     		movs	r0, #168
+ 408              	.LVL26:
+  41:App/IMU/BaseIMU.c ****     x = data[1] << 8 | data[0];
+ 409              		.loc 1 41 5 view .LVU63
+ 410 000a FFF7FEFF 		bl	_readBytes
+ 411              	.LVL27:
+  42:App/IMU/BaseIMU.c ****     y = data[3] << 8 | data[2];
+ 412              		.loc 1 42 5 is_stmt 1 view .LVU64
+  43:App/IMU/BaseIMU.c ****     z = data[5] << 8 | data[4];
+ 413              		.loc 1 43 5 view .LVU65
+  44:App/IMU/BaseIMU.c **** }
+ 414              		.loc 1 44 5 view .LVU66
+  45:App/IMU/BaseIMU.c **** 
+ 415              		.loc 1 45 1 is_stmt 0 view .LVU67
+ 416 000e 03B0     		add	sp, sp, #12
+ 417              	.LCFI18:
+ 418              		.cfi_def_cfa_offset 4
+ 419              	.LVL28:
+  45:App/IMU/BaseIMU.c **** 
+ 420              		.loc 1 45 1 view .LVU68
+ 421              		@ sp needed
+ 422 0010 5DF804FB 		ldr	pc, [sp], #4
+  45:App/IMU/BaseIMU.c **** 
+ 423              		.loc 1 45 1 view .LVU69
+ 424              		.cfi_endproc
+ 425              	.LFE240:
+ 427              		.section	.text.IMU_Init,"ax",%progbits
+ 428              		.align	1
+ 429              		.global	IMU_Init
+ 430              		.syntax unified
+ 431              		.thumb
+ 432              		.thumb_func
+ 433              		.fpu fpv4-sp-d16
+ 435              	IMU_Init:
+ 436              	.LFB243:
+  61:App/IMU/BaseIMU.c **** 
+  62:App/IMU/BaseIMU.c **** void IMU_Init()
+  63:App/IMU/BaseIMU.c **** {
+ 437              		.loc 1 63 1 is_stmt 1 view -0
+ 438              		.cfi_startproc
+ 439              		@ args = 0, pretend = 0, frame = 0
+ 440              		@ frame_needed = 0, uses_anonymous_args = 0
+ 441 0000 08B5     		push	{r3, lr}
+ 442              	.LCFI19:
+ 443              		.cfi_def_cfa_offset 8
+ 444              		.cfi_offset 3, -8
+ 445              		.cfi_offset 14, -4
+  64:App/IMU/BaseIMU.c ****     MX_I2C1_Init();
+ 446              		.loc 1 64 5 view .LVU71
+ 447 0002 FFF7FEFF 		bl	MX_I2C1_Init
+ 448              	.LVL29:
+  65:App/IMU/BaseIMU.c ****     imu_i2c  = &hi2c1;
+ 449              		.loc 1 65 5 view .LVU72
+ARM GAS  /tmp/ccpH2Y4n.s 			page 10
+
+
+ 450              		.loc 1 65 14 is_stmt 0 view .LVU73
+ 451 0006 024B     		ldr	r3, .L31
+ 452 0008 024A     		ldr	r2, .L31+4
+ 453 000a 1A60     		str	r2, [r3]
+  66:App/IMU/BaseIMU.c **** }...
+ 454              		.loc 1 66 1 view .LVU74
+ 455 000c 08BD     		pop	{r3, pc}
+ 456              	.L32:
+ 457 000e 00BF     		.align	2
+ 458              	.L31:
+ 459 0010 00000000 		.word	imu_i2c
+ 460 0014 00000000 		.word	hi2c1
+ 461              		.cfi_endproc
+ 462              	.LFE243:
+ 464              		.comm	imu_i2c,4,4
+ 465              		.comm	IMU_ADDRESS,2,2
+ 466              		.text
+ 467              	.Letext0:
+ 468              		.file 2 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h"
+ 469              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+ 470              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 471              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 472              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 473              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 474              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 475              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 476              		.file 10 "Core/Inc/i2c.h"
+ 477              		.file 11 "App/IMU/BaseIMU.h"
+ 478              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ARM GAS  /tmp/ccpH2Y4n.s 			page 11
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 BaseIMU.c
+     /tmp/ccpH2Y4n.s:18     .text._readByte:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:26     .text._readByte:0000000000000000 _readByte
+     /tmp/ccpH2Y4n.s:83     .text._readByte:0000000000000038 $d
+                            *COM*:0000000000000004 imu_i2c
+     /tmp/ccpH2Y4n.s:89     .text.readDeviceID:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:96     .text.readDeviceID:0000000000000000 readDeviceID
+     /tmp/ccpH2Y4n.s:118    .text.readX:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:125    .text.readX:0000000000000000 readX
+     /tmp/ccpH2Y4n.s:157    .text.readY:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:164    .text.readY:0000000000000000 readY
+     /tmp/ccpH2Y4n.s:196    .text.readZ:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:203    .text.readZ:0000000000000000 readZ
+     /tmp/ccpH2Y4n.s:235    .text._writeByte:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:242    .text._writeByte:0000000000000000 _writeByte
+     /tmp/ccpH2Y4n.s:301    .text._writeByte:0000000000000038 $d
+     /tmp/ccpH2Y4n.s:307    .text._readBytes:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:314    .text._readBytes:0000000000000000 _readBytes
+     /tmp/ccpH2Y4n.s:371    .text._readBytes:0000000000000030 $d
+     /tmp/ccpH2Y4n.s:377    .text.readXYZ:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:384    .text.readXYZ:0000000000000000 readXYZ
+     /tmp/ccpH2Y4n.s:428    .text.IMU_Init:0000000000000000 $t
+     /tmp/ccpH2Y4n.s:435    .text.IMU_Init:0000000000000000 IMU_Init
+     /tmp/ccpH2Y4n.s:459    .text.IMU_Init:0000000000000010 $d
+                            *COM*:0000000000000002 IMU_ADDRESS
+
+UNDEFINED SYMBOLS
+HAL_I2C_Mem_Read
+HAL_GPIO_TogglePin
+HAL_I2C_Mem_Write
+MX_I2C1_Init
+hi2c1

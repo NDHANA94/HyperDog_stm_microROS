@@ -1,0 +1,1579 @@
+ARM GAS  /tmp/ccrK0U08.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"microros_tasks.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.subscription_callback,"ax",%progbits
+  18              		.align	1
+  19              		.global	subscription_callback
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	subscription_callback:
+  27              	.LVL0:
+  28              	.LFB249:
+  29              		.file 1 "App/microros_tasks.c"
+   1:App/microros_tasks.c **** 
+   2:App/microros_tasks.c **** /*
+   3:App/microros_tasks.c **** * microros_tasks.c
+   4:App/microros_tasks.c **** 
+   5:App/microros_tasks.c **** * Useful commands in ros2 env.
+   6:App/microros_tasks.c ****     * ros2 run micro_ros_setup create_agent_ws.sh
+   7:App/microros_tasks.c ****     * ros2 run micro_ros_agent micro_ros_agent serial -b 115200 --dev /dev/ttyUSB0
+   8:App/microros_tasks.c **** 
+   9:App/microros_tasks.c **** 
+  10:App/microros_tasks.c **** ********************************************************************************
+  11:App/microros_tasks.c **** *
+  12:App/microros_tasks.c **** * Created on: March 15, 2022
+  13:App/microros_tasks.c **** *     Author: Nipun Dhananjaya Weerakkodi -> nipun.dhananjaya@gmail.com
+  14:App/microros_tasks.c **** ********************************************************************************
+  15:App/microros_tasks.c **** */
+  16:App/microros_tasks.c **** 
+  17:App/microros_tasks.c **** 
+  18:App/microros_tasks.c **** #include "microros_tasks.h"
+  19:App/microros_tasks.c **** 
+  20:App/microros_tasks.c **** 
+  21:App/microros_tasks.c **** /* ====================================== Sub Defines ====================================== */
+  22:App/microros_tasks.c **** 
+  23:App/microros_tasks.c **** 
+  24:App/microros_tasks.c **** // LED error indicator
+  25:App/microros_tasks.c **** void error_blink(uint8_t n){
+  26:App/microros_tasks.c ****     for (int i = 0; i < n; i++){
+  27:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+  28:App/microros_tasks.c ****         HAL_Delay(100);
+  29:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red
+ARM GAS  /tmp/ccrK0U08.s 			page 2
+
+
+  30:App/microros_tasks.c ****         HAL_Delay(100);
+  31:App/microros_tasks.c ****     }
+  32:App/microros_tasks.c ****     HAL_Delay(1000);
+  33:App/microros_tasks.c **** }
+  34:App/microros_tasks.c **** 
+  35:App/microros_tasks.c **** // ========================   microros_config   ==================================
+  36:App/microros_tasks.c **** void hypergod_microros_init(void){
+  37:App/microros_tasks.c ****     MX_USART2_UART_Init();
+  38:App/microros_tasks.c ****     rmw_ret_t status = rmw_uros_set_custom_transport(
+  39:App/microros_tasks.c ****                             true,
+  40:App/microros_tasks.c ****                             (void *) &huart2,
+  41:App/microros_tasks.c ****                             cubemx_transport_open,
+  42:App/microros_tasks.c ****                             cubemx_transport_close,
+  43:App/microros_tasks.c ****                             cubemx_transport_write,
+  44:App/microros_tasks.c ****                             cubemx_transport_read);
+  45:App/microros_tasks.c **** 
+  46:App/microros_tasks.c ****     rcl_allocator_t freeRTOS_allocator = rcutils_get_zero_initialized_allocator();
+  47:App/microros_tasks.c ****     freeRTOS_allocator.allocate = microros_allocate;
+  48:App/microros_tasks.c ****     freeRTOS_allocator.deallocate = microros_deallocate;
+  49:App/microros_tasks.c ****     freeRTOS_allocator.reallocate = microros_reallocate;
+  50:App/microros_tasks.c ****     freeRTOS_allocator.zero_allocate =  microros_zero_allocate;
+  51:App/microros_tasks.c **** 
+  52:App/microros_tasks.c ****     if (!rcutils_set_default_allocator(&freeRTOS_allocator)) {
+  53:App/microros_tasks.c ****         printf("Error on default allocators (line %d)\n", __LINE__); 
+  54:App/microros_tasks.c ****         }
+  55:App/microros_tasks.c **** }
+  56:App/microros_tasks.c **** 
+  57:App/microros_tasks.c **** 
+  58:App/microros_tasks.c **** // =============================  NODE  ==================================
+  59:App/microros_tasks.c **** // create node ---------------------
+  60:App/microros_tasks.c **** void init_hyperdogSTM_node(void)
+  61:App/microros_tasks.c **** {
+  62:App/microros_tasks.c ****     //create init_options
+  63:App/microros_tasks.c ****     allocator = rcl_get_default_allocator();
+  64:App/microros_tasks.c ****     rcl_ret_t rc = rclc_support_init(&support, 0, NULL, &allocator);
+  65:App/microros_tasks.c ****    
+  66:App/microros_tasks.c ****     // wait till connect to agent
+  67:App/microros_tasks.c ****     if (rc != RCL_RET_OK){
+  68:App/microros_tasks.c ****         while (1){   
+  69:App/microros_tasks.c ****             // blink 3 times
+  70:App/microros_tasks.c ****             error_blink(1);
+  71:App/microros_tasks.c ****             rclc_support_fini(&support);
+  72:App/microros_tasks.c ****             rc = rclc_support_init(&support, 0, NULL, &allocator);
+  73:App/microros_tasks.c ****             if (rc == RCL_RET_OK){
+  74:App/microros_tasks.c ****                 break;
+  75:App/microros_tasks.c ****             }
+  76:App/microros_tasks.c ****             
+  77:App/microros_tasks.c ****         }
+  78:App/microros_tasks.c ****     }
+  79:App/microros_tasks.c ****     // create node
+  80:App/microros_tasks.c ****     rcl_ret_t rc2 = rclc_node_init_default(&node, "Hyperdog_STM", "", &support);
+  81:App/microros_tasks.c ****     
+  82:App/microros_tasks.c **** }
+  83:App/microros_tasks.c **** 
+  84:App/microros_tasks.c **** 
+  85:App/microros_tasks.c **** // =========================  PUBLISHER  ================================
+  86:App/microros_tasks.c **** // create publisher topic ---------------------
+ARM GAS  /tmp/ccrK0U08.s 			page 3
+
+
+  87:App/microros_tasks.c **** void create_hyperdogSTM_publisher(void)
+  88:App/microros_tasks.c **** {
+  89:App/microros_tasks.c ****     RCCHECK(rclc_publisher_init_default(
+  90:App/microros_tasks.c ****         &publisher,
+  91:App/microros_tasks.c ****         &node,
+  92:App/microros_tasks.c ****         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
+  93:App/microros_tasks.c ****         "hyperdogSTM_publisher"));
+  94:App/microros_tasks.c ****     // data type configure and set malloc for sequence msg
+  95:App/microros_tasks.c ****     pub_msg.data.capacity = 100;
+  96:App/microros_tasks.c ****     pub_msg.data.data = (float *) malloc(pub_msg.data.capacity * sizeof(float));
+  97:App/microros_tasks.c **** 
+  98:App/microros_tasks.c ****     
+  99:App/microros_tasks.c ****     pub_msg.data.size = 12;
+ 100:App/microros_tasks.c ****     for (int i = 0; i < pub_msg.data.size; i++){
+ 101:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 102:App/microros_tasks.c ****     }
+ 103:App/microros_tasks.c **** }
+ 104:App/microros_tasks.c **** 
+ 105:App/microros_tasks.c **** // publisher callback -------------------
+ 106:App/microros_tasks.c **** void publisher_callback(rcl_timer_t * timer, int64_t last_call_time){
+ 107:App/microros_tasks.c ****     (void) last_call_time;
+ 108:App/microros_tasks.c ****     (void) timer;
+ 109:App/microros_tasks.c **** 
+ 110:App/microros_tasks.c ****     for (int i = 0; i < pub_msg.data.size; i++){
+ 111:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 112:App/microros_tasks.c ****     }
+ 113:App/microros_tasks.c ****     uint8_t err_count = 0;
+ 114:App/microros_tasks.c ****     rcl_ret_t rc = rcl_publish(&publisher, &pub_msg, NULL);
+ 115:App/microros_tasks.c ****     if (rc != RCL_RET_OK){
+ 116:App/microros_tasks.c ****         error_blink(2);
+ 117:App/microros_tasks.c ****         run_hyperdogSTM_node();
+ 118:App/microros_tasks.c ****     }
+ 119:App/microros_tasks.c ****     HAL_GPIO_TogglePin(LD6_GPIO_Port, LD6_Pin);
+ 120:App/microros_tasks.c **** }
+ 121:App/microros_tasks.c **** 
+ 122:App/microros_tasks.c **** 
+ 123:App/microros_tasks.c **** // =========================  SUBSCRIBER  ================================
+ 124:App/microros_tasks.c **** // create subscriber ---------------------
+ 125:App/microros_tasks.c **** void create_hyperdogSTM_subscriber(void)
+ 126:App/microros_tasks.c **** {   
+ 127:App/microros_tasks.c ****     RCCHECK(rclc_subscription_init_default(
+ 128:App/microros_tasks.c ****         &subscriber,
+ 129:App/microros_tasks.c ****         &node,
+ 130:App/microros_tasks.c ****         ROSIDL_GET_MSG_TYPE_SUPPORT(std_msgs, msg, Float32MultiArray),
+ 131:App/microros_tasks.c ****         "hyperdog_jointController/commands")); 
+ 132:App/microros_tasks.c ****     // data type configure and set malloc for sequence msg
+ 133:App/microros_tasks.c ****     sub_msg.data.capacity = 100;
+ 134:App/microros_tasks.c ****     sub_msg.data.data = (float *) malloc(pub_msg.data.capacity * sizeof(float));
+ 135:App/microros_tasks.c ****     sub_msg.data.size = 12;
+ 136:App/microros_tasks.c ****     // initialize servo driver PCA9685
+ 137:App/microros_tasks.c ****     bool err = PCA9685_Init(&hi2c3);
+ 138:App/microros_tasks.c ****     if (err){
+ 139:App/microros_tasks.c ****         while (err ){
+ 140:App/microros_tasks.c ****             err = PCA9685_Init(&hi2c3);
+ 141:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED
+ 142:App/microros_tasks.c ****             HAL_Delay(100);
+ 143:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red LED
+ARM GAS  /tmp/ccrK0U08.s 			page 4
+
+
+ 144:App/microros_tasks.c ****             HAL_Delay(1000);
+ 145:App/microros_tasks.c ****             
+ 146:App/microros_tasks.c ****         }
+ 147:App/microros_tasks.c ****     }
+ 148:App/microros_tasks.c **** }
+ 149:App/microros_tasks.c **** 
+ 150:App/microros_tasks.c **** // subscriber callback ---------------------
+ 151:App/microros_tasks.c **** void subscription_callback(const void * msgin){
+  30              		.loc 1 151 47 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 151 47 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
+ 152:App/microros_tasks.c ****     HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, SET); // Green LED on
+  41              		.loc 1 152 5 is_stmt 1 view .LVU2
+  42 0004 0122     		movs	r2, #1
+  43 0006 4FF48051 		mov	r1, #4096
+  44 000a 0B48     		ldr	r0, .L6
+  45              	.LVL1:
+  46              		.loc 1 152 5 is_stmt 0 view .LVU3
+  47 000c FFF7FEFF 		bl	HAL_GPIO_WritePin
+  48              	.LVL2:
+ 153:App/microros_tasks.c ****     // Cast received message to used type
+ 154:App/microros_tasks.c ****     const std_msgs__msg__Float32MultiArray * msg = (const std_msgs__msg__Float32MultiArray *)msgin;
+  49              		.loc 1 154 5 is_stmt 1 view .LVU4
+ 155:App/microros_tasks.c ****     // proccess msg
+ 156:App/microros_tasks.c ****     for (int i = 0; i<12; i++){
+  50              		.loc 1 156 5 view .LVU5
+  51              	.LBB2:
+  52              		.loc 1 156 10 view .LVU6
+  53              		.loc 1 156 14 is_stmt 0 view .LVU7
+  54 0010 0023     		movs	r3, #0
+  55              	.LVL3:
+  56              	.L2:
+  57              		.loc 1 156 21 is_stmt 1 discriminator 1 view .LVU8
+  58              		.loc 1 156 5 is_stmt 0 discriminator 1 view .LVU9
+  59 0012 0B2B     		cmp	r3, #11
+  60 0014 09DC     		bgt	.L5
+ 157:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
+  61              		.loc 1 157 9 is_stmt 1 discriminator 3 view .LVU10
+  62              		.loc 1 157 33 is_stmt 0 discriminator 3 view .LVU11
+  63 0016 2269     		ldr	r2, [r4, #16]
+  64              		.loc 1 157 38 discriminator 3 view .LVU12
+  65 0018 02EB8302 		add	r2, r2, r3, lsl #2
+  66 001c 1168     		ldr	r1, [r2]	@ float
+  67              		.loc 1 157 22 discriminator 3 view .LVU13
+  68 001e 074A     		ldr	r2, .L6+4
+  69 0020 02EB8302 		add	r2, r2, r3, lsl #2
+  70 0024 1160     		str	r1, [r2]	@ float
+ 156:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
+  71              		.loc 1 156 27 is_stmt 1 discriminator 3 view .LVU14
+ARM GAS  /tmp/ccrK0U08.s 			page 5
+
+
+ 156:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
+  72              		.loc 1 156 28 is_stmt 0 discriminator 3 view .LVU15
+  73 0026 0133     		adds	r3, r3, #1
+  74              	.LVL4:
+ 156:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
+  75              		.loc 1 156 28 discriminator 3 view .LVU16
+  76 0028 F3E7     		b	.L2
+  77              	.L5:
+ 156:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
+  78              		.loc 1 156 28 discriminator 3 view .LVU17
+  79              	.LBE2:
+ 158:App/microros_tasks.c ****     }
+ 159:App/microros_tasks.c ****     HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, RESET); // Green LED off
+  80              		.loc 1 159 5 is_stmt 1 view .LVU18
+  81 002a 0022     		movs	r2, #0
+  82 002c 4FF48051 		mov	r1, #4096
+  83 0030 0148     		ldr	r0, .L6
+  84 0032 FFF7FEFF 		bl	HAL_GPIO_WritePin
+  85              	.LVL5:
+ 160:App/microros_tasks.c **** }
+  86              		.loc 1 160 1 is_stmt 0 view .LVU19
+  87 0036 10BD     		pop	{r4, pc}
+  88              	.LVL6:
+  89              	.L7:
+  90              		.loc 1 160 1 view .LVU20
+  91              		.align	2
+  92              	.L6:
+  93 0038 000C0240 		.word	1073875968
+  94 003c 00000000 		.word	joint_ang
+  95              		.cfi_endproc
+  96              	.LFE249:
+  98              		.section	.text.error_blink,"ax",%progbits
+  99              		.align	1
+ 100              		.global	error_blink
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 104              		.fpu fpv4-sp-d16
+ 106              	error_blink:
+ 107              	.LVL7:
+ 108              	.LFB243:
+  25:App/microros_tasks.c ****     for (int i = 0; i < n; i++){
+ 109              		.loc 1 25 28 is_stmt 1 view -0
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+  25:App/microros_tasks.c ****     for (int i = 0; i < n; i++){
+ 113              		.loc 1 25 28 is_stmt 0 view .LVU22
+ 114 0000 70B5     		push	{r4, r5, r6, lr}
+ 115              	.LCFI1:
+ 116              		.cfi_def_cfa_offset 16
+ 117              		.cfi_offset 4, -16
+ 118              		.cfi_offset 5, -12
+ 119              		.cfi_offset 6, -8
+ 120              		.cfi_offset 14, -4
+ 121 0002 0646     		mov	r6, r0
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ARM GAS  /tmp/ccrK0U08.s 			page 6
+
+
+ 122              		.loc 1 26 5 is_stmt 1 view .LVU23
+ 123              	.LBB3:
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 124              		.loc 1 26 10 view .LVU24
+ 125              	.LVL8:
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 126              		.loc 1 26 14 is_stmt 0 view .LVU25
+ 127 0004 0024     		movs	r4, #0
+ 128              	.LVL9:
+ 129              	.L9:
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 130              		.loc 1 26 21 is_stmt 1 discriminator 1 view .LVU26
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 131              		.loc 1 26 5 is_stmt 0 discriminator 1 view .LVU27
+ 132 0006 A642     		cmp	r6, r4
+ 133 0008 14DD     		ble	.L12
+  27:App/microros_tasks.c ****         HAL_Delay(100);
+ 134              		.loc 1 27 9 is_stmt 1 discriminator 3 view .LVU28
+ 135 000a 0D4D     		ldr	r5, .L13
+ 136 000c 0122     		movs	r2, #1
+ 137 000e 4FF48041 		mov	r1, #16384
+ 138 0012 2846     		mov	r0, r5
+ 139 0014 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 140              	.LVL10:
+  28:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red
+ 141              		.loc 1 28 9 discriminator 3 view .LVU29
+ 142 0018 6420     		movs	r0, #100
+ 143 001a FFF7FEFF 		bl	HAL_Delay
+ 144              	.LVL11:
+  29:App/microros_tasks.c ****         HAL_Delay(100);
+ 145              		.loc 1 29 9 discriminator 3 view .LVU30
+ 146 001e 0022     		movs	r2, #0
+ 147 0020 4FF48041 		mov	r1, #16384
+ 148 0024 2846     		mov	r0, r5
+ 149 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 150              	.LVL12:
+  30:App/microros_tasks.c ****     }
+ 151              		.loc 1 30 9 discriminator 3 view .LVU31
+ 152 002a 6420     		movs	r0, #100
+ 153 002c FFF7FEFF 		bl	HAL_Delay
+ 154              	.LVL13:
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 155              		.loc 1 26 28 discriminator 3 view .LVU32
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 156              		.loc 1 26 29 is_stmt 0 discriminator 3 view .LVU33
+ 157 0030 0134     		adds	r4, r4, #1
+ 158              	.LVL14:
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 159              		.loc 1 26 29 discriminator 3 view .LVU34
+ 160 0032 E8E7     		b	.L9
+ 161              	.L12:
+  26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
+ 162              		.loc 1 26 29 discriminator 3 view .LVU35
+ 163              	.LBE3:
+  32:App/microros_tasks.c **** }
+ 164              		.loc 1 32 5 is_stmt 1 view .LVU36
+ 165 0034 4FF47A70 		mov	r0, #1000
+ARM GAS  /tmp/ccrK0U08.s 			page 7
+
+
+ 166 0038 FFF7FEFF 		bl	HAL_Delay
+ 167              	.LVL15:
+  33:App/microros_tasks.c **** 
+ 168              		.loc 1 33 1 is_stmt 0 view .LVU37
+ 169 003c 70BD     		pop	{r4, r5, r6, pc}
+ 170              	.LVL16:
+ 171              	.L14:
+  33:App/microros_tasks.c **** 
+ 172              		.loc 1 33 1 view .LVU38
+ 173 003e 00BF     		.align	2
+ 174              	.L13:
+ 175 0040 000C0240 		.word	1073875968
+ 176              		.cfi_endproc
+ 177              	.LFE243:
+ 179              		.section	.rodata.hypergod_microros_init.str1.4,"aMS",%progbits,1
+ 180              		.align	2
+ 181              	.LC0:
+ 182 0000 4572726F 		.ascii	"Error on default allocators (line %d)\012\000"
+ 182      72206F6E 
+ 182      20646566 
+ 182      61756C74 
+ 182      20616C6C 
+ 183              		.section	.text.hypergod_microros_init,"ax",%progbits
+ 184              		.align	1
+ 185              		.global	hypergod_microros_init
+ 186              		.syntax unified
+ 187              		.thumb
+ 188              		.thumb_func
+ 189              		.fpu fpv4-sp-d16
+ 191              	hypergod_microros_init:
+ 192              	.LFB244:
+  36:App/microros_tasks.c ****     MX_USART2_UART_Init();
+ 193              		.loc 1 36 34 is_stmt 1 view -0
+ 194              		.cfi_startproc
+ 195              		@ args = 0, pretend = 0, frame = 24
+ 196              		@ frame_needed = 0, uses_anonymous_args = 0
+ 197 0000 00B5     		push	{lr}
+ 198              	.LCFI2:
+ 199              		.cfi_def_cfa_offset 4
+ 200              		.cfi_offset 14, -4
+ 201 0002 89B0     		sub	sp, sp, #36
+ 202              	.LCFI3:
+ 203              		.cfi_def_cfa_offset 40
+  37:App/microros_tasks.c ****     rmw_ret_t status = rmw_uros_set_custom_transport(
+ 204              		.loc 1 37 5 view .LVU40
+ 205 0004 FFF7FEFF 		bl	MX_USART2_UART_Init
+ 206              	.LVL17:
+  38:App/microros_tasks.c ****                             true,
+ 207              		.loc 1 38 5 view .LVU41
+  38:App/microros_tasks.c ****                             true,
+ 208              		.loc 1 38 24 is_stmt 0 view .LVU42
+ 209 0008 104B     		ldr	r3, .L19
+ 210 000a 0193     		str	r3, [sp, #4]
+ 211 000c 104B     		ldr	r3, .L19+4
+ 212 000e 0093     		str	r3, [sp]
+ 213 0010 104B     		ldr	r3, .L19+8
+ 214 0012 114A     		ldr	r2, .L19+12
+ARM GAS  /tmp/ccrK0U08.s 			page 8
+
+
+ 215 0014 1149     		ldr	r1, .L19+16
+ 216 0016 0120     		movs	r0, #1
+ 217 0018 FFF7FEFF 		bl	rmw_uros_set_custom_transport
+ 218              	.LVL18:
+  46:App/microros_tasks.c ****     freeRTOS_allocator.allocate = microros_allocate;
+ 219              		.loc 1 46 5 is_stmt 1 view .LVU43
+  46:App/microros_tasks.c ****     freeRTOS_allocator.allocate = microros_allocate;
+ 220              		.loc 1 46 42 is_stmt 0 view .LVU44
+ 221 001c 03A8     		add	r0, sp, #12
+ 222 001e FFF7FEFF 		bl	rcutils_get_zero_initialized_allocator
+ 223              	.LVL19:
+  47:App/microros_tasks.c ****     freeRTOS_allocator.deallocate = microros_deallocate;
+ 224              		.loc 1 47 5 is_stmt 1 view .LVU45
+  47:App/microros_tasks.c ****     freeRTOS_allocator.deallocate = microros_deallocate;
+ 225              		.loc 1 47 33 is_stmt 0 view .LVU46
+ 226 0022 0F4B     		ldr	r3, .L19+20
+ 227 0024 0393     		str	r3, [sp, #12]
+  48:App/microros_tasks.c ****     freeRTOS_allocator.reallocate = microros_reallocate;
+ 228              		.loc 1 48 5 is_stmt 1 view .LVU47
+  48:App/microros_tasks.c ****     freeRTOS_allocator.reallocate = microros_reallocate;
+ 229              		.loc 1 48 35 is_stmt 0 view .LVU48
+ 230 0026 0F4B     		ldr	r3, .L19+24
+ 231 0028 0493     		str	r3, [sp, #16]
+  49:App/microros_tasks.c ****     freeRTOS_allocator.zero_allocate =  microros_zero_allocate;
+ 232              		.loc 1 49 5 is_stmt 1 view .LVU49
+  49:App/microros_tasks.c ****     freeRTOS_allocator.zero_allocate =  microros_zero_allocate;
+ 233              		.loc 1 49 35 is_stmt 0 view .LVU50
+ 234 002a 0F4B     		ldr	r3, .L19+28
+ 235 002c 0593     		str	r3, [sp, #20]
+  50:App/microros_tasks.c **** 
+ 236              		.loc 1 50 5 is_stmt 1 view .LVU51
+  50:App/microros_tasks.c **** 
+ 237              		.loc 1 50 38 is_stmt 0 view .LVU52
+ 238 002e 0F4B     		ldr	r3, .L19+32
+ 239 0030 0693     		str	r3, [sp, #24]
+  52:App/microros_tasks.c ****         printf("Error on default allocators (line %d)\n", __LINE__); 
+ 240              		.loc 1 52 5 is_stmt 1 view .LVU53
+  52:App/microros_tasks.c ****         printf("Error on default allocators (line %d)\n", __LINE__); 
+ 241              		.loc 1 52 10 is_stmt 0 view .LVU54
+ 242 0032 03A8     		add	r0, sp, #12
+ 243 0034 FFF7FEFF 		bl	rcutils_set_default_allocator
+ 244              	.LVL20:
+  52:App/microros_tasks.c ****         printf("Error on default allocators (line %d)\n", __LINE__); 
+ 245              		.loc 1 52 8 view .LVU55
+ 246 0038 10B1     		cbz	r0, .L18
+ 247              	.L15:
+  55:App/microros_tasks.c **** 
+ 248              		.loc 1 55 1 view .LVU56
+ 249 003a 09B0     		add	sp, sp, #36
+ 250              	.LCFI4:
+ 251              		.cfi_remember_state
+ 252              		.cfi_def_cfa_offset 4
+ 253              		@ sp needed
+ 254 003c 5DF804FB 		ldr	pc, [sp], #4
+ 255              	.L18:
+ 256              	.LCFI5:
+ 257              		.cfi_restore_state
+ARM GAS  /tmp/ccrK0U08.s 			page 9
+
+
+  53:App/microros_tasks.c ****         }
+ 258              		.loc 1 53 9 is_stmt 1 view .LVU57
+ 259 0040 3521     		movs	r1, #53
+ 260 0042 0B48     		ldr	r0, .L19+36
+ 261 0044 FFF7FEFF 		bl	printf
+ 262              	.LVL21:
+  55:App/microros_tasks.c **** 
+ 263              		.loc 1 55 1 is_stmt 0 view .LVU58
+ 264 0048 F7E7     		b	.L15
+ 265              	.L20:
+ 266 004a 00BF     		.align	2
+ 267              	.L19:
+ 268 004c 00000000 		.word	cubemx_transport_read
+ 269 0050 00000000 		.word	cubemx_transport_write
+ 270 0054 00000000 		.word	cubemx_transport_close
+ 271 0058 00000000 		.word	cubemx_transport_open
+ 272 005c 00000000 		.word	huart2
+ 273 0060 00000000 		.word	microros_allocate
+ 274 0064 00000000 		.word	microros_deallocate
+ 275 0068 00000000 		.word	microros_reallocate
+ 276 006c 00000000 		.word	microros_zero_allocate
+ 277 0070 00000000 		.word	.LC0
+ 278              		.cfi_endproc
+ 279              	.LFE244:
+ 281              		.section	.rodata.init_hyperdogSTM_node.str1.4,"aMS",%progbits,1
+ 282              		.align	2
+ 283              	.LC1:
+ 284 0000 00       		.ascii	"\000"
+ 285 0001 000000   		.align	2
+ 286              	.LC2:
+ 287 0004 48797065 		.ascii	"Hyperdog_STM\000"
+ 287      72646F67 
+ 287      5F53544D 
+ 287      00
+ 288              		.section	.text.init_hyperdogSTM_node,"ax",%progbits
+ 289              		.align	1
+ 290              		.global	init_hyperdogSTM_node
+ 291              		.syntax unified
+ 292              		.thumb
+ 293              		.thumb_func
+ 294              		.fpu fpv4-sp-d16
+ 296              	init_hyperdogSTM_node:
+ 297              	.LFB245:
+  61:App/microros_tasks.c ****     //create init_options
+ 298              		.loc 1 61 1 is_stmt 1 view -0
+ 299              		.cfi_startproc
+ 300              		@ args = 0, pretend = 0, frame = 24
+ 301              		@ frame_needed = 0, uses_anonymous_args = 0
+ 302 0000 70B5     		push	{r4, r5, r6, lr}
+ 303              	.LCFI6:
+ 304              		.cfi_def_cfa_offset 16
+ 305              		.cfi_offset 4, -16
+ 306              		.cfi_offset 5, -12
+ 307              		.cfi_offset 6, -8
+ 308              		.cfi_offset 14, -4
+ 309 0002 86B0     		sub	sp, sp, #24
+ 310              	.LCFI7:
+ARM GAS  /tmp/ccrK0U08.s 			page 10
+
+
+ 311              		.cfi_def_cfa_offset 40
+  63:App/microros_tasks.c ****     rcl_ret_t rc = rclc_support_init(&support, 0, NULL, &allocator);
+ 312              		.loc 1 63 5 view .LVU60
+  63:App/microros_tasks.c ****     rcl_ret_t rc = rclc_support_init(&support, 0, NULL, &allocator);
+ 313              		.loc 1 63 17 is_stmt 0 view .LVU61
+ 314 0004 134E     		ldr	r6, .L25
+ 315 0006 6846     		mov	r0, sp
+ 316 0008 FFF7FEFF 		bl	rcutils_get_default_allocator
+ 317              	.LVL22:
+ 318 000c 3546     		mov	r5, r6
+ 319 000e 6C46     		mov	r4, sp
+ 320 0010 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 321 0012 0FC5     		stmia	r5!, {r0, r1, r2, r3}
+ 322 0014 2368     		ldr	r3, [r4]
+ 323 0016 2B60     		str	r3, [r5]
+  64:App/microros_tasks.c ****    
+ 324              		.loc 1 64 5 is_stmt 1 view .LVU62
+  64:App/microros_tasks.c ****    
+ 325              		.loc 1 64 20 is_stmt 0 view .LVU63
+ 326 0018 3346     		mov	r3, r6
+ 327 001a 0022     		movs	r2, #0
+ 328 001c 1146     		mov	r1, r2
+ 329 001e 0E48     		ldr	r0, .L25+4
+ 330 0020 FFF7FEFF 		bl	rclc_support_init
+ 331              	.LVL23:
+  67:App/microros_tasks.c ****         while (1){   
+ 332              		.loc 1 67 5 is_stmt 1 view .LVU64
+  67:App/microros_tasks.c ****         while (1){   
+ 333              		.loc 1 67 8 is_stmt 0 view .LVU65
+ 334 0024 70B1     		cbz	r0, .L22
+ 335              	.L23:
+  68:App/microros_tasks.c ****             // blink 3 times
+ 336              		.loc 1 68 9 is_stmt 1 view .LVU66
+  70:App/microros_tasks.c ****             rclc_support_fini(&support);
+ 337              		.loc 1 70 13 view .LVU67
+ 338 0026 0120     		movs	r0, #1
+ 339              	.LVL24:
+  70:App/microros_tasks.c ****             rclc_support_fini(&support);
+ 340              		.loc 1 70 13 is_stmt 0 view .LVU68
+ 341 0028 FFF7FEFF 		bl	error_blink
+ 342              	.LVL25:
+  71:App/microros_tasks.c ****             rc = rclc_support_init(&support, 0, NULL, &allocator);
+ 343              		.loc 1 71 13 is_stmt 1 view .LVU69
+ 344 002c 0A4C     		ldr	r4, .L25+4
+ 345 002e 2046     		mov	r0, r4
+ 346 0030 FFF7FEFF 		bl	rclc_support_fini
+ 347              	.LVL26:
+  72:App/microros_tasks.c ****             if (rc == RCL_RET_OK){
+ 348              		.loc 1 72 13 view .LVU70
+  72:App/microros_tasks.c ****             if (rc == RCL_RET_OK){
+ 349              		.loc 1 72 18 is_stmt 0 view .LVU71
+ 350 0034 074B     		ldr	r3, .L25
+ 351 0036 0022     		movs	r2, #0
+ 352 0038 1146     		mov	r1, r2
+ 353 003a 2046     		mov	r0, r4
+ 354 003c FFF7FEFF 		bl	rclc_support_init
+ 355              	.LVL27:
+ARM GAS  /tmp/ccrK0U08.s 			page 11
+
+
+  73:App/microros_tasks.c ****                 break;
+ 356              		.loc 1 73 13 is_stmt 1 view .LVU72
+  73:App/microros_tasks.c ****                 break;
+ 357              		.loc 1 73 16 is_stmt 0 view .LVU73
+ 358 0040 0028     		cmp	r0, #0
+ 359 0042 F0D1     		bne	.L23
+ 360              	.L22:
+  80:App/microros_tasks.c ****     
+ 361              		.loc 1 80 5 is_stmt 1 view .LVU74
+  80:App/microros_tasks.c ****     
+ 362              		.loc 1 80 21 is_stmt 0 view .LVU75
+ 363 0044 044B     		ldr	r3, .L25+4
+ 364 0046 054A     		ldr	r2, .L25+8
+ 365 0048 0549     		ldr	r1, .L25+12
+ 366 004a 0648     		ldr	r0, .L25+16
+ 367              	.LVL28:
+  80:App/microros_tasks.c ****     
+ 368              		.loc 1 80 21 view .LVU76
+ 369 004c FFF7FEFF 		bl	rclc_node_init_default
+ 370              	.LVL29:
+  82:App/microros_tasks.c **** 
+ 371              		.loc 1 82 1 view .LVU77
+ 372 0050 06B0     		add	sp, sp, #24
+ 373              	.LCFI8:
+ 374              		.cfi_def_cfa_offset 16
+ 375              		@ sp needed
+ 376 0052 70BD     		pop	{r4, r5, r6, pc}
+ 377              	.L26:
+ 378              		.align	2
+ 379              	.L25:
+ 380 0054 00000000 		.word	allocator
+ 381 0058 00000000 		.word	support
+ 382 005c 00000000 		.word	.LC1
+ 383 0060 04000000 		.word	.LC2
+ 384 0064 00000000 		.word	node
+ 385              		.cfi_endproc
+ 386              	.LFE245:
+ 388              		.section	.rodata.create_hyperdogSTM_publisher.str1.4,"aMS",%progbits,1
+ 389              		.align	2
+ 390              	.LC3:
+ 391 0000 68797065 		.ascii	"hyperdogSTM_publisher\000"
+ 391      72646F67 
+ 391      53544D5F 
+ 391      7075626C 
+ 391      69736865 
+ 392              		.section	.text.create_hyperdogSTM_publisher,"ax",%progbits
+ 393              		.align	1
+ 394              		.global	create_hyperdogSTM_publisher
+ 395              		.syntax unified
+ 396              		.thumb
+ 397              		.thumb_func
+ 398              		.fpu fpv4-sp-d16
+ 400              	create_hyperdogSTM_publisher:
+ 401              	.LFB246:
+  88:App/microros_tasks.c ****     RCCHECK(rclc_publisher_init_default(
+ 402              		.loc 1 88 1 is_stmt 1 view -0
+ 403              		.cfi_startproc
+ARM GAS  /tmp/ccrK0U08.s 			page 12
+
+
+ 404              		@ args = 0, pretend = 0, frame = 0
+ 405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 406 0000 38B5     		push	{r3, r4, r5, lr}
+ 407              	.LCFI9:
+ 408              		.cfi_def_cfa_offset 16
+ 409              		.cfi_offset 3, -16
+ 410              		.cfi_offset 4, -12
+ 411              		.cfi_offset 5, -8
+ 412              		.cfi_offset 14, -4
+ 413              	.LBB4:
+  89:App/microros_tasks.c ****         &publisher,
+ 414              		.loc 1 89 5 view .LVU79
+ 415 0002 FFF7FEFF 		bl	rosidl_typesupport_c__get_message_type_support_handle__std_msgs__msg__Float32MultiArray
+ 416              	.LVL30:
+ 417 0006 0246     		mov	r2, r0
+ 418 0008 134B     		ldr	r3, .L33
+ 419 000a 1449     		ldr	r1, .L33+4
+ 420 000c 1448     		ldr	r0, .L33+8
+ 421 000e FFF7FEFF 		bl	rclc_publisher_init_default
+ 422              	.LVL31:
+  89:App/microros_tasks.c ****         &publisher,
+ 423              		.loc 1 89 5 view .LVU80
+ 424 0012 40B1     		cbz	r0, .L28
+ 425              	.LVL32:
+ 426              	.L29:
+  89:App/microros_tasks.c ****         &publisher,
+ 427              		.loc 1 89 5 discriminator 2 view .LVU81
+ 428              	.LBB5:
+  89:App/microros_tasks.c ****         &publisher,
+ 429              		.loc 1 89 5 discriminator 2 view .LVU82
+ 430 0014 4FF48041 		mov	r1, #16384
+ 431 0018 1248     		ldr	r0, .L33+12
+ 432 001a FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 433              	.LVL33:
+  89:App/microros_tasks.c ****         &publisher,
+ 434              		.loc 1 89 5 discriminator 2 view .LVU83
+ 435 001e 6420     		movs	r0, #100
+ 436 0020 FFF7FEFF 		bl	osDelay
+ 437              	.LVL34:
+ 438              	.LBE5:
+  89:App/microros_tasks.c ****         &publisher,
+ 439              		.loc 1 89 5 discriminator 2 view .LVU84
+ 440 0024 F6E7     		b	.L29
+ 441              	.LVL35:
+ 442              	.L28:
+  89:App/microros_tasks.c ****         &publisher,
+ 443              		.loc 1 89 5 is_stmt 0 discriminator 2 view .LVU85
+ 444 0026 0446     		mov	r4, r0
+ 445              	.LBE4:
+  93:App/microros_tasks.c ****     // data type configure and set malloc for sequence msg
+ 446              		.loc 1 93 34 is_stmt 1 view .LVU86
+  95:App/microros_tasks.c ****     pub_msg.data.data = (float *) malloc(pub_msg.data.capacity * sizeof(float));
+ 447              		.loc 1 95 5 view .LVU87
+  95:App/microros_tasks.c ****     pub_msg.data.data = (float *) malloc(pub_msg.data.capacity * sizeof(float));
+ 448              		.loc 1 95 27 is_stmt 0 view .LVU88
+ 449 0028 0F4D     		ldr	r5, .L33+16
+ 450 002a 6423     		movs	r3, #100
+ARM GAS  /tmp/ccrK0U08.s 			page 13
+
+
+ 451 002c AB61     		str	r3, [r5, #24]
+  96:App/microros_tasks.c **** 
+ 452              		.loc 1 96 5 is_stmt 1 view .LVU89
+  96:App/microros_tasks.c **** 
+ 453              		.loc 1 96 35 is_stmt 0 view .LVU90
+ 454 002e 4FF4C870 		mov	r0, #400
+ 455              	.LVL36:
+  96:App/microros_tasks.c **** 
+ 456              		.loc 1 96 35 view .LVU91
+ 457 0032 FFF7FEFF 		bl	malloc
+ 458              	.LVL37:
+  96:App/microros_tasks.c **** 
+ 459              		.loc 1 96 23 view .LVU92
+ 460 0036 2861     		str	r0, [r5, #16]
+  99:App/microros_tasks.c ****     for (int i = 0; i < pub_msg.data.size; i++){
+ 461              		.loc 1 99 5 is_stmt 1 view .LVU93
+  99:App/microros_tasks.c ****     for (int i = 0; i < pub_msg.data.size; i++){
+ 462              		.loc 1 99 23 is_stmt 0 view .LVU94
+ 463 0038 0C23     		movs	r3, #12
+ 464 003a 6B61     		str	r3, [r5, #20]
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 465              		.loc 1 100 5 is_stmt 1 view .LVU95
+ 466              	.LBB6:
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 467              		.loc 1 100 10 view .LVU96
+ 468              	.LVL38:
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 469              		.loc 1 100 5 is_stmt 0 view .LVU97
+ 470 003c 06E0     		b	.L30
+ 471              	.LVL39:
+ 472              	.L31:
+ 101:App/microros_tasks.c ****     }
+ 473              		.loc 1 101 9 is_stmt 1 discriminator 3 view .LVU98
+ 101:App/microros_tasks.c ****     }
+ 474              		.loc 1 101 21 is_stmt 0 discriminator 3 view .LVU99
+ 475 003e 0A4B     		ldr	r3, .L33+16
+ 476 0040 1B69     		ldr	r3, [r3, #16]
+ 101:App/microros_tasks.c ****     }
+ 477              		.loc 1 101 26 discriminator 3 view .LVU100
+ 478 0042 03EB8403 		add	r3, r3, r4, lsl #2
+ 101:App/microros_tasks.c ****     }
+ 479              		.loc 1 101 30 discriminator 3 view .LVU101
+ 480 0046 0022     		movs	r2, #0
+ 481 0048 1A60     		str	r2, [r3]	@ float
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 482              		.loc 1 100 44 is_stmt 1 discriminator 3 view .LVU102
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 483              		.loc 1 100 45 is_stmt 0 discriminator 3 view .LVU103
+ 484 004a 0134     		adds	r4, r4, #1
+ 485              	.LVL40:
+ 486              	.L30:
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 487              		.loc 1 100 21 is_stmt 1 discriminator 1 view .LVU104
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 488              		.loc 1 100 37 is_stmt 0 discriminator 1 view .LVU105
+ 489 004c 064B     		ldr	r3, .L33+16
+ 490 004e 5B69     		ldr	r3, [r3, #20]
+ARM GAS  /tmp/ccrK0U08.s 			page 14
+
+
+ 100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
+ 491              		.loc 1 100 5 discriminator 1 view .LVU106
+ 492 0050 A342     		cmp	r3, r4
+ 493 0052 F4D8     		bhi	.L31
+ 494              	.LBE6:
+ 103:App/microros_tasks.c **** 
+ 495              		.loc 1 103 1 view .LVU107
+ 496 0054 38BD     		pop	{r3, r4, r5, pc}
+ 497              	.LVL41:
+ 498              	.L34:
+ 103:App/microros_tasks.c **** 
+ 499              		.loc 1 103 1 view .LVU108
+ 500 0056 00BF     		.align	2
+ 501              	.L33:
+ 502 0058 00000000 		.word	.LC3
+ 503 005c 00000000 		.word	node
+ 504 0060 00000000 		.word	publisher
+ 505 0064 000C0240 		.word	1073875968
+ 506 0068 00000000 		.word	pub_msg
+ 507              		.cfi_endproc
+ 508              	.LFE246:
+ 510              		.section	.rodata.create_hyperdogSTM_subscriber.str1.4,"aMS",%progbits,1
+ 511              		.align	2
+ 512              	.LC4:
+ 513 0000 68797065 		.ascii	"hyperdog_jointController/commands\000"
+ 513      72646F67 
+ 513      5F6A6F69 
+ 513      6E74436F 
+ 513      6E74726F 
+ 514              		.section	.text.create_hyperdogSTM_subscriber,"ax",%progbits
+ 515              		.align	1
+ 516              		.global	create_hyperdogSTM_subscriber
+ 517              		.syntax unified
+ 518              		.thumb
+ 519              		.thumb_func
+ 520              		.fpu fpv4-sp-d16
+ 522              	create_hyperdogSTM_subscriber:
+ 523              	.LFB248:
+ 126:App/microros_tasks.c ****     RCCHECK(rclc_subscription_init_default(
+ 524              		.loc 1 126 1 is_stmt 1 view -0
+ 525              		.cfi_startproc
+ 526              		@ args = 0, pretend = 0, frame = 0
+ 527              		@ frame_needed = 0, uses_anonymous_args = 0
+ 528 0000 38B5     		push	{r3, r4, r5, lr}
+ 529              	.LCFI10:
+ 530              		.cfi_def_cfa_offset 16
+ 531              		.cfi_offset 3, -16
+ 532              		.cfi_offset 4, -12
+ 533              		.cfi_offset 5, -8
+ 534              		.cfi_offset 14, -4
+ 535              	.LBB7:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 536              		.loc 1 127 5 view .LVU110
+ 537 0002 FFF7FEFF 		bl	rosidl_typesupport_c__get_message_type_support_handle__std_msgs__msg__Float32MultiArray
+ 538              	.LVL42:
+ 539 0006 0246     		mov	r2, r0
+ 540 0008 1F4B     		ldr	r3, .L42
+ARM GAS  /tmp/ccrK0U08.s 			page 15
+
+
+ 541 000a 2049     		ldr	r1, .L42+4
+ 542 000c 2048     		ldr	r0, .L42+8
+ 543 000e FFF7FEFF 		bl	rclc_subscription_init_default
+ 544              	.LVL43:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 545              		.loc 1 127 5 view .LVU111
+ 546 0012 40B1     		cbz	r0, .L36
+ 547              	.LVL44:
+ 548              	.L37:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 549              		.loc 1 127 5 discriminator 2 view .LVU112
+ 550              	.LBB8:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 551              		.loc 1 127 5 discriminator 2 view .LVU113
+ 552 0014 4FF48041 		mov	r1, #16384
+ 553 0018 1E48     		ldr	r0, .L42+12
+ 554 001a FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 555              	.LVL45:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 556              		.loc 1 127 5 discriminator 2 view .LVU114
+ 557 001e 6420     		movs	r0, #100
+ 558 0020 FFF7FEFF 		bl	osDelay
+ 559              	.LVL46:
+ 560              	.LBE8:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 561              		.loc 1 127 5 discriminator 2 view .LVU115
+ 562 0024 F6E7     		b	.L37
+ 563              	.LVL47:
+ 564              	.L36:
+ 127:App/microros_tasks.c ****         &subscriber,
+ 565              		.loc 1 127 5 is_stmt 0 discriminator 2 view .LVU116
+ 566              	.LBE7:
+ 131:App/microros_tasks.c ****     // data type configure and set malloc for sequence msg
+ 567              		.loc 1 131 46 is_stmt 1 view .LVU117
+ 133:App/microros_tasks.c ****     sub_msg.data.data = (float *) malloc(pub_msg.data.capacity * sizeof(float));
+ 568              		.loc 1 133 5 view .LVU118
+ 133:App/microros_tasks.c ****     sub_msg.data.data = (float *) malloc(pub_msg.data.capacity * sizeof(float));
+ 569              		.loc 1 133 27 is_stmt 0 view .LVU119
+ 570 0026 1C4C     		ldr	r4, .L42+16
+ 571 0028 6423     		movs	r3, #100
+ 572 002a A361     		str	r3, [r4, #24]
+ 134:App/microros_tasks.c ****     sub_msg.data.size = 12;
+ 573              		.loc 1 134 5 is_stmt 1 view .LVU120
+ 134:App/microros_tasks.c ****     sub_msg.data.size = 12;
+ 574              		.loc 1 134 54 is_stmt 0 view .LVU121
+ 575 002c 1B4B     		ldr	r3, .L42+20
+ 576 002e 9869     		ldr	r0, [r3, #24]
+ 577              	.LVL48:
+ 134:App/microros_tasks.c ****     sub_msg.data.size = 12;
+ 578              		.loc 1 134 35 view .LVU122
+ 579 0030 8000     		lsls	r0, r0, #2
+ 580 0032 FFF7FEFF 		bl	malloc
+ 581              	.LVL49:
+ 134:App/microros_tasks.c ****     sub_msg.data.size = 12;
+ 582              		.loc 1 134 23 view .LVU123
+ 583 0036 2061     		str	r0, [r4, #16]
+ 135:App/microros_tasks.c ****     // initialize servo driver PCA9685
+ARM GAS  /tmp/ccrK0U08.s 			page 16
+
+
+ 584              		.loc 1 135 5 is_stmt 1 view .LVU124
+ 135:App/microros_tasks.c ****     // initialize servo driver PCA9685
+ 585              		.loc 1 135 23 is_stmt 0 view .LVU125
+ 586 0038 0C23     		movs	r3, #12
+ 587 003a 6361     		str	r3, [r4, #20]
+ 137:App/microros_tasks.c ****     if (err){
+ 588              		.loc 1 137 5 is_stmt 1 view .LVU126
+ 137:App/microros_tasks.c ****     if (err){
+ 589              		.loc 1 137 16 is_stmt 0 view .LVU127
+ 590 003c 1848     		ldr	r0, .L42+24
+ 591 003e FFF7FEFF 		bl	PCA9685_Init
+ 592              	.LVL50:
+ 137:App/microros_tasks.c ****     if (err){
+ 593              		.loc 1 137 10 view .LVU128
+ 594 0042 0028     		cmp	r0, #0
+ 595 0044 14BF     		ite	ne
+ 596 0046 0124     		movne	r4, #1
+ 597 0048 0024     		moveq	r4, #0
+ 598              	.LVL51:
+ 138:App/microros_tasks.c ****         while (err ){
+ 599              		.loc 1 138 5 is_stmt 1 view .LVU129
+ 138:App/microros_tasks.c ****         while (err ){
+ 600              		.loc 1 138 8 is_stmt 0 view .LVU130
+ 601 004a 1AD1     		bne	.L38
+ 602              	.L35:
+ 148:App/microros_tasks.c **** 
+ 603              		.loc 1 148 1 view .LVU131
+ 604 004c 38BD     		pop	{r3, r4, r5, pc}
+ 605              	.LVL52:
+ 606              	.L40:
+ 140:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED
+ 607              		.loc 1 140 13 is_stmt 1 view .LVU132
+ 140:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED
+ 608              		.loc 1 140 19 is_stmt 0 view .LVU133
+ 609 004e 1448     		ldr	r0, .L42+24
+ 610 0050 FFF7FEFF 		bl	PCA9685_Init
+ 611              	.LVL53:
+ 140:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED
+ 612              		.loc 1 140 17 view .LVU134
+ 613 0054 041E     		subs	r4, r0, #0
+ 614              	.LVL54:
+ 140:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED
+ 615              		.loc 1 140 17 view .LVU135
+ 616 0056 18BF     		it	ne
+ 617 0058 0124     		movne	r4, #1
+ 618              	.LVL55:
+ 141:App/microros_tasks.c ****             HAL_Delay(100);
+ 619              		.loc 1 141 13 is_stmt 1 view .LVU136
+ 620 005a 0E4D     		ldr	r5, .L42+12
+ 621 005c 0122     		movs	r2, #1
+ 622 005e 4FF48041 		mov	r1, #16384
+ 623 0062 2846     		mov	r0, r5
+ 624 0064 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 625              	.LVL56:
+ 142:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red LED
+ 626              		.loc 1 142 13 view .LVU137
+ 627 0068 6420     		movs	r0, #100
+ARM GAS  /tmp/ccrK0U08.s 			page 17
+
+
+ 628 006a FFF7FEFF 		bl	HAL_Delay
+ 629              	.LVL57:
+ 143:App/microros_tasks.c ****             HAL_Delay(1000);
+ 630              		.loc 1 143 13 view .LVU138
+ 631 006e 0022     		movs	r2, #0
+ 632 0070 4FF48041 		mov	r1, #16384
+ 633 0074 2846     		mov	r0, r5
+ 634 0076 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 635              	.LVL58:
+ 144:App/microros_tasks.c ****             
+ 636              		.loc 1 144 13 view .LVU139
+ 637 007a 4FF47A70 		mov	r0, #1000
+ 638 007e FFF7FEFF 		bl	HAL_Delay
+ 639              	.LVL59:
+ 640              	.L38:
+ 139:App/microros_tasks.c ****             err = PCA9685_Init(&hi2c3);
+ 641              		.loc 1 139 15 view .LVU140
+ 642 0082 002C     		cmp	r4, #0
+ 643 0084 E3D1     		bne	.L40
+ 139:App/microros_tasks.c ****             err = PCA9685_Init(&hi2c3);
+ 644              		.loc 1 139 15 is_stmt 0 view .LVU141
+ 645 0086 E1E7     		b	.L35
+ 646              	.L43:
+ 647              		.align	2
+ 648              	.L42:
+ 649 0088 00000000 		.word	.LC4
+ 650 008c 00000000 		.word	node
+ 651 0090 00000000 		.word	subscriber
+ 652 0094 000C0240 		.word	1073875968
+ 653 0098 00000000 		.word	sub_msg
+ 654 009c 00000000 		.word	pub_msg
+ 655 00a0 00000000 		.word	hi2c3
+ 656              		.cfi_endproc
+ 657              	.LFE248:
+ 659              		.section	.text.run_hyperdogSTM_node,"ax",%progbits
+ 660              		.align	1
+ 661              		.global	run_hyperdogSTM_node
+ 662              		.syntax unified
+ 663              		.thumb
+ 664              		.thumb_func
+ 665              		.fpu fpv4-sp-d16
+ 667              	run_hyperdogSTM_node:
+ 668              	.LFB250:
+ 161:App/microros_tasks.c **** 
+ 162:App/microros_tasks.c **** 
+ 163:App/microros_tasks.c **** 
+ 164:App/microros_tasks.c **** /* ========================================================================================= */
+ 165:App/microros_tasks.c **** /* ====================================== Main Define ====================================== */
+ 166:App/microros_tasks.c **** /* ========================================================================================= */
+ 167:App/microros_tasks.c **** 
+ 168:App/microros_tasks.c **** void run_hyperdogSTM_node(void)
+ 169:App/microros_tasks.c **** {   
+ 669              		.loc 1 169 1 is_stmt 1 view -0
+ 670              		.cfi_startproc
+ 671              		@ args = 0, pretend = 0, frame = 136
+ 672              		@ frame_needed = 0, uses_anonymous_args = 0
+ 673 0000 10B5     		push	{r4, lr}
+ARM GAS  /tmp/ccrK0U08.s 			page 18
+
+
+ 674              	.LCFI11:
+ 675              		.cfi_def_cfa_offset 8
+ 676              		.cfi_offset 4, -8
+ 677              		.cfi_offset 14, -4
+ 678 0002 A4B0     		sub	sp, sp, #144
+ 679              	.LCFI12:
+ 680              		.cfi_def_cfa_offset 152
+ 170:App/microros_tasks.c ****     // initial configurations 
+ 171:App/microros_tasks.c ****     hypergod_microros_init();
+ 681              		.loc 1 171 5 view .LVU143
+ 682 0004 FFF7FEFF 		bl	hypergod_microros_init
+ 683              	.LVL60:
+ 172:App/microros_tasks.c ****     init_hyperdogSTM_node();
+ 684              		.loc 1 172 5 view .LVU144
+ 685 0008 FFF7FEFF 		bl	init_hyperdogSTM_node
+ 686              	.LVL61:
+ 173:App/microros_tasks.c ****     create_hyperdogSTM_publisher();
+ 687              		.loc 1 173 5 view .LVU145
+ 688 000c FFF7FEFF 		bl	create_hyperdogSTM_publisher
+ 689              	.LVL62:
+ 174:App/microros_tasks.c ****     create_hyperdogSTM_subscriber();
+ 690              		.loc 1 174 5 view .LVU146
+ 691 0010 FFF7FEFF 		bl	create_hyperdogSTM_subscriber
+ 692              	.LVL63:
+ 175:App/microros_tasks.c **** 
+ 176:App/microros_tasks.c ****     // timer for publisher
+ 177:App/microros_tasks.c ****     rcl_timer_t timer_pub;
+ 693              		.loc 1 177 5 view .LVU147
+ 694              	.LBB9:
+ 178:App/microros_tasks.c ****     RCCHECK(rclc_timer_init_default(
+ 695              		.loc 1 178 5 view .LVU148
+ 696 0014 2C4B     		ldr	r3, .L54+8
+ 697 0016 0093     		str	r3, [sp]
+ 698 0018 29A3     		adr	r3, .L54
+ 699 001a D3E90023 		ldrd	r2, [r3]
+ 700 001e 2B49     		ldr	r1, .L54+12
+ 701 0020 23A8     		add	r0, sp, #140
+ 702 0022 FFF7FEFF 		bl	rclc_timer_init_default
+ 703              	.LVL64:
+ 704              		.loc 1 178 5 view .LVU149
+ 705 0026 40B1     		cbz	r0, .L45
+ 706              	.LVL65:
+ 707              	.L46:
+ 708              		.loc 1 178 5 discriminator 2 view .LVU150
+ 709              	.LBB10:
+ 710              		.loc 1 178 5 discriminator 2 view .LVU151
+ 711 0028 4FF48041 		mov	r1, #16384
+ 712 002c 2848     		ldr	r0, .L54+16
+ 713 002e FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 714              	.LVL66:
+ 715              		.loc 1 178 5 discriminator 2 view .LVU152
+ 716 0032 6420     		movs	r0, #100
+ 717 0034 FFF7FEFF 		bl	osDelay
+ 718              	.LVL67:
+ 719              	.LBE10:
+ 720              		.loc 1 178 5 discriminator 2 view .LVU153
+ 721 0038 F6E7     		b	.L46
+ARM GAS  /tmp/ccrK0U08.s 			page 19
+
+
+ 722              	.LVL68:
+ 723              	.L45:
+ 724              		.loc 1 178 5 is_stmt 0 discriminator 2 view .LVU154
+ 725              	.LBE9:
+ 179:App/microros_tasks.c ****         &timer_pub,
+ 180:App/microros_tasks.c ****         &support,
+ 181:App/microros_tasks.c ****         RCL_MS_TO_NS(5),
+ 182:App/microros_tasks.c ****         publisher_callback));
+ 726              		.loc 1 182 29 is_stmt 1 view .LVU155
+ 183:App/microros_tasks.c **** 
+ 184:App/microros_tasks.c ****     // create executor
+ 185:App/microros_tasks.c ****     executor = rclc_executor_get_zero_initialized_executor();
+ 727              		.loc 1 185 5 view .LVU156
+ 728              		.loc 1 185 16 is_stmt 0 view .LVU157
+ 729 003a 264C     		ldr	r4, .L54+20
+ 730 003c 02A8     		add	r0, sp, #8
+ 731              	.LVL69:
+ 732              		.loc 1 185 16 view .LVU158
+ 733 003e FFF7FEFF 		bl	rclc_executor_get_zero_initialized_executor
+ 734              	.LVL70:
+ 735 0042 8022     		movs	r2, #128
+ 736 0044 02A9     		add	r1, sp, #8
+ 737 0046 2046     		mov	r0, r4
+ 738 0048 FFF7FEFF 		bl	memcpy
+ 739              	.LVL71:
+ 740              	.LBB11:
+ 186:App/microros_tasks.c ****     RCCHECK(rclc_executor_init(&executor, &support.context, 2, &allocator));
+ 741              		.loc 1 186 5 is_stmt 1 view .LVU159
+ 742 004c 224B     		ldr	r3, .L54+24
+ 743 004e 0222     		movs	r2, #2
+ 744 0050 2249     		ldr	r1, .L54+28
+ 745 0052 2046     		mov	r0, r4
+ 746 0054 FFF7FEFF 		bl	rclc_executor_init
+ 747              	.LVL72:
+ 748              		.loc 1 186 5 view .LVU160
+ 749 0058 40B1     		cbz	r0, .L47
+ 750              	.LVL73:
+ 751              	.L48:
+ 752              		.loc 1 186 5 discriminator 3 view .LVU161
+ 753              	.LBB12:
+ 754              		.loc 1 186 5 discriminator 3 view .LVU162
+ 755 005a 4FF48041 		mov	r1, #16384
+ 756 005e 1C48     		ldr	r0, .L54+16
+ 757 0060 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 758              	.LVL74:
+ 759              		.loc 1 186 5 discriminator 3 view .LVU163
+ 760 0064 6420     		movs	r0, #100
+ 761 0066 FFF7FEFF 		bl	osDelay
+ 762              	.LVL75:
+ 763              	.LBE12:
+ 764              		.loc 1 186 5 discriminator 3 view .LVU164
+ 765 006a F6E7     		b	.L48
+ 766              	.LVL76:
+ 767              	.L47:
+ 768              		.loc 1 186 5 is_stmt 0 discriminator 3 view .LVU165
+ 769              	.LBE11:
+ 770              		.loc 1 186 76 is_stmt 1 discriminator 2 view .LVU166
+ARM GAS  /tmp/ccrK0U08.s 			page 20
+
+
+ 771              	.LBB13:
+ 187:App/microros_tasks.c ****     RCCHECK(rclc_executor_add_timer(&executor, &timer_pub));
+ 772              		.loc 1 187 5 discriminator 2 view .LVU167
+ 773 006c 23A9     		add	r1, sp, #140
+ 774 006e 1948     		ldr	r0, .L54+20
+ 775              	.LVL77:
+ 776              		.loc 1 187 5 is_stmt 0 discriminator 2 view .LVU168
+ 777 0070 FFF7FEFF 		bl	rclc_executor_add_timer
+ 778              	.LVL78:
+ 779              		.loc 1 187 5 is_stmt 1 discriminator 2 view .LVU169
+ 780 0074 40B1     		cbz	r0, .L49
+ 781              	.LVL79:
+ 782              	.L50:
+ 783              		.loc 1 187 5 discriminator 3 view .LVU170
+ 784              	.LBB14:
+ 785              		.loc 1 187 5 discriminator 3 view .LVU171
+ 786 0076 4FF48041 		mov	r1, #16384
+ 787 007a 1548     		ldr	r0, .L54+16
+ 788 007c FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 789              	.LVL80:
+ 790              		.loc 1 187 5 discriminator 3 view .LVU172
+ 791 0080 6420     		movs	r0, #100
+ 792 0082 FFF7FEFF 		bl	osDelay
+ 793              	.LVL81:
+ 794              	.LBE14:
+ 795              		.loc 1 187 5 discriminator 3 view .LVU173
+ 796 0086 F6E7     		b	.L50
+ 797              	.LVL82:
+ 798              	.L49:
+ 799              		.loc 1 187 5 is_stmt 0 discriminator 3 view .LVU174
+ 800              	.LBE13:
+ 801              		.loc 1 187 60 is_stmt 1 discriminator 2 view .LVU175
+ 802              	.LBB15:
+ 188:App/microros_tasks.c ****     RCCHECK(rclc_executor_add_subscription(&executor, &subscriber, &sub_msg, &subscription_callback
+ 803              		.loc 1 188 5 discriminator 2 view .LVU176
+ 804 0088 0023     		movs	r3, #0
+ 805 008a 0093     		str	r3, [sp]
+ 806 008c 144B     		ldr	r3, .L54+32
+ 807 008e 154A     		ldr	r2, .L54+36
+ 808 0090 1549     		ldr	r1, .L54+40
+ 809 0092 1048     		ldr	r0, .L54+20
+ 810              	.LVL83:
+ 811              		.loc 1 188 5 is_stmt 0 discriminator 2 view .LVU177
+ 812 0094 FFF7FEFF 		bl	rclc_executor_add_subscription
+ 813              	.LVL84:
+ 814              		.loc 1 188 5 is_stmt 1 discriminator 2 view .LVU178
+ 815 0098 40B1     		cbz	r0, .L51
+ 816              	.LVL85:
+ 817              	.L52:
+ 818              		.loc 1 188 5 discriminator 3 view .LVU179
+ 819              	.LBB16:
+ 820              		.loc 1 188 5 discriminator 3 view .LVU180
+ 821 009a 4FF48041 		mov	r1, #16384
+ 822 009e 0C48     		ldr	r0, .L54+16
+ 823 00a0 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 824              	.LVL86:
+ 825              		.loc 1 188 5 discriminator 3 view .LVU181
+ARM GAS  /tmp/ccrK0U08.s 			page 21
+
+
+ 826 00a4 6420     		movs	r0, #100
+ 827 00a6 FFF7FEFF 		bl	osDelay
+ 828              	.LVL87:
+ 829              	.LBE16:
+ 830              		.loc 1 188 5 discriminator 3 view .LVU182
+ 831 00aa F6E7     		b	.L52
+ 832              	.L51:
+ 833              	.LBE15:
+ 834              		.loc 1 188 115 discriminator 2 view .LVU183
+ 189:App/microros_tasks.c ****     
+ 190:App/microros_tasks.c **** 
+ 191:App/microros_tasks.c ****     // spin node by executor 
+ 192:App/microros_tasks.c ****     while(1){
+ 835              		.loc 1 192 5 discriminator 2 view .LVU184
+ 836              	.LBB17:
+ 193:App/microros_tasks.c ****        
+ 194:App/microros_tasks.c ****         rcl_ret_t rc = rclc_executor_spin(&executor); //, RCL_MS_TO_NS(100)
+ 837              		.loc 1 194 9 discriminator 2 view .LVU185
+ 838              		.loc 1 194 24 is_stmt 0 discriminator 2 view .LVU186
+ 839 00ac 0948     		ldr	r0, .L54+20
+ 840 00ae FFF7FEFF 		bl	rclc_executor_spin
+ 841              	.LVL88:
+ 195:App/microros_tasks.c ****         if (rc != RCL_RET_OK){
+ 842              		.loc 1 195 9 is_stmt 1 discriminator 2 view .LVU187
+ 843              		.loc 1 195 12 is_stmt 0 discriminator 2 view .LVU188
+ 844 00b2 0028     		cmp	r0, #0
+ 845 00b4 FAD0     		beq	.L51
+ 846              	.LBE17:
+ 196:App/microros_tasks.c ****             break;
+ 197:App/microros_tasks.c ****         }
+ 198:App/microros_tasks.c ****     }
+ 199:App/microros_tasks.c ****     // rclc_executor_fini(&executor);
+ 200:App/microros_tasks.c **** 
+ 201:App/microros_tasks.c **** }
+ 847              		.loc 1 201 1 view .LVU189
+ 848 00b6 24B0     		add	sp, sp, #144
+ 849              	.LCFI13:
+ 850              		.cfi_def_cfa_offset 8
+ 851              		@ sp needed
+ 852 00b8 10BD     		pop	{r4, pc}
+ 853              	.L55:
+ 854 00ba 00BFAFF3 		.align	3
+ 854      0080
+ 855              	.L54:
+ 856 00c0 404B4C00 		.word	5000000
+ 857 00c4 00000000 		.word	0
+ 858 00c8 00000000 		.word	publisher_callback
+ 859 00cc 00000000 		.word	support
+ 860 00d0 000C0240 		.word	1073875968
+ 861 00d4 00000000 		.word	executor
+ 862 00d8 00000000 		.word	allocator
+ 863 00dc 08000000 		.word	support+8
+ 864 00e0 00000000 		.word	subscription_callback
+ 865 00e4 00000000 		.word	sub_msg
+ 866 00e8 00000000 		.word	subscriber
+ 867              		.cfi_endproc
+ 868              	.LFE250:
+ARM GAS  /tmp/ccrK0U08.s 			page 22
+
+
+ 870              		.section	.text.publisher_callback,"ax",%progbits
+ 871              		.align	1
+ 872              		.global	publisher_callback
+ 873              		.syntax unified
+ 874              		.thumb
+ 875              		.thumb_func
+ 876              		.fpu fpv4-sp-d16
+ 878              	publisher_callback:
+ 879              	.LVL89:
+ 880              	.LFB247:
+ 106:App/microros_tasks.c ****     (void) last_call_time;
+ 881              		.loc 1 106 69 is_stmt 1 view -0
+ 882              		.cfi_startproc
+ 883              		@ args = 0, pretend = 0, frame = 0
+ 884              		@ frame_needed = 0, uses_anonymous_args = 0
+ 106:App/microros_tasks.c ****     (void) last_call_time;
+ 885              		.loc 1 106 69 is_stmt 0 view .LVU191
+ 886 0000 08B5     		push	{r3, lr}
+ 887              	.LCFI14:
+ 888              		.cfi_def_cfa_offset 8
+ 889              		.cfi_offset 3, -8
+ 890              		.cfi_offset 14, -4
+ 107:App/microros_tasks.c ****     (void) timer;
+ 891              		.loc 1 107 5 is_stmt 1 view .LVU192
+ 108:App/microros_tasks.c **** 
+ 892              		.loc 1 108 5 view .LVU193
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 893              		.loc 1 110 5 view .LVU194
+ 894              	.LBB18:
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 895              		.loc 1 110 10 view .LVU195
+ 896              	.LVL90:
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 897              		.loc 1 110 14 is_stmt 0 view .LVU196
+ 898 0002 0023     		movs	r3, #0
+ 899              	.LVL91:
+ 900              	.L57:
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 901              		.loc 1 110 21 is_stmt 1 discriminator 1 view .LVU197
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 902              		.loc 1 110 37 is_stmt 0 discriminator 1 view .LVU198
+ 903 0004 104A     		ldr	r2, .L63
+ 904 0006 5269     		ldr	r2, [r2, #20]
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 905              		.loc 1 110 5 discriminator 1 view .LVU199
+ 906 0008 9A42     		cmp	r2, r3
+ 907 000a 0AD9     		bls	.L61
+ 111:App/microros_tasks.c ****     }
+ 908              		.loc 1 111 9 is_stmt 1 discriminator 3 view .LVU200
+ 111:App/microros_tasks.c ****     }
+ 909              		.loc 1 111 21 is_stmt 0 discriminator 3 view .LVU201
+ 910 000c 0E4A     		ldr	r2, .L63
+ 911 000e 1269     		ldr	r2, [r2, #16]
+ 111:App/microros_tasks.c ****     }
+ 912              		.loc 1 111 26 discriminator 3 view .LVU202
+ 913 0010 02EB8302 		add	r2, r2, r3, lsl #2
+ 111:App/microros_tasks.c ****     }
+ARM GAS  /tmp/ccrK0U08.s 			page 23
+
+
+ 914              		.loc 1 111 41 discriminator 3 view .LVU203
+ 915 0014 0D49     		ldr	r1, .L63+4
+ 916 0016 01EB8301 		add	r1, r1, r3, lsl #2
+ 917 001a 0968     		ldr	r1, [r1]	@ float
+ 111:App/microros_tasks.c ****     }
+ 918              		.loc 1 111 30 discriminator 3 view .LVU204
+ 919 001c 1160     		str	r1, [r2]	@ float
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 920              		.loc 1 110 44 is_stmt 1 discriminator 3 view .LVU205
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 921              		.loc 1 110 45 is_stmt 0 discriminator 3 view .LVU206
+ 922 001e 0133     		adds	r3, r3, #1
+ 923              	.LVL92:
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 924              		.loc 1 110 45 discriminator 3 view .LVU207
+ 925 0020 F0E7     		b	.L57
+ 926              	.L61:
+ 110:App/microros_tasks.c ****         pub_msg.data.data[i] = joint_ang[i];
+ 927              		.loc 1 110 45 discriminator 3 view .LVU208
+ 928              	.LBE18:
+ 113:App/microros_tasks.c ****     rcl_ret_t rc = rcl_publish(&publisher, &pub_msg, NULL);
+ 929              		.loc 1 113 5 is_stmt 1 view .LVU209
+ 930              	.LVL93:
+ 114:App/microros_tasks.c ****     if (rc != RCL_RET_OK){
+ 931              		.loc 1 114 5 view .LVU210
+ 114:App/microros_tasks.c ****     if (rc != RCL_RET_OK){
+ 932              		.loc 1 114 20 is_stmt 0 view .LVU211
+ 933 0022 0022     		movs	r2, #0
+ 934 0024 0849     		ldr	r1, .L63
+ 935 0026 0A48     		ldr	r0, .L63+8
+ 936              	.LVL94:
+ 114:App/microros_tasks.c ****     if (rc != RCL_RET_OK){
+ 937              		.loc 1 114 20 view .LVU212
+ 938 0028 FFF7FEFF 		bl	rcl_publish
+ 939              	.LVL95:
+ 115:App/microros_tasks.c ****         error_blink(2);
+ 940              		.loc 1 115 5 is_stmt 1 view .LVU213
+ 115:App/microros_tasks.c ****         error_blink(2);
+ 941              		.loc 1 115 8 is_stmt 0 view .LVU214
+ 942 002c 28B9     		cbnz	r0, .L62
+ 943              	.LVL96:
+ 944              	.L59:
+ 119:App/microros_tasks.c **** }
+ 945              		.loc 1 119 5 is_stmt 1 view .LVU215
+ 946 002e 4FF40041 		mov	r1, #32768
+ 947 0032 0848     		ldr	r0, .L63+12
+ 948 0034 FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 949              	.LVL97:
+ 120:App/microros_tasks.c **** 
+ 950              		.loc 1 120 1 is_stmt 0 view .LVU216
+ 951 0038 08BD     		pop	{r3, pc}
+ 952              	.LVL98:
+ 953              	.L62:
+ 116:App/microros_tasks.c ****         run_hyperdogSTM_node();
+ 954              		.loc 1 116 9 is_stmt 1 view .LVU217
+ 955 003a 0220     		movs	r0, #2
+ 956              	.LVL99:
+ARM GAS  /tmp/ccrK0U08.s 			page 24
+
+
+ 116:App/microros_tasks.c ****         run_hyperdogSTM_node();
+ 957              		.loc 1 116 9 is_stmt 0 view .LVU218
+ 958 003c FFF7FEFF 		bl	error_blink
+ 959              	.LVL100:
+ 117:App/microros_tasks.c ****     }
+ 960              		.loc 1 117 9 is_stmt 1 view .LVU219
+ 961 0040 FFF7FEFF 		bl	run_hyperdogSTM_node
+ 962              	.LVL101:
+ 963 0044 F3E7     		b	.L59
+ 964              	.L64:
+ 965 0046 00BF     		.align	2
+ 966              	.L63:
+ 967 0048 00000000 		.word	pub_msg
+ 968 004c 00000000 		.word	joint_ang
+ 969 0050 00000000 		.word	publisher
+ 970 0054 000C0240 		.word	1073875968
+ 971              		.cfi_endproc
+ 972              	.LFE247:
+ 974              		.comm	sub_msg,28,4
+ 975              		.comm	subscriber,4,4
+ 976              		.comm	pub_msg,28,4
+ 977              		.comm	publisher,4,4
+ 978              		.comm	executor,128,8
+ 979              		.comm	allocator,20,4
+ 980              		.comm	support,72,8
+ 981              		.comm	node,8,4
+ 982              		.comm	current_sense,48,4
+ 983              		.comm	joint_ang_feedback,64,4
+ 984              		.comm	servo_ang,48,4
+ 985              		.comm	joint_ang,48,4
+ 986              		.comm	tx6_buf,4,4
+ 987              		.comm	rx6_buf,32,4
+ 988              		.comm	tx1_buf,4,4
+ 989              		.comm	rx1_buf,32,4
+ 990              		.comm	uart6_ready,1,4
+ 991              		.comm	uart1_ready,1,4
+ 992              		.text
+ 993              	.Letext0:
+ 994              		.file 2 "/usr/include/newlib/machine/_default_types.h"
+ 995              		.file 3 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h"
+ 996              		.file 4 "/usr/include/newlib/sys/_types.h"
+ 997              		.file 5 "/usr/include/newlib/sys/reent.h"
+ 998              		.file 6 "/usr/include/newlib/sys/lock.h"
+ 999              		.file 7 "/usr/include/newlib/sys/_stdint.h"
+ 1000              		.file 8 "/usr/include/newlib/time.h"
+ 1001              		.file 9 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcutils/
+ 1002              		.file 10 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/all
+ 1003              		.file 11 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw/ret
+ 1004              		.file 12 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdarg.h"
+ 1005              		.file 13 "/usr/include/newlib/stdlib.h"
+ 1006              		.file 14 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcutils
+ 1007              		.file 15 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcutils
+ 1008              		.file 16 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw/typ
+ 1009              		.file 17 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/typ
+ 1010              		.file 18 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/ini
+ 1011              		.file 19 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/con
+ 1012              		.file 20 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/dom
+ARM GAS  /tmp/ccrK0U08.s 			page 25
+
+
+ 1013              		.file 21 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/nod
+ 1014              		.file 22 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/pub
+ 1015              		.file 23 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/sub
+ 1016              		.file 24 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/cli
+ 1017              		.file 25 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/gua
+ 1018              		.file 26 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/ser
+ 1019              		.file 27 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/tim
+ 1020              		.file 28 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw/qos
+ 1021              		.file 29 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/tim
+ 1022              		.file 30 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/eve
+ 1023              		.file 31 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/wai
+ 1024              		.file 32 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ty
+ 1025              		.file 33 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ex
+ 1026              		.file 34 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ex
+ 1027              		.file 35 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rosidl_
+ 1028              		.file 36 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rosidl_
+ 1029              		.file 37 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 1030              		.file 38 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 1031              		.file 39 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 1032              		.file 40 "Drivers/CMSIS/Include/core_cm4.h"
+ 1033              		.file 41 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 1034              		.file 42 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1035              		.file 43 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 1036              		.file 44 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1037              		.file 45 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1038              		.file 46 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 1039              		.file 47 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 1040              		.file 48 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1041              		.file 49 "Core/Inc/i2c.h"
+ 1042              		.file 50 "Core/Inc/usart.h"
+ 1043              		.file 51 "/usr/include/newlib/math.h"
+ 1044              		.file 52 "App/variables.h"
+ 1045              		.file 53 "App/microros_tasks.h"
+ 1046              		.file 54 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1047              		.file 55 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ti
+ 1048              		.file 56 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 1049              		.file 57 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/su
+ 1050              		.file 58 "App/pca9685.h"
+ 1051              		.file 59 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/pu
+ 1052              		.file 60 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/in
+ 1053              		.file 61 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/no
+ 1054              		.file 62 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw_mic
+ 1055              		.file 63 "/usr/include/newlib/stdio.h"
+ 1056              		.file 64 "<built-in>"
+ARM GAS  /tmp/ccrK0U08.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 microros_tasks.c
+     /tmp/ccrK0U08.s:18     .text.subscription_callback:0000000000000000 $t
+     /tmp/ccrK0U08.s:26     .text.subscription_callback:0000000000000000 subscription_callback
+     /tmp/ccrK0U08.s:93     .text.subscription_callback:0000000000000038 $d
+                            *COM*:0000000000000030 joint_ang
+     /tmp/ccrK0U08.s:99     .text.error_blink:0000000000000000 $t
+     /tmp/ccrK0U08.s:106    .text.error_blink:0000000000000000 error_blink
+     /tmp/ccrK0U08.s:175    .text.error_blink:0000000000000040 $d
+     /tmp/ccrK0U08.s:180    .rodata.hypergod_microros_init.str1.4:0000000000000000 $d
+     /tmp/ccrK0U08.s:184    .text.hypergod_microros_init:0000000000000000 $t
+     /tmp/ccrK0U08.s:191    .text.hypergod_microros_init:0000000000000000 hypergod_microros_init
+     /tmp/ccrK0U08.s:268    .text.hypergod_microros_init:000000000000004c $d
+     /tmp/ccrK0U08.s:282    .rodata.init_hyperdogSTM_node.str1.4:0000000000000000 $d
+     /tmp/ccrK0U08.s:289    .text.init_hyperdogSTM_node:0000000000000000 $t
+     /tmp/ccrK0U08.s:296    .text.init_hyperdogSTM_node:0000000000000000 init_hyperdogSTM_node
+     /tmp/ccrK0U08.s:380    .text.init_hyperdogSTM_node:0000000000000054 $d
+                            *COM*:0000000000000014 allocator
+                            *COM*:0000000000000048 support
+                            *COM*:0000000000000008 node
+     /tmp/ccrK0U08.s:389    .rodata.create_hyperdogSTM_publisher.str1.4:0000000000000000 $d
+     /tmp/ccrK0U08.s:393    .text.create_hyperdogSTM_publisher:0000000000000000 $t
+     /tmp/ccrK0U08.s:400    .text.create_hyperdogSTM_publisher:0000000000000000 create_hyperdogSTM_publisher
+     /tmp/ccrK0U08.s:502    .text.create_hyperdogSTM_publisher:0000000000000058 $d
+                            *COM*:0000000000000004 publisher
+                            *COM*:000000000000001c pub_msg
+     /tmp/ccrK0U08.s:511    .rodata.create_hyperdogSTM_subscriber.str1.4:0000000000000000 $d
+     /tmp/ccrK0U08.s:515    .text.create_hyperdogSTM_subscriber:0000000000000000 $t
+     /tmp/ccrK0U08.s:522    .text.create_hyperdogSTM_subscriber:0000000000000000 create_hyperdogSTM_subscriber
+     /tmp/ccrK0U08.s:649    .text.create_hyperdogSTM_subscriber:0000000000000088 $d
+                            *COM*:0000000000000004 subscriber
+                            *COM*:000000000000001c sub_msg
+     /tmp/ccrK0U08.s:660    .text.run_hyperdogSTM_node:0000000000000000 $t
+     /tmp/ccrK0U08.s:667    .text.run_hyperdogSTM_node:0000000000000000 run_hyperdogSTM_node
+     /tmp/ccrK0U08.s:856    .text.run_hyperdogSTM_node:00000000000000c0 $d
+     /tmp/ccrK0U08.s:878    .text.publisher_callback:0000000000000000 publisher_callback
+                            *COM*:0000000000000080 executor
+     /tmp/ccrK0U08.s:871    .text.publisher_callback:0000000000000000 $t
+     /tmp/ccrK0U08.s:967    .text.publisher_callback:0000000000000048 $d
+                            *COM*:0000000000000030 current_sense
+                            *COM*:0000000000000040 joint_ang_feedback
+                            *COM*:0000000000000030 servo_ang
+                            *COM*:0000000000000004 tx6_buf
+                            *COM*:0000000000000020 rx6_buf
+                            *COM*:0000000000000004 tx1_buf
+                            *COM*:0000000000000020 rx1_buf
+                            *COM*:0000000000000001 uart6_ready
+                            *COM*:0000000000000001 uart1_ready
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_Delay
+MX_USART2_UART_Init
+rmw_uros_set_custom_transport
+rcutils_get_zero_initialized_allocator
+rcutils_set_default_allocator
+printf
+ARM GAS  /tmp/ccrK0U08.s 			page 27
+
+
+cubemx_transport_read
+cubemx_transport_write
+cubemx_transport_close
+cubemx_transport_open
+huart2
+microros_allocate
+microros_deallocate
+microros_reallocate
+microros_zero_allocate
+rcutils_get_default_allocator
+rclc_support_init
+rclc_support_fini
+rclc_node_init_default
+rosidl_typesupport_c__get_message_type_support_handle__std_msgs__msg__Float32MultiArray
+rclc_publisher_init_default
+HAL_GPIO_TogglePin
+osDelay
+malloc
+rclc_subscription_init_default
+PCA9685_Init
+hi2c3
+rclc_timer_init_default
+rclc_executor_get_zero_initialized_executor
+memcpy
+rclc_executor_init
+rclc_executor_add_timer
+rclc_executor_add_subscription
+rclc_executor_spin
+rcl_publish

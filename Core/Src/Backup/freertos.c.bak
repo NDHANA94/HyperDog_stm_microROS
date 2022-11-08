@@ -1,0 +1,93 @@
+
+/**
+  ******************************************************************************
+  * File Name          : freertos.c
+  * Description        : Code for freertos applications
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+
+
+/* Includes ------------------------------------------------------------------*/
+#include "FreeRTOS.h"
+#include "task.h"
+#include "main.h"
+#include "cmsis_os.h"
+#include "microros_tasks.h"
+#include "servo_controller.h"
+#include "BaseIMU.h"
+
+
+typedef StaticTask_t osStaticThreadDef_t;
+
+/* Definitions for defaultTask */
+osThreadId_t defaultTaskHandle;
+uint32_t defaultTaskBuffer[ 3000 ];
+osStaticThreadDef_t defaultTaskControlBlock;
+const osThreadAttr_t defaultTask_attributes = {
+  .name = "defaultTask",
+  // .cb_mem = &defaultTaskControlBlock,
+  // .cb_size = sizeof(defaultTaskControlBlock),
+  // .stack_mem = &defaultTaskBuffer[0],
+  .stack_size = 3000 * 4,
+  .priority = (osPriority_t) osPriorityHigh7,
+};
+
+/* Definitions for servoController */
+osThreadId_t servoControllerHandle;
+const osThreadAttr_t servoController_attributes = {
+  .name = "servoController",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityHigh1,
+};
+
+
+void StartDefaultTask(void *argument);
+void start_servoController_task(void *argument);
+
+// extern void MX_USB_HOST_Init(void);
+void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+
+/**
+  * @brief  FreeRTOS initialization
+  * @param  None
+  * @retval None
+  */
+void MX_FREERTOS_Init(void) {
+
+  /* Create the thread(s) */
+  /* creation of defaultTask */
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+
+  /* creation of servoController */
+  servoControllerHandle = osThreadNew(start_servoController_task, NULL, &servoController_attributes);
+}
+
+
+void StartDefaultTask(void *argument)
+{
+  run_hyperdogSTM_node();
+}
+
+
+void start_servoController_task(void *argument)
+{
+
+  /* Infinite loop */
+  for(;;)
+  { 
+    drive_servos();
+    osDelay(10);
+  }
+}
+
+

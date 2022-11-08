@@ -1,0 +1,80 @@
+/*
+********************************************************************************
+*
+* Created on: March 15, 2022
+*     Author: Nipun Dhananjaya Weerakkodi -> nipun.dhananjaya@gmail.com
+********************************************************************************
+*/
+
+#ifndef __MICROROS_TASKS_H__
+#define __MICROROS_TASKS_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Includes ------------------------------------------------------------------*/
+
+#include <time.h>
+#include <rcl/rcl.h>
+#include <rcl/error_handling.h>
+#include <rclc/rclc.h>
+#include <rclc/executor.h>
+#include <uxr/client/transport.h>
+#include <rmw_microxrcedds_c/config.h>
+#include <rmw_microros/rmw_microros.h>
+#include <std_msgs/msg/int32.h>
+#include <std_msgs/msg/float64_multi_array.h>
+#include <std_msgs/msg/float32_multi_array.h>
+
+#include "i2c.h"
+#include "usart.h"
+#include "stdint.h"
+#include "FreeRTOS.h"
+#include "float.h"
+#include "math.h"
+
+#include "pca9685.h"
+#include "servo_controller.h"
+#include "variables.h"
+
+#define RCCHECK(fn) { rcl_ret_t temp_rc = fn; if((temp_rc != RCL_RET_OK)){while(1){HAL_GPIO_TogglePin(LD5_GPIO_Port, LD5_Pin); osDelay(100);}}}
+
+
+bool cubemx_transport_open(struct uxrCustomTransport * transport);
+bool cubemx_transport_close(struct uxrCustomTransport * transport);
+
+size_t cubemx_transport_write(struct uxrCustomTransport* transport, const uint8_t * buf, size_t len, uint8_t * err);
+size_t cubemx_transport_read(struct uxrCustomTransport* transport, uint8_t* buf, size_t len, int timeout, uint8_t* err);
+
+void * microros_allocate(size_t size, void * state);
+void microros_deallocate(void * pointer, void * state);
+void * microros_reallocate(void * pointer, size_t size, void * state);
+void * microros_zero_allocate(size_t number_of_elements, size_t size_of_element, void * state);
+
+rcl_node_t node;
+rclc_support_t support;
+rcl_allocator_t allocator;
+rclc_executor_t executor;
+
+rcl_publisher_t publisher;
+std_msgs__msg__Float32MultiArray pub_msg;
+
+rcl_subscription_t subscriber;
+std_msgs__msg__Float32MultiArray sub_msg;
+
+// defines
+void hypergod_microros_init(void);
+void init_hyperdogSTM_node(void);
+void create_hyperdogSTM_publisher(void);
+void create_hyperdogSTM_subscriber(void);
+// void hyperdog_subscriber_callback(void);
+void hyperdog_publish(void);
+
+void run_hyperdogSTM_node(void);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* __MICROROS_TASKS_H__ */
+

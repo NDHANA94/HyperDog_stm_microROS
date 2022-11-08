@@ -1,0 +1,40 @@
+#ifndef __SERVO_CONTROLLER_H__
+#define __SERVO_CONTROLLER_H__
+
+#include "stdint.h"
+
+#include "pca9685.h"
+#include "i2c.h"
+
+
+#define FR_HIP_OFFSET   113
+#define FR_ULEG_OFFSET   60
+#define FR_LLEG_OFFSET   -10
+
+#define FL_HIP_OFFSET   116
+#define FL_ULEG_OFFSET   197
+#define FL_LLEG_OFFSET   290
+
+#define BL_HIP_OFFSET   123
+#define BL_ULEG_OFFSET   70
+#define BL_LLEG_OFFSET   -10
+
+#define BR_HIP_OFFSET   117
+#define BR_ULEG_OFFSET   198
+#define BR_LLEG_OFFSET   295
+
+#define TH1_MIN         -90
+#define TH1_MAX         90
+#define TH2_MIN         -70
+#define TH2_MAX         185
+
+
+
+// bool start = false;
+float joint_ang[12];
+float servo_ang[12];
+
+
+void drive_servos();
+
+#endif

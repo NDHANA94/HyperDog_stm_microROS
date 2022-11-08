@@ -1,0 +1,1459 @@
+ARM GAS  /tmp/ccDHG90N.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"servo_controller.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_f2d
+  18              		.global	__aeabi_dcmpgt
+  19              		.global	__aeabi_dcmplt
+  20              		.global	__aeabi_dadd
+  21              		.global	__aeabi_d2f
+  22              		.section	.text.set_servoAng_FR,"ax",%progbits
+  23              		.align	1
+  24              		.global	set_servoAng_FR
+  25              		.arch armv7e-m
+  26              		.syntax unified
+  27              		.thumb
+  28              		.thumb_func
+  29              		.fpu fpv4-sp-d16
+  31              	set_servoAng_FR:
+  32              	.LFB235:
+  33              		.file 1 "App/servo_controller.c"
+   1:App/servo_controller.c **** /*
+   2:App/servo_controller.c **** ********************************************************************************
+   3:App/servo_controller.c **** *
+   4:App/servo_controller.c **** * Created on: March 15, 2022
+   5:App/servo_controller.c **** *     Author: Nipun Dhananjaya Weerakkodi -> nipun.dhananjaya@gmail.com
+   6:App/servo_controller.c **** ********************************************************************************
+   7:App/servo_controller.c **** */
+   8:App/servo_controller.c **** 
+   9:App/servo_controller.c **** #include "servo_controller.h"
+  10:App/servo_controller.c **** #include "BaseIMU.h"
+  11:App/servo_controller.c **** // temp
+  12:App/servo_controller.c **** void set_servoAng_FR(){
+  34              		.loc 1 12 23 view -0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 24
+  37              		@ frame_needed = 0, uses_anonymous_args = 0
+  38 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 36
+  41              		.cfi_offset 4, -36
+  42              		.cfi_offset 5, -32
+  43              		.cfi_offset 6, -28
+  44              		.cfi_offset 7, -24
+  45              		.cfi_offset 8, -20
+  46              		.cfi_offset 9, -16
+ARM GAS  /tmp/ccDHG90N.s 			page 2
+
+
+  47              		.cfi_offset 10, -12
+  48              		.cfi_offset 11, -8
+  49              		.cfi_offset 14, -4
+  50 0004 87B0     		sub	sp, sp, #28
+  51              	.LCFI1:
+  52              		.cfi_def_cfa_offset 64
+  13:App/servo_controller.c **** 	double th_temp[3];
+  53              		.loc 1 13 2 view .LVU1
+  14:App/servo_controller.c **** 	th_temp[0] = joint_ang[0];
+  54              		.loc 1 14 2 view .LVU2
+  55              		.loc 1 14 24 is_stmt 0 view .LVU3
+  56 0006 444C     		ldr	r4, .L24+8
+  57 0008 2068     		ldr	r0, [r4]	@ float
+  58 000a FFF7FEFF 		bl	__aeabi_f2d
+  59              	.LVL0:
+  60 000e 8046     		mov	r8, r0
+  61 0010 8946     		mov	r9, r1
+  15:App/servo_controller.c **** 	th_temp[1] = joint_ang[1];
+  62              		.loc 1 15 2 is_stmt 1 view .LVU4
+  63              		.loc 1 15 24 is_stmt 0 view .LVU5
+  64 0012 6068     		ldr	r0, [r4, #4]	@ float
+  65 0014 FFF7FEFF 		bl	__aeabi_f2d
+  66              	.LVL1:
+  67 0018 8246     		mov	r10, r0
+  68 001a 8B46     		mov	fp, r1
+  69              		.loc 1 15 13 view .LVU6
+  70 001c CDE902AB 		strd	r10, [sp, #8]
+  16:App/servo_controller.c **** 	th_temp[2] = joint_ang[2];
+  71              		.loc 1 16 2 is_stmt 1 view .LVU7
+  72              		.loc 1 16 24 is_stmt 0 view .LVU8
+  73 0020 A068     		ldr	r0, [r4, #8]	@ float
+  74 0022 FFF7FEFF 		bl	__aeabi_f2d
+  75              	.LVL2:
+  76 0026 0446     		mov	r4, r0
+  77 0028 0D46     		mov	r5, r1
+  78              		.loc 1 16 13 view .LVU9
+  79 002a CDE90445 		strd	r4, [sp, #16]
+  17:App/servo_controller.c **** 
+  18:App/servo_controller.c **** 	th_temp[0] = - th_temp[0];
+  80              		.loc 1 18 2 is_stmt 1 view .LVU10
+  81              		.loc 1 18 15 is_stmt 0 view .LVU11
+  82 002e 4646     		mov	r6, r8
+  83 0030 09F10047 		add	r7, r9, #-2147483648
+  84              		.loc 1 18 13 view .LVU12
+  85 0034 CDE90067 		strd	r6, [sp]
+  19:App/servo_controller.c **** 
+  20:App/servo_controller.c **** 	if (th_temp[0] > TH1_MAX)
+  86              		.loc 1 20 2 is_stmt 1 view .LVU13
+  87              		.loc 1 20 5 is_stmt 0 view .LVU14
+  88 0038 0022     		movs	r2, #0
+  89 003a 384B     		ldr	r3, .L24+12
+  90 003c 4046     		mov	r0, r8
+  91 003e 3946     		mov	r1, r7
+  92 0040 FFF7FEFF 		bl	__aeabi_dcmpgt
+  93              	.LVL3:
+  94 0044 0028     		cmp	r0, #0
+  95 0046 3AD0     		beq	.L20
+ARM GAS  /tmp/ccDHG90N.s 			page 3
+
+
+  21:App/servo_controller.c **** 		th_temp[0] = TH1_MAX;
+  96              		.loc 1 21 3 is_stmt 1 view .LVU15
+  97              		.loc 1 21 14 is_stmt 0 view .LVU16
+  98 0048 0022     		movs	r2, #0
+  99 004a 344B     		ldr	r3, .L24+12
+ 100 004c CDE90023 		strd	r2, [sp]
+ 101              	.L4:
+  22:App/servo_controller.c **** 	else if (th_temp[0] < TH1_MIN)
+  23:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+  24:App/servo_controller.c **** 
+  25:App/servo_controller.c **** 	if (th_temp[1] < TH2_MIN)
+ 102              		.loc 1 25 2 is_stmt 1 view .LVU17
+ 103              		.loc 1 25 5 is_stmt 0 view .LVU18
+ 104 0050 0022     		movs	r2, #0
+ 105 0052 334B     		ldr	r3, .L24+16
+ 106 0054 5046     		mov	r0, r10
+ 107 0056 5946     		mov	r1, fp
+ 108 0058 FFF7FEFF 		bl	__aeabi_dcmplt
+ 109              	.LVL4:
+ 110 005c 0028     		cmp	r0, #0
+ 111 005e 3BD0     		beq	.L21
+  26:App/servo_controller.c **** 		th_temp[1] = TH2_MIN;
+ 112              		.loc 1 26 3 is_stmt 1 view .LVU19
+ 113              		.loc 1 26 14 is_stmt 0 view .LVU20
+ 114 0060 0022     		movs	r2, #0
+ 115 0062 2F4B     		ldr	r3, .L24+16
+ 116 0064 CDE90223 		strd	r2, [sp, #8]
+ 117              	.L8:
+  27:App/servo_controller.c **** 	else if (th_temp[1] > TH2_MAX)
+  28:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+  29:App/servo_controller.c **** 
+  30:App/servo_controller.c **** 	if (th_temp[2] < MIN_ANG_L2_L3 )
+ 118              		.loc 1 30 2 is_stmt 1 view .LVU21
+ 119              		.loc 1 30 5 is_stmt 0 view .LVU22
+ 120 0068 0022     		movs	r2, #0
+ 121 006a 2E4B     		ldr	r3, .L24+20
+ 122 006c 2046     		mov	r0, r4
+ 123 006e 2946     		mov	r1, r5
+ 124 0070 FFF7FEFF 		bl	__aeabi_dcmplt
+ 125              	.LVL5:
+ 126 0074 0028     		cmp	r0, #0
+ 127 0076 3ED0     		beq	.L22
+  31:App/servo_controller.c **** 		th_temp[2] =  MIN_ANG_L2_L3;
+ 128              		.loc 1 31 3 is_stmt 1 view .LVU23
+ 129              		.loc 1 31 14 is_stmt 0 view .LVU24
+ 130 0078 0022     		movs	r2, #0
+ 131 007a 2A4B     		ldr	r3, .L24+20
+ 132 007c CDE90423 		strd	r2, [sp, #16]
+ 133              	.L12:
+  32:App/servo_controller.c **** 	else if (th_temp[2] > MAX_ANG_L2_L3)
+  33:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+  34:App/servo_controller.c **** 
+  35:App/servo_controller.c **** 	servo_ang[0] = FR_HIP_OFFSET + th_temp[0];
+ 134              		.loc 1 35 2 is_stmt 1 view .LVU25
+ 135              		.loc 1 35 31 is_stmt 0 view .LVU26
+ 136 0080 0022     		movs	r2, #0
+ 137 0082 294B     		ldr	r3, .L24+24
+ARM GAS  /tmp/ccDHG90N.s 			page 4
+
+
+ 138 0084 DDE90001 		ldrd	r0, [sp]
+ 139 0088 FFF7FEFF 		bl	__aeabi_dadd
+ 140              	.LVL6:
+ 141 008c FFF7FEFF 		bl	__aeabi_d2f
+ 142              	.LVL7:
+ 143              		.loc 1 35 15 view .LVU27
+ 144 0090 264C     		ldr	r4, .L24+28
+ 145 0092 2060     		str	r0, [r4]	@ float
+  36:App/servo_controller.c **** 	servo_ang[1] = FR_ULEG_OFFSET + th_temp[1];
+ 146              		.loc 1 36 2 is_stmt 1 view .LVU28
+ 147              		.loc 1 36 32 is_stmt 0 view .LVU29
+ 148 0094 0022     		movs	r2, #0
+ 149 0096 264B     		ldr	r3, .L24+32
+ 150 0098 DDE90201 		ldrd	r0, [sp, #8]
+ 151 009c FFF7FEFF 		bl	__aeabi_dadd
+ 152              	.LVL8:
+ 153 00a0 FFF7FEFF 		bl	__aeabi_d2f
+ 154              	.LVL9:
+ 155              		.loc 1 36 15 view .LVU30
+ 156 00a4 6060     		str	r0, [r4, #4]	@ float
+  37:App/servo_controller.c **** 	servo_ang[2] = FR_LLEG_OFFSET + th_temp[2];
+ 157              		.loc 1 37 2 is_stmt 1 view .LVU31
+ 158              		.loc 1 37 32 is_stmt 0 view .LVU32
+ 159 00a6 0022     		movs	r2, #0
+ 160 00a8 0023     		movs	r3, #0
+ 161 00aa DDE90401 		ldrd	r0, [sp, #16]
+ 162 00ae FFF7FEFF 		bl	__aeabi_dadd
+ 163              	.LVL10:
+ 164 00b2 FFF7FEFF 		bl	__aeabi_d2f
+ 165              	.LVL11:
+ 166              		.loc 1 37 15 view .LVU33
+ 167 00b6 A060     		str	r0, [r4, #8]	@ float
+  38:App/servo_controller.c **** }
+ 168              		.loc 1 38 1 view .LVU34
+ 169 00b8 07B0     		add	sp, sp, #28
+ 170              	.LCFI2:
+ 171              		.cfi_remember_state
+ 172              		.cfi_def_cfa_offset 36
+ 173              		@ sp needed
+ 174 00ba BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 175              	.L20:
+ 176              	.LCFI3:
+ 177              		.cfi_restore_state
+  22:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 178              		.loc 1 22 7 is_stmt 1 view .LVU35
+  22:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 179              		.loc 1 22 10 is_stmt 0 view .LVU36
+ 180 00be 0022     		movs	r2, #0
+ 181 00c0 1C4B     		ldr	r3, .L24+36
+ 182 00c2 4046     		mov	r0, r8
+ 183 00c4 3946     		mov	r1, r7
+ 184 00c6 FFF7FEFF 		bl	__aeabi_dcmplt
+ 185              	.LVL12:
+ 186 00ca 0028     		cmp	r0, #0
+ 187 00cc C0D0     		beq	.L4
+  23:App/servo_controller.c **** 
+ 188              		.loc 1 23 3 is_stmt 1 view .LVU37
+ARM GAS  /tmp/ccDHG90N.s 			page 5
+
+
+  23:App/servo_controller.c **** 
+ 189              		.loc 1 23 14 is_stmt 0 view .LVU38
+ 190 00ce 0022     		movs	r2, #0
+ 191 00d0 184B     		ldr	r3, .L24+36
+ 192 00d2 CDE90023 		strd	r2, [sp]
+ 193 00d6 BBE7     		b	.L4
+ 194              	.L21:
+  27:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 195              		.loc 1 27 7 is_stmt 1 view .LVU39
+  27:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 196              		.loc 1 27 10 is_stmt 0 view .LVU40
+ 197 00d8 0DA3     		adr	r3, .L24
+ 198 00da D3E90023 		ldrd	r2, [r3]
+ 199 00de 5046     		mov	r0, r10
+ 200 00e0 5946     		mov	r1, fp
+ 201 00e2 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 202              	.LVL13:
+ 203 00e6 0028     		cmp	r0, #0
+ 204 00e8 BED0     		beq	.L8
+  28:App/servo_controller.c **** 
+ 205              		.loc 1 28 3 is_stmt 1 view .LVU41
+  28:App/servo_controller.c **** 
+ 206              		.loc 1 28 14 is_stmt 0 view .LVU42
+ 207 00ea 09A3     		adr	r3, .L24
+ 208 00ec D3E90023 		ldrd	r2, [r3]
+ 209 00f0 CDE90223 		strd	r2, [sp, #8]
+ 210 00f4 B8E7     		b	.L8
+ 211              	.L22:
+  32:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 212              		.loc 1 32 7 is_stmt 1 view .LVU43
+  32:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 213              		.loc 1 32 10 is_stmt 0 view .LVU44
+ 214 00f6 0022     		movs	r2, #0
+ 215 00f8 0F4B     		ldr	r3, .L24+40
+ 216 00fa 2046     		mov	r0, r4
+ 217 00fc 2946     		mov	r1, r5
+ 218 00fe FFF7FEFF 		bl	__aeabi_dcmpgt
+ 219              	.LVL14:
+ 220 0102 0028     		cmp	r0, #0
+ 221 0104 BCD0     		beq	.L12
+  33:App/servo_controller.c **** 
+ 222              		.loc 1 33 3 is_stmt 1 view .LVU45
+  33:App/servo_controller.c **** 
+ 223              		.loc 1 33 14 is_stmt 0 view .LVU46
+ 224 0106 0022     		movs	r2, #0
+ 225 0108 0B4B     		ldr	r3, .L24+40
+ 226 010a CDE90423 		strd	r2, [sp, #16]
+ 227 010e B7E7     		b	.L12
+ 228              	.L25:
+ 229              		.align	3
+ 230              	.L24:
+ 231 0110 00000000 		.word	0
+ 232 0114 00206740 		.word	1080500224
+ 233 0118 00000000 		.word	joint_ang
+ 234 011c 00805640 		.word	1079410688
+ 235 0120 008051C0 		.word	-1068400640
+ 236 0124 00002E40 		.word	1076756480
+ARM GAS  /tmp/ccDHG90N.s 			page 6
+
+
+ 237 0128 00405C40 		.word	1079787520
+ 238 012c 00000000 		.word	servo_ang
+ 239 0130 00405040 		.word	1079001088
+ 240 0134 008056C0 		.word	-1068072960
+ 241 0138 00805B40 		.word	1079738368
+ 242              		.cfi_endproc
+ 243              	.LFE235:
+ 245              		.global	__aeabi_dsub
+ 246              		.section	.text.set_servoAng_FL,"ax",%progbits
+ 247              		.align	1
+ 248              		.global	set_servoAng_FL
+ 249              		.syntax unified
+ 250              		.thumb
+ 251              		.thumb_func
+ 252              		.fpu fpv4-sp-d16
+ 254              	set_servoAng_FL:
+ 255              	.LFB236:
+  39:App/servo_controller.c **** 
+  40:App/servo_controller.c **** void set_servoAng_FL(){
+ 256              		.loc 1 40 23 is_stmt 1 view -0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 24
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 261              	.LCFI4:
+ 262              		.cfi_def_cfa_offset 36
+ 263              		.cfi_offset 4, -36
+ 264              		.cfi_offset 5, -32
+ 265              		.cfi_offset 6, -28
+ 266              		.cfi_offset 7, -24
+ 267              		.cfi_offset 8, -20
+ 268              		.cfi_offset 9, -16
+ 269              		.cfi_offset 10, -12
+ 270              		.cfi_offset 11, -8
+ 271              		.cfi_offset 14, -4
+ 272 0004 87B0     		sub	sp, sp, #28
+ 273              	.LCFI5:
+ 274              		.cfi_def_cfa_offset 64
+  41:App/servo_controller.c **** 	double th_temp[3];
+ 275              		.loc 1 41 2 view .LVU48
+  42:App/servo_controller.c **** 	th_temp[0] = joint_ang[3];
+ 276              		.loc 1 42 2 view .LVU49
+ 277              		.loc 1 42 24 is_stmt 0 view .LVU50
+ 278 0006 4A4C     		ldr	r4, .L49+24
+ 279 0008 E068     		ldr	r0, [r4, #12]	@ float
+ 280 000a FFF7FEFF 		bl	__aeabi_f2d
+ 281              	.LVL15:
+ 282 000e 8046     		mov	r8, r0
+ 283 0010 8946     		mov	r9, r1
+  43:App/servo_controller.c **** 	th_temp[1] = joint_ang[4];
+ 284              		.loc 1 43 2 is_stmt 1 view .LVU51
+ 285              		.loc 1 43 24 is_stmt 0 view .LVU52
+ 286 0012 2069     		ldr	r0, [r4, #16]	@ float
+ 287 0014 FFF7FEFF 		bl	__aeabi_f2d
+ 288              	.LVL16:
+ 289 0018 8246     		mov	r10, r0
+ 290 001a 8B46     		mov	fp, r1
+ARM GAS  /tmp/ccDHG90N.s 			page 7
+
+
+ 291              		.loc 1 43 13 view .LVU53
+ 292 001c CDE902AB 		strd	r10, [sp, #8]
+  44:App/servo_controller.c **** 	th_temp[2] = joint_ang[5];
+ 293              		.loc 1 44 2 is_stmt 1 view .LVU54
+ 294              		.loc 1 44 24 is_stmt 0 view .LVU55
+ 295 0020 6069     		ldr	r0, [r4, #20]	@ float
+ 296 0022 FFF7FEFF 		bl	__aeabi_f2d
+ 297              	.LVL17:
+ 298 0026 0446     		mov	r4, r0
+ 299 0028 0D46     		mov	r5, r1
+ 300              		.loc 1 44 13 view .LVU56
+ 301 002a CDE90445 		strd	r4, [sp, #16]
+  45:App/servo_controller.c **** 
+  46:App/servo_controller.c **** 	th_temp[0] = - th_temp[0];
+ 302              		.loc 1 46 2 is_stmt 1 view .LVU57
+ 303              		.loc 1 46 15 is_stmt 0 view .LVU58
+ 304 002e 4646     		mov	r6, r8
+ 305 0030 09F10047 		add	r7, r9, #-2147483648
+ 306              		.loc 1 46 13 view .LVU59
+ 307 0034 CDE90067 		strd	r6, [sp]
+  47:App/servo_controller.c **** 
+  48:App/servo_controller.c **** 	if (th_temp[0] > TH1_MAX)
+ 308              		.loc 1 48 2 is_stmt 1 view .LVU60
+ 309              		.loc 1 48 5 is_stmt 0 view .LVU61
+ 310 0038 0022     		movs	r2, #0
+ 311 003a 3E4B     		ldr	r3, .L49+28
+ 312 003c 4046     		mov	r0, r8
+ 313 003e 3946     		mov	r1, r7
+ 314 0040 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 315              	.LVL18:
+ 316 0044 0028     		cmp	r0, #0
+ 317 0046 3CD0     		beq	.L45
+  49:App/servo_controller.c **** 		th_temp[0] = TH1_MAX;
+ 318              		.loc 1 49 3 is_stmt 1 view .LVU62
+ 319              		.loc 1 49 14 is_stmt 0 view .LVU63
+ 320 0048 0022     		movs	r2, #0
+ 321 004a 3A4B     		ldr	r3, .L49+28
+ 322 004c CDE90023 		strd	r2, [sp]
+ 323              	.L29:
+  50:App/servo_controller.c **** 	else if (th_temp[0] < TH1_MIN)
+  51:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+  52:App/servo_controller.c **** 
+  53:App/servo_controller.c **** 	if (th_temp[1] < TH2_MIN)
+ 324              		.loc 1 53 2 is_stmt 1 view .LVU64
+ 325              		.loc 1 53 5 is_stmt 0 view .LVU65
+ 326 0050 0022     		movs	r2, #0
+ 327 0052 394B     		ldr	r3, .L49+32
+ 328 0054 5046     		mov	r0, r10
+ 329 0056 5946     		mov	r1, fp
+ 330 0058 FFF7FEFF 		bl	__aeabi_dcmplt
+ 331              	.LVL19:
+ 332 005c 0028     		cmp	r0, #0
+ 333 005e 3DD0     		beq	.L46
+  54:App/servo_controller.c **** 		th_temp[1] = TH2_MIN;
+ 334              		.loc 1 54 3 is_stmt 1 view .LVU66
+ 335              		.loc 1 54 14 is_stmt 0 view .LVU67
+ 336 0060 0022     		movs	r2, #0
+ARM GAS  /tmp/ccDHG90N.s 			page 8
+
+
+ 337 0062 354B     		ldr	r3, .L49+32
+ 338 0064 CDE90223 		strd	r2, [sp, #8]
+ 339              	.L33:
+  55:App/servo_controller.c **** 	else if (th_temp[1] > TH2_MAX)
+  56:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+  57:App/servo_controller.c **** 
+  58:App/servo_controller.c **** 	if (th_temp[2] < MIN_ANG_L2_L3 )
+ 340              		.loc 1 58 2 is_stmt 1 view .LVU68
+ 341              		.loc 1 58 5 is_stmt 0 view .LVU69
+ 342 0068 0022     		movs	r2, #0
+ 343 006a 344B     		ldr	r3, .L49+36
+ 344 006c 2046     		mov	r0, r4
+ 345 006e 2946     		mov	r1, r5
+ 346 0070 FFF7FEFF 		bl	__aeabi_dcmplt
+ 347              	.LVL20:
+ 348 0074 0028     		cmp	r0, #0
+ 349 0076 40D0     		beq	.L47
+  59:App/servo_controller.c **** 		th_temp[2] = MIN_ANG_L2_L3;
+ 350              		.loc 1 59 3 is_stmt 1 view .LVU70
+ 351              		.loc 1 59 14 is_stmt 0 view .LVU71
+ 352 0078 0022     		movs	r2, #0
+ 353 007a 304B     		ldr	r3, .L49+36
+ 354 007c CDE90423 		strd	r2, [sp, #16]
+ 355              	.L37:
+  60:App/servo_controller.c **** 	else if (th_temp[2] > MAX_ANG_L2_L3)
+  61:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+  62:App/servo_controller.c **** 
+  63:App/servo_controller.c **** 	servo_ang[3] = FL_HIP_OFFSET - th_temp[0];
+ 356              		.loc 1 63 2 is_stmt 1 view .LVU72
+ 357              		.loc 1 63 31 is_stmt 0 view .LVU73
+ 358 0080 DDE90023 		ldrd	r2, [sp]
+ 359 0084 0020     		movs	r0, #0
+ 360 0086 2E49     		ldr	r1, .L49+40
+ 361 0088 FFF7FEFF 		bl	__aeabi_dsub
+ 362              	.LVL21:
+ 363 008c FFF7FEFF 		bl	__aeabi_d2f
+ 364              	.LVL22:
+ 365              		.loc 1 63 15 view .LVU74
+ 366 0090 2C4C     		ldr	r4, .L49+44
+ 367 0092 E060     		str	r0, [r4, #12]	@ float
+  64:App/servo_controller.c **** 	servo_ang[4] = FL_ULEG_OFFSET - th_temp[1];
+ 368              		.loc 1 64 2 is_stmt 1 view .LVU75
+ 369              		.loc 1 64 32 is_stmt 0 view .LVU76
+ 370 0094 DDE90223 		ldrd	r2, [sp, #8]
+ 371 0098 1FA1     		adr	r1, .L49
+ 372 009a D1E90001 		ldrd	r0, [r1]
+ 373 009e FFF7FEFF 		bl	__aeabi_dsub
+ 374              	.LVL23:
+ 375 00a2 FFF7FEFF 		bl	__aeabi_d2f
+ 376              	.LVL24:
+ 377              		.loc 1 64 15 view .LVU77
+ 378 00a6 2061     		str	r0, [r4, #16]	@ float
+  65:App/servo_controller.c **** 	servo_ang[5] = FL_LLEG_OFFSET - ( th_temp[2]);
+ 379              		.loc 1 65 2 is_stmt 1 view .LVU78
+ 380              		.loc 1 65 32 is_stmt 0 view .LVU79
+ 381 00a8 DDE90423 		ldrd	r2, [sp, #16]
+ 382 00ac 1CA1     		adr	r1, .L49+8
+ARM GAS  /tmp/ccDHG90N.s 			page 9
+
+
+ 383 00ae D1E90001 		ldrd	r0, [r1]
+ 384 00b2 FFF7FEFF 		bl	__aeabi_dsub
+ 385              	.LVL25:
+ 386 00b6 FFF7FEFF 		bl	__aeabi_d2f
+ 387              	.LVL26:
+ 388              		.loc 1 65 15 view .LVU80
+ 389 00ba 6061     		str	r0, [r4, #20]	@ float
+  66:App/servo_controller.c **** 
+  67:App/servo_controller.c **** }
+ 390              		.loc 1 67 1 view .LVU81
+ 391 00bc 07B0     		add	sp, sp, #28
+ 392              	.LCFI6:
+ 393              		.cfi_remember_state
+ 394              		.cfi_def_cfa_offset 36
+ 395              		@ sp needed
+ 396 00be BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 397              	.L45:
+ 398              	.LCFI7:
+ 399              		.cfi_restore_state
+  50:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 400              		.loc 1 50 7 is_stmt 1 view .LVU82
+  50:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 401              		.loc 1 50 10 is_stmt 0 view .LVU83
+ 402 00c2 0022     		movs	r2, #0
+ 403 00c4 204B     		ldr	r3, .L49+48
+ 404 00c6 4046     		mov	r0, r8
+ 405 00c8 3946     		mov	r1, r7
+ 406 00ca FFF7FEFF 		bl	__aeabi_dcmplt
+ 407              	.LVL27:
+ 408 00ce 0028     		cmp	r0, #0
+ 409 00d0 BED0     		beq	.L29
+  51:App/servo_controller.c **** 
+ 410              		.loc 1 51 3 is_stmt 1 view .LVU84
+  51:App/servo_controller.c **** 
+ 411              		.loc 1 51 14 is_stmt 0 view .LVU85
+ 412 00d2 0022     		movs	r2, #0
+ 413 00d4 1C4B     		ldr	r3, .L49+48
+ 414 00d6 CDE90023 		strd	r2, [sp]
+ 415 00da B9E7     		b	.L29
+ 416              	.L46:
+  55:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 417              		.loc 1 55 7 is_stmt 1 view .LVU86
+  55:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 418              		.loc 1 55 10 is_stmt 0 view .LVU87
+ 419 00dc 12A3     		adr	r3, .L49+16
+ 420 00de D3E90023 		ldrd	r2, [r3]
+ 421 00e2 5046     		mov	r0, r10
+ 422 00e4 5946     		mov	r1, fp
+ 423 00e6 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 424              	.LVL28:
+ 425 00ea 0028     		cmp	r0, #0
+ 426 00ec BCD0     		beq	.L33
+  56:App/servo_controller.c **** 
+ 427              		.loc 1 56 3 is_stmt 1 view .LVU88
+  56:App/servo_controller.c **** 
+ 428              		.loc 1 56 14 is_stmt 0 view .LVU89
+ 429 00ee 0EA3     		adr	r3, .L49+16
+ARM GAS  /tmp/ccDHG90N.s 			page 10
+
+
+ 430 00f0 D3E90023 		ldrd	r2, [r3]
+ 431 00f4 CDE90223 		strd	r2, [sp, #8]
+ 432 00f8 B6E7     		b	.L33
+ 433              	.L47:
+  60:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 434              		.loc 1 60 7 is_stmt 1 view .LVU90
+  60:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 435              		.loc 1 60 10 is_stmt 0 view .LVU91
+ 436 00fa 0022     		movs	r2, #0
+ 437 00fc 134B     		ldr	r3, .L49+52
+ 438 00fe 2046     		mov	r0, r4
+ 439 0100 2946     		mov	r1, r5
+ 440 0102 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 441              	.LVL29:
+ 442 0106 0028     		cmp	r0, #0
+ 443 0108 BAD0     		beq	.L37
+  61:App/servo_controller.c **** 
+ 444              		.loc 1 61 3 is_stmt 1 view .LVU92
+  61:App/servo_controller.c **** 
+ 445              		.loc 1 61 14 is_stmt 0 view .LVU93
+ 446 010a 0022     		movs	r2, #0
+ 447 010c 0F4B     		ldr	r3, .L49+52
+ 448 010e CDE90423 		strd	r2, [sp, #16]
+ 449 0112 B5E7     		b	.L37
+ 450              	.L50:
+ 451 0114 AFF30080 		.align	3
+ 452              	.L49:
+ 453 0118 00000000 		.word	0
+ 454 011c 00A06840 		.word	1080598528
+ 455 0120 00000000 		.word	0
+ 456 0124 00207240 		.word	1081221120
+ 457 0128 00000000 		.word	0
+ 458 012c 00206740 		.word	1080500224
+ 459 0130 00000000 		.word	joint_ang
+ 460 0134 00805640 		.word	1079410688
+ 461 0138 008051C0 		.word	-1068400640
+ 462 013c 00002E40 		.word	1076756480
+ 463 0140 00005D40 		.word	1079836672
+ 464 0144 00000000 		.word	servo_ang
+ 465 0148 008056C0 		.word	-1068072960
+ 466 014c 00805B40 		.word	1079738368
+ 467              		.cfi_endproc
+ 468              	.LFE236:
+ 470              		.section	.text.set_servoAng_BR,"ax",%progbits
+ 471              		.align	1
+ 472              		.global	set_servoAng_BR
+ 473              		.syntax unified
+ 474              		.thumb
+ 475              		.thumb_func
+ 476              		.fpu fpv4-sp-d16
+ 478              	set_servoAng_BR:
+ 479              	.LFB237:
+  68:App/servo_controller.c **** 
+  69:App/servo_controller.c **** void set_servoAng_BR(){
+ 480              		.loc 1 69 23 is_stmt 1 view -0
+ 481              		.cfi_startproc
+ 482              		@ args = 0, pretend = 0, frame = 24
+ARM GAS  /tmp/ccDHG90N.s 			page 11
+
+
+ 483              		@ frame_needed = 0, uses_anonymous_args = 0
+ 484 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 485              	.LCFI8:
+ 486              		.cfi_def_cfa_offset 36
+ 487              		.cfi_offset 4, -36
+ 488              		.cfi_offset 5, -32
+ 489              		.cfi_offset 6, -28
+ 490              		.cfi_offset 7, -24
+ 491              		.cfi_offset 8, -20
+ 492              		.cfi_offset 9, -16
+ 493              		.cfi_offset 10, -12
+ 494              		.cfi_offset 11, -8
+ 495              		.cfi_offset 14, -4
+ 496 0004 87B0     		sub	sp, sp, #28
+ 497              	.LCFI9:
+ 498              		.cfi_def_cfa_offset 64
+  70:App/servo_controller.c **** 	double th_temp[3];
+ 499              		.loc 1 70 2 view .LVU95
+  71:App/servo_controller.c **** 	th_temp[0] = joint_ang[6];
+ 500              		.loc 1 71 2 view .LVU96
+ 501              		.loc 1 71 24 is_stmt 0 view .LVU97
+ 502 0006 484C     		ldr	r4, .L74+16
+ 503 0008 A069     		ldr	r0, [r4, #24]	@ float
+ 504 000a FFF7FEFF 		bl	__aeabi_f2d
+ 505              	.LVL30:
+ 506 000e 8046     		mov	r8, r0
+ 507 0010 8946     		mov	r9, r1
+  72:App/servo_controller.c **** 	th_temp[1] = joint_ang[7];
+ 508              		.loc 1 72 2 is_stmt 1 view .LVU98
+ 509              		.loc 1 72 24 is_stmt 0 view .LVU99
+ 510 0012 E069     		ldr	r0, [r4, #28]	@ float
+ 511 0014 FFF7FEFF 		bl	__aeabi_f2d
+ 512              	.LVL31:
+ 513 0018 8246     		mov	r10, r0
+ 514 001a 8B46     		mov	fp, r1
+ 515              		.loc 1 72 13 view .LVU100
+ 516 001c CDE902AB 		strd	r10, [sp, #8]
+  73:App/servo_controller.c **** 	th_temp[2] = joint_ang[8];
+ 517              		.loc 1 73 2 is_stmt 1 view .LVU101
+ 518              		.loc 1 73 24 is_stmt 0 view .LVU102
+ 519 0020 206A     		ldr	r0, [r4, #32]	@ float
+ 520 0022 FFF7FEFF 		bl	__aeabi_f2d
+ 521              	.LVL32:
+ 522 0026 0446     		mov	r4, r0
+ 523 0028 0D46     		mov	r5, r1
+ 524              		.loc 1 73 13 view .LVU103
+ 525 002a CDE90445 		strd	r4, [sp, #16]
+  74:App/servo_controller.c **** 
+  75:App/servo_controller.c **** 	th_temp[0] = - th_temp[0];
+ 526              		.loc 1 75 2 is_stmt 1 view .LVU104
+ 527              		.loc 1 75 15 is_stmt 0 view .LVU105
+ 528 002e 4646     		mov	r6, r8
+ 529 0030 09F10047 		add	r7, r9, #-2147483648
+ 530              		.loc 1 75 13 view .LVU106
+ 531 0034 CDE90067 		strd	r6, [sp]
+  76:App/servo_controller.c **** 
+  77:App/servo_controller.c **** 	if (th_temp[0] > TH1_MAX)
+ARM GAS  /tmp/ccDHG90N.s 			page 12
+
+
+ 532              		.loc 1 77 2 is_stmt 1 view .LVU107
+ 533              		.loc 1 77 5 is_stmt 0 view .LVU108
+ 534 0038 0022     		movs	r2, #0
+ 535 003a 3C4B     		ldr	r3, .L74+20
+ 536 003c 4046     		mov	r0, r8
+ 537 003e 3946     		mov	r1, r7
+ 538 0040 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 539              	.LVL33:
+ 540 0044 0028     		cmp	r0, #0
+ 541 0046 3BD0     		beq	.L70
+  78:App/servo_controller.c **** 		th_temp[0] = TH1_MAX;
+ 542              		.loc 1 78 3 is_stmt 1 view .LVU109
+ 543              		.loc 1 78 14 is_stmt 0 view .LVU110
+ 544 0048 0022     		movs	r2, #0
+ 545 004a 384B     		ldr	r3, .L74+20
+ 546 004c CDE90023 		strd	r2, [sp]
+ 547              	.L54:
+  79:App/servo_controller.c **** 	else if (th_temp[0] < TH1_MIN)
+  80:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+  81:App/servo_controller.c **** 
+  82:App/servo_controller.c **** 	if (th_temp[1] < TH2_MIN)
+ 548              		.loc 1 82 2 is_stmt 1 view .LVU111
+ 549              		.loc 1 82 5 is_stmt 0 view .LVU112
+ 550 0050 0022     		movs	r2, #0
+ 551 0052 374B     		ldr	r3, .L74+24
+ 552 0054 5046     		mov	r0, r10
+ 553 0056 5946     		mov	r1, fp
+ 554 0058 FFF7FEFF 		bl	__aeabi_dcmplt
+ 555              	.LVL34:
+ 556 005c 0028     		cmp	r0, #0
+ 557 005e 3CD0     		beq	.L71
+  83:App/servo_controller.c **** 		th_temp[1] = TH2_MIN;
+ 558              		.loc 1 83 3 is_stmt 1 view .LVU113
+ 559              		.loc 1 83 14 is_stmt 0 view .LVU114
+ 560 0060 0022     		movs	r2, #0
+ 561 0062 334B     		ldr	r3, .L74+24
+ 562 0064 CDE90223 		strd	r2, [sp, #8]
+ 563              	.L58:
+  84:App/servo_controller.c **** 	else if (th_temp[1] > TH2_MAX)
+  85:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+  86:App/servo_controller.c **** 
+  87:App/servo_controller.c **** 	if (th_temp[2] < MIN_ANG_L2_L3 )
+ 564              		.loc 1 87 2 is_stmt 1 view .LVU115
+ 565              		.loc 1 87 5 is_stmt 0 view .LVU116
+ 566 0068 0022     		movs	r2, #0
+ 567 006a 324B     		ldr	r3, .L74+28
+ 568 006c 2046     		mov	r0, r4
+ 569 006e 2946     		mov	r1, r5
+ 570 0070 FFF7FEFF 		bl	__aeabi_dcmplt
+ 571              	.LVL35:
+ 572 0074 0028     		cmp	r0, #0
+ 573 0076 3FD0     		beq	.L72
+  88:App/servo_controller.c **** 		th_temp[2] =  MIN_ANG_L2_L3;
+ 574              		.loc 1 88 3 is_stmt 1 view .LVU117
+ 575              		.loc 1 88 14 is_stmt 0 view .LVU118
+ 576 0078 0022     		movs	r2, #0
+ 577 007a 2E4B     		ldr	r3, .L74+28
+ARM GAS  /tmp/ccDHG90N.s 			page 13
+
+
+ 578 007c CDE90423 		strd	r2, [sp, #16]
+ 579              	.L62:
+  89:App/servo_controller.c **** 	else if (th_temp[2] > MAX_ANG_L2_L3)
+  90:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+  91:App/servo_controller.c **** 
+  92:App/servo_controller.c **** 	servo_ang[6] = BR_HIP_OFFSET - th_temp[0];
+ 580              		.loc 1 92 2 is_stmt 1 view .LVU119
+ 581              		.loc 1 92 31 is_stmt 0 view .LVU120
+ 582 0080 DDE90023 		ldrd	r2, [sp]
+ 583 0084 24A1     		adr	r1, .L74
+ 584 0086 D1E90001 		ldrd	r0, [r1]
+ 585 008a FFF7FEFF 		bl	__aeabi_dsub
+ 586              	.LVL36:
+ 587 008e FFF7FEFF 		bl	__aeabi_d2f
+ 588              	.LVL37:
+ 589              		.loc 1 92 15 view .LVU121
+ 590 0092 294C     		ldr	r4, .L74+32
+ 591 0094 A061     		str	r0, [r4, #24]	@ float
+  93:App/servo_controller.c **** 	servo_ang[7] = BR_ULEG_OFFSET + th_temp[1];
+ 592              		.loc 1 93 2 is_stmt 1 view .LVU122
+ 593              		.loc 1 93 32 is_stmt 0 view .LVU123
+ 594 0096 0022     		movs	r2, #0
+ 595 0098 284B     		ldr	r3, .L74+36
+ 596 009a DDE90201 		ldrd	r0, [sp, #8]
+ 597 009e FFF7FEFF 		bl	__aeabi_dadd
+ 598              	.LVL38:
+ 599 00a2 FFF7FEFF 		bl	__aeabi_d2f
+ 600              	.LVL39:
+ 601              		.loc 1 93 15 view .LVU124
+ 602 00a6 E061     		str	r0, [r4, #28]	@ float
+  94:App/servo_controller.c **** 	servo_ang[8] = BR_LLEG_OFFSET + th_temp[2];
+ 603              		.loc 1 94 2 is_stmt 1 view .LVU125
+ 604              		.loc 1 94 32 is_stmt 0 view .LVU126
+ 605 00a8 0022     		movs	r2, #0
+ 606 00aa 254B     		ldr	r3, .L74+40
+ 607 00ac DDE90401 		ldrd	r0, [sp, #16]
+ 608 00b0 FFF7FEFF 		bl	__aeabi_dsub
+ 609              	.LVL40:
+ 610 00b4 FFF7FEFF 		bl	__aeabi_d2f
+ 611              	.LVL41:
+ 612              		.loc 1 94 15 view .LVU127
+ 613 00b8 2062     		str	r0, [r4, #32]	@ float
+  95:App/servo_controller.c **** }
+ 614              		.loc 1 95 1 view .LVU128
+ 615 00ba 07B0     		add	sp, sp, #28
+ 616              	.LCFI10:
+ 617              		.cfi_remember_state
+ 618              		.cfi_def_cfa_offset 36
+ 619              		@ sp needed
+ 620 00bc BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 621              	.L70:
+ 622              	.LCFI11:
+ 623              		.cfi_restore_state
+  79:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 624              		.loc 1 79 7 is_stmt 1 view .LVU129
+  79:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 625              		.loc 1 79 10 is_stmt 0 view .LVU130
+ARM GAS  /tmp/ccDHG90N.s 			page 14
+
+
+ 626 00c0 0022     		movs	r2, #0
+ 627 00c2 204B     		ldr	r3, .L74+44
+ 628 00c4 4046     		mov	r0, r8
+ 629 00c6 3946     		mov	r1, r7
+ 630 00c8 FFF7FEFF 		bl	__aeabi_dcmplt
+ 631              	.LVL42:
+ 632 00cc 0028     		cmp	r0, #0
+ 633 00ce BFD0     		beq	.L54
+  80:App/servo_controller.c **** 
+ 634              		.loc 1 80 3 is_stmt 1 view .LVU131
+  80:App/servo_controller.c **** 
+ 635              		.loc 1 80 14 is_stmt 0 view .LVU132
+ 636 00d0 0022     		movs	r2, #0
+ 637 00d2 1C4B     		ldr	r3, .L74+44
+ 638 00d4 CDE90023 		strd	r2, [sp]
+ 639 00d8 BAE7     		b	.L54
+ 640              	.L71:
+  84:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 641              		.loc 1 84 7 is_stmt 1 view .LVU133
+  84:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 642              		.loc 1 84 10 is_stmt 0 view .LVU134
+ 643 00da 11A3     		adr	r3, .L74+8
+ 644 00dc D3E90023 		ldrd	r2, [r3]
+ 645 00e0 5046     		mov	r0, r10
+ 646 00e2 5946     		mov	r1, fp
+ 647 00e4 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 648              	.LVL43:
+ 649 00e8 0028     		cmp	r0, #0
+ 650 00ea BDD0     		beq	.L58
+  85:App/servo_controller.c **** 
+ 651              		.loc 1 85 3 is_stmt 1 view .LVU135
+  85:App/servo_controller.c **** 
+ 652              		.loc 1 85 14 is_stmt 0 view .LVU136
+ 653 00ec 0CA3     		adr	r3, .L74+8
+ 654 00ee D3E90023 		ldrd	r2, [r3]
+ 655 00f2 CDE90223 		strd	r2, [sp, #8]
+ 656 00f6 B7E7     		b	.L58
+ 657              	.L72:
+  89:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 658              		.loc 1 89 7 is_stmt 1 view .LVU137
+  89:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 659              		.loc 1 89 10 is_stmt 0 view .LVU138
+ 660 00f8 0022     		movs	r2, #0
+ 661 00fa 134B     		ldr	r3, .L74+48
+ 662 00fc 2046     		mov	r0, r4
+ 663 00fe 2946     		mov	r1, r5
+ 664 0100 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 665              	.LVL44:
+ 666 0104 0028     		cmp	r0, #0
+ 667 0106 BBD0     		beq	.L62
+  90:App/servo_controller.c **** 
+ 668              		.loc 1 90 3 is_stmt 1 view .LVU139
+  90:App/servo_controller.c **** 
+ 669              		.loc 1 90 14 is_stmt 0 view .LVU140
+ 670 0108 0022     		movs	r2, #0
+ 671 010a 0F4B     		ldr	r3, .L74+48
+ 672 010c CDE90423 		strd	r2, [sp, #16]
+ARM GAS  /tmp/ccDHG90N.s 			page 15
+
+
+ 673 0110 B6E7     		b	.L62
+ 674              	.L75:
+ 675 0112 00BFAFF3 		.align	3
+ 675      0080
+ 676              	.L74:
+ 677 0118 00000000 		.word	0
+ 678 011c 00C05E40 		.word	1079951360
+ 679 0120 00000000 		.word	0
+ 680 0124 00206740 		.word	1080500224
+ 681 0128 00000000 		.word	joint_ang
+ 682 012c 00805640 		.word	1079410688
+ 683 0130 008051C0 		.word	-1068400640
+ 684 0134 00002E40 		.word	1076756480
+ 685 0138 00000000 		.word	servo_ang
+ 686 013c 00805140 		.word	1079083008
+ 687 0140 00804140 		.word	1078034432
+ 688 0144 008056C0 		.word	-1068072960
+ 689 0148 00805B40 		.word	1079738368
+ 690              		.cfi_endproc
+ 691              	.LFE237:
+ 693              		.section	.text.set_servoAng_BL,"ax",%progbits
+ 694              		.align	1
+ 695              		.global	set_servoAng_BL
+ 696              		.syntax unified
+ 697              		.thumb
+ 698              		.thumb_func
+ 699              		.fpu fpv4-sp-d16
+ 701              	set_servoAng_BL:
+ 702              	.LFB238:
+  96:App/servo_controller.c **** 
+  97:App/servo_controller.c **** void set_servoAng_BL(){
+ 703              		.loc 1 97 23 is_stmt 1 view -0
+ 704              		.cfi_startproc
+ 705              		@ args = 0, pretend = 0, frame = 24
+ 706              		@ frame_needed = 0, uses_anonymous_args = 0
+ 707 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+ 708              	.LCFI12:
+ 709              		.cfi_def_cfa_offset 36
+ 710              		.cfi_offset 4, -36
+ 711              		.cfi_offset 5, -32
+ 712              		.cfi_offset 6, -28
+ 713              		.cfi_offset 7, -24
+ 714              		.cfi_offset 8, -20
+ 715              		.cfi_offset 9, -16
+ 716              		.cfi_offset 10, -12
+ 717              		.cfi_offset 11, -8
+ 718              		.cfi_offset 14, -4
+ 719 0004 87B0     		sub	sp, sp, #28
+ 720              	.LCFI13:
+ 721              		.cfi_def_cfa_offset 64
+  98:App/servo_controller.c **** 	double th_temp[3];
+ 722              		.loc 1 98 2 view .LVU142
+  99:App/servo_controller.c **** 	th_temp[0] = joint_ang[9];
+ 723              		.loc 1 99 2 view .LVU143
+ 724              		.loc 1 99 24 is_stmt 0 view .LVU144
+ 725 0006 4A4C     		ldr	r4, .L99+24
+ 726 0008 606A     		ldr	r0, [r4, #36]	@ float
+ARM GAS  /tmp/ccDHG90N.s 			page 16
+
+
+ 727 000a FFF7FEFF 		bl	__aeabi_f2d
+ 728              	.LVL45:
+ 729 000e 8046     		mov	r8, r0
+ 730 0010 8946     		mov	r9, r1
+ 100:App/servo_controller.c **** 	th_temp[1] = joint_ang[10];
+ 731              		.loc 1 100 2 is_stmt 1 view .LVU145
+ 732              		.loc 1 100 24 is_stmt 0 view .LVU146
+ 733 0012 A06A     		ldr	r0, [r4, #40]	@ float
+ 734 0014 FFF7FEFF 		bl	__aeabi_f2d
+ 735              	.LVL46:
+ 736 0018 8246     		mov	r10, r0
+ 737 001a 8B46     		mov	fp, r1
+ 738              		.loc 1 100 13 view .LVU147
+ 739 001c CDE902AB 		strd	r10, [sp, #8]
+ 101:App/servo_controller.c **** 	th_temp[2] = joint_ang[11];
+ 740              		.loc 1 101 2 is_stmt 1 view .LVU148
+ 741              		.loc 1 101 24 is_stmt 0 view .LVU149
+ 742 0020 E06A     		ldr	r0, [r4, #44]	@ float
+ 743 0022 FFF7FEFF 		bl	__aeabi_f2d
+ 744              	.LVL47:
+ 745 0026 0446     		mov	r4, r0
+ 746 0028 0D46     		mov	r5, r1
+ 747              		.loc 1 101 13 view .LVU150
+ 748 002a CDE90445 		strd	r4, [sp, #16]
+ 102:App/servo_controller.c **** 
+ 103:App/servo_controller.c **** 	th_temp[0] = - th_temp[0];
+ 749              		.loc 1 103 2 is_stmt 1 view .LVU151
+ 750              		.loc 1 103 15 is_stmt 0 view .LVU152
+ 751 002e 4646     		mov	r6, r8
+ 752 0030 09F10047 		add	r7, r9, #-2147483648
+ 753              		.loc 1 103 13 view .LVU153
+ 754 0034 CDE90067 		strd	r6, [sp]
+ 104:App/servo_controller.c **** 
+ 105:App/servo_controller.c **** 	if (th_temp[0] > TH1_MAX)
+ 755              		.loc 1 105 2 is_stmt 1 view .LVU154
+ 756              		.loc 1 105 5 is_stmt 0 view .LVU155
+ 757 0038 0022     		movs	r2, #0
+ 758 003a 3E4B     		ldr	r3, .L99+28
+ 759 003c 4046     		mov	r0, r8
+ 760 003e 3946     		mov	r1, r7
+ 761 0040 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 762              	.LVL48:
+ 763 0044 0028     		cmp	r0, #0
+ 764 0046 3CD0     		beq	.L95
+ 106:App/servo_controller.c **** 		th_temp[0] = TH1_MAX;
+ 765              		.loc 1 106 3 is_stmt 1 view .LVU156
+ 766              		.loc 1 106 14 is_stmt 0 view .LVU157
+ 767 0048 0022     		movs	r2, #0
+ 768 004a 3A4B     		ldr	r3, .L99+28
+ 769 004c CDE90023 		strd	r2, [sp]
+ 770              	.L79:
+ 107:App/servo_controller.c **** 	else if (th_temp[0] < TH1_MIN)
+ 108:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 109:App/servo_controller.c **** 
+ 110:App/servo_controller.c **** 	if (th_temp[1] < TH2_MIN)
+ 771              		.loc 1 110 2 is_stmt 1 view .LVU158
+ 772              		.loc 1 110 5 is_stmt 0 view .LVU159
+ARM GAS  /tmp/ccDHG90N.s 			page 17
+
+
+ 773 0050 0022     		movs	r2, #0
+ 774 0052 394B     		ldr	r3, .L99+32
+ 775 0054 5046     		mov	r0, r10
+ 776 0056 5946     		mov	r1, fp
+ 777 0058 FFF7FEFF 		bl	__aeabi_dcmplt
+ 778              	.LVL49:
+ 779 005c 0028     		cmp	r0, #0
+ 780 005e 3DD0     		beq	.L96
+ 111:App/servo_controller.c **** 		th_temp[1] = TH2_MIN;
+ 781              		.loc 1 111 3 is_stmt 1 view .LVU160
+ 782              		.loc 1 111 14 is_stmt 0 view .LVU161
+ 783 0060 0022     		movs	r2, #0
+ 784 0062 354B     		ldr	r3, .L99+32
+ 785 0064 CDE90223 		strd	r2, [sp, #8]
+ 786              	.L83:
+ 112:App/servo_controller.c **** 	else if (th_temp[1] > TH2_MAX)
+ 113:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 114:App/servo_controller.c **** 
+ 115:App/servo_controller.c **** 	if (th_temp[2] < MIN_ANG_L2_L3 )
+ 787              		.loc 1 115 2 is_stmt 1 view .LVU162
+ 788              		.loc 1 115 5 is_stmt 0 view .LVU163
+ 789 0068 0022     		movs	r2, #0
+ 790 006a 344B     		ldr	r3, .L99+36
+ 791 006c 2046     		mov	r0, r4
+ 792 006e 2946     		mov	r1, r5
+ 793 0070 FFF7FEFF 		bl	__aeabi_dcmplt
+ 794              	.LVL50:
+ 795 0074 0028     		cmp	r0, #0
+ 796 0076 40D0     		beq	.L97
+ 116:App/servo_controller.c **** 		th_temp[2] = MIN_ANG_L2_L3;
+ 797              		.loc 1 116 3 is_stmt 1 view .LVU164
+ 798              		.loc 1 116 14 is_stmt 0 view .LVU165
+ 799 0078 0022     		movs	r2, #0
+ 800 007a 304B     		ldr	r3, .L99+36
+ 801 007c CDE90423 		strd	r2, [sp, #16]
+ 802              	.L87:
+ 117:App/servo_controller.c **** 	else if (th_temp[2] > MAX_ANG_L2_L3)
+ 118:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 119:App/servo_controller.c **** 
+ 120:App/servo_controller.c **** 	servo_ang[9] = BL_HIP_OFFSET + th_temp[0];
+ 803              		.loc 1 120 2 is_stmt 1 view .LVU166
+ 804              		.loc 1 120 31 is_stmt 0 view .LVU167
+ 805 0080 0022     		movs	r2, #0
+ 806 0082 2F4B     		ldr	r3, .L99+40
+ 807 0084 DDE90001 		ldrd	r0, [sp]
+ 808 0088 FFF7FEFF 		bl	__aeabi_dadd
+ 809              	.LVL51:
+ 810 008c FFF7FEFF 		bl	__aeabi_d2f
+ 811              	.LVL52:
+ 812              		.loc 1 120 15 view .LVU168
+ 813 0090 2C4C     		ldr	r4, .L99+44
+ 814 0092 6062     		str	r0, [r4, #36]	@ float
+ 121:App/servo_controller.c **** 	servo_ang[10] = BL_ULEG_OFFSET - th_temp[1];
+ 815              		.loc 1 121 2 is_stmt 1 view .LVU169
+ 816              		.loc 1 121 33 is_stmt 0 view .LVU170
+ 817 0094 DDE90223 		ldrd	r2, [sp, #8]
+ 818 0098 1FA1     		adr	r1, .L99
+ARM GAS  /tmp/ccDHG90N.s 			page 18
+
+
+ 819 009a D1E90001 		ldrd	r0, [r1]
+ 820 009e FFF7FEFF 		bl	__aeabi_dsub
+ 821              	.LVL53:
+ 822 00a2 FFF7FEFF 		bl	__aeabi_d2f
+ 823              	.LVL54:
+ 824              		.loc 1 121 16 view .LVU171
+ 825 00a6 A062     		str	r0, [r4, #40]	@ float
+ 122:App/servo_controller.c **** 	servo_ang[11] = BL_LLEG_OFFSET - ( th_temp[2]);
+ 826              		.loc 1 122 2 is_stmt 1 view .LVU172
+ 827              		.loc 1 122 33 is_stmt 0 view .LVU173
+ 828 00a8 DDE90423 		ldrd	r2, [sp, #16]
+ 829 00ac 1CA1     		adr	r1, .L99+8
+ 830 00ae D1E90001 		ldrd	r0, [r1]
+ 831 00b2 FFF7FEFF 		bl	__aeabi_dsub
+ 832              	.LVL55:
+ 833 00b6 FFF7FEFF 		bl	__aeabi_d2f
+ 834              	.LVL56:
+ 835              		.loc 1 122 16 view .LVU174
+ 836 00ba E062     		str	r0, [r4, #44]	@ float
+ 123:App/servo_controller.c **** 
+ 124:App/servo_controller.c **** }
+ 837              		.loc 1 124 1 view .LVU175
+ 838 00bc 07B0     		add	sp, sp, #28
+ 839              	.LCFI14:
+ 840              		.cfi_remember_state
+ 841              		.cfi_def_cfa_offset 36
+ 842              		@ sp needed
+ 843 00be BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 844              	.L95:
+ 845              	.LCFI15:
+ 846              		.cfi_restore_state
+ 107:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 847              		.loc 1 107 7 is_stmt 1 view .LVU176
+ 107:App/servo_controller.c **** 		th_temp[0] = TH1_MIN;
+ 848              		.loc 1 107 10 is_stmt 0 view .LVU177
+ 849 00c2 0022     		movs	r2, #0
+ 850 00c4 204B     		ldr	r3, .L99+48
+ 851 00c6 4046     		mov	r0, r8
+ 852 00c8 3946     		mov	r1, r7
+ 853 00ca FFF7FEFF 		bl	__aeabi_dcmplt
+ 854              	.LVL57:
+ 855 00ce 0028     		cmp	r0, #0
+ 856 00d0 BED0     		beq	.L79
+ 108:App/servo_controller.c **** 
+ 857              		.loc 1 108 3 is_stmt 1 view .LVU178
+ 108:App/servo_controller.c **** 
+ 858              		.loc 1 108 14 is_stmt 0 view .LVU179
+ 859 00d2 0022     		movs	r2, #0
+ 860 00d4 1C4B     		ldr	r3, .L99+48
+ 861 00d6 CDE90023 		strd	r2, [sp]
+ 862 00da B9E7     		b	.L79
+ 863              	.L96:
+ 112:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 864              		.loc 1 112 7 is_stmt 1 view .LVU180
+ 112:App/servo_controller.c **** 		th_temp[1] = TH2_MAX;
+ 865              		.loc 1 112 10 is_stmt 0 view .LVU181
+ 866 00dc 12A3     		adr	r3, .L99+16
+ARM GAS  /tmp/ccDHG90N.s 			page 19
+
+
+ 867 00de D3E90023 		ldrd	r2, [r3]
+ 868 00e2 5046     		mov	r0, r10
+ 869 00e4 5946     		mov	r1, fp
+ 870 00e6 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 871              	.LVL58:
+ 872 00ea 0028     		cmp	r0, #0
+ 873 00ec BCD0     		beq	.L83
+ 113:App/servo_controller.c **** 
+ 874              		.loc 1 113 3 is_stmt 1 view .LVU182
+ 113:App/servo_controller.c **** 
+ 875              		.loc 1 113 14 is_stmt 0 view .LVU183
+ 876 00ee 0EA3     		adr	r3, .L99+16
+ 877 00f0 D3E90023 		ldrd	r2, [r3]
+ 878 00f4 CDE90223 		strd	r2, [sp, #8]
+ 879 00f8 B6E7     		b	.L83
+ 880              	.L97:
+ 117:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 881              		.loc 1 117 7 is_stmt 1 view .LVU184
+ 117:App/servo_controller.c **** 		th_temp[2] = MAX_ANG_L2_L3;
+ 882              		.loc 1 117 10 is_stmt 0 view .LVU185
+ 883 00fa 0022     		movs	r2, #0
+ 884 00fc 134B     		ldr	r3, .L99+52
+ 885 00fe 2046     		mov	r0, r4
+ 886 0100 2946     		mov	r1, r5
+ 887 0102 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 888              	.LVL59:
+ 889 0106 0028     		cmp	r0, #0
+ 890 0108 BAD0     		beq	.L87
+ 118:App/servo_controller.c **** 
+ 891              		.loc 1 118 3 is_stmt 1 view .LVU186
+ 118:App/servo_controller.c **** 
+ 892              		.loc 1 118 14 is_stmt 0 view .LVU187
+ 893 010a 0022     		movs	r2, #0
+ 894 010c 0F4B     		ldr	r3, .L99+52
+ 895 010e CDE90423 		strd	r2, [sp, #16]
+ 896 0112 B5E7     		b	.L87
+ 897              	.L100:
+ 898 0114 AFF30080 		.align	3
+ 899              	.L99:
+ 900 0118 00000000 		.word	0
+ 901 011c 00C06840 		.word	1080606720
+ 902 0120 00000000 		.word	0
+ 903 0124 00707240 		.word	1081241600
+ 904 0128 00000000 		.word	0
+ 905 012c 00206740 		.word	1080500224
+ 906 0130 00000000 		.word	joint_ang
+ 907 0134 00805640 		.word	1079410688
+ 908 0138 008051C0 		.word	-1068400640
+ 909 013c 00002E40 		.word	1076756480
+ 910 0140 00405D40 		.word	1079853056
+ 911 0144 00000000 		.word	servo_ang
+ 912 0148 008056C0 		.word	-1068072960
+ 913 014c 00805B40 		.word	1079738368
+ 914              		.cfi_endproc
+ 915              	.LFE238:
+ 917              		.section	.text.drive_servos,"ax",%progbits
+ 918              		.align	1
+ARM GAS  /tmp/ccDHG90N.s 			page 20
+
+
+ 919              		.global	drive_servos
+ 920              		.syntax unified
+ 921              		.thumb
+ 922              		.thumb_func
+ 923              		.fpu fpv4-sp-d16
+ 925              	drive_servos:
+ 926              	.LFB239:
+ 125:App/servo_controller.c **** 
+ 126:App/servo_controller.c **** 
+ 127:App/servo_controller.c **** 
+ 128:App/servo_controller.c **** 
+ 129:App/servo_controller.c **** void drive_servos(){
+ 927              		.loc 1 129 20 is_stmt 1 view -0
+ 928              		.cfi_startproc
+ 929              		@ args = 0, pretend = 0, frame = 0
+ 930              		@ frame_needed = 0, uses_anonymous_args = 0
+ 931 0000 10B5     		push	{r4, lr}
+ 932              	.LCFI16:
+ 933              		.cfi_def_cfa_offset 8
+ 934              		.cfi_offset 4, -8
+ 935              		.cfi_offset 14, -4
+ 130:App/servo_controller.c ****     set_servoAng_FR();
+ 936              		.loc 1 130 5 view .LVU189
+ 937 0002 FFF7FEFF 		bl	set_servoAng_FR
+ 938              	.LVL60:
+ 131:App/servo_controller.c ****     set_servoAng_FL();
+ 939              		.loc 1 131 5 view .LVU190
+ 940 0006 FFF7FEFF 		bl	set_servoAng_FL
+ 941              	.LVL61:
+ 132:App/servo_controller.c ****     set_servoAng_BR();
+ 942              		.loc 1 132 5 view .LVU191
+ 943 000a FFF7FEFF 		bl	set_servoAng_BR
+ 944              	.LVL62:
+ 133:App/servo_controller.c ****     set_servoAng_BL();
+ 945              		.loc 1 133 5 view .LVU192
+ 946 000e FFF7FEFF 		bl	set_servoAng_BL
+ 947              	.LVL63:
+ 134:App/servo_controller.c **** 
+ 135:App/servo_controller.c ****     uint8_t srv_ch = 0;
+ 948              		.loc 1 135 5 view .LVU193
+ 136:App/servo_controller.c ****     for (int i = 0; i<12; i++){
+ 949              		.loc 1 136 5 view .LVU194
+ 950              	.LBB2:
+ 951              		.loc 1 136 10 view .LVU195
+ 952              		.loc 1 136 14 is_stmt 0 view .LVU196
+ 953 0012 0024     		movs	r4, #0
+ 954              		.loc 1 136 5 view .LVU197
+ 955 0014 0EE0     		b	.L102
+ 956              	.LVL64:
+ 957              	.L103:
+ 958              	.LBB3:
+ 137:App/servo_controller.c ****         if (i<3){srv_ch = i;}
+ 138:App/servo_controller.c ****         else if (i>=3 && i < 6){ srv_ch = i + 1;}
+ 959              		.loc 1 138 14 is_stmt 1 view .LVU198
+ 960              		.loc 1 138 23 is_stmt 0 view .LVU199
+ 961 0016 E31E     		subs	r3, r4, #3
+ 962              		.loc 1 138 17 view .LVU200
+ARM GAS  /tmp/ccDHG90N.s 			page 21
+
+
+ 963 0018 022B     		cmp	r3, #2
+ 964 001a 11D8     		bhi	.L105
+ 965              		.loc 1 138 34 is_stmt 1 discriminator 1 view .LVU201
+ 966              		.loc 1 138 45 is_stmt 0 discriminator 1 view .LVU202
+ 967 001c E0B2     		uxtb	r0, r4
+ 968              		.loc 1 138 41 discriminator 1 view .LVU203
+ 969 001e 0130     		adds	r0, r0, #1
+ 970 0020 C0B2     		uxtb	r0, r0
+ 971              	.LVL65:
+ 972              	.L104:
+ 139:App/servo_controller.c ****         else if (i>=6 && i<9){srv_ch = i + 2;}
+ 140:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 141:App/servo_controller.c ****         bool err = PCA9685_SetServoAngle(srv_ch, servo_ang[i]);
+ 973              		.loc 1 141 9 is_stmt 1 view .LVU204
+ 974              		.loc 1 141 20 is_stmt 0 view .LVU205
+ 975 0022 1E4B     		ldr	r3, .L113
+ 976 0024 03EB8403 		add	r3, r3, r4, lsl #2
+ 977 0028 93ED000A 		vldr.32	s0, [r3]
+ 978 002c FFF7FEFF 		bl	PCA9685_SetServoAngle
+ 979              	.LVL66:
+ 142:App/servo_controller.c ****         if(err){
+ 980              		.loc 1 142 9 is_stmt 1 view .LVU206
+ 981              		.loc 1 142 11 is_stmt 0 view .LVU207
+ 982 0030 88B9     		cbnz	r0, .L108
+ 983              	.LVL67:
+ 984              	.L107:
+ 985              		.loc 1 142 11 view .LVU208
+ 986              	.LBE3:
+ 136:App/servo_controller.c ****         if (i<3){srv_ch = i;}
+ 987              		.loc 1 136 27 is_stmt 1 discriminator 2 view .LVU209
+ 136:App/servo_controller.c ****         if (i<3){srv_ch = i;}
+ 988              		.loc 1 136 28 is_stmt 0 discriminator 2 view .LVU210
+ 989 0032 0134     		adds	r4, r4, #1
+ 990              	.LVL68:
+ 991              	.L102:
+ 136:App/servo_controller.c ****         if (i<3){srv_ch = i;}
+ 992              		.loc 1 136 21 is_stmt 1 discriminator 1 view .LVU211
+ 136:App/servo_controller.c ****         if (i<3){srv_ch = i;}
+ 993              		.loc 1 136 5 is_stmt 0 discriminator 1 view .LVU212
+ 994 0034 0B2C     		cmp	r4, #11
+ 995 0036 2FDC     		bgt	.L112
+ 996              	.LBB7:
+ 137:App/servo_controller.c ****         else if (i>=3 && i < 6){ srv_ch = i + 1;}
+ 997              		.loc 1 137 9 is_stmt 1 view .LVU213
+ 137:App/servo_controller.c ****         else if (i>=3 && i < 6){ srv_ch = i + 1;}
+ 998              		.loc 1 137 12 is_stmt 0 view .LVU214
+ 999 0038 022C     		cmp	r4, #2
+ 1000 003a ECDC     		bgt	.L103
+ 137:App/servo_controller.c ****         else if (i>=3 && i < 6){ srv_ch = i + 1;}
+ 1001              		.loc 1 137 18 is_stmt 1 discriminator 1 view .LVU215
+ 137:App/servo_controller.c ****         else if (i>=3 && i < 6){ srv_ch = i + 1;}
+ 1002              		.loc 1 137 25 is_stmt 0 discriminator 1 view .LVU216
+ 1003 003c E0B2     		uxtb	r0, r4
+ 1004              	.LVL69:
+ 137:App/servo_controller.c ****         else if (i>=3 && i < 6){ srv_ch = i + 1;}
+ 1005              		.loc 1 137 25 discriminator 1 view .LVU217
+ 1006 003e F0E7     		b	.L104
+ARM GAS  /tmp/ccDHG90N.s 			page 22
+
+
+ 1007              	.LVL70:
+ 1008              	.L105:
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1009              		.loc 1 139 14 is_stmt 1 view .LVU218
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1010              		.loc 1 139 23 is_stmt 0 view .LVU219
+ 1011 0040 A31F     		subs	r3, r4, #6
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1012              		.loc 1 139 17 view .LVU220
+ 1013 0042 022B     		cmp	r3, #2
+ 1014 0044 03D8     		bhi	.L106
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1015              		.loc 1 139 31 is_stmt 1 discriminator 1 view .LVU221
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1016              		.loc 1 139 42 is_stmt 0 discriminator 1 view .LVU222
+ 1017 0046 E0B2     		uxtb	r0, r4
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1018              		.loc 1 139 38 discriminator 1 view .LVU223
+ 1019 0048 0230     		adds	r0, r0, #2
+ 1020 004a C0B2     		uxtb	r0, r0
+ 1021              	.LVL71:
+ 139:App/servo_controller.c ****         else{srv_ch = i+3;}
+ 1022              		.loc 1 139 38 discriminator 1 view .LVU224
+ 1023 004c E9E7     		b	.L104
+ 1024              	.LVL72:
+ 1025              	.L106:
+ 140:App/servo_controller.c ****         bool err = PCA9685_SetServoAngle(srv_ch, servo_ang[i]);
+ 1026              		.loc 1 140 14 is_stmt 1 view .LVU225
+ 140:App/servo_controller.c ****         bool err = PCA9685_SetServoAngle(srv_ch, servo_ang[i]);
+ 1027              		.loc 1 140 24 is_stmt 0 view .LVU226
+ 1028 004e E0B2     		uxtb	r0, r4
+ 140:App/servo_controller.c ****         bool err = PCA9685_SetServoAngle(srv_ch, servo_ang[i]);
+ 1029              		.loc 1 140 21 view .LVU227
+ 1030 0050 0330     		adds	r0, r0, #3
+ 1031 0052 C0B2     		uxtb	r0, r0
+ 1032              	.LVL73:
+ 140:App/servo_controller.c ****         bool err = PCA9685_SetServoAngle(srv_ch, servo_ang[i]);
+ 1033              		.loc 1 140 21 view .LVU228
+ 1034 0054 E5E7     		b	.L104
+ 1035              	.LVL74:
+ 1036              	.L108:
+ 143:App/servo_controller.c ****             while (1){
+ 1037              		.loc 1 143 13 is_stmt 1 view .LVU229
+ 1038              	.LBB4:
+ 144:App/servo_controller.c ****                 bool err = PCA9685_Init(&hi2c3);
+ 1039              		.loc 1 144 17 view .LVU230
+ 1040              		.loc 1 144 28 is_stmt 0 view .LVU231
+ 1041 0056 1248     		ldr	r0, .L113+4
+ 1042 0058 FFF7FEFF 		bl	PCA9685_Init
+ 1043              	.LVL75:
+ 145:App/servo_controller.c ****                 if(err){
+ 1044              		.loc 1 145 17 is_stmt 1 view .LVU232
+ 1045              		.loc 1 145 19 is_stmt 0 view .LVU233
+ 1046 005c D0B1     		cbz	r0, .L110
+ 1047              	.LBB5:
+ 146:App/servo_controller.c ****                     HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, RESET); // Green LED off
+ 1048              		.loc 1 146 21 is_stmt 1 view .LVU234
+ARM GAS  /tmp/ccDHG90N.s 			page 23
+
+
+ 1049 005e 114C     		ldr	r4, .L113+8
+ 1050 0060 0022     		movs	r2, #0
+ 1051 0062 4FF48051 		mov	r1, #4096
+ 1052 0066 2046     		mov	r0, r4
+ 1053              	.LVL76:
+ 1054              		.loc 1 146 21 is_stmt 0 view .LVU235
+ 1055 0068 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1056              	.LVL77:
+ 147:App/servo_controller.c ****                     HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED on
+ 1057              		.loc 1 147 21 is_stmt 1 view .LVU236
+ 1058 006c 0122     		movs	r2, #1
+ 1059 006e 4FF48041 		mov	r1, #16384
+ 1060 0072 2046     		mov	r0, r4
+ 1061 0074 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1062              	.LVL78:
+ 148:App/servo_controller.c ****                     osDelay(100);
+ 1063              		.loc 1 148 21 view .LVU237
+ 1064 0078 6420     		movs	r0, #100
+ 1065 007a FFF7FEFF 		bl	osDelay
+ 1066              	.LVL79:
+ 149:App/servo_controller.c ****                     HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red LED off
+ 1067              		.loc 1 149 21 view .LVU238
+ 1068 007e 0022     		movs	r2, #0
+ 1069 0080 4FF48041 		mov	r1, #16384
+ 1070 0084 2046     		mov	r0, r4
+ 1071 0086 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1072              	.LVL80:
+ 150:App/servo_controller.c ****                     osDelay(1000);
+ 1073              		.loc 1 150 21 view .LVU239
+ 1074 008a 4FF47A70 		mov	r0, #1000
+ 1075 008e FFF7FEFF 		bl	osDelay
+ 1076              	.LVL81:
+ 1077              	.LBE5:
+ 1078              	.LBE4:
+ 143:App/servo_controller.c ****                 bool err = PCA9685_Init(&hi2c3);
+ 1079              		.loc 1 143 19 view .LVU240
+ 143:App/servo_controller.c ****                 bool err = PCA9685_Init(&hi2c3);
+ 1080              		.loc 1 143 22 is_stmt 0 view .LVU241
+ 1081 0092 E0E7     		b	.L108
+ 1082              	.LVL82:
+ 1083              	.L110:
+ 1084              	.LBB6:
+ 151:App/servo_controller.c ****                 }
+ 152:App/servo_controller.c ****                 else{
+ 153:App/servo_controller.c ****                     i = 0;
+ 1085              		.loc 1 153 23 view .LVU242
+ 1086 0094 0024     		movs	r4, #0
+ 1087 0096 CCE7     		b	.L107
+ 1088              	.LVL83:
+ 1089              	.L112:
+ 1090              		.loc 1 153 23 view .LVU243
+ 1091              	.LBE6:
+ 1092              	.LBE7:
+ 1093              	.LBE2:
+ 154:App/servo_controller.c ****                     break;
+ 155:App/servo_controller.c ****                 }
+ 156:App/servo_controller.c ****             }
+ARM GAS  /tmp/ccDHG90N.s 			page 24
+
+
+ 157:App/servo_controller.c ****         }
+ 158:App/servo_controller.c ****     }
+ 159:App/servo_controller.c ****     
+ 160:App/servo_controller.c ****     
+ 161:App/servo_controller.c **** }
+ 1094              		.loc 1 161 1 view .LVU244
+ 1095 0098 10BD     		pop	{r4, pc}
+ 1096              	.LVL84:
+ 1097              	.L114:
+ 1098              		.loc 1 161 1 view .LVU245
+ 1099 009a 00BF     		.align	2
+ 1100              	.L113:
+ 1101 009c 00000000 		.word	servo_ang
+ 1102 00a0 00000000 		.word	hi2c3
+ 1103 00a4 000C0240 		.word	1073875968
+ 1104              		.cfi_endproc
+ 1105              	.LFE239:
+ 1107              		.comm	IMU_ADDRESS,2,2
+ 1108              		.comm	current_sense,48,4
+ 1109              		.comm	joint_ang_feedback,64,4
+ 1110              		.comm	servo_ang,48,4
+ 1111              		.comm	joint_ang,48,4
+ 1112              		.text
+ 1113              	.Letext0:
+ 1114              		.file 2 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h"
+ 1115              		.file 3 "Drivers/CMSIS/Include/core_cm4.h"
+ 1116              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 1117              		.file 5 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 1118              		.file 6 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h"
+ 1119              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 1120              		.file 8 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 1121              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 1122              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 1123              		.file 11 "Core/Inc/i2c.h"
+ 1124              		.file 12 "App/variables.h"
+ 1125              		.file 13 "App/IMU/BaseIMU.h"
+ 1126              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h"
+ 1127              		.file 15 "App/pca9685.h"
+ARM GAS  /tmp/ccDHG90N.s 			page 25
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 servo_controller.c
+     /tmp/ccDHG90N.s:23     .text.set_servoAng_FR:0000000000000000 $t
+     /tmp/ccDHG90N.s:31     .text.set_servoAng_FR:0000000000000000 set_servoAng_FR
+     /tmp/ccDHG90N.s:231    .text.set_servoAng_FR:0000000000000110 $d
+                            *COM*:0000000000000030 joint_ang
+                            *COM*:0000000000000030 servo_ang
+     /tmp/ccDHG90N.s:247    .text.set_servoAng_FL:0000000000000000 $t
+     /tmp/ccDHG90N.s:254    .text.set_servoAng_FL:0000000000000000 set_servoAng_FL
+     /tmp/ccDHG90N.s:453    .text.set_servoAng_FL:0000000000000118 $d
+     /tmp/ccDHG90N.s:471    .text.set_servoAng_BR:0000000000000000 $t
+     /tmp/ccDHG90N.s:478    .text.set_servoAng_BR:0000000000000000 set_servoAng_BR
+     /tmp/ccDHG90N.s:677    .text.set_servoAng_BR:0000000000000118 $d
+     /tmp/ccDHG90N.s:694    .text.set_servoAng_BL:0000000000000000 $t
+     /tmp/ccDHG90N.s:701    .text.set_servoAng_BL:0000000000000000 set_servoAng_BL
+     /tmp/ccDHG90N.s:900    .text.set_servoAng_BL:0000000000000118 $d
+     /tmp/ccDHG90N.s:918    .text.drive_servos:0000000000000000 $t
+     /tmp/ccDHG90N.s:925    .text.drive_servos:0000000000000000 drive_servos
+     /tmp/ccDHG90N.s:1101   .text.drive_servos:000000000000009c $d
+                            *COM*:0000000000000002 IMU_ADDRESS
+                            *COM*:0000000000000030 current_sense
+                            *COM*:0000000000000040 joint_ang_feedback
+
+UNDEFINED SYMBOLS
+__aeabi_f2d
+__aeabi_dcmpgt
+__aeabi_dcmplt
+__aeabi_dadd
+__aeabi_d2f
+__aeabi_dsub
+PCA9685_SetServoAngle
+PCA9685_Init
+HAL_GPIO_WritePin
+osDelay
+hi2c3

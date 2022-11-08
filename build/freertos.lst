@@ -1,0 +1,425 @@
+ARM GAS  /tmp/cc6DJxR0.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"freertos.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.StartDefaultTask,"ax",%progbits
+  18              		.align	1
+  19              		.global	StartDefaultTask
+  20              		.arch armv7e-m
+  21              		.syntax unified
+  22              		.thumb
+  23              		.thumb_func
+  24              		.fpu fpv4-sp-d16
+  26              	StartDefaultTask:
+  27              	.LVL0:
+  28              	.LFB244:
+  29              		.file 1 "Core/Src/freertos.c"
+   1:Core/Src/freertos.c **** 
+   2:Core/Src/freertos.c **** /**
+   3:Core/Src/freertos.c ****   ******************************************************************************
+   4:Core/Src/freertos.c ****   * File Name          : freertos.c
+   5:Core/Src/freertos.c ****   * Description        : Code for freertos applications
+   6:Core/Src/freertos.c ****   ******************************************************************************
+   7:Core/Src/freertos.c ****   * @attention
+   8:Core/Src/freertos.c ****   *
+   9:Core/Src/freertos.c ****   * Copyright (c) 2022 STMicroelectronics.
+  10:Core/Src/freertos.c ****   * All rights reserved.
+  11:Core/Src/freertos.c ****   *
+  12:Core/Src/freertos.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/freertos.c ****   * in the root directory of this software component.
+  14:Core/Src/freertos.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/freertos.c ****   *
+  16:Core/Src/freertos.c ****   ******************************************************************************
+  17:Core/Src/freertos.c ****   */
+  18:Core/Src/freertos.c **** 
+  19:Core/Src/freertos.c **** /*
+  20:Core/Src/freertos.c **** ********************************************************************************
+  21:Core/Src/freertos.c **** *
+  22:Core/Src/freertos.c **** * Created on: March 15, 2022
+  23:Core/Src/freertos.c **** *     Author: Nipun Dhananjaya Weerakkodi -> nipun.dhananjaya@gmail.com
+  24:Core/Src/freertos.c **** ********************************************************************************
+  25:Core/Src/freertos.c **** */
+  26:Core/Src/freertos.c **** 
+  27:Core/Src/freertos.c **** /* Includes ------------------------------------------------------------------*/
+  28:Core/Src/freertos.c **** #include "FreeRTOS.h"
+  29:Core/Src/freertos.c **** #include "task.h"
+ARM GAS  /tmp/cc6DJxR0.s 			page 2
+
+
+  30:Core/Src/freertos.c **** #include "main.h"
+  31:Core/Src/freertos.c **** #include "cmsis_os.h"
+  32:Core/Src/freertos.c **** #include "microros_tasks.h"
+  33:Core/Src/freertos.c **** #include "servo_controller.h"
+  34:Core/Src/freertos.c **** #include "BaseIMU.h"
+  35:Core/Src/freertos.c **** 
+  36:Core/Src/freertos.c **** 
+  37:Core/Src/freertos.c **** typedef StaticTask_t osStaticThreadDef_t;
+  38:Core/Src/freertos.c **** 
+  39:Core/Src/freertos.c **** /* Definitions for defaultTask */
+  40:Core/Src/freertos.c **** osThreadId_t defaultTaskHandle;
+  41:Core/Src/freertos.c **** uint32_t defaultTaskBuffer[ 3000 ];
+  42:Core/Src/freertos.c **** osStaticThreadDef_t defaultTaskControlBlock;
+  43:Core/Src/freertos.c **** const osThreadAttr_t defaultTask_attributes = {
+  44:Core/Src/freertos.c ****   .name = "defaultTask",
+  45:Core/Src/freertos.c ****   // .cb_mem = &defaultTaskControlBlock,
+  46:Core/Src/freertos.c ****   // .cb_size = sizeof(defaultTaskControlBlock),
+  47:Core/Src/freertos.c ****   // .stack_mem = &defaultTaskBuffer[0],
+  48:Core/Src/freertos.c ****   .stack_size = 3000 * 4,
+  49:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityHigh7,
+  50:Core/Src/freertos.c **** };
+  51:Core/Src/freertos.c **** 
+  52:Core/Src/freertos.c **** /* Definitions for servoController */
+  53:Core/Src/freertos.c **** osThreadId_t servoControllerHandle;
+  54:Core/Src/freertos.c **** const osThreadAttr_t servoController_attributes = {
+  55:Core/Src/freertos.c ****   .name = "servoController",
+  56:Core/Src/freertos.c ****   .stack_size = 128 * 4,
+  57:Core/Src/freertos.c ****   .priority = (osPriority_t) osPriorityHigh1,
+  58:Core/Src/freertos.c **** };
+  59:Core/Src/freertos.c **** 
+  60:Core/Src/freertos.c **** 
+  61:Core/Src/freertos.c **** void StartDefaultTask(void *argument);
+  62:Core/Src/freertos.c **** void start_servoController_task(void *argument);
+  63:Core/Src/freertos.c **** 
+  64:Core/Src/freertos.c **** // extern void MX_USB_HOST_Init(void);
+  65:Core/Src/freertos.c **** void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+  66:Core/Src/freertos.c **** 
+  67:Core/Src/freertos.c **** /**
+  68:Core/Src/freertos.c ****   * @brief  FreeRTOS initialization
+  69:Core/Src/freertos.c ****   * @param  None
+  70:Core/Src/freertos.c ****   * @retval None
+  71:Core/Src/freertos.c ****   */
+  72:Core/Src/freertos.c **** void MX_FREERTOS_Init(void) {
+  73:Core/Src/freertos.c **** 
+  74:Core/Src/freertos.c ****   /* Create the thread(s) */
+  75:Core/Src/freertos.c ****   /* creation of defaultTask */
+  76:Core/Src/freertos.c ****   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  77:Core/Src/freertos.c **** 
+  78:Core/Src/freertos.c ****   /* creation of servoController */
+  79:Core/Src/freertos.c ****   servoControllerHandle = osThreadNew(start_servoController_task, NULL, &servoController_attributes
+  80:Core/Src/freertos.c **** }
+  81:Core/Src/freertos.c **** 
+  82:Core/Src/freertos.c **** 
+  83:Core/Src/freertos.c **** void StartDefaultTask(void *argument)
+  84:Core/Src/freertos.c **** {
+  30              		.loc 1 84 1 view -0
+  31              		.cfi_startproc
+ARM GAS  /tmp/cc6DJxR0.s 			page 3
+
+
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 84 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  85:Core/Src/freertos.c ****   run_hyperdogSTM_node();
+  40              		.loc 1 85 3 is_stmt 1 view .LVU2
+  41 0002 FFF7FEFF 		bl	run_hyperdogSTM_node
+  42              	.LVL1:
+  86:Core/Src/freertos.c **** }
+  43              		.loc 1 86 1 is_stmt 0 view .LVU3
+  44 0006 08BD     		pop	{r3, pc}
+  45              		.cfi_endproc
+  46              	.LFE244:
+  48              		.section	.text.start_servoController_task,"ax",%progbits
+  49              		.align	1
+  50              		.global	start_servoController_task
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  54              		.fpu fpv4-sp-d16
+  56              	start_servoController_task:
+  57              	.LFB245:
+  87:Core/Src/freertos.c **** 
+  88:Core/Src/freertos.c **** 
+  89:Core/Src/freertos.c **** void start_servoController_task(void *argument)
+  90:Core/Src/freertos.c **** {
+  58              		.loc 1 90 1 is_stmt 1 view -0
+  59              		.cfi_startproc
+  60              		@ Volatile: function does not return.
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63              	.LVL2:
+  64              		.loc 1 90 1 is_stmt 0 view .LVU5
+  65 0000 08B5     		push	{r3, lr}
+  66              	.LCFI1:
+  67              		.cfi_def_cfa_offset 8
+  68              		.cfi_offset 3, -8
+  69              		.cfi_offset 14, -4
+  70              	.LVL3:
+  71              	.L4:
+  91:Core/Src/freertos.c **** 
+  92:Core/Src/freertos.c ****   /* Infinite loop */
+  93:Core/Src/freertos.c ****   for(;;)
+  72              		.loc 1 93 3 is_stmt 1 discriminator 1 view .LVU6
+  94:Core/Src/freertos.c ****   { 
+  95:Core/Src/freertos.c ****     drive_servos();
+  73              		.loc 1 95 5 discriminator 1 view .LVU7
+  74 0002 FFF7FEFF 		bl	drive_servos
+  75              	.LVL4:
+  96:Core/Src/freertos.c ****     osDelay(10);
+  76              		.loc 1 96 5 discriminator 1 view .LVU8
+  77 0006 0A20     		movs	r0, #10
+  78 0008 FFF7FEFF 		bl	osDelay
+ARM GAS  /tmp/cc6DJxR0.s 			page 4
+
+
+  79              	.LVL5:
+  93:Core/Src/freertos.c ****   { 
+  80              		.loc 1 93 8 discriminator 1 view .LVU9
+  81 000c F9E7     		b	.L4
+  82              		.cfi_endproc
+  83              	.LFE245:
+  85              		.section	.text.MX_FREERTOS_Init,"ax",%progbits
+  86              		.align	1
+  87              		.global	MX_FREERTOS_Init
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  91              		.fpu fpv4-sp-d16
+  93              	MX_FREERTOS_Init:
+  94              	.LFB243:
+  72:Core/Src/freertos.c **** 
+  95              		.loc 1 72 29 view -0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99 0000 08B5     		push	{r3, lr}
+ 100              	.LCFI2:
+ 101              		.cfi_def_cfa_offset 8
+ 102              		.cfi_offset 3, -8
+ 103              		.cfi_offset 14, -4
+  76:Core/Src/freertos.c **** 
+ 104              		.loc 1 76 3 view .LVU11
+  76:Core/Src/freertos.c **** 
+ 105              		.loc 1 76 23 is_stmt 0 view .LVU12
+ 106 0002 074A     		ldr	r2, .L8
+ 107 0004 0021     		movs	r1, #0
+ 108 0006 0748     		ldr	r0, .L8+4
+ 109 0008 FFF7FEFF 		bl	osThreadNew
+ 110              	.LVL6:
+  76:Core/Src/freertos.c **** 
+ 111              		.loc 1 76 21 view .LVU13
+ 112 000c 064B     		ldr	r3, .L8+8
+ 113 000e 1860     		str	r0, [r3]
+  79:Core/Src/freertos.c **** }
+ 114              		.loc 1 79 3 is_stmt 1 view .LVU14
+  79:Core/Src/freertos.c **** }
+ 115              		.loc 1 79 27 is_stmt 0 view .LVU15
+ 116 0010 064A     		ldr	r2, .L8+12
+ 117 0012 0021     		movs	r1, #0
+ 118 0014 0648     		ldr	r0, .L8+16
+ 119 0016 FFF7FEFF 		bl	osThreadNew
+ 120              	.LVL7:
+  79:Core/Src/freertos.c **** }
+ 121              		.loc 1 79 25 view .LVU16
+ 122 001a 064B     		ldr	r3, .L8+20
+ 123 001c 1860     		str	r0, [r3]
+  80:Core/Src/freertos.c **** 
+ 124              		.loc 1 80 1 view .LVU17
+ 125 001e 08BD     		pop	{r3, pc}
+ 126              	.L9:
+ 127              		.align	2
+ 128              	.L8:
+ARM GAS  /tmp/cc6DJxR0.s 			page 5
+
+
+ 129 0020 00000000 		.word	.LANCHOR0
+ 130 0024 00000000 		.word	StartDefaultTask
+ 131 0028 00000000 		.word	defaultTaskHandle
+ 132 002c 00000000 		.word	.LANCHOR1
+ 133 0030 00000000 		.word	start_servoController_task
+ 134 0034 00000000 		.word	servoControllerHandle
+ 135              		.cfi_endproc
+ 136              	.LFE243:
+ 138              		.global	servoController_attributes
+ 139              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 140              		.align	2
+ 141              	.LC0:
+ 142 0000 73657276 		.ascii	"servoController\000"
+ 142      6F436F6E 
+ 142      74726F6C 
+ 142      6C657200 
+ 143              		.comm	servoControllerHandle,4,4
+ 144              		.global	defaultTask_attributes
+ 145              		.align	2
+ 146              	.LC1:
+ 147 0010 64656661 		.ascii	"defaultTask\000"
+ 147      756C7454 
+ 147      61736B00 
+ 148              		.comm	defaultTaskControlBlock,92,4
+ 149              		.comm	defaultTaskBuffer,12000,4
+ 150              		.comm	defaultTaskHandle,4,4
+ 151              		.comm	IMU_ADDRESS,2,2
+ 152              		.comm	sub_msg,28,4
+ 153              		.comm	subscriber,4,4
+ 154              		.comm	pub_msg,28,4
+ 155              		.comm	publisher,4,4
+ 156              		.comm	executor,128,8
+ 157              		.comm	allocator,20,4
+ 158              		.comm	support,72,8
+ 159              		.comm	node,8,4
+ 160              		.comm	current_sense,48,4
+ 161              		.comm	joint_ang_feedback,64,4
+ 162              		.comm	servo_ang,48,4
+ 163              		.comm	joint_ang,48,4
+ 164              		.comm	tx6_buf,4,4
+ 165              		.comm	rx6_buf,32,4
+ 166              		.comm	tx1_buf,4,4
+ 167              		.comm	rx1_buf,32,4
+ 168              		.comm	uart6_ready,1,4
+ 169              		.comm	uart1_ready,1,4
+ 170              		.section	.rodata.defaultTask_attributes,"a"
+ 171              		.align	2
+ 172              		.set	.LANCHOR0,. + 0
+ 175              	defaultTask_attributes:
+ 176 0000 10000000 		.word	.LC1
+ 177 0004 00000000 		.space	16
+ 177      00000000 
+ 177      00000000 
+ 177      00000000 
+ 178 0014 E02E0000 		.word	12000
+ 179 0018 2F000000 		.word	47
+ 180 001c 00000000 		.space	8
+ARM GAS  /tmp/cc6DJxR0.s 			page 6
+
+
+ 180      00000000 
+ 181              		.section	.rodata.servoController_attributes,"a"
+ 182              		.align	2
+ 183              		.set	.LANCHOR1,. + 0
+ 186              	servoController_attributes:
+ 187 0000 00000000 		.word	.LC0
+ 188 0004 00000000 		.space	16
+ 188      00000000 
+ 188      00000000 
+ 188      00000000 
+ 189 0014 00020000 		.word	512
+ 190 0018 29000000 		.word	41
+ 191 001c 00000000 		.space	8
+ 191      00000000 
+ 192              		.text
+ 193              	.Letext0:
+ 194              		.file 2 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h"
+ 195              		.file 3 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdint.h"
+ 196              		.file 4 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 197              		.file 5 "Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h"
+ 198              		.file 6 "Core/Inc/FreeRTOSConfig.h"
+ 199              		.file 7 "Drivers/CMSIS/Include/core_cm4.h"
+ 200              		.file 8 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h"
+ 201              		.file 9 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 202              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 203              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 204              		.file 12 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h"
+ 205              		.file 13 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h"
+ 206              		.file 14 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
+ 207              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h"
+ 208              		.file 16 "/usr/include/newlib/sys/_types.h"
+ 209              		.file 17 "/usr/include/newlib/sys/reent.h"
+ 210              		.file 18 "/usr/include/newlib/sys/lock.h"
+ 211              		.file 19 "/usr/include/newlib/time.h"
+ 212              		.file 20 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcutils
+ 213              		.file 21 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/all
+ 214              		.file 22 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw/ret
+ 215              		.file 23 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stdarg.h"
+ 216              		.file 24 "/usr/include/newlib/stdlib.h"
+ 217              		.file 25 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcutils
+ 218              		.file 26 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcutils
+ 219              		.file 27 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw/typ
+ 220              		.file 28 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/typ
+ 221              		.file 29 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/ini
+ 222              		.file 30 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/con
+ 223              		.file 31 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/dom
+ 224              		.file 32 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/nod
+ 225              		.file 33 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/pub
+ 226              		.file 34 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/sub
+ 227              		.file 35 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/cli
+ 228              		.file 36 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/gua
+ 229              		.file 37 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/ser
+ 230              		.file 38 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/tim
+ 231              		.file 39 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw/qos
+ 232              		.file 40 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/tim
+ 233              		.file 41 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/eve
+ 234              		.file 42 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/wai
+ARM GAS  /tmp/cc6DJxR0.s 			page 7
+
+
+ 235              		.file 43 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ty
+ 236              		.file 44 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ex
+ 237              		.file 45 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rclc/ex
+ 238              		.file 46 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rosidl_
+ 239              		.file 47 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rosidl_
+ 240              		.file 48 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 241              		.file 49 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 242              		.file 50 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/std_msg
+ 243              		.file 51 "Core/Inc/i2c.h"
+ 244              		.file 52 "Core/Inc/usart.h"
+ 245              		.file 53 "/usr/include/newlib/math.h"
+ 246              		.file 54 "App/variables.h"
+ 247              		.file 55 "App/microros_tasks.h"
+ 248              		.file 56 "App/IMU/BaseIMU.h"
+ 249              		.file 57 "App/servo_controller.h"
+ 250              		.file 58 "<built-in>"
+ARM GAS  /tmp/cc6DJxR0.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 freertos.c
+     /tmp/cc6DJxR0.s:18     .text.StartDefaultTask:0000000000000000 $t
+     /tmp/cc6DJxR0.s:26     .text.StartDefaultTask:0000000000000000 StartDefaultTask
+     /tmp/cc6DJxR0.s:49     .text.start_servoController_task:0000000000000000 $t
+     /tmp/cc6DJxR0.s:56     .text.start_servoController_task:0000000000000000 start_servoController_task
+     /tmp/cc6DJxR0.s:86     .text.MX_FREERTOS_Init:0000000000000000 $t
+     /tmp/cc6DJxR0.s:93     .text.MX_FREERTOS_Init:0000000000000000 MX_FREERTOS_Init
+     /tmp/cc6DJxR0.s:129    .text.MX_FREERTOS_Init:0000000000000020 $d
+                            *COM*:0000000000000004 defaultTaskHandle
+                            *COM*:0000000000000004 servoControllerHandle
+     /tmp/cc6DJxR0.s:186    .rodata.servoController_attributes:0000000000000000 servoController_attributes
+     /tmp/cc6DJxR0.s:140    .rodata.str1.4:0000000000000000 $d
+     /tmp/cc6DJxR0.s:175    .rodata.defaultTask_attributes:0000000000000000 defaultTask_attributes
+                            *COM*:000000000000005c defaultTaskControlBlock
+                            *COM*:0000000000002ee0 defaultTaskBuffer
+                            *COM*:0000000000000002 IMU_ADDRESS
+                            *COM*:000000000000001c sub_msg
+                            *COM*:0000000000000004 subscriber
+                            *COM*:000000000000001c pub_msg
+                            *COM*:0000000000000004 publisher
+                            *COM*:0000000000000080 executor
+                            *COM*:0000000000000014 allocator
+                            *COM*:0000000000000048 support
+                            *COM*:0000000000000008 node
+                            *COM*:0000000000000030 current_sense
+                            *COM*:0000000000000040 joint_ang_feedback
+                            *COM*:0000000000000030 servo_ang
+                            *COM*:0000000000000030 joint_ang
+                            *COM*:0000000000000004 tx6_buf
+                            *COM*:0000000000000020 rx6_buf
+                            *COM*:0000000000000004 tx1_buf
+                            *COM*:0000000000000020 rx1_buf
+                            *COM*:0000000000000001 uart6_ready
+                            *COM*:0000000000000001 uart1_ready
+     /tmp/cc6DJxR0.s:171    .rodata.defaultTask_attributes:0000000000000000 $d
+     /tmp/cc6DJxR0.s:182    .rodata.servoController_attributes:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+run_hyperdogSTM_node
+drive_servos
+osDelay
+osThreadNew
