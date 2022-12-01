@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccrK0U08.s 			page 1
+ARM GAS  /tmp/ccEAAwwi.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
   27:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
   28:App/microros_tasks.c ****         HAL_Delay(100);
   29:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red
-ARM GAS  /tmp/ccrK0U08.s 			page 2
+ARM GAS  /tmp/ccEAAwwi.s 			page 2
 
 
   30:App/microros_tasks.c ****         HAL_Delay(100);
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
   84:App/microros_tasks.c **** 
   85:App/microros_tasks.c **** // =========================  PUBLISHER  ================================
   86:App/microros_tasks.c **** // create publisher topic ---------------------
-ARM GAS  /tmp/ccrK0U08.s 			page 3
+ARM GAS  /tmp/ccEAAwwi.s 			page 3
 
 
   87:App/microros_tasks.c **** void create_hyperdogSTM_publisher(void)
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  141:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red LED
  142:App/microros_tasks.c ****             HAL_Delay(100);
  143:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red LED
-ARM GAS  /tmp/ccrK0U08.s 			page 4
+ARM GAS  /tmp/ccEAAwwi.s 			page 4
 
 
  144:App/microros_tasks.c ****             HAL_Delay(1000);
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
   70 0024 1160     		str	r1, [r2]	@ float
  156:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
   71              		.loc 1 156 27 is_stmt 1 discriminator 3 view .LVU14
-ARM GAS  /tmp/ccrK0U08.s 			page 5
+ARM GAS  /tmp/ccEAAwwi.s 			page 5
 
 
  156:App/microros_tasks.c ****         joint_ang[i] = msg->data.data[i];
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  120              		.cfi_offset 14, -4
  121 0002 0646     		mov	r6, r0
   26:App/microros_tasks.c ****         HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, SET); // red
-ARM GAS  /tmp/ccrK0U08.s 			page 6
+ARM GAS  /tmp/ccEAAwwi.s 			page 6
 
 
  122              		.loc 1 26 5 is_stmt 1 view .LVU23
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
   32:App/microros_tasks.c **** }
  164              		.loc 1 32 5 is_stmt 1 view .LVU36
  165 0034 4FF47A70 		mov	r0, #1000
-ARM GAS  /tmp/ccrK0U08.s 			page 7
+ARM GAS  /tmp/ccEAAwwi.s 			page 7
 
 
  166 0038 FFF7FEFF 		bl	HAL_Delay
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  212 000e 0093     		str	r3, [sp]
  213 0010 104B     		ldr	r3, .L19+8
  214 0012 114A     		ldr	r2, .L19+12
-ARM GAS  /tmp/ccrK0U08.s 			page 8
+ARM GAS  /tmp/ccEAAwwi.s 			page 8
 
 
  215 0014 1149     		ldr	r1, .L19+16
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  255              	.L18:
  256              	.LCFI5:
  257              		.cfi_restore_state
-ARM GAS  /tmp/ccrK0U08.s 			page 9
+ARM GAS  /tmp/ccEAAwwi.s 			page 9
 
 
   53:App/microros_tasks.c ****         }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  308              		.cfi_offset 14, -4
  309 0002 86B0     		sub	sp, sp, #24
  310              	.LCFI7:
-ARM GAS  /tmp/ccrK0U08.s 			page 10
+ARM GAS  /tmp/ccEAAwwi.s 			page 10
 
 
  311              		.cfi_def_cfa_offset 40
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  353 003a 2046     		mov	r0, r4
  354 003c FFF7FEFF 		bl	rclc_support_init
  355              	.LVL27:
-ARM GAS  /tmp/ccrK0U08.s 			page 11
+ARM GAS  /tmp/ccEAAwwi.s 			page 11
 
 
   73:App/microros_tasks.c ****                 break;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
   88:App/microros_tasks.c ****     RCCHECK(rclc_publisher_init_default(
  402              		.loc 1 88 1 is_stmt 1 view -0
  403              		.cfi_startproc
-ARM GAS  /tmp/ccrK0U08.s 			page 12
+ARM GAS  /tmp/ccEAAwwi.s 			page 12
 
 
  404              		@ args = 0, pretend = 0, frame = 0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  448              		.loc 1 95 27 is_stmt 0 view .LVU88
  449 0028 0F4D     		ldr	r5, .L33+16
  450 002a 6423     		movs	r3, #100
-ARM GAS  /tmp/ccrK0U08.s 			page 13
+ARM GAS  /tmp/ccEAAwwi.s 			page 13
 
 
  451 002c AB61     		str	r3, [r5, #24]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  488              		.loc 1 100 37 is_stmt 0 discriminator 1 view .LVU105
  489 004c 064B     		ldr	r3, .L33+16
  490 004e 5B69     		ldr	r3, [r3, #20]
-ARM GAS  /tmp/ccrK0U08.s 			page 14
+ARM GAS  /tmp/ccEAAwwi.s 			page 14
 
 
  100:App/microros_tasks.c ****         pub_msg.data.data[i] = 0.0;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  538              	.LVL42:
  539 0006 0246     		mov	r2, r0
  540 0008 1F4B     		ldr	r3, .L42
-ARM GAS  /tmp/ccrK0U08.s 			page 15
+ARM GAS  /tmp/ccEAAwwi.s 			page 15
 
 
  541 000a 2049     		ldr	r1, .L42+4
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  582              		.loc 1 134 23 view .LVU123
  583 0036 2061     		str	r0, [r4, #16]
  135:App/microros_tasks.c ****     // initialize servo driver PCA9685
-ARM GAS  /tmp/ccrK0U08.s 			page 16
+ARM GAS  /tmp/ccEAAwwi.s 			page 16
 
 
  584              		.loc 1 135 5 is_stmt 1 view .LVU124
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  142:App/microros_tasks.c ****             HAL_GPIO_WritePin(LD5_GPIO_Port, LD5_Pin, RESET); // red LED
  626              		.loc 1 142 13 view .LVU137
  627 0068 6420     		movs	r0, #100
-ARM GAS  /tmp/ccrK0U08.s 			page 17
+ARM GAS  /tmp/ccEAAwwi.s 			page 17
 
 
  628 006a FFF7FEFF 		bl	HAL_Delay
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  671              		@ args = 0, pretend = 0, frame = 136
  672              		@ frame_needed = 0, uses_anonymous_args = 0
  673 0000 10B5     		push	{r4, lr}
-ARM GAS  /tmp/ccrK0U08.s 			page 18
+ARM GAS  /tmp/ccEAAwwi.s 			page 18
 
 
  674              	.LCFI11:
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  719              	.LBE10:
  720              		.loc 1 178 5 discriminator 2 view .LVU153
  721 0038 F6E7     		b	.L46
-ARM GAS  /tmp/ccrK0U08.s 			page 19
+ARM GAS  /tmp/ccEAAwwi.s 			page 19
 
 
  722              	.LVL68:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  768              		.loc 1 186 5 is_stmt 0 discriminator 3 view .LVU165
  769              	.LBE11:
  770              		.loc 1 186 76 is_stmt 1 discriminator 2 view .LVU166
-ARM GAS  /tmp/ccrK0U08.s 			page 20
+ARM GAS  /tmp/ccEAAwwi.s 			page 20
 
 
  771              	.LBB13:
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  823 00a0 FFF7FEFF 		bl	HAL_GPIO_TogglePin
  824              	.LVL86:
  825              		.loc 1 188 5 discriminator 3 view .LVU181
-ARM GAS  /tmp/ccrK0U08.s 			page 21
+ARM GAS  /tmp/ccEAAwwi.s 			page 21
 
 
  826 00a4 6420     		movs	r0, #100
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  866 00e8 00000000 		.word	subscriber
  867              		.cfi_endproc
  868              	.LFE250:
-ARM GAS  /tmp/ccrK0U08.s 			page 22
+ARM GAS  /tmp/ccEAAwwi.s 			page 22
 
 
  870              		.section	.text.publisher_callback,"ax",%progbits
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  912              		.loc 1 111 26 discriminator 3 view .LVU202
  913 0010 02EB8302 		add	r2, r2, r3, lsl #2
  111:App/microros_tasks.c ****     }
-ARM GAS  /tmp/ccrK0U08.s 			page 23
+ARM GAS  /tmp/ccEAAwwi.s 			page 23
 
 
  914              		.loc 1 111 41 discriminator 3 view .LVU203
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  954              		.loc 1 116 9 is_stmt 1 view .LVU217
  955 003a 0220     		movs	r0, #2
  956              	.LVL99:
-ARM GAS  /tmp/ccrK0U08.s 			page 24
+ARM GAS  /tmp/ccEAAwwi.s 			page 24
 
 
  116:App/microros_tasks.c ****         run_hyperdogSTM_node();
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  1010              		.file 18 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/ini
  1011              		.file 19 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/con
  1012              		.file 20 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/dom
-ARM GAS  /tmp/ccrK0U08.s 			page 25
+ARM GAS  /tmp/ccEAAwwi.s 			page 25
 
 
  1013              		.file 21 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rcl/nod
@@ -1485,48 +1485,48 @@ ARM GAS  /tmp/ccrK0U08.s 			page 1
  1054              		.file 62 "micro_ros_stm32cubemx_utils/microros_static_library/libmicroros/microros_include/rmw_mic
  1055              		.file 63 "/usr/include/newlib/stdio.h"
  1056              		.file 64 "<built-in>"
-ARM GAS  /tmp/ccrK0U08.s 			page 26
+ARM GAS  /tmp/ccEAAwwi.s 			page 26
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 microros_tasks.c
-     /tmp/ccrK0U08.s:18     .text.subscription_callback:0000000000000000 $t
-     /tmp/ccrK0U08.s:26     .text.subscription_callback:0000000000000000 subscription_callback
-     /tmp/ccrK0U08.s:93     .text.subscription_callback:0000000000000038 $d
+     /tmp/ccEAAwwi.s:18     .text.subscription_callback:0000000000000000 $t
+     /tmp/ccEAAwwi.s:26     .text.subscription_callback:0000000000000000 subscription_callback
+     /tmp/ccEAAwwi.s:93     .text.subscription_callback:0000000000000038 $d
                             *COM*:0000000000000030 joint_ang
-     /tmp/ccrK0U08.s:99     .text.error_blink:0000000000000000 $t
-     /tmp/ccrK0U08.s:106    .text.error_blink:0000000000000000 error_blink
-     /tmp/ccrK0U08.s:175    .text.error_blink:0000000000000040 $d
-     /tmp/ccrK0U08.s:180    .rodata.hypergod_microros_init.str1.4:0000000000000000 $d
-     /tmp/ccrK0U08.s:184    .text.hypergod_microros_init:0000000000000000 $t
-     /tmp/ccrK0U08.s:191    .text.hypergod_microros_init:0000000000000000 hypergod_microros_init
-     /tmp/ccrK0U08.s:268    .text.hypergod_microros_init:000000000000004c $d
-     /tmp/ccrK0U08.s:282    .rodata.init_hyperdogSTM_node.str1.4:0000000000000000 $d
-     /tmp/ccrK0U08.s:289    .text.init_hyperdogSTM_node:0000000000000000 $t
-     /tmp/ccrK0U08.s:296    .text.init_hyperdogSTM_node:0000000000000000 init_hyperdogSTM_node
-     /tmp/ccrK0U08.s:380    .text.init_hyperdogSTM_node:0000000000000054 $d
+     /tmp/ccEAAwwi.s:99     .text.error_blink:0000000000000000 $t
+     /tmp/ccEAAwwi.s:106    .text.error_blink:0000000000000000 error_blink
+     /tmp/ccEAAwwi.s:175    .text.error_blink:0000000000000040 $d
+     /tmp/ccEAAwwi.s:180    .rodata.hypergod_microros_init.str1.4:0000000000000000 $d
+     /tmp/ccEAAwwi.s:184    .text.hypergod_microros_init:0000000000000000 $t
+     /tmp/ccEAAwwi.s:191    .text.hypergod_microros_init:0000000000000000 hypergod_microros_init
+     /tmp/ccEAAwwi.s:268    .text.hypergod_microros_init:000000000000004c $d
+     /tmp/ccEAAwwi.s:282    .rodata.init_hyperdogSTM_node.str1.4:0000000000000000 $d
+     /tmp/ccEAAwwi.s:289    .text.init_hyperdogSTM_node:0000000000000000 $t
+     /tmp/ccEAAwwi.s:296    .text.init_hyperdogSTM_node:0000000000000000 init_hyperdogSTM_node
+     /tmp/ccEAAwwi.s:380    .text.init_hyperdogSTM_node:0000000000000054 $d
                             *COM*:0000000000000014 allocator
                             *COM*:0000000000000048 support
                             *COM*:0000000000000008 node
-     /tmp/ccrK0U08.s:389    .rodata.create_hyperdogSTM_publisher.str1.4:0000000000000000 $d
-     /tmp/ccrK0U08.s:393    .text.create_hyperdogSTM_publisher:0000000000000000 $t
-     /tmp/ccrK0U08.s:400    .text.create_hyperdogSTM_publisher:0000000000000000 create_hyperdogSTM_publisher
-     /tmp/ccrK0U08.s:502    .text.create_hyperdogSTM_publisher:0000000000000058 $d
+     /tmp/ccEAAwwi.s:389    .rodata.create_hyperdogSTM_publisher.str1.4:0000000000000000 $d
+     /tmp/ccEAAwwi.s:393    .text.create_hyperdogSTM_publisher:0000000000000000 $t
+     /tmp/ccEAAwwi.s:400    .text.create_hyperdogSTM_publisher:0000000000000000 create_hyperdogSTM_publisher
+     /tmp/ccEAAwwi.s:502    .text.create_hyperdogSTM_publisher:0000000000000058 $d
                             *COM*:0000000000000004 publisher
                             *COM*:000000000000001c pub_msg
-     /tmp/ccrK0U08.s:511    .rodata.create_hyperdogSTM_subscriber.str1.4:0000000000000000 $d
-     /tmp/ccrK0U08.s:515    .text.create_hyperdogSTM_subscriber:0000000000000000 $t
-     /tmp/ccrK0U08.s:522    .text.create_hyperdogSTM_subscriber:0000000000000000 create_hyperdogSTM_subscriber
-     /tmp/ccrK0U08.s:649    .text.create_hyperdogSTM_subscriber:0000000000000088 $d
+     /tmp/ccEAAwwi.s:511    .rodata.create_hyperdogSTM_subscriber.str1.4:0000000000000000 $d
+     /tmp/ccEAAwwi.s:515    .text.create_hyperdogSTM_subscriber:0000000000000000 $t
+     /tmp/ccEAAwwi.s:522    .text.create_hyperdogSTM_subscriber:0000000000000000 create_hyperdogSTM_subscriber
+     /tmp/ccEAAwwi.s:649    .text.create_hyperdogSTM_subscriber:0000000000000088 $d
                             *COM*:0000000000000004 subscriber
                             *COM*:000000000000001c sub_msg
-     /tmp/ccrK0U08.s:660    .text.run_hyperdogSTM_node:0000000000000000 $t
-     /tmp/ccrK0U08.s:667    .text.run_hyperdogSTM_node:0000000000000000 run_hyperdogSTM_node
-     /tmp/ccrK0U08.s:856    .text.run_hyperdogSTM_node:00000000000000c0 $d
-     /tmp/ccrK0U08.s:878    .text.publisher_callback:0000000000000000 publisher_callback
+     /tmp/ccEAAwwi.s:660    .text.run_hyperdogSTM_node:0000000000000000 $t
+     /tmp/ccEAAwwi.s:667    .text.run_hyperdogSTM_node:0000000000000000 run_hyperdogSTM_node
+     /tmp/ccEAAwwi.s:856    .text.run_hyperdogSTM_node:00000000000000c0 $d
+     /tmp/ccEAAwwi.s:878    .text.publisher_callback:0000000000000000 publisher_callback
                             *COM*:0000000000000080 executor
-     /tmp/ccrK0U08.s:871    .text.publisher_callback:0000000000000000 $t
-     /tmp/ccrK0U08.s:967    .text.publisher_callback:0000000000000048 $d
+     /tmp/ccEAAwwi.s:871    .text.publisher_callback:0000000000000000 $t
+     /tmp/ccEAAwwi.s:967    .text.publisher_callback:0000000000000048 $d
                             *COM*:0000000000000030 current_sense
                             *COM*:0000000000000040 joint_ang_feedback
                             *COM*:0000000000000030 servo_ang
@@ -1545,7 +1545,7 @@ rmw_uros_set_custom_transport
 rcutils_get_zero_initialized_allocator
 rcutils_set_default_allocator
 printf
-ARM GAS  /tmp/ccrK0U08.s 			page 27
+ARM GAS  /tmp/ccEAAwwi.s 			page 27
 
 
 cubemx_transport_read

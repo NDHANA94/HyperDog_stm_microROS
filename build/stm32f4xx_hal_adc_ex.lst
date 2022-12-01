@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccaNqkeb.s 			page 1
+ARM GAS  /tmp/ccbmacUg.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
   28:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****              (+++) Enable the clock for the ADC GPIOs using the following function:
   29:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****                    __HAL_RCC_GPIOx_CLK_ENABLE()
   30:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****              (+++) Configure these ADC pins in analog mode using HAL_GPIO_Init()
-ARM GAS  /tmp/ccaNqkeb.s 			page 2
+ARM GAS  /tmp/ccbmacUg.s 			page 2
 
 
   31:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****        (##) In case of using interrupts (e.g. HAL_ADC_Start_IT())
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
   85:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** /* Includes ------------------------------------------------------------------*/
   86:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** #include "stm32f4xx_hal.h"
   87:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** 
-ARM GAS  /tmp/ccaNqkeb.s 			page 3
+ARM GAS  /tmp/ccbmacUg.s 			page 3
 
 
   88:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** /** @addtogroup STM32F4xx_HAL_Driver
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  142:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   * @param  hadc pointer to a ADC_HandleTypeDef structure that contains
  143:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   *         the configuration information for the specified ADC.
  144:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   * @retval HAL status
-ARM GAS  /tmp/ccaNqkeb.s 			page 4
+ARM GAS  /tmp/ccbmacUg.s 			page 4
 
 
  145:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  199:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* (To ensure of no unknown state from potential previous ADC operations) */
  200:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     __HAL_ADC_CLEAR_FLAG(hadc, ADC_FLAG_JEOC);
  201:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** 
-ARM GAS  /tmp/ccaNqkeb.s 			page 5
+ARM GAS  /tmp/ccbmacUg.s 			page 5
 
 
  202:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* Pointer to the common control register to which is belonging hadc    */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  256:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   __HAL_LOCK(hadc);
  257:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
  258:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /* Enable the ADC peripheral */
-ARM GAS  /tmp/ccaNqkeb.s 			page 6
+ARM GAS  /tmp/ccbmacUg.s 			page 6
 
 
  259:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  313:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* Check if Multimode enabled */
  314:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     if(HAL_IS_BIT_CLR(tmpADC_Common->CCR, ADC_CCR_MULTI))
  315:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     {
-ARM GAS  /tmp/ccaNqkeb.s 			page 7
+ARM GAS  /tmp/ccbmacUg.s 			page 7
 
 
  316:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       tmp1 = HAL_IS_BIT_CLR(hadc->Instance->CR2, ADC_CR2_JEXTEN);
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  370:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /* Stop potential conversion and disable ADC peripheral                     */
  371:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /* Conditioned to:                                                          */
  372:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /* - No conversion on the other group (regular group) is intended to        */
-ARM GAS  /tmp/ccaNqkeb.s 			page 8
+ARM GAS  /tmp/ccbmacUg.s 			page 8
 
 
  373:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /*   continue (injected and regular groups stop conversion and ADC disable  */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  427:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       if((Timeout == 0U)||((HAL_GetTick() - tickstart ) > Timeout))
  428:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       {
  429:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****         /* New check to avoid false timeout detection in case of preemption */
-ARM GAS  /tmp/ccaNqkeb.s 			page 9
+ARM GAS  /tmp/ccbmacUg.s 			page 9
 
 
  430:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****         if(!(__HAL_ADC_GET_FLAG(hadc, ADC_FLAG_JEOC)))
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  484:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   */
  485:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** HAL_StatusTypeDef HAL_ADCEx_InjectedStop_IT(ADC_HandleTypeDef* hadc)
  486:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** {
-ARM GAS  /tmp/ccaNqkeb.s 			page 10
+ARM GAS  /tmp/ccbmacUg.s 			page 10
 
 
  487:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   HAL_StatusTypeDef tmp_hal_status = HAL_OK;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  541:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   *            @arg ADC_INJECTED_RANK_1: Injected Channel1 selected
  542:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   *            @arg ADC_INJECTED_RANK_2: Injected Channel2 selected
  543:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   *            @arg ADC_INJECTED_RANK_3: Injected Channel3 selected
-ARM GAS  /tmp/ccaNqkeb.s 			page 11
+ARM GAS  /tmp/ccbmacUg.s 			page 11
 
 
  544:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   *            @arg ADC_INJECTED_RANK_4: Injected Channel4 selected
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  598:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** HAL_StatusTypeDef HAL_ADCEx_MultiModeStart_DMA(ADC_HandleTypeDef* hadc, uint32_t* pData, uint32_t L
  599:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** {
  600:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   __IO uint32_t counter = 0U;
-ARM GAS  /tmp/ccaNqkeb.s 			page 12
+ARM GAS  /tmp/ccbmacUg.s 			page 12
 
 
  601:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   ADC_Common_TypeDef *tmpADC_Common;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  655:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
  656:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* Process unlocked */
  657:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* Unlock before starting ADC conversions: in case of potential           */
-ARM GAS  /tmp/ccaNqkeb.s 			page 13
+ARM GAS  /tmp/ccbmacUg.s 			page 13
 
 
  658:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* interruption, to let the process to ADC IRQ Handler.                   */
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  712:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     SET_BIT(hadc->ErrorCode, HAL_ADC_ERROR_INTERNAL);
  713:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   }
  714:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
-ARM GAS  /tmp/ccaNqkeb.s 			page 14
+ARM GAS  /tmp/ccbmacUg.s 			page 14
 
 
  715:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /* Return function status */
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  769:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** }
  770:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** 
  771:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** /**
-ARM GAS  /tmp/ccaNqkeb.s 			page 15
+ARM GAS  /tmp/ccbmacUg.s 			page 15
 
 
  772:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   * @brief  Returns the last ADC1, ADC2 and ADC3 regular conversions results 
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  826:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   assert_param(IS_ADC_INJECTED_RANK(sConfigInjected->InjectedRank));
  827:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   assert_param(IS_ADC_SAMPLE_TIME(sConfigInjected->InjectedSamplingTime));
  828:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   assert_param(IS_ADC_EXT_INJEC_TRIG(sConfigInjected->ExternalTrigInjecConv));
-ARM GAS  /tmp/ccaNqkeb.s 			page 16
+ARM GAS  /tmp/ccbmacUg.s 			page 16
 
 
  829:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   assert_param(IS_ADC_INJECTED_LENGTH(sConfigInjected->InjectedNbrOfConversion));
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  883:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* Select external trigger to start conversion */
  884:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     hadc->Instance->CR2 &= ~(ADC_CR2_JEXTSEL);
  885:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     hadc->Instance->CR2 |=  sConfigInjected->ExternalTrigInjecConv;
-ARM GAS  /tmp/ccaNqkeb.s 			page 17
+ARM GAS  /tmp/ccbmacUg.s 			page 17
 
 
  886:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  940:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       hadc->Instance->JOFR4 |= sConfigInjected->InjectedOffset;
  941:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       break;
  942:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   }
-ARM GAS  /tmp/ccaNqkeb.s 			page 18
+ARM GAS  /tmp/ccbmacUg.s 			page 18
 
 
  943:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  997:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   tmpADC_Common->CCR &= ~(ADC_CCR_MULTI);
  998:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   tmpADC_Common->CCR |= multimode->Mode;
  999:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
-ARM GAS  /tmp/ccaNqkeb.s 			page 19
+ARM GAS  /tmp/ccbmacUg.s 			page 19
 
 
 1000:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   /* Set the ADC DMA access mode */
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
 1054:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       CLEAR_BIT(hadc->State, HAL_ADC_STATE_REG_BUSY);   
 1055:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       
 1056:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       if (HAL_IS_BIT_CLR(hadc->State, HAL_ADC_STATE_INJ_BUSY))
-ARM GAS  /tmp/ccaNqkeb.s 			page 20
+ARM GAS  /tmp/ccbmacUg.s 			page 20
 
 
 1057:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       {
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
   45 0004 4023     		movs	r3, #64
   46 0006 0364     		str	r3, [r0, #64]
 1095:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     /* Set ADC error code to DMA error */
-ARM GAS  /tmp/ccaNqkeb.s 			page 21
+ARM GAS  /tmp/ccbmacUg.s 			page 21
 
 
 1096:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     hadc->ErrorCode |= HAL_ADC_ERROR_DMA;
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
   95              		.syntax unified
   96              		.thumb
   97              		.thumb_func
-ARM GAS  /tmp/ccaNqkeb.s 			page 22
+ARM GAS  /tmp/ccbmacUg.s 			page 22
 
 
   98              		.fpu fpv4-sp-d16
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  139 0022 D16A     		ldr	r1, [r2, #44]
 1043:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****        (HAL_IS_BIT_CLR(hadc->Instance->SQR1, ADC_SQR1_L) || 
  140              		.loc 1 1043 62 view .LVU30
-ARM GAS  /tmp/ccaNqkeb.s 			page 23
+ARM GAS  /tmp/ccbmacUg.s 			page 23
 
 
  141 0024 11F4700F 		tst	r1, #15728640
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  182              	.LVL12:
 1068:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   }
  183              		.loc 1 1068 21 view .LVU44
-ARM GAS  /tmp/ccaNqkeb.s 			page 24
+ARM GAS  /tmp/ccbmacUg.s 			page 24
 
 
  184 005c DB6C     		ldr	r3, [r3, #76]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  228              		.loc 1 153 3 discriminator 2 view .LVU56
  159:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {  
  229              		.loc 1 159 3 discriminator 2 view .LVU57
-ARM GAS  /tmp/ccaNqkeb.s 			page 25
+ARM GAS  /tmp/ccbmacUg.s 			page 25
 
 
  159:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {  
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  174:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {
  269              		.loc 1 174 3 is_stmt 1 view .LVU73
  174:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {
-ARM GAS  /tmp/ccaNqkeb.s 			page 26
+ARM GAS  /tmp/ccbmacUg.s 			page 26
 
 
  270              		.loc 1 174 6 is_stmt 0 view .LVU74
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  309              		.loc 1 210 7 is_stmt 1 view .LVU89
  210:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       tmp2 = HAL_IS_BIT_CLR(hadc->Instance->CR1, ADC_CR1_JAUTO);
  310              		.loc 1 210 14 is_stmt 0 view .LVU90
-ARM GAS  /tmp/ccaNqkeb.s 			page 27
+ARM GAS  /tmp/ccbmacUg.s 			page 27
 
 
  311 0082 0268     		ldr	r2, [r0]
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  350              		.loc 1 222 7 is_stmt 1 view .LVU105
  222:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       {
  351              		.loc 1 222 9 is_stmt 0 view .LVU106
-ARM GAS  /tmp/ccaNqkeb.s 			page 28
+ARM GAS  /tmp/ccbmacUg.s 			page 28
 
 
  352 00ae 1448     		ldr	r0, .L27+12
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  394              		@ sp needed
  395 00dc 7047     		bx	lr
  396              	.LVL28:
-ARM GAS  /tmp/ccaNqkeb.s 			page 29
+ARM GAS  /tmp/ccbmacUg.s 			page 29
 
 
  397              	.L19:
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  446              	.LVL35:
  447              	.LFB236:
  250:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   __IO uint32_t counter = 0U;
-ARM GAS  /tmp/ccaNqkeb.s 			page 30
+ARM GAS  /tmp/ccbmacUg.s 			page 30
 
 
  448              		.loc 1 250 1 is_stmt 1 view -0
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  486              		.loc 1 269 53 is_stmt 0 view .LVU142
  487 0026 354B     		ldr	r3, .L45
  488 0028 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccaNqkeb.s 			page 31
+ARM GAS  /tmp/ccbmacUg.s 			page 31
 
 
  489 002a 354A     		ldr	r2, .L45+4
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  528 0060 036C     		ldr	r3, [r0, #64]
  290:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     {
  529              		.loc 1 290 8 view .LVU158
-ARM GAS  /tmp/ccaNqkeb.s 			page 32
+ARM GAS  /tmp/ccbmacUg.s 			page 32
 
 
  530 0062 13F4807F 		tst	r3, #256
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  318:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       {
  569              		.loc 1 318 9 is_stmt 0 view .LVU174
  570 0096 11F4401F 		tst	r1, #3145728
-ARM GAS  /tmp/ccaNqkeb.s 			page 33
+ARM GAS  /tmp/ccbmacUg.s 			page 33
 
 
  571 009a 27D1     		bne	.L38
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  610              		.loc 1 328 35 discriminator 1 view .LVU189
  611 00c2 BAB9     		cbnz	r2, .L41
  328:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       {
-ARM GAS  /tmp/ccaNqkeb.s 			page 34
+ARM GAS  /tmp/ccbmacUg.s 			page 34
 
 
  612              		.loc 1 328 43 discriminator 2 view .LVU190
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  345:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** }
  656              		.loc 1 345 10 view .LVU201
  657 00ec 0020     		movs	r0, #0
-ARM GAS  /tmp/ccaNqkeb.s 			page 35
+ARM GAS  /tmp/ccbmacUg.s 			page 35
 
 
  658              	.LVL52:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  706              		.loc 1 365 3 view .LVU209
  368:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
  707              		.loc 1 368 3 view .LVU210
-ARM GAS  /tmp/ccaNqkeb.s 			page 36
+ARM GAS  /tmp/ccbmacUg.s 			page 36
 
 
  368:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  362:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
  748              		.loc 1 362 21 view .LVU225
  749 0046 04E0     		b	.L50
-ARM GAS  /tmp/ccaNqkeb.s 			page 37
+ARM GAS  /tmp/ccbmacUg.s 			page 37
 
 
  750              	.LVL59:
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  793              		.fpu fpv4-sp-d16
  795              	HAL_ADCEx_InjectedPollForConversion:
  796              	.LVL66:
-ARM GAS  /tmp/ccaNqkeb.s 			page 38
+ARM GAS  /tmp/ccbmacUg.s 			page 38
 
 
  797              	.LFB238:
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  837              	.L56:
  430:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****         {
  838              		.loc 1 430 9 is_stmt 1 view .LVU252
-ARM GAS  /tmp/ccaNqkeb.s 			page 39
+ARM GAS  /tmp/ccbmacUg.s 			page 39
 
 
  430:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****         {
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  877              		.loc 1 453 6 is_stmt 0 view .LVU268
  878 0050 2368     		ldr	r3, [r4]
  879 0052 9A68     		ldr	r2, [r3, #8]
-ARM GAS  /tmp/ccaNqkeb.s 			page 40
+ARM GAS  /tmp/ccbmacUg.s 			page 40
 
 
  453:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****      (HAL_IS_BIT_CLR(hadc->Instance->JSQR, ADC_JSQR_JL)  ||
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  918              		.loc 1 465 7 is_stmt 1 view .LVU284
  919 008e 236C     		ldr	r3, [r4, #64]
  920 0090 43F00103 		orr	r3, r3, #1
-ARM GAS  /tmp/ccaNqkeb.s 			page 41
+ARM GAS  /tmp/ccbmacUg.s 			page 41
 
 
  921 0094 2364     		str	r3, [r4, #64]
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  968              		.loc 1 493 3 view .LVU293
  493:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
  969              		.loc 1 493 3 view .LVU294
-ARM GAS  /tmp/ccaNqkeb.s 			page 42
+ARM GAS  /tmp/ccbmacUg.s 			page 42
 
 
  970 0002 90F83C20 		ldrb	r2, [r0, #60]	@ zero_extendqisi2
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1010              		.loc 1 487 21 is_stmt 0 view .LVU308
  1011 004c 0020     		movs	r0, #0
  1012              	.LVL74:
-ARM GAS  /tmp/ccaNqkeb.s 			page 43
+ARM GAS  /tmp/ccbmacUg.s 			page 43
 
 
  487:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1055              		.syntax unified
  1056              		.thumb
  1057              		.thumb_func
-ARM GAS  /tmp/ccaNqkeb.s 			page 44
+ARM GAS  /tmp/ccbmacUg.s 			page 44
 
 
  1058              		.fpu fpv4-sp-d16
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1101 0020 0193     		str	r3, [sp, #4]
  565:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     case ADC_INJECTED_RANK_3: 
  1102              		.loc 1 565 5 is_stmt 1 view .LVU334
-ARM GAS  /tmp/ccaNqkeb.s 			page 45
+ARM GAS  /tmp/ccbmacUg.s 			page 45
 
 
  1103              	.L76:
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  578:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     }
  1142              		.loc 1 578 28 view .LVU350
  1143 003a DB6B     		ldr	r3, [r3, #60]
-ARM GAS  /tmp/ccaNqkeb.s 			page 46
+ARM GAS  /tmp/ccbmacUg.s 			page 46
 
 
  578:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     }
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1187              		.loc 1 609 3 view .LVU363
  1188 000a 90F83C20 		ldrb	r2, [r0, #60]	@ zero_extendqisi2
  1189 000e 012A     		cmp	r2, #1
-ARM GAS  /tmp/ccaNqkeb.s 			page 47
+ARM GAS  /tmp/ccbmacUg.s 			page 47
 
 
  1190 0010 7CD0     		beq	.L94
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1229              	.L86:
  621:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     {
  1230              		.loc 1 621 10 is_stmt 1 view .LVU379
-ARM GAS  /tmp/ccaNqkeb.s 			page 48
+ARM GAS  /tmp/ccbmacUg.s 			page 48
 
 
  621:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     {
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1271 0088 6264     		str	r2, [r4, #68]
  1272              	.L91:
  659:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
-ARM GAS  /tmp/ccaNqkeb.s 			page 49
+ARM GAS  /tmp/ccbmacUg.s 			page 49
 
 
  1273              		.loc 1 659 5 view .LVU394
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1310              		.loc 1 685 8 view .LVU411
  1311 00b8 BAB1     		cbz	r2, .L92
  688:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     }
-ARM GAS  /tmp/ccaNqkeb.s 			page 50
+ARM GAS  /tmp/ccbmacUg.s 			page 50
 
 
  1312              		.loc 1 688 7 is_stmt 1 view .LVU412
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1353 00ea 0F48     		ldr	r0, .L97+20
  1354 00ec 4268     		ldr	r2, [r0, #4]
  1355 00ee 22F40052 		bic	r2, r2, #8192
-ARM GAS  /tmp/ccaNqkeb.s 			page 51
+ARM GAS  /tmp/ccbmacUg.s 			page 51
 
 
  1356 00f2 4260     		str	r2, [r0, #4]
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1402 0124 00000000 		.word	ADC_MultiModeDMAError
  1403 0128 00230140 		.word	1073816320
  1404 012c 08230140 		.word	1073816328
-ARM GAS  /tmp/ccaNqkeb.s 			page 52
+ARM GAS  /tmp/ccbmacUg.s 			page 52
 
 
  1405              		.cfi_endproc
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1449              		.loc 1 746 3 discriminator 2 view .LVU445
  746:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {
  1450              		.loc 1 746 6 is_stmt 0 discriminator 2 view .LVU446
-ARM GAS  /tmp/ccaNqkeb.s 			page 53
+ARM GAS  /tmp/ccbmacUg.s 			page 53
 
 
  1451 001c 0368     		ldr	r3, [r0]
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1491 0050 23F00103 		bic	r3, r3, #1
  1492 0054 43F00103 		orr	r3, r3, #1
  1493 0058 2364     		str	r3, [r4, #64]
-ARM GAS  /tmp/ccaNqkeb.s 			page 54
+ARM GAS  /tmp/ccbmacUg.s 			page 54
 
 
  1494 005a E5E7     		b	.L101
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1542              		.cfi_endproc
  1543              	.LFE243:
  1545              		.section	.text.HAL_ADCEx_InjectedConvCpltCallback,"ax",%progbits
-ARM GAS  /tmp/ccaNqkeb.s 			page 55
+ARM GAS  /tmp/ccbmacUg.s 			page 55
 
 
  1546              		.align	1
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  838:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {
  1591              		.loc 1 838 3 view .LVU481
  840:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   }
-ARM GAS  /tmp/ccaNqkeb.s 			page 56
+ARM GAS  /tmp/ccbmacUg.s 			page 56
 
 
  1592              		.loc 1 840 5 view .LVU482
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  853:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   }
  1631              		.loc 1 853 27 view .LVU498
  1632 0032 EA68     		ldr	r2, [r5, #12]
-ARM GAS  /tmp/ccaNqkeb.s 			page 57
+ARM GAS  /tmp/ccbmacUg.s 			page 57
 
 
  853:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   }
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1673 006e 03EB8303 		add	r3, r3, r3, lsl #2
  1674 0072 1F24     		movs	r4, #31
  1675 0074 04FA03F3 		lsl	r3, r4, r3
-ARM GAS  /tmp/ccaNqkeb.s 			page 58
+ARM GAS  /tmp/ccbmacUg.s 			page 58
 
 
  871:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****    
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1715 00b0 9368     		ldr	r3, [r2, #8]
  885:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
  1716              		.loc 1 885 44 view .LVU528
-ARM GAS  /tmp/ccaNqkeb.s 			page 59
+ARM GAS  /tmp/ccbmacUg.s 			page 59
 
 
  1717 00b2 8C69     		ldr	r4, [r1, #24]
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1754              		.loc 1 909 22 is_stmt 0 view .LVU545
  1755 00dc 0B7D     		ldrb	r3, [r1, #20]	@ zero_extendqisi2
  909:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {
-ARM GAS  /tmp/ccaNqkeb.s 			page 60
+ARM GAS  /tmp/ccbmacUg.s 			page 60
 
 
  1756              		.loc 1 909 6 view .LVU546
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1795              		.loc 1 941 7 is_stmt 1 view .LVU561
  1796 0112 38E0     		b	.L128
  1797              	.L117:
-ARM GAS  /tmp/ccaNqkeb.s 			page 61
+ARM GAS  /tmp/ccbmacUg.s 			page 61
 
 
  858:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****     
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1836              		.loc 1 895 25 view .LVU577
  1837 014c 9368     		ldr	r3, [r2, #8]
  1838 014e 23F44013 		bic	r3, r3, #3145728
-ARM GAS  /tmp/ccaNqkeb.s 			page 62
+ARM GAS  /tmp/ccbmacUg.s 			page 62
 
 
  1839 0152 9360     		str	r3, [r2, #8]
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1878              		.loc 1 926 7 is_stmt 1 view .LVU592
  1879              	.L128:
  947:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** 
-ARM GAS  /tmp/ccaNqkeb.s 			page 63
+ARM GAS  /tmp/ccbmacUg.s 			page 63
 
 
  1880              		.loc 1 947 5 view .LVU593
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1920              		.loc 1 929 11 is_stmt 0 view .LVU607
  1921 01a2 0268     		ldr	r2, [r0]
  929:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****       hadc->Instance->JOFR2 |= sConfigInjected->InjectedOffset;
-ARM GAS  /tmp/ccaNqkeb.s 			page 64
+ARM GAS  /tmp/ccbmacUg.s 			page 64
 
 
  1922              		.loc 1 929 29 view .LVU608
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  1961              	.L137:
  950:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   {
  1962              		.loc 1 950 51 is_stmt 0 discriminator 1 view .LVU624
-ARM GAS  /tmp/ccaNqkeb.s 			page 65
+ARM GAS  /tmp/ccbmacUg.s 			page 65
 
 
  1963 01d6 0B68     		ldr	r3, [r1]
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  2007              	.LFE245:
  2009              		.section	.text.HAL_ADCEx_MultiModeConfigChannel,"ax",%progbits
  2010              		.align	1
-ARM GAS  /tmp/ccaNqkeb.s 			page 66
+ARM GAS  /tmp/ccbmacUg.s 			page 66
 
 
  2011              		.global	HAL_ADCEx_MultiModeConfigChannel
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  998:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
  2052              		.loc 1 998 22 is_stmt 0 discriminator 2 view .LVU649
  2053 001a 5A68     		ldr	r2, [r3, #4]
-ARM GAS  /tmp/ccaNqkeb.s 			page 67
+ARM GAS  /tmp/ccbmacUg.s 			page 67
 
 
  998:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c ****   
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
 1012:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** }
  2091              		.loc 1 1012 3 discriminator 2 view .LVU667
 1012:Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c **** }
-ARM GAS  /tmp/ccaNqkeb.s 			page 68
+ARM GAS  /tmp/ccbmacUg.s 			page 68
 
 
  2092              		.loc 1 1012 10 is_stmt 0 discriminator 2 view .LVU668
@@ -4058,50 +4058,50 @@ ARM GAS  /tmp/ccaNqkeb.s 			page 1
  2124              		.file 9 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc.h"
  2125              		.file 10 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_adc_ex.h"
  2126              		.file 11 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h"
-ARM GAS  /tmp/ccaNqkeb.s 			page 69
+ARM GAS  /tmp/ccbmacUg.s 			page 69
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f4xx_hal_adc_ex.c
-     /tmp/ccaNqkeb.s:18     .text.ADC_MultiModeDMAError:0000000000000000 $t
-     /tmp/ccaNqkeb.s:25     .text.ADC_MultiModeDMAError:0000000000000000 ADC_MultiModeDMAError
-     /tmp/ccaNqkeb.s:61     .text.ADC_MultiModeDMAHalfConvCplt:0000000000000000 $t
-     /tmp/ccaNqkeb.s:67     .text.ADC_MultiModeDMAHalfConvCplt:0000000000000000 ADC_MultiModeDMAHalfConvCplt
-     /tmp/ccaNqkeb.s:94     .text.ADC_MultiModeDMAConvCplt:0000000000000000 $t
-     /tmp/ccaNqkeb.s:100    .text.ADC_MultiModeDMAConvCplt:0000000000000000 ADC_MultiModeDMAConvCplt
-     /tmp/ccaNqkeb.s:194    .text.HAL_ADCEx_InjectedStart:0000000000000000 $t
-     /tmp/ccaNqkeb.s:201    .text.HAL_ADCEx_InjectedStart:0000000000000000 HAL_ADCEx_InjectedStart
-     /tmp/ccaNqkeb.s:430    .text.HAL_ADCEx_InjectedStart:00000000000000f4 $d
-     /tmp/ccaNqkeb.s:438    .text.HAL_ADCEx_InjectedStart_IT:0000000000000000 $t
-     /tmp/ccaNqkeb.s:445    .text.HAL_ADCEx_InjectedStart_IT:0000000000000000 HAL_ADCEx_InjectedStart_IT
-     /tmp/ccaNqkeb.s:679    .text.HAL_ADCEx_InjectedStart_IT:00000000000000fc $d
-     /tmp/ccaNqkeb.s:687    .text.HAL_ADCEx_InjectedStop:0000000000000000 $t
-     /tmp/ccaNqkeb.s:694    .text.HAL_ADCEx_InjectedStop:0000000000000000 HAL_ADCEx_InjectedStop
-     /tmp/ccaNqkeb.s:788    .text.HAL_ADCEx_InjectedPollForConversion:0000000000000000 $t
-     /tmp/ccaNqkeb.s:795    .text.HAL_ADCEx_InjectedPollForConversion:0000000000000000 HAL_ADCEx_InjectedPollForConversion
-     /tmp/ccaNqkeb.s:948    .text.HAL_ADCEx_InjectedStop_IT:0000000000000000 $t
-     /tmp/ccaNqkeb.s:955    .text.HAL_ADCEx_InjectedStop_IT:0000000000000000 HAL_ADCEx_InjectedStop_IT
-     /tmp/ccaNqkeb.s:1053   .text.HAL_ADCEx_InjectedGetValue:0000000000000000 $t
-     /tmp/ccaNqkeb.s:1060   .text.HAL_ADCEx_InjectedGetValue:0000000000000000 HAL_ADCEx_InjectedGetValue
-     /tmp/ccaNqkeb.s:1089   .text.HAL_ADCEx_InjectedGetValue:0000000000000018 $d
-     /tmp/ccaNqkeb.s:1093   .text.HAL_ADCEx_InjectedGetValue:000000000000001c $t
-     /tmp/ccaNqkeb.s:1152   .text.HAL_ADCEx_MultiModeStart_DMA:0000000000000000 $t
-     /tmp/ccaNqkeb.s:1159   .text.HAL_ADCEx_MultiModeStart_DMA:0000000000000000 HAL_ADCEx_MultiModeStart_DMA
-     /tmp/ccaNqkeb.s:1398   .text.HAL_ADCEx_MultiModeStart_DMA:0000000000000114 $d
-     /tmp/ccaNqkeb.s:1409   .text.HAL_ADCEx_MultiModeStop_DMA:0000000000000000 $t
-     /tmp/ccaNqkeb.s:1416   .text.HAL_ADCEx_MultiModeStop_DMA:0000000000000000 HAL_ADCEx_MultiModeStop_DMA
-     /tmp/ccaNqkeb.s:1509   .text.HAL_ADCEx_MultiModeStop_DMA:0000000000000060 $d
-     /tmp/ccaNqkeb.s:1514   .text.HAL_ADCEx_MultiModeGetValue:0000000000000000 $t
-     /tmp/ccaNqkeb.s:1521   .text.HAL_ADCEx_MultiModeGetValue:0000000000000000 HAL_ADCEx_MultiModeGetValue
-     /tmp/ccaNqkeb.s:1541   .text.HAL_ADCEx_MultiModeGetValue:0000000000000008 $d
-     /tmp/ccaNqkeb.s:1546   .text.HAL_ADCEx_InjectedConvCpltCallback:0000000000000000 $t
-     /tmp/ccaNqkeb.s:1553   .text.HAL_ADCEx_InjectedConvCpltCallback:0000000000000000 HAL_ADCEx_InjectedConvCpltCallback
-     /tmp/ccaNqkeb.s:1568   .text.HAL_ADCEx_InjectedConfigChannel:0000000000000000 $t
-     /tmp/ccaNqkeb.s:1575   .text.HAL_ADCEx_InjectedConfigChannel:0000000000000000 HAL_ADCEx_InjectedConfigChannel
-     /tmp/ccaNqkeb.s:2003   .text.HAL_ADCEx_InjectedConfigChannel:0000000000000200 $d
-     /tmp/ccaNqkeb.s:2010   .text.HAL_ADCEx_MultiModeConfigChannel:0000000000000000 $t
-     /tmp/ccaNqkeb.s:2017   .text.HAL_ADCEx_MultiModeConfigChannel:0000000000000000 HAL_ADCEx_MultiModeConfigChannel
-     /tmp/ccaNqkeb.s:2111   .text.HAL_ADCEx_MultiModeConfigChannel:0000000000000054 $d
+     /tmp/ccbmacUg.s:18     .text.ADC_MultiModeDMAError:0000000000000000 $t
+     /tmp/ccbmacUg.s:25     .text.ADC_MultiModeDMAError:0000000000000000 ADC_MultiModeDMAError
+     /tmp/ccbmacUg.s:61     .text.ADC_MultiModeDMAHalfConvCplt:0000000000000000 $t
+     /tmp/ccbmacUg.s:67     .text.ADC_MultiModeDMAHalfConvCplt:0000000000000000 ADC_MultiModeDMAHalfConvCplt
+     /tmp/ccbmacUg.s:94     .text.ADC_MultiModeDMAConvCplt:0000000000000000 $t
+     /tmp/ccbmacUg.s:100    .text.ADC_MultiModeDMAConvCplt:0000000000000000 ADC_MultiModeDMAConvCplt
+     /tmp/ccbmacUg.s:194    .text.HAL_ADCEx_InjectedStart:0000000000000000 $t
+     /tmp/ccbmacUg.s:201    .text.HAL_ADCEx_InjectedStart:0000000000000000 HAL_ADCEx_InjectedStart
+     /tmp/ccbmacUg.s:430    .text.HAL_ADCEx_InjectedStart:00000000000000f4 $d
+     /tmp/ccbmacUg.s:438    .text.HAL_ADCEx_InjectedStart_IT:0000000000000000 $t
+     /tmp/ccbmacUg.s:445    .text.HAL_ADCEx_InjectedStart_IT:0000000000000000 HAL_ADCEx_InjectedStart_IT
+     /tmp/ccbmacUg.s:679    .text.HAL_ADCEx_InjectedStart_IT:00000000000000fc $d
+     /tmp/ccbmacUg.s:687    .text.HAL_ADCEx_InjectedStop:0000000000000000 $t
+     /tmp/ccbmacUg.s:694    .text.HAL_ADCEx_InjectedStop:0000000000000000 HAL_ADCEx_InjectedStop
+     /tmp/ccbmacUg.s:788    .text.HAL_ADCEx_InjectedPollForConversion:0000000000000000 $t
+     /tmp/ccbmacUg.s:795    .text.HAL_ADCEx_InjectedPollForConversion:0000000000000000 HAL_ADCEx_InjectedPollForConversion
+     /tmp/ccbmacUg.s:948    .text.HAL_ADCEx_InjectedStop_IT:0000000000000000 $t
+     /tmp/ccbmacUg.s:955    .text.HAL_ADCEx_InjectedStop_IT:0000000000000000 HAL_ADCEx_InjectedStop_IT
+     /tmp/ccbmacUg.s:1053   .text.HAL_ADCEx_InjectedGetValue:0000000000000000 $t
+     /tmp/ccbmacUg.s:1060   .text.HAL_ADCEx_InjectedGetValue:0000000000000000 HAL_ADCEx_InjectedGetValue
+     /tmp/ccbmacUg.s:1089   .text.HAL_ADCEx_InjectedGetValue:0000000000000018 $d
+     /tmp/ccbmacUg.s:1093   .text.HAL_ADCEx_InjectedGetValue:000000000000001c $t
+     /tmp/ccbmacUg.s:1152   .text.HAL_ADCEx_MultiModeStart_DMA:0000000000000000 $t
+     /tmp/ccbmacUg.s:1159   .text.HAL_ADCEx_MultiModeStart_DMA:0000000000000000 HAL_ADCEx_MultiModeStart_DMA
+     /tmp/ccbmacUg.s:1398   .text.HAL_ADCEx_MultiModeStart_DMA:0000000000000114 $d
+     /tmp/ccbmacUg.s:1409   .text.HAL_ADCEx_MultiModeStop_DMA:0000000000000000 $t
+     /tmp/ccbmacUg.s:1416   .text.HAL_ADCEx_MultiModeStop_DMA:0000000000000000 HAL_ADCEx_MultiModeStop_DMA
+     /tmp/ccbmacUg.s:1509   .text.HAL_ADCEx_MultiModeStop_DMA:0000000000000060 $d
+     /tmp/ccbmacUg.s:1514   .text.HAL_ADCEx_MultiModeGetValue:0000000000000000 $t
+     /tmp/ccbmacUg.s:1521   .text.HAL_ADCEx_MultiModeGetValue:0000000000000000 HAL_ADCEx_MultiModeGetValue
+     /tmp/ccbmacUg.s:1541   .text.HAL_ADCEx_MultiModeGetValue:0000000000000008 $d
+     /tmp/ccbmacUg.s:1546   .text.HAL_ADCEx_InjectedConvCpltCallback:0000000000000000 $t
+     /tmp/ccbmacUg.s:1553   .text.HAL_ADCEx_InjectedConvCpltCallback:0000000000000000 HAL_ADCEx_InjectedConvCpltCallback
+     /tmp/ccbmacUg.s:1568   .text.HAL_ADCEx_InjectedConfigChannel:0000000000000000 $t
+     /tmp/ccbmacUg.s:1575   .text.HAL_ADCEx_InjectedConfigChannel:0000000000000000 HAL_ADCEx_InjectedConfigChannel
+     /tmp/ccbmacUg.s:2003   .text.HAL_ADCEx_InjectedConfigChannel:0000000000000200 $d
+     /tmp/ccbmacUg.s:2010   .text.HAL_ADCEx_MultiModeConfigChannel:0000000000000000 $t
+     /tmp/ccbmacUg.s:2017   .text.HAL_ADCEx_MultiModeConfigChannel:0000000000000000 HAL_ADCEx_MultiModeConfigChannel
+     /tmp/ccbmacUg.s:2111   .text.HAL_ADCEx_MultiModeConfigChannel:0000000000000054 $d
 
 UNDEFINED SYMBOLS
 HAL_ADC_ErrorCallback

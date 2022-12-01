@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccN81rdg.s 			page 1
+ARM GAS  /tmp/ccF46j0K.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
   28:Core/Src/syscalls.c **** **   2. Redistributions in binary form must reproduce the above copyright notice,
   29:Core/Src/syscalls.c **** **      this list of conditions and the following disclaimer in the documentation
   30:Core/Src/syscalls.c **** **      and/or other materials provided with the distribution.
-ARM GAS  /tmp/ccN81rdg.s 			page 2
+ARM GAS  /tmp/ccF46j0K.s 			page 2
 
 
   31:Core/Src/syscalls.c **** **   3. Neither the name of STMicroelectronics nor the names of its contributors
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
   36              		.cfi_endproc
   37              	.LFE25:
   39              		.section	.text._getpid,"ax",%progbits
-ARM GAS  /tmp/ccN81rdg.s 			page 3
+ARM GAS  /tmp/ccF46j0K.s 			page 3
 
 
   40              		.align	1
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
   87:Core/Src/syscalls.c **** 	return -1;
   88              		.loc 1 87 2 is_stmt 1 view .LVU9
   88:Core/Src/syscalls.c **** }
-ARM GAS  /tmp/ccN81rdg.s 			page 4
+ARM GAS  /tmp/ccF46j0K.s 			page 4
 
 
   89              		.loc 1 88 1 is_stmt 0 view .LVU10
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
   96:Core/Src/syscalls.c **** __attribute__((weak)) int _read(int file, char *ptr, int len)
   97:Core/Src/syscalls.c **** {
  140              		.loc 1 97 1 view -0
-ARM GAS  /tmp/ccN81rdg.s 			page 5
+ARM GAS  /tmp/ccF46j0K.s 			page 5
 
 
  141              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  184              		.loc 1 106 1 is_stmt 0 view .LVU32
  185 001c 3046     		mov	r0, r6
  186 001e 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  /tmp/ccN81rdg.s 			page 6
+ARM GAS  /tmp/ccF46j0K.s 			page 6
 
 
  187              		.loc 1 106 1 view .LVU33
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  112:Core/Src/syscalls.c **** 	{
  235              		.loc 1 112 35 is_stmt 1 discriminator 3 view .LVU44
  112:Core/Src/syscalls.c **** 	{
-ARM GAS  /tmp/ccN81rdg.s 			page 7
+ARM GAS  /tmp/ccF46j0K.s 			page 7
 
 
  236              		.loc 1 112 42 is_stmt 0 discriminator 3 view .LVU45
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  281              	.L19:
  125:Core/Src/syscalls.c **** 
  126:Core/Src/syscalls.c ****     prev_heap_end = heap_end;
-ARM GAS  /tmp/ccN81rdg.s 			page 8
+ARM GAS  /tmp/ccF46j0K.s 			page 8
 
 
  282              		.loc 1 126 5 is_stmt 1 view .LVU58
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  321 002a 00BE     		BKPT #0
  322              	
  323              	@ 0 "" 2
-ARM GAS  /tmp/ccN81rdg.s 			page 9
+ARM GAS  /tmp/ccF46j0K.s 			page 9
 
 
  130:Core/Src/syscalls.c ****         return (caddr_t)-1;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  372              		.align	1
  373              		.global	_fstat
  374              		.syntax unified
-ARM GAS  /tmp/ccN81rdg.s 			page 10
+ARM GAS  /tmp/ccF46j0K.s 			page 10
 
 
  375              		.thumb
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  420              		.loc 1 155 1 view .LVU88
  421 0002 7047     		bx	lr
  422              		.cfi_endproc
-ARM GAS  /tmp/ccN81rdg.s 			page 11
+ARM GAS  /tmp/ccF46j0K.s 			page 11
 
 
  423              	.LFE34:
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  164:Core/Src/syscalls.c **** 	/* Pretend like we always fail */
  165:Core/Src/syscalls.c **** 	return -1;
  473              		.loc 1 165 2 is_stmt 1 view .LVU95
-ARM GAS  /tmp/ccN81rdg.s 			page 12
+ARM GAS  /tmp/ccF46j0K.s 			page 12
 
 
  166:Core/Src/syscalls.c **** }
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  524              		.global	_unlink
  525              		.syntax unified
  526              		.thumb
-ARM GAS  /tmp/ccN81rdg.s 			page 13
+ARM GAS  /tmp/ccF46j0K.s 			page 13
 
 
  527              		.thumb_func
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  573              		.loc 1 183 1 is_stmt 0 view .LVU112
  574 0000 4FF0FF30 		mov	r0, #-1
  575              	.LVL40:
-ARM GAS  /tmp/ccN81rdg.s 			page 14
+ARM GAS  /tmp/ccF46j0K.s 			page 14
 
 
  576              		.loc 1 183 1 view .LVU113
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  625              		.loc 1 192 1 is_stmt 0 view .LVU121
  626 0000 08B5     		push	{r3, lr}
  627              	.LCFI9:
-ARM GAS  /tmp/ccN81rdg.s 			page 15
+ARM GAS  /tmp/ccF46j0K.s 			page 15
 
 
  628              		.cfi_def_cfa_offset 8
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  676              		.section	.text._execve,"ax",%progbits
  677              		.align	1
  678              		.global	_execve
-ARM GAS  /tmp/ccN81rdg.s 			page 16
+ARM GAS  /tmp/ccF46j0K.s 			page 16
 
 
  679              		.syntax unified
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  735              		.file 2 "/usr/include/newlib/machine/_default_types.h"
  736              		.file 3 "/usr/lib/gcc/arm-none-eabi/9.2.1/include/stddef.h"
  737              		.file 4 "/usr/include/newlib/sys/_types.h"
-ARM GAS  /tmp/ccN81rdg.s 			page 17
+ARM GAS  /tmp/ccF46j0K.s 			page 17
 
 
  738              		.file 5 "/usr/include/newlib/sys/reent.h"
@@ -971,56 +971,56 @@ ARM GAS  /tmp/ccN81rdg.s 			page 1
  745              		.file 12 "/usr/include/newlib/stdlib.h"
  746              		.file 13 "/usr/include/newlib/sys/errno.h"
  747              		.file 14 "/usr/include/newlib/sys/times.h"
-ARM GAS  /tmp/ccN81rdg.s 			page 18
+ARM GAS  /tmp/ccF46j0K.s 			page 18
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 syscalls.c
-     /tmp/ccN81rdg.s:18     .text.initialise_monitor_handles:0000000000000000 $t
-     /tmp/ccN81rdg.s:26     .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
-     /tmp/ccN81rdg.s:40     .text._getpid:0000000000000000 $t
-     /tmp/ccN81rdg.s:47     .text._getpid:0000000000000000 _getpid
-     /tmp/ccN81rdg.s:62     .text._kill:0000000000000000 $t
-     /tmp/ccN81rdg.s:69     .text._kill:0000000000000000 _kill
-     /tmp/ccN81rdg.s:96     .text._exit:0000000000000000 $t
-     /tmp/ccN81rdg.s:103    .text._exit:0000000000000000 _exit
-     /tmp/ccN81rdg.s:130    .text._read:0000000000000000 $t
-     /tmp/ccN81rdg.s:137    .text._read:0000000000000000 _read
-     /tmp/ccN81rdg.s:192    .text._write:0000000000000000 $t
-     /tmp/ccN81rdg.s:199    .text._write:0000000000000000 _write
-     /tmp/ccN81rdg.s:251    .text._sbrk:0000000000000000 $t
-     /tmp/ccN81rdg.s:258    .text._sbrk:0000000000000000 _sbrk
-     /tmp/ccN81rdg.s:339    .text._sbrk:000000000000003c $d
-     /tmp/ccN81rdg.s:347    .text._close:0000000000000000 $t
-     /tmp/ccN81rdg.s:354    .text._close:0000000000000000 _close
-     /tmp/ccN81rdg.s:372    .text._fstat:0000000000000000 $t
-     /tmp/ccN81rdg.s:379    .text._fstat:0000000000000000 _fstat
-     /tmp/ccN81rdg.s:401    .text._isatty:0000000000000000 $t
-     /tmp/ccN81rdg.s:408    .text._isatty:0000000000000000 _isatty
-     /tmp/ccN81rdg.s:426    .text._lseek:0000000000000000 $t
-     /tmp/ccN81rdg.s:433    .text._lseek:0000000000000000 _lseek
-     /tmp/ccN81rdg.s:451    .text._open:0000000000000000 $t
-     /tmp/ccN81rdg.s:458    .text._open:0000000000000000 _open
-     /tmp/ccN81rdg.s:489    .text._wait:0000000000000000 $t
-     /tmp/ccN81rdg.s:496    .text._wait:0000000000000000 _wait
-     /tmp/ccN81rdg.s:523    .text._unlink:0000000000000000 $t
-     /tmp/ccN81rdg.s:530    .text._unlink:0000000000000000 _unlink
-     /tmp/ccN81rdg.s:557    .text._times:0000000000000000 $t
-     /tmp/ccN81rdg.s:564    .text._times:0000000000000000 _times
-     /tmp/ccN81rdg.s:582    .text._stat:0000000000000000 $t
-     /tmp/ccN81rdg.s:589    .text._stat:0000000000000000 _stat
-     /tmp/ccN81rdg.s:611    .text._link:0000000000000000 $t
-     /tmp/ccN81rdg.s:618    .text._link:0000000000000000 _link
-     /tmp/ccN81rdg.s:645    .text._fork:0000000000000000 $t
-     /tmp/ccN81rdg.s:652    .text._fork:0000000000000000 _fork
-     /tmp/ccN81rdg.s:677    .text._execve:0000000000000000 $t
-     /tmp/ccN81rdg.s:684    .text._execve:0000000000000000 _execve
-     /tmp/ccN81rdg.s:729    .data.environ:0000000000000000 environ
-     /tmp/ccN81rdg.s:716    .bss.__env:0000000000000000 __env
-     /tmp/ccN81rdg.s:713    .bss.__env:0000000000000000 $d
-     /tmp/ccN81rdg.s:719    .bss.heap_end.7365:0000000000000000 $d
-     /tmp/ccN81rdg.s:723    .bss.heap_end.7365:0000000000000000 heap_end.7365
-     /tmp/ccN81rdg.s:726    .data.environ:0000000000000000 $d
+     /tmp/ccF46j0K.s:18     .text.initialise_monitor_handles:0000000000000000 $t
+     /tmp/ccF46j0K.s:26     .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
+     /tmp/ccF46j0K.s:40     .text._getpid:0000000000000000 $t
+     /tmp/ccF46j0K.s:47     .text._getpid:0000000000000000 _getpid
+     /tmp/ccF46j0K.s:62     .text._kill:0000000000000000 $t
+     /tmp/ccF46j0K.s:69     .text._kill:0000000000000000 _kill
+     /tmp/ccF46j0K.s:96     .text._exit:0000000000000000 $t
+     /tmp/ccF46j0K.s:103    .text._exit:0000000000000000 _exit
+     /tmp/ccF46j0K.s:130    .text._read:0000000000000000 $t
+     /tmp/ccF46j0K.s:137    .text._read:0000000000000000 _read
+     /tmp/ccF46j0K.s:192    .text._write:0000000000000000 $t
+     /tmp/ccF46j0K.s:199    .text._write:0000000000000000 _write
+     /tmp/ccF46j0K.s:251    .text._sbrk:0000000000000000 $t
+     /tmp/ccF46j0K.s:258    .text._sbrk:0000000000000000 _sbrk
+     /tmp/ccF46j0K.s:339    .text._sbrk:000000000000003c $d
+     /tmp/ccF46j0K.s:347    .text._close:0000000000000000 $t
+     /tmp/ccF46j0K.s:354    .text._close:0000000000000000 _close
+     /tmp/ccF46j0K.s:372    .text._fstat:0000000000000000 $t
+     /tmp/ccF46j0K.s:379    .text._fstat:0000000000000000 _fstat
+     /tmp/ccF46j0K.s:401    .text._isatty:0000000000000000 $t
+     /tmp/ccF46j0K.s:408    .text._isatty:0000000000000000 _isatty
+     /tmp/ccF46j0K.s:426    .text._lseek:0000000000000000 $t
+     /tmp/ccF46j0K.s:433    .text._lseek:0000000000000000 _lseek
+     /tmp/ccF46j0K.s:451    .text._open:0000000000000000 $t
+     /tmp/ccF46j0K.s:458    .text._open:0000000000000000 _open
+     /tmp/ccF46j0K.s:489    .text._wait:0000000000000000 $t
+     /tmp/ccF46j0K.s:496    .text._wait:0000000000000000 _wait
+     /tmp/ccF46j0K.s:523    .text._unlink:0000000000000000 $t
+     /tmp/ccF46j0K.s:530    .text._unlink:0000000000000000 _unlink
+     /tmp/ccF46j0K.s:557    .text._times:0000000000000000 $t
+     /tmp/ccF46j0K.s:564    .text._times:0000000000000000 _times
+     /tmp/ccF46j0K.s:582    .text._stat:0000000000000000 $t
+     /tmp/ccF46j0K.s:589    .text._stat:0000000000000000 _stat
+     /tmp/ccF46j0K.s:611    .text._link:0000000000000000 $t
+     /tmp/ccF46j0K.s:618    .text._link:0000000000000000 _link
+     /tmp/ccF46j0K.s:645    .text._fork:0000000000000000 $t
+     /tmp/ccF46j0K.s:652    .text._fork:0000000000000000 _fork
+     /tmp/ccF46j0K.s:677    .text._execve:0000000000000000 $t
+     /tmp/ccF46j0K.s:684    .text._execve:0000000000000000 _execve
+     /tmp/ccF46j0K.s:729    .data.environ:0000000000000000 environ
+     /tmp/ccF46j0K.s:716    .bss.__env:0000000000000000 __env
+     /tmp/ccF46j0K.s:713    .bss.__env:0000000000000000 $d
+     /tmp/ccF46j0K.s:719    .bss.heap_end.7365:0000000000000000 $d
+     /tmp/ccF46j0K.s:723    .bss.heap_end.7365:0000000000000000 heap_end.7365
+     /tmp/ccF46j0K.s:726    .data.environ:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 __errno

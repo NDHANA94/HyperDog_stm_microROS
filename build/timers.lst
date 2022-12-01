@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccw35bsL.s 			page 1
+ARM GAS  /tmp/ccsIqFd4.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
   28:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /* Standard includes. */
   29:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** #include <stdlib.h>
   30:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
-ARM GAS  /tmp/ccw35bsL.s 			page 2
+ARM GAS  /tmp/ccsIqFd4.s 			page 2
 
 
   31:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /* Defining MPU_WRAPPERS_INCLUDED_FROM_API_FILE prevents task.h from redefining
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
   85:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
   86:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /* The old xTIMER name is maintained above then typedefed to the new Timer_t
   87:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** name below to enable the use of older kernel aware debuggers. */
-ARM GAS  /tmp/ccw35bsL.s 			page 3
+ARM GAS  /tmp/ccsIqFd4.s 			page 3
 
 
   88:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** typedef xTIMER Timer_t;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  142:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** PRIVILEGED_DATA static TaskHandle_t xTimerTaskHandle = NULL;
  143:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  144:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*lint -restore */
-ARM GAS  /tmp/ccw35bsL.s 			page 4
+ARM GAS  /tmp/ccsIqFd4.s 			page 4
 
 
  145:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  199:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** static TickType_t prvSampleTimeNow( BaseType_t * const pxTimerListsWereSwitched ) PRIVILEGED_FUNCTI
  200:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  201:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*
-ARM GAS  /tmp/ccw35bsL.s 			page 5
+ARM GAS  /tmp/ccsIqFd4.s 			page 5
 
 
  202:Middlewares/Third_Party/FreeRTOS/Source/timers.c ****  * If the timer list contains any active timers then return the expire time of
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  256:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 				xReturn = pdPASS;
  257:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			}
  258:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		}
-ARM GAS  /tmp/ccw35bsL.s 			page 6
+ARM GAS  /tmp/ccsIqFd4.s 			page 6
 
 
  259:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		#else
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  313:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 										TimerCallbackFunction_t pxCallbackFunction,
  314:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 										StaticTimer_t *pxTimerBuffer )
  315:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	{
-ARM GAS  /tmp/ccw35bsL.s 			page 7
+ARM GAS  /tmp/ccsIqFd4.s 			page 7
 
 
  316:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	Timer_t *pxNewTimer;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  370:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		pxNewTimer->pxCallbackFunction = pxCallbackFunction;
  371:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		vListInitialiseItem( &( pxNewTimer->xTimerListItem ) );
  372:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		if( uxAutoReload != pdFALSE )
-ARM GAS  /tmp/ccw35bsL.s 			page 8
+ARM GAS  /tmp/ccsIqFd4.s 			page 8
 
 
  373:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		{
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  427:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	started, then xTimerTaskHandle will be NULL. */
  428:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	configASSERT( ( xTimerTaskHandle != NULL ) );
  429:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	return xTimerTaskHandle;
-ARM GAS  /tmp/ccw35bsL.s 			page 9
+ARM GAS  /tmp/ccsIqFd4.s 			page 9
 
 
  430:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  484:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** }
  485:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*-----------------------------------------------------------*/
  486:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
-ARM GAS  /tmp/ccw35bsL.s 			page 10
+ARM GAS  /tmp/ccsIqFd4.s 			page 10
 
 
  487:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** TickType_t xTimerGetExpiryTime( TimerHandle_t xTimer )
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  541:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	}
  542:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  543:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	/* Call the timer callback. */
-ARM GAS  /tmp/ccw35bsL.s 			page 11
+ARM GAS  /tmp/ccsIqFd4.s 			page 11
 
 
  544:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	pxTimer->pxCallbackFunction( ( TimerHandle_t ) pxTimer );
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  598:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		{
  599:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			/* The tick count has not overflowed, has the timer expired? */
  600:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			if( ( xListWasEmpty == pdFALSE ) && ( xNextExpireTime <= xTimeNow ) )
-ARM GAS  /tmp/ccw35bsL.s 			page 12
+ARM GAS  /tmp/ccsIqFd4.s 			page 12
 
 
  601:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			{
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  649:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	referencing the task that will expire first.  Obtain the time at which
  650:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	the timer with the nearest expiry time will expire.  If there are no
  651:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	active timers then just set the next expire time to 0.  That will cause
-ARM GAS  /tmp/ccw35bsL.s 			page 13
+ARM GAS  /tmp/ccsIqFd4.s 			page 13
 
 
  652:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	this task to unblock when the tick count overflows, at which point the
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
   72              		.cfi_endproc
   73              	.LFE18:
   75              		.section	.text.prvInsertTimerInActiveList,"ax",%progbits
-ARM GAS  /tmp/ccw35bsL.s 			page 14
+ARM GAS  /tmp/ccsIqFd4.s 			page 14
 
 
   76              		.align	1
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  100 0004 0061     		str	r0, [r0, #16]
  699:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  700:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	if( xNextExpiryTime <= xTimeNow )
-ARM GAS  /tmp/ccw35bsL.s 			page 15
+ARM GAS  /tmp/ccsIqFd4.s 			page 15
 
 
  101              		.loc 1 700 2 view .LVU20
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  123              		.loc 1 712 4 is_stmt 1 view .LVU28
  124 0016 011D     		adds	r1, r0, #4
  125              	.LVL10:
-ARM GAS  /tmp/ccw35bsL.s 			page 16
+ARM GAS  /tmp/ccsIqFd4.s 			page 16
 
 
  712:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		}
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  730:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** }
  167              		.loc 1 730 9 is_stmt 0 view .LVU42
  168 003c EAE7     		b	.L8
-ARM GAS  /tmp/ccw35bsL.s 			page 17
+ARM GAS  /tmp/ccsIqFd4.s 			page 17
 
 
  169              	.L17:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  766:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		function calls. */
  767:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		if( xMessage.xMessageID >= ( BaseType_t ) 0 )
  768:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		{
-ARM GAS  /tmp/ccw35bsL.s 			page 18
+ARM GAS  /tmp/ccsIqFd4.s 			page 18
 
 
  769:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			/* The messages uses the xTimerParameters member to work on a
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  823:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 					}
  824:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 					break;
  825:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
-ARM GAS  /tmp/ccw35bsL.s 			page 19
+ARM GAS  /tmp/ccsIqFd4.s 			page 19
 
 
  826:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 				case tmrCOMMAND_STOP :
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  880:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*-----------------------------------------------------------*/
  881:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  882:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** static void prvSwitchTimerLists( void )
-ARM GAS  /tmp/ccw35bsL.s 			page 20
+ARM GAS  /tmp/ccsIqFd4.s 			page 20
 
 
  883:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** {
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  937:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	pxOverflowTimerList = pxTemp;
  938:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** }
  939:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*-----------------------------------------------------------*/
-ARM GAS  /tmp/ccw35bsL.s 			page 21
+ARM GAS  /tmp/ccsIqFd4.s 			page 21
 
 
  940:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  971:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			{
  972:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 				if( xTimerQueue != NULL )
  973:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 				{
-ARM GAS  /tmp/ccw35bsL.s 			page 22
+ARM GAS  /tmp/ccsIqFd4.s 			page 22
 
 
  974:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 					vQueueAddToRegistry( xTimerQueue, "TmrQ" );
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  245              	.LBB45:
  959:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 				static uint8_t ucStaticTimerQueueStorage[ ( size_t ) configTIMER_QUEUE_LENGTH * sizeof( DaemonT
  246              		.loc 1 959 5 is_stmt 1 view .LVU57
-ARM GAS  /tmp/ccw35bsL.s 			page 23
+ARM GAS  /tmp/ccsIqFd4.s 			page 23
 
 
  960:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  295              		.loc 1 355 1 view -0
  296              		.cfi_startproc
  297              		@ args = 8, pretend = 0, frame = 0
-ARM GAS  /tmp/ccw35bsL.s 			page 24
+ARM GAS  /tmp/ccsIqFd4.s 			page 24
 
 
  298              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
   34:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
   35:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
   36:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------
-ARM GAS  /tmp/ccw35bsL.s 			page 25
+ARM GAS  /tmp/ccsIqFd4.s 			page 25
 
 
   37:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h ****  * Port specific definitions.
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
   91:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portNVIC_PENDSVSET_BIT		( 1UL << 28UL )
   92:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portEND_SWITCHING_ISR( xSwitchRequired ) if( xSwitchRequired != pdFALSE ) portYIELD()
   93:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portYIELD_FROM_ISR( x ) portEND_SWITCHING_ISR( x )
-ARM GAS  /tmp/ccw35bsL.s 			page 26
+ARM GAS  /tmp/ccsIqFd4.s 			page 26
 
 
   94:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  148:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
  149:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portGET_HIGHEST_PRIORITY( uxTopPriority, uxReadyPriorities ) uxTopPriority = ( 31UL - ( ui
  150:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
-ARM GAS  /tmp/ccw35bsL.s 			page 27
+ARM GAS  /tmp/ccsIqFd4.s 			page 27
 
 
  151:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  325 0014 BFF34F8F 		dsb														
  326              	
  327              	@ 0 "" 2
-ARM GAS  /tmp/ccw35bsL.s 			page 28
+ARM GAS  /tmp/ccsIqFd4.s 			page 28
 
 
  328              	.LVL27:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  371:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		if( uxAutoReload != pdFALSE )
  366              		.loc 1 371 3 is_stmt 1 view .LVU89
  367 0034 201D     		adds	r0, r4, #4
-ARM GAS  /tmp/ccw35bsL.s 			page 29
+ARM GAS  /tmp/ccsIqFd4.s 			page 29
 
 
  368 0036 FFF7FEFF 		bl	vListInitialiseItem
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  235:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  414              		.loc 1 235 2 view .LVU99
  415 0004 FFF7FEFF 		bl	prvCheckForValidListAndQueue
-ARM GAS  /tmp/ccw35bsL.s 			page 30
+ARM GAS  /tmp/ccsIqFd4.s 			page 30
 
 
  416              	.LVL32:
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  456              		.loc 1 254 6 is_stmt 0 view .LVU113
  457 003a 10B1     		cbz	r0, .L30
  458              	.LBE48:
-ARM GAS  /tmp/ccw35bsL.s 			page 31
+ARM GAS  /tmp/ccsIqFd4.s 			page 31
 
 
  277:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*-----------------------------------------------------------*/
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  507              		.section	.text.xTimerCreate,"ax",%progbits
  508              		.align	1
  509              		.global	xTimerCreate
-ARM GAS  /tmp/ccw35bsL.s 			page 32
+ARM GAS  /tmp/ccsIqFd4.s 			page 32
 
 
  510              		.syntax unified
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  298:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		}
  555              		.loc 1 298 4 is_stmt 1 view .LVU133
  556 001e 0190     		str	r0, [sp, #4]
-ARM GAS  /tmp/ccw35bsL.s 			page 33
+ARM GAS  /tmp/ccsIqFd4.s 			page 33
 
 
  557 0020 089B     		ldr	r3, [sp, #32]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  606              		.loc 1 316 2 is_stmt 1 view .LVU140
  607              	.LBB51:
  323:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			configASSERT( xSize == sizeof( Timer_t ) );
-ARM GAS  /tmp/ccw35bsL.s 			page 34
+ARM GAS  /tmp/ccsIqFd4.s 			page 34
 
 
  608              		.loc 1 323 4 view .LVU141
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  650              		.loc 1 330 32 view .LVU155
  331:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  651              		.loc 1 331 3 view .LVU156
-ARM GAS  /tmp/ccw35bsL.s 			page 35
+ARM GAS  /tmp/ccsIqFd4.s 			page 35
 
 
  652              	.LVL45:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  697              	.LBE55:
  698              	.LBE54:
  330:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		pxNewTimer = ( Timer_t * ) pxTimerBuffer; /*lint !e740 !e9087 StaticTimer_t is a pointer to a Tim
-ARM GAS  /tmp/ccw35bsL.s 			page 36
+ARM GAS  /tmp/ccsIqFd4.s 			page 36
 
 
  699              		.loc 1 330 3 is_stmt 1 discriminator 2 view .LVU168
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  744              	.LVL52:
  390:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	{
  745              		.loc 1 390 18 discriminator 2 view .LVU180
-ARM GAS  /tmp/ccw35bsL.s 			page 37
+ARM GAS  /tmp/ccsIqFd4.s 			page 37
 
 
  746 000e 0068     		ldr	r0, [r0]
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  785              		.cfi_restore 14
  386:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  786              		.loc 1 386 2 is_stmt 1 view .LVU196
-ARM GAS  /tmp/ccw35bsL.s 			page 38
+ARM GAS  /tmp/ccsIqFd4.s 			page 38
 
 
  787              	.LBB56:
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  410:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		}
  832              		.loc 1 410 14 is_stmt 0 view .LVU208
  833 0056 0023     		movs	r3, #0
-ARM GAS  /tmp/ccw35bsL.s 			page 39
+ARM GAS  /tmp/ccsIqFd4.s 			page 39
 
 
  834              	.LVL60:
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  882              		.cfi_offset 4, -16
  883              		.cfi_offset 5, -12
  884              		.cfi_offset 6, -8
-ARM GAS  /tmp/ccw35bsL.s 			page 40
+ARM GAS  /tmp/ccsIqFd4.s 			page 40
 
 
  885              		.cfi_offset 14, -4
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  905:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
  921              		.loc 1 905 10 is_stmt 0 view .LVU235
  922 001a 236A     		ldr	r3, [r4, #32]
-ARM GAS  /tmp/ccw35bsL.s 			page 41
+ARM GAS  /tmp/ccsIqFd4.s 			page 41
 
 
  905:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  961 0042 0021     		movs	r1, #0
  962 0044 0091     		str	r1, [sp]
  963 0046 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccw35bsL.s 			page 42
+ARM GAS  /tmp/ccsIqFd4.s 			page 42
 
 
  964              	.LVL72:
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1007 006c 0860     		str	r0, [r1]
  937:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** }
  1008              		.loc 1 937 2 is_stmt 1 view .LVU265
-ARM GAS  /tmp/ccw35bsL.s 			page 43
+ARM GAS  /tmp/ccsIqFd4.s 			page 43
 
 
  937:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** }
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1056              	.LVL78:
  677:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	{
  1057              		.loc 1 677 2 is_stmt 1 view .LVU275
-ARM GAS  /tmp/ccw35bsL.s 			page 44
+ARM GAS  /tmp/ccsIqFd4.s 			page 44
 
 
  677:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	{
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1103              	.LVL82:
  1104              	.LFB15:
  508:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** BaseType_t xResult;
-ARM GAS  /tmp/ccw35bsL.s 			page 45
+ARM GAS  /tmp/ccsIqFd4.s 			page 45
 
 
  1105              		.loc 1 508 1 is_stmt 1 view -0
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  539:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		mtCOVERAGE_TEST_MARKER();
  1146              		.loc 1 539 21 is_stmt 0 view .LVU301
  1147 0020 23F00103 		bic	r3, r3, #1
-ARM GAS  /tmp/ccw35bsL.s 			page 46
+ARM GAS  /tmp/ccsIqFd4.s 			page 46
 
 
  1148 0024 84F82830 		strb	r3, [r4, #40]
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  529:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 			( void ) xResult;
  1191              		.loc 1 529 4 is_stmt 1 view .LVU313
  1192 0052 0028     		cmp	r0, #0
-ARM GAS  /tmp/ccw35bsL.s 			page 47
+ARM GAS  /tmp/ccsIqFd4.s 			page 47
 
 
  1193 0054 E8D1     		bne	.L80
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1241              		.loc 1 585 1 is_stmt 0 view .LVU323
  1242 0000 70B5     		push	{r4, r5, r6, lr}
  1243              	.LCFI31:
-ARM GAS  /tmp/ccw35bsL.s 			page 48
+ARM GAS  /tmp/ccsIqFd4.s 			page 48
 
 
  1244              		.cfi_def_cfa_offset 16
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1283 0022 1268     		ldr	r2, [r2]
  1284 0024 1268     		ldr	r2, [r2]
  1285 0026 CAB9     		cbnz	r2, .L91
-ARM GAS  /tmp/ccw35bsL.s 			page 49
+ARM GAS  /tmp/ccsIqFd4.s 			page 49
 
 
  1286 0028 0124     		movs	r4, #1
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1328 0052 2946     		mov	r1, r5
  1329 0054 3046     		mov	r0, r6
  1330 0056 FFF7FEFF 		bl	prvProcessExpiredTimer
-ARM GAS  /tmp/ccw35bsL.s 			page 50
+ARM GAS  /tmp/ccsIqFd4.s 			page 50
 
 
  1331              	.LVL100:
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1380              		.cfi_offset 4, -8
  1381              		.cfi_offset 14, -4
  1382 0002 88B0     		sub	sp, sp, #32
-ARM GAS  /tmp/ccw35bsL.s 			page 51
+ARM GAS  /tmp/ccsIqFd4.s 			page 51
 
 
  1383              	.LCFI35:
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1420 001a 1868     		ldr	r0, [r3]
  1421 001c FFF7FEFF 		bl	xQueueReceive
  1422              	.LVL108:
-ARM GAS  /tmp/ccw35bsL.s 			page 52
+ARM GAS  /tmp/ccsIqFd4.s 			page 52
 
 
  741:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	{
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1460 0042 E7D8     		bhi	.L99
  1461 0044 DFE803F0 		tbb	[pc, r3]
  1462              	.L103:
-ARM GAS  /tmp/ccw35bsL.s 			page 53
+ARM GAS  /tmp/ccsIqFd4.s 			page 53
 
 
  1463 0048 05       		.byte	(.L105-.L103)/2
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1504              		.loc 1 809 7 view .LVU404
  809:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 						{
  1505              		.loc 1 809 20 is_stmt 0 view .LVU405
-ARM GAS  /tmp/ccw35bsL.s 			page 54
+ARM GAS  /tmp/ccsIqFd4.s 			page 54
 
 
  1506 0076 94F82830 		ldrb	r3, [r4, #40]	@ zero_extendqisi2
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1549              		.loc 1 812 8 discriminator 2 view .LVU418
  1550 00a6 FEE7     		b	.L108
  1551              	.LVL117:
-ARM GAS  /tmp/ccw35bsL.s 			page 55
+ARM GAS  /tmp/ccsIqFd4.s 			page 55
 
 
  1552              	.L104:
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  191:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** {
  1591              		.loc 2 191 30 view .LVU434
  1592              	.LBB66:
-ARM GAS  /tmp/ccw35bsL.s 			page 56
+ARM GAS  /tmp/ccsIqFd4.s 			page 56
 
 
  193:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  879:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*-----------------------------------------------------------*/
  1636              		.loc 1 879 1 view .LVU448
  1637 0104 08B0     		add	sp, sp, #32
-ARM GAS  /tmp/ccw35bsL.s 			page 57
+ARM GAS  /tmp/ccsIqFd4.s 			page 57
 
 
  1638              	.LCFI36:
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1685              	.LVL128:
  579:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	}
  1686              		.loc 1 579 3 discriminator 1 view .LVU458
-ARM GAS  /tmp/ccw35bsL.s 			page 58
+ARM GAS  /tmp/ccsIqFd4.s 			page 58
 
 
  1687 0010 FFF7FEFF 		bl	prvProcessReceivedCommands
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1736              	.LBE68:
  1737              	.LBE67:
  428:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	return xTimerTaskHandle;
-ARM GAS  /tmp/ccw35bsL.s 			page 59
+ARM GAS  /tmp/ccsIqFd4.s 			page 59
 
 
  1738              		.loc 1 428 2 is_stmt 1 discriminator 1 view .LVU468
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1782              		.loc 2 193 1 view .LVU480
  1783              		.loc 2 195 2 view .LVU481
  1784              		.syntax unified
-ARM GAS  /tmp/ccw35bsL.s 			page 60
+ARM GAS  /tmp/ccsIqFd4.s 			page 60
 
 
  1785              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h" 1
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1834 0006 0446     		mov	r4, r0
  446:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	taskENTER_CRITICAL();
  1835              		.loc 1 446 24 discriminator 2 view .LVU490
-ARM GAS  /tmp/ccw35bsL.s 			page 61
+ARM GAS  /tmp/ccsIqFd4.s 			page 61
 
 
  447:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	{
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1878              		.loc 1 446 2 discriminator 1 view .LVU504
  446:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 	taskENTER_CRITICAL();
  1879              		.loc 1 446 2 discriminator 1 view .LVU505
-ARM GAS  /tmp/ccw35bsL.s 			page 62
+ARM GAS  /tmp/ccsIqFd4.s 			page 62
 
 
  1880 0030 FEE7     		b	.L136
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  470:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		{
  1925              		.loc 1 470 5 discriminator 2 view .LVU517
  1926 000e 13F0040F 		tst	r3, #4
-ARM GAS  /tmp/ccw35bsL.s 			page 63
+ARM GAS  /tmp/ccsIqFd4.s 			page 63
 
 
  1927 0012 0DD1     		bne	.L145
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  1971              	.LVL148:
  1972              	.L145:
  1973              	.LCFI42:
-ARM GAS  /tmp/ccw35bsL.s 			page 64
+ARM GAS  /tmp/ccsIqFd4.s 			page 64
 
 
  1974              		.cfi_def_cfa_offset 8
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2018              	.LBI75:
  191:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/portmacro.h **** {
  2019              		.loc 2 191 30 view .LVU542
-ARM GAS  /tmp/ccw35bsL.s 			page 65
+ARM GAS  /tmp/ccsIqFd4.s 			page 65
 
 
  2020              	.LBB76:
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2066              		.loc 1 504 1 is_stmt 0 discriminator 2 view .LVU554
  2067 0002 0068     		ldr	r0, [r0]
  2068              	.LVL156:
-ARM GAS  /tmp/ccw35bsL.s 			page 66
+ARM GAS  /tmp/ccsIqFd4.s 			page 66
 
 
  504:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** /*-----------------------------------------------------------*/
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2114              		.cfi_startproc
  2115              		@ args = 0, pretend = 0, frame = 0
  2116              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccw35bsL.s 			page 67
+ARM GAS  /tmp/ccsIqFd4.s 			page 67
 
 
  994:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** BaseType_t xReturn;
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2149              	.LVL163:
  2150              	.L164:
  2151              	.LCFI44:
-ARM GAS  /tmp/ccw35bsL.s 			page 68
+ARM GAS  /tmp/ccsIqFd4.s 			page 68
 
 
  2152              		.cfi_def_cfa_offset 0
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2199              		.thumb
  2200              		.thumb_func
  2201              		.fpu fpv4-sp-d16
-ARM GAS  /tmp/ccw35bsL.s 			page 69
+ARM GAS  /tmp/ccsIqFd4.s 			page 69
 
 
  2203              	pvTimerGetTimerID:
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2239              		.cfi_def_cfa_offset 0
  2240              		.cfi_restore 4
  2241              		.cfi_restore 14
-ARM GAS  /tmp/ccw35bsL.s 			page 70
+ARM GAS  /tmp/ccsIqFd4.s 			page 70
 
 
 1022:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2288              	.LCFI48:
  2289              		.cfi_def_cfa_offset 16
  2290              		.cfi_offset 3, -16
-ARM GAS  /tmp/ccw35bsL.s 			page 71
+ARM GAS  /tmp/ccsIqFd4.s 			page 71
 
 
  2291              		.cfi_offset 4, -12
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2332              	.L173:
  2333              		.loc 2 195 2 is_stmt 0 view .LVU622
  2334              	.LBE84:
-ARM GAS  /tmp/ccw35bsL.s 			page 72
+ARM GAS  /tmp/ccsIqFd4.s 			page 72
 
 
  2335              	.LBE83:
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2376              		.loc 1 1057 23 view .LVU632
  2377 000c 0093     		str	r3, [sp]
 1058:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		xMessage.u.xCallbackParameters.pxCallbackFunction = xFunctionToPend;
-ARM GAS  /tmp/ccw35bsL.s 			page 73
+ARM GAS  /tmp/ccsIqFd4.s 			page 73
 
 
  2378              		.loc 1 1058 3 is_stmt 1 view .LVU633
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2425              	.LVL186:
  2426              	.LFB28:
 1068:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 
-ARM GAS  /tmp/ccw35bsL.s 			page 74
+ARM GAS  /tmp/ccsIqFd4.s 			page 74
 
 
 1069:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** #endif /* INCLUDE_xTimerPendFunctionCall */
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
 1087:Middlewares/Third_Party/FreeRTOS/Source/timers.c **** 		xMessage.u.xCallbackParameters.pxCallbackFunction = xFunctionToPend;
  2463              		.loc 1 1087 3 is_stmt 1 discriminator 2 view .LVU658
  2464              		.loc 1 1087 53 is_stmt 0 discriminator 2 view .LVU659
-ARM GAS  /tmp/ccw35bsL.s 			page 75
+ARM GAS  /tmp/ccsIqFd4.s 			page 75
 
 
  2465 0018 0195     		str	r5, [sp, #4]
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2507              	@ 0 "" 2
  2508              	.LVL194:
  2509              		.thumb
-ARM GAS  /tmp/ccw35bsL.s 			page 76
+ARM GAS  /tmp/ccsIqFd4.s 			page 76
 
 
  2510              		.syntax unified
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2554              		.syntax unified
  2555              		.thumb
  2556              		.thumb_func
-ARM GAS  /tmp/ccw35bsL.s 			page 77
+ARM GAS  /tmp/ccsIqFd4.s 			page 77
 
 
  2557              		.fpu fpv4-sp-d16
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2603              		.section	.bss.xActiveTimerList2,"aw",%nobits
  2604              		.align	2
  2605              		.set	.LANCHOR4,. + 0
-ARM GAS  /tmp/ccw35bsL.s 			page 78
+ARM GAS  /tmp/ccsIqFd4.s 			page 78
 
 
  2608              	xActiveTimerList2:
@@ -4667,103 +4667,103 @@ ARM GAS  /tmp/ccw35bsL.s 			page 1
  2651              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
  2652              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/timers.h"
  2653              		.file 16 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
-ARM GAS  /tmp/ccw35bsL.s 			page 79
+ARM GAS  /tmp/ccsIqFd4.s 			page 79
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 timers.c
-     /tmp/ccw35bsL.s:18     .text.prvGetNextExpireTime:0000000000000000 $t
-     /tmp/ccw35bsL.s:25     .text.prvGetNextExpireTime:0000000000000000 prvGetNextExpireTime
-     /tmp/ccw35bsL.s:71     .text.prvGetNextExpireTime:000000000000001c $d
-     /tmp/ccw35bsL.s:76     .text.prvInsertTimerInActiveList:0000000000000000 $t
-     /tmp/ccw35bsL.s:82     .text.prvInsertTimerInActiveList:0000000000000000 prvInsertTimerInActiveList
-     /tmp/ccw35bsL.s:172    .text.prvInsertTimerInActiveList:0000000000000040 $d
-     /tmp/ccw35bsL.s:178    .rodata.prvCheckForValidListAndQueue.str1.4:0000000000000000 $d
-     /tmp/ccw35bsL.s:182    .text.prvCheckForValidListAndQueue:0000000000000000 $t
-     /tmp/ccw35bsL.s:188    .text.prvCheckForValidListAndQueue:0000000000000000 prvCheckForValidListAndQueue
-     /tmp/ccw35bsL.s:274    .text.prvCheckForValidListAndQueue:0000000000000050 $d
-     /tmp/ccw35bsL.s:286    .text.prvInitialiseNewTimer:0000000000000000 $t
-     /tmp/ccw35bsL.s:292    .text.prvInitialiseNewTimer:0000000000000000 prvInitialiseNewTimer
-     /tmp/ccw35bsL.s:387    .rodata.xTimerCreateTimerTask.str1.4:0000000000000000 $d
-     /tmp/ccw35bsL.s:391    .text.xTimerCreateTimerTask:0000000000000000 $t
-     /tmp/ccw35bsL.s:398    .text.xTimerCreateTimerTask:0000000000000000 xTimerCreateTimerTask
-     /tmp/ccw35bsL.s:500    .text.xTimerCreateTimerTask:0000000000000054 $d
-     /tmp/ccw35bsL.s:1656   .text.prvTimerTask:0000000000000000 prvTimerTask
-     /tmp/ccw35bsL.s:508    .text.xTimerCreate:0000000000000000 $t
-     /tmp/ccw35bsL.s:515    .text.xTimerCreate:0000000000000000 xTimerCreate
-     /tmp/ccw35bsL.s:581    .text.xTimerCreateStatic:0000000000000000 $t
-     /tmp/ccw35bsL.s:588    .text.xTimerCreateStatic:0000000000000000 xTimerCreateStatic
-     /tmp/ccw35bsL.s:707    .text.xTimerGenericCommand:0000000000000000 $t
-     /tmp/ccw35bsL.s:714    .text.xTimerGenericCommand:0000000000000000 xTimerGenericCommand
-     /tmp/ccw35bsL.s:862    .text.xTimerGenericCommand:0000000000000068 $d
-     /tmp/ccw35bsL.s:867    .text.prvSwitchTimerLists:0000000000000000 $t
-     /tmp/ccw35bsL.s:873    .text.prvSwitchTimerLists:0000000000000000 prvSwitchTimerLists
-     /tmp/ccw35bsL.s:1020   .text.prvSwitchTimerLists:0000000000000074 $d
-     /tmp/ccw35bsL.s:1026   .text.prvSampleTimeNow:0000000000000000 $t
-     /tmp/ccw35bsL.s:1032   .text.prvSampleTimeNow:0000000000000000 prvSampleTimeNow
-     /tmp/ccw35bsL.s:1091   .text.prvSampleTimeNow:0000000000000028 $d
-     /tmp/ccw35bsL.s:1096   .text.prvProcessExpiredTimer:0000000000000000 $t
-     /tmp/ccw35bsL.s:1102   .text.prvProcessExpiredTimer:0000000000000000 prvProcessExpiredTimer
-     /tmp/ccw35bsL.s:1223   .text.prvProcessExpiredTimer:0000000000000068 $d
-     /tmp/ccw35bsL.s:1228   .text.prvProcessTimerOrBlockTask:0000000000000000 $t
-     /tmp/ccw35bsL.s:1234   .text.prvProcessTimerOrBlockTask:0000000000000000 prvProcessTimerOrBlockTask
-     /tmp/ccw35bsL.s:1358   .text.prvProcessTimerOrBlockTask:0000000000000068 $d
-     /tmp/ccw35bsL.s:1365   .text.prvProcessReceivedCommands:0000000000000000 $t
-     /tmp/ccw35bsL.s:1371   .text.prvProcessReceivedCommands:0000000000000000 prvProcessReceivedCommands
-     /tmp/ccw35bsL.s:1463   .text.prvProcessReceivedCommands:0000000000000048 $d
-     /tmp/ccw35bsL.s:1473   .text.prvProcessReceivedCommands:0000000000000052 $t
-     /tmp/ccw35bsL.s:1645   .text.prvProcessReceivedCommands:0000000000000108 $d
-     /tmp/ccw35bsL.s:1650   .text.prvTimerTask:0000000000000000 $t
-     /tmp/ccw35bsL.s:1695   .text.xTimerGetTimerDaemonTaskHandle:0000000000000000 $t
-     /tmp/ccw35bsL.s:1702   .text.xTimerGetTimerDaemonTaskHandle:0000000000000000 xTimerGetTimerDaemonTaskHandle
-     /tmp/ccw35bsL.s:1745   .text.xTimerGetTimerDaemonTaskHandle:000000000000001c $d
-     /tmp/ccw35bsL.s:1750   .text.xTimerGetPeriod:0000000000000000 $t
-     /tmp/ccw35bsL.s:1757   .text.xTimerGetPeriod:0000000000000000 xTimerGetPeriod
-     /tmp/ccw35bsL.s:1807   .text.vTimerSetReloadMode:0000000000000000 $t
-     /tmp/ccw35bsL.s:1814   .text.vTimerSetReloadMode:0000000000000000 vTimerSetReloadMode
-     /tmp/ccw35bsL.s:1893   .text.uxTimerGetReloadMode:0000000000000000 $t
-     /tmp/ccw35bsL.s:1900   .text.uxTimerGetReloadMode:0000000000000000 uxTimerGetReloadMode
-     /tmp/ccw35bsL.s:1986   .text.xTimerGetExpiryTime:0000000000000000 $t
-     /tmp/ccw35bsL.s:1993   .text.xTimerGetExpiryTime:0000000000000000 xTimerGetExpiryTime
-     /tmp/ccw35bsL.s:2046   .text.pcTimerGetName:0000000000000000 $t
-     /tmp/ccw35bsL.s:2053   .text.pcTimerGetName:0000000000000000 pcTimerGetName
-ARM GAS  /tmp/ccw35bsL.s 			page 80
+     /tmp/ccsIqFd4.s:18     .text.prvGetNextExpireTime:0000000000000000 $t
+     /tmp/ccsIqFd4.s:25     .text.prvGetNextExpireTime:0000000000000000 prvGetNextExpireTime
+     /tmp/ccsIqFd4.s:71     .text.prvGetNextExpireTime:000000000000001c $d
+     /tmp/ccsIqFd4.s:76     .text.prvInsertTimerInActiveList:0000000000000000 $t
+     /tmp/ccsIqFd4.s:82     .text.prvInsertTimerInActiveList:0000000000000000 prvInsertTimerInActiveList
+     /tmp/ccsIqFd4.s:172    .text.prvInsertTimerInActiveList:0000000000000040 $d
+     /tmp/ccsIqFd4.s:178    .rodata.prvCheckForValidListAndQueue.str1.4:0000000000000000 $d
+     /tmp/ccsIqFd4.s:182    .text.prvCheckForValidListAndQueue:0000000000000000 $t
+     /tmp/ccsIqFd4.s:188    .text.prvCheckForValidListAndQueue:0000000000000000 prvCheckForValidListAndQueue
+     /tmp/ccsIqFd4.s:274    .text.prvCheckForValidListAndQueue:0000000000000050 $d
+     /tmp/ccsIqFd4.s:286    .text.prvInitialiseNewTimer:0000000000000000 $t
+     /tmp/ccsIqFd4.s:292    .text.prvInitialiseNewTimer:0000000000000000 prvInitialiseNewTimer
+     /tmp/ccsIqFd4.s:387    .rodata.xTimerCreateTimerTask.str1.4:0000000000000000 $d
+     /tmp/ccsIqFd4.s:391    .text.xTimerCreateTimerTask:0000000000000000 $t
+     /tmp/ccsIqFd4.s:398    .text.xTimerCreateTimerTask:0000000000000000 xTimerCreateTimerTask
+     /tmp/ccsIqFd4.s:500    .text.xTimerCreateTimerTask:0000000000000054 $d
+     /tmp/ccsIqFd4.s:1656   .text.prvTimerTask:0000000000000000 prvTimerTask
+     /tmp/ccsIqFd4.s:508    .text.xTimerCreate:0000000000000000 $t
+     /tmp/ccsIqFd4.s:515    .text.xTimerCreate:0000000000000000 xTimerCreate
+     /tmp/ccsIqFd4.s:581    .text.xTimerCreateStatic:0000000000000000 $t
+     /tmp/ccsIqFd4.s:588    .text.xTimerCreateStatic:0000000000000000 xTimerCreateStatic
+     /tmp/ccsIqFd4.s:707    .text.xTimerGenericCommand:0000000000000000 $t
+     /tmp/ccsIqFd4.s:714    .text.xTimerGenericCommand:0000000000000000 xTimerGenericCommand
+     /tmp/ccsIqFd4.s:862    .text.xTimerGenericCommand:0000000000000068 $d
+     /tmp/ccsIqFd4.s:867    .text.prvSwitchTimerLists:0000000000000000 $t
+     /tmp/ccsIqFd4.s:873    .text.prvSwitchTimerLists:0000000000000000 prvSwitchTimerLists
+     /tmp/ccsIqFd4.s:1020   .text.prvSwitchTimerLists:0000000000000074 $d
+     /tmp/ccsIqFd4.s:1026   .text.prvSampleTimeNow:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1032   .text.prvSampleTimeNow:0000000000000000 prvSampleTimeNow
+     /tmp/ccsIqFd4.s:1091   .text.prvSampleTimeNow:0000000000000028 $d
+     /tmp/ccsIqFd4.s:1096   .text.prvProcessExpiredTimer:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1102   .text.prvProcessExpiredTimer:0000000000000000 prvProcessExpiredTimer
+     /tmp/ccsIqFd4.s:1223   .text.prvProcessExpiredTimer:0000000000000068 $d
+     /tmp/ccsIqFd4.s:1228   .text.prvProcessTimerOrBlockTask:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1234   .text.prvProcessTimerOrBlockTask:0000000000000000 prvProcessTimerOrBlockTask
+     /tmp/ccsIqFd4.s:1358   .text.prvProcessTimerOrBlockTask:0000000000000068 $d
+     /tmp/ccsIqFd4.s:1365   .text.prvProcessReceivedCommands:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1371   .text.prvProcessReceivedCommands:0000000000000000 prvProcessReceivedCommands
+     /tmp/ccsIqFd4.s:1463   .text.prvProcessReceivedCommands:0000000000000048 $d
+     /tmp/ccsIqFd4.s:1473   .text.prvProcessReceivedCommands:0000000000000052 $t
+     /tmp/ccsIqFd4.s:1645   .text.prvProcessReceivedCommands:0000000000000108 $d
+     /tmp/ccsIqFd4.s:1650   .text.prvTimerTask:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1695   .text.xTimerGetTimerDaemonTaskHandle:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1702   .text.xTimerGetTimerDaemonTaskHandle:0000000000000000 xTimerGetTimerDaemonTaskHandle
+     /tmp/ccsIqFd4.s:1745   .text.xTimerGetTimerDaemonTaskHandle:000000000000001c $d
+     /tmp/ccsIqFd4.s:1750   .text.xTimerGetPeriod:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1757   .text.xTimerGetPeriod:0000000000000000 xTimerGetPeriod
+     /tmp/ccsIqFd4.s:1807   .text.vTimerSetReloadMode:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1814   .text.vTimerSetReloadMode:0000000000000000 vTimerSetReloadMode
+     /tmp/ccsIqFd4.s:1893   .text.uxTimerGetReloadMode:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1900   .text.uxTimerGetReloadMode:0000000000000000 uxTimerGetReloadMode
+     /tmp/ccsIqFd4.s:1986   .text.xTimerGetExpiryTime:0000000000000000 $t
+     /tmp/ccsIqFd4.s:1993   .text.xTimerGetExpiryTime:0000000000000000 xTimerGetExpiryTime
+     /tmp/ccsIqFd4.s:2046   .text.pcTimerGetName:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2053   .text.pcTimerGetName:0000000000000000 pcTimerGetName
+ARM GAS  /tmp/ccsIqFd4.s 			page 80
 
 
-     /tmp/ccw35bsL.s:2103   .text.xTimerIsTimerActive:0000000000000000 $t
-     /tmp/ccw35bsL.s:2110   .text.xTimerIsTimerActive:0000000000000000 xTimerIsTimerActive
-     /tmp/ccw35bsL.s:2196   .text.pvTimerGetTimerID:0000000000000000 $t
-     /tmp/ccw35bsL.s:2203   .text.pvTimerGetTimerID:0000000000000000 pvTimerGetTimerID
-     /tmp/ccw35bsL.s:2272   .text.vTimerSetTimerID:0000000000000000 $t
-     /tmp/ccw35bsL.s:2279   .text.vTimerSetTimerID:0000000000000000 vTimerSetTimerID
-     /tmp/ccw35bsL.s:2344   .text.xTimerPendFunctionCallFromISR:0000000000000000 $t
-     /tmp/ccw35bsL.s:2351   .text.xTimerPendFunctionCallFromISR:0000000000000000 xTimerPendFunctionCallFromISR
-     /tmp/ccw35bsL.s:2412   .text.xTimerPendFunctionCallFromISR:0000000000000024 $d
-     /tmp/ccw35bsL.s:2417   .text.xTimerPendFunctionCall:0000000000000000 $t
-     /tmp/ccw35bsL.s:2424   .text.xTimerPendFunctionCall:0000000000000000 xTimerPendFunctionCall
-     /tmp/ccw35bsL.s:2522   .text.xTimerPendFunctionCall:000000000000003c $d
-     /tmp/ccw35bsL.s:2527   .text.uxTimerGetTimerNumber:0000000000000000 $t
-     /tmp/ccw35bsL.s:2534   .text.uxTimerGetTimerNumber:0000000000000000 uxTimerGetTimerNumber
-     /tmp/ccw35bsL.s:2552   .text.vTimerSetTimerNumber:0000000000000000 $t
-     /tmp/ccw35bsL.s:2559   .text.vTimerSetTimerNumber:0000000000000000 vTimerSetTimerNumber
-     /tmp/ccw35bsL.s:2576   .bss.pxCurrentTimerList:0000000000000000 $d
-     /tmp/ccw35bsL.s:2580   .bss.pxCurrentTimerList:0000000000000000 pxCurrentTimerList
-     /tmp/ccw35bsL.s:2583   .bss.pxOverflowTimerList:0000000000000000 $d
-     /tmp/ccw35bsL.s:2587   .bss.pxOverflowTimerList:0000000000000000 pxOverflowTimerList
-     /tmp/ccw35bsL.s:2590   .bss.ucStaticTimerQueueStorage.6938:0000000000000000 $d
-     /tmp/ccw35bsL.s:2594   .bss.ucStaticTimerQueueStorage.6938:0000000000000000 ucStaticTimerQueueStorage.6938
-     /tmp/ccw35bsL.s:2597   .bss.xActiveTimerList1:0000000000000000 $d
-     /tmp/ccw35bsL.s:2601   .bss.xActiveTimerList1:0000000000000000 xActiveTimerList1
-     /tmp/ccw35bsL.s:2604   .bss.xActiveTimerList2:0000000000000000 $d
-     /tmp/ccw35bsL.s:2608   .bss.xActiveTimerList2:0000000000000000 xActiveTimerList2
-     /tmp/ccw35bsL.s:2611   .bss.xLastTime.6887:0000000000000000 $d
-     /tmp/ccw35bsL.s:2615   .bss.xLastTime.6887:0000000000000000 xLastTime.6887
-     /tmp/ccw35bsL.s:2618   .bss.xStaticTimerQueue.6937:0000000000000000 $d
-     /tmp/ccw35bsL.s:2622   .bss.xStaticTimerQueue.6937:0000000000000000 xStaticTimerQueue.6937
-     /tmp/ccw35bsL.s:2625   .bss.xTimerQueue:0000000000000000 $d
-     /tmp/ccw35bsL.s:2629   .bss.xTimerQueue:0000000000000000 xTimerQueue
-     /tmp/ccw35bsL.s:2632   .bss.xTimerTaskHandle:0000000000000000 $d
-     /tmp/ccw35bsL.s:2636   .bss.xTimerTaskHandle:0000000000000000 xTimerTaskHandle
+     /tmp/ccsIqFd4.s:2103   .text.xTimerIsTimerActive:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2110   .text.xTimerIsTimerActive:0000000000000000 xTimerIsTimerActive
+     /tmp/ccsIqFd4.s:2196   .text.pvTimerGetTimerID:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2203   .text.pvTimerGetTimerID:0000000000000000 pvTimerGetTimerID
+     /tmp/ccsIqFd4.s:2272   .text.vTimerSetTimerID:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2279   .text.vTimerSetTimerID:0000000000000000 vTimerSetTimerID
+     /tmp/ccsIqFd4.s:2344   .text.xTimerPendFunctionCallFromISR:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2351   .text.xTimerPendFunctionCallFromISR:0000000000000000 xTimerPendFunctionCallFromISR
+     /tmp/ccsIqFd4.s:2412   .text.xTimerPendFunctionCallFromISR:0000000000000024 $d
+     /tmp/ccsIqFd4.s:2417   .text.xTimerPendFunctionCall:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2424   .text.xTimerPendFunctionCall:0000000000000000 xTimerPendFunctionCall
+     /tmp/ccsIqFd4.s:2522   .text.xTimerPendFunctionCall:000000000000003c $d
+     /tmp/ccsIqFd4.s:2527   .text.uxTimerGetTimerNumber:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2534   .text.uxTimerGetTimerNumber:0000000000000000 uxTimerGetTimerNumber
+     /tmp/ccsIqFd4.s:2552   .text.vTimerSetTimerNumber:0000000000000000 $t
+     /tmp/ccsIqFd4.s:2559   .text.vTimerSetTimerNumber:0000000000000000 vTimerSetTimerNumber
+     /tmp/ccsIqFd4.s:2576   .bss.pxCurrentTimerList:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2580   .bss.pxCurrentTimerList:0000000000000000 pxCurrentTimerList
+     /tmp/ccsIqFd4.s:2583   .bss.pxOverflowTimerList:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2587   .bss.pxOverflowTimerList:0000000000000000 pxOverflowTimerList
+     /tmp/ccsIqFd4.s:2590   .bss.ucStaticTimerQueueStorage.6938:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2594   .bss.ucStaticTimerQueueStorage.6938:0000000000000000 ucStaticTimerQueueStorage.6938
+     /tmp/ccsIqFd4.s:2597   .bss.xActiveTimerList1:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2601   .bss.xActiveTimerList1:0000000000000000 xActiveTimerList1
+     /tmp/ccsIqFd4.s:2604   .bss.xActiveTimerList2:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2608   .bss.xActiveTimerList2:0000000000000000 xActiveTimerList2
+     /tmp/ccsIqFd4.s:2611   .bss.xLastTime.6887:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2615   .bss.xLastTime.6887:0000000000000000 xLastTime.6887
+     /tmp/ccsIqFd4.s:2618   .bss.xStaticTimerQueue.6937:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2622   .bss.xStaticTimerQueue.6937:0000000000000000 xStaticTimerQueue.6937
+     /tmp/ccsIqFd4.s:2625   .bss.xTimerQueue:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2629   .bss.xTimerQueue:0000000000000000 xTimerQueue
+     /tmp/ccsIqFd4.s:2632   .bss.xTimerTaskHandle:0000000000000000 $d
+     /tmp/ccsIqFd4.s:2636   .bss.xTimerTaskHandle:0000000000000000 xTimerTaskHandle
 
 UNDEFINED SYMBOLS
 vListInsert

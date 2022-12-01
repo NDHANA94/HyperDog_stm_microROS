@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccKRVJ90.s 			page 1
+ARM GAS  /tmp/ccsCQoVy.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
   28:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
   29:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** /** @addtogroup USBH_LIB_CORE
   30:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   * @{
-ARM GAS  /tmp/ccKRVJ90.s 			page 2
+ARM GAS  /tmp/ccsCQoVy.s 			page 2
 
 
   31:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
   85:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #endif
   86:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #endif
   87:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
-ARM GAS  /tmp/ccKRVJ90.s 			page 3
+ARM GAS  /tmp/ccsCQoVy.s 			page 3
 
 
   88:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  142:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  143:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   phost->thread = osThreadCreate(osThread(USBH_Thread), phost);
  144:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
-ARM GAS  /tmp/ccKRVJ90.s 			page 4
+ARM GAS  /tmp/ccsCQoVy.s 			page 4
 
 
  145:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #else
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  199:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   (void)osThreadTerminate(phost->thread);
  200:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   (void)osMessageDelete(phost->os_event);
  201:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
-ARM GAS  /tmp/ccKRVJ90.s 			page 5
+ARM GAS  /tmp/ccsCQoVy.s 			page 5
 
 
  202:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #else
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
   56 0014 5160     		str	r1, [r2, #4]
  226:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
   57              		.loc 1 226 40 is_stmt 1 discriminator 3 view .LVU9
-ARM GAS  /tmp/ccKRVJ90.s 			page 6
+ARM GAS  /tmp/ccsCQoVy.s 			page 6
 
 
  226:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
   97              		.loc 1 238 23 view .LVU27
   98 0036 A370     		strb	r3, [r4, #2]
  239:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   phost->Timer = 0U;
-ARM GAS  /tmp/ccKRVJ90.s 			page 7
+ARM GAS  /tmp/ccsCQoVy.s 			page 7
 
 
   99              		.loc 1 239 3 is_stmt 1 view .LVU28
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  143              	USBH_HandleSof:
  144              	.LVL9:
  145              	.LFB257:
-ARM GAS  /tmp/ccKRVJ90.s 			page 8
+ARM GAS  /tmp/ccsCQoVy.s 			page 8
 
 
  252:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  306:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****     USBH_UsrLog("Protocol : %xh", phost->device.CfgDesc.Itf_Desc[interface].bInterfaceProtocol);
  307:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   }
  308:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   else
-ARM GAS  /tmp/ccKRVJ90.s 			page 9
+ARM GAS  /tmp/ccsCQoVy.s 			page 9
 
 
  309:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  363:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  364:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  365:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** /**
-ARM GAS  /tmp/ccKRVJ90.s 			page 10
+ARM GAS  /tmp/ccsCQoVy.s 			page 10
 
 
  366:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   * @brief  USBH_FindInterfaceIndex
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  420:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** USBH_StatusTypeDef  USBH_Stop(USBH_HandleTypeDef *phost)
  421:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** {
  422:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   /* DeActivate VBUS on the port */
-ARM GAS  /tmp/ccKRVJ90.s 			page 11
+ARM GAS  /tmp/ccsCQoVy.s 			page 11
 
 
  423:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   (void)USBH_LL_DriverVBUS(phost, FALSE);
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  477:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  478:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   /* check for Host pending port disconnect event */
  479:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   if (phost->device.is_disconnected == 1U)
-ARM GAS  /tmp/ccKRVJ90.s 			page 12
+ARM GAS  /tmp/ccsCQoVy.s 			page 12
 
 
  480:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  534:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           }
  535:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
  536:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         else
-ARM GAS  /tmp/ccKRVJ90.s 			page 13
+ARM GAS  /tmp/ccsCQoVy.s 			page 13
 
 
  537:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  591:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       status = USBH_HandleEnum(phost);
  592:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       if (status == USBH_OK)
  593:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
-ARM GAS  /tmp/ccKRVJ90.s 			page 14
+ARM GAS  /tmp/ccsCQoVy.s 			page 14
 
 
  594:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         /* The function shall return USBH_OK when full enumeration is complete */
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  648:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       phost->os_msg = (uint32_t)USBH_PORT_EVENT;
  649:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (osCMSIS < 0x20000U)
  650:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
-ARM GAS  /tmp/ccKRVJ90.s 			page 15
+ARM GAS  /tmp/ccsCQoVy.s 			page 15
 
 
  651:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #else
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  705:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           if (phost->pClass[idx]->ClassCode == phost->device.CfgDesc.Itf_Desc[0].bInterfaceClass)
  706:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           {
  707:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****             phost->pActiveClass = phost->pClass[idx];
-ARM GAS  /tmp/ccKRVJ90.s 			page 16
+ARM GAS  /tmp/ccsCQoVy.s 			page 16
 
 
  708:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****             break;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  762:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           /* .. */
  763:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
  764:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       }
-ARM GAS  /tmp/ccKRVJ90.s 			page 17
+ARM GAS  /tmp/ccsCQoVy.s 			page 17
 
 
  765:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       else
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  819:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (USBH_USE_OS == 1U)
  820:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       phost->os_msg = (uint32_t)USBH_PORT_EVENT;
  821:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (osCMSIS < 0x20000U)
-ARM GAS  /tmp/ccKRVJ90.s 			page 18
+ARM GAS  /tmp/ccsCQoVy.s 			page 18
 
 
  822:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  876:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           USBH_UsrLog("Control error, Device not Responding Please unplug the Device.");
  877:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->gState = HOST_ABORT_STATE;
  878:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
-ARM GAS  /tmp/ccKRVJ90.s 			page 19
+ARM GAS  /tmp/ccsCQoVy.s 			page 19
 
 
  879:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         else
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  933:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       /* set address */
  934:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       ReqStatus = USBH_SetAddress(phost, USBH_DEVICE_ADDRESS);
  935:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       if (ReqStatus == USBH_OK)
-ARM GAS  /tmp/ccKRVJ90.s 			page 20
+ARM GAS  /tmp/ccsCQoVy.s 			page 20
 
 
  936:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  990:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           (void)USBH_FreePipe(phost, phost->Control.pipe_in);
  991:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  992:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           /* Reset the USB Device */
-ARM GAS  /tmp/ccKRVJ90.s 			page 21
+ARM GAS  /tmp/ccsCQoVy.s 			page 21
 
 
  993:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->EnumState = ENUM_IDLE;
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1047:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->EnumState = ENUM_GET_PRODUCT_STRING_DESC;
 1048:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
 1049:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (USBH_USE_OS == 1U)
-ARM GAS  /tmp/ccKRVJ90.s 			page 22
+ARM GAS  /tmp/ccsCQoVy.s 			page 22
 
 
 1050:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->os_msg = (uint32_t)USBH_STATE_CHANGED_EVENT;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1104:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
 1105:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         else if (ReqStatus == USBH_NOT_SUPPORTED)
 1106:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
-ARM GAS  /tmp/ccKRVJ90.s 			page 23
+ARM GAS  /tmp/ccsCQoVy.s 			page 23
 
 
 1107:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           USBH_UsrLog("Product : N/A");
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1161:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       }
 1162:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       else
 1163:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
-ARM GAS  /tmp/ccKRVJ90.s 			page 24
+ARM GAS  /tmp/ccsCQoVy.s 			page 24
 
 
 1164:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         USBH_UsrLog("Serial Number : N/A");
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  155              		.cfi_offset 14, -4
 1209:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   if ((phost->gState == HOST_CLASS) && (phost->pActiveClass != NULL))
  156              		.loc 1 1209 3 is_stmt 1 view .LVU49
-ARM GAS  /tmp/ccKRVJ90.s 			page 25
+ARM GAS  /tmp/ccsCQoVy.s 			page 25
 
 
  157              		.loc 1 1209 13 is_stmt 0 view .LVU50
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  202              		.cfi_def_cfa_offset 16
  203              		.cfi_offset 4, -16
  204              		.cfi_offset 5, -12
-ARM GAS  /tmp/ccKRVJ90.s 			page 26
+ARM GAS  /tmp/ccsCQoVy.s 			page 26
 
 
  205              		.cfi_offset 6, -8
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  247              		.loc 1 855 9 is_stmt 1 view .LVU72
  855:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  248              		.loc 1 855 57 is_stmt 0 view .LVU73
-ARM GAS  /tmp/ccKRVJ90.s 			page 27
+ARM GAS  /tmp/ccsCQoVy.s 			page 27
 
 
  249 0032 94F82D33 		ldrb	r3, [r4, #813]	@ zero_extendqisi2
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  872:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         if (phost->device.EnumCnt > 3U)
  291              		.loc 1 872 22 is_stmt 0 view .LVU86
  292 0072 94F81E33 		ldrb	r3, [r4, #798]	@ zero_extendqisi2
-ARM GAS  /tmp/ccKRVJ90.s 			page 28
+ARM GAS  /tmp/ccsCQoVy.s 			page 28
 
 
  872:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         if (phost->device.EnumCnt > 3U)
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  330              		.loc 1 845 22 view .LVU103
  331 009e 0125     		movs	r5, #1
  332 00a0 08E1     		b	.L14
-ARM GAS  /tmp/ccKRVJ90.s 			page 29
+ARM GAS  /tmp/ccsCQoVy.s 			page 29
 
 
  333              	.LVL23:
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  367 00bc DBB2     		uxtb	r3, r3
  368 00be 84F81E33 		strb	r3, [r4, #798]
  909:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
-ARM GAS  /tmp/ccKRVJ90.s 			page 30
+ARM GAS  /tmp/ccsCQoVy.s 			page 30
 
 
  369              		.loc 1 909 9 is_stmt 1 view .LVU124
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  934:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       if (ReqStatus == USBH_OK)
  407              		.loc 1 934 19 is_stmt 0 view .LVU141
  408 00e4 0121     		movs	r1, #1
-ARM GAS  /tmp/ccKRVJ90.s 			page 31
+ARM GAS  /tmp/ccsCQoVy.s 			page 31
 
 
  409 00e6 FFF7FEFF 		bl	USBH_SetAddress
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  447 0112 2B46     		mov	r3, r5
  448 0114 8022     		movs	r2, #128
  449 0116 2179     		ldrb	r1, [r4, #4]	@ zero_extendqisi2
-ARM GAS  /tmp/ccKRVJ90.s 			page 32
+ARM GAS  /tmp/ccsCQoVy.s 			page 32
 
 
  450 0118 2046     		mov	r0, r4
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  489              		.loc 1 971 19 is_stmt 0 view .LVU172
  490 0146 0921     		movs	r1, #9
  491 0148 FFF7FEFF 		bl	USBH_Get_CfgDesc
-ARM GAS  /tmp/ccKRVJ90.s 			page 33
+ARM GAS  /tmp/ccsCQoVy.s 			page 33
 
 
  492              	.LVL36:
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  983:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->gState = HOST_ABORT_STATE;
  528              		.loc 1 983 11 view .LVU191
  984:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
-ARM GAS  /tmp/ccKRVJ90.s 			page 34
+ARM GAS  /tmp/ccsCQoVy.s 			page 34
 
 
  529              		.loc 1 984 11 view .LVU192
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  568              		.loc 1 1006 7 is_stmt 1 view .LVU207
 1006:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
  569              		.loc 1 1006 10 is_stmt 0 view .LVU208
-ARM GAS  /tmp/ccKRVJ90.s 			page 35
+ARM GAS  /tmp/ccsCQoVy.s 			page 35
 
 
  570 0198 18B9     		cbnz	r0, .L31
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  605              		.loc 1 1018 25 is_stmt 0 view .LVU227
  606 01ba 0D23     		movs	r3, #13
  607 01bc 2370     		strb	r3, [r4]
-ARM GAS  /tmp/ccKRVJ90.s 			page 36
+ARM GAS  /tmp/ccsCQoVy.s 			page 36
 
 
  845:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   USBH_StatusTypeDef ReqStatus = USBH_BUSY;
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  646 01e4 00F58E72 		add	r2, r0, #284
  647 01e8 FFF7FEFF 		bl	USBH_Get_StringDesc
  648              	.LVL46:
-ARM GAS  /tmp/ccKRVJ90.s 			page 37
+ARM GAS  /tmp/ccsCQoVy.s 			page 37
 
 
 1043:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  686              		.loc 1 1060 11 is_stmt 1 view .LVU260
 1060:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->EnumState = ENUM_GET_PRODUCT_STRING_DESC;
  687              		.loc 1 1060 11 view .LVU261
-ARM GAS  /tmp/ccKRVJ90.s 			page 38
+ARM GAS  /tmp/ccsCQoVy.s 			page 38
 
 
 1060:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           phost->EnumState = ENUM_GET_PRODUCT_STRING_DESC;
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  724              		.loc 1 1087 15 is_stmt 0 view .LVU279
  725 023c 0023     		movs	r3, #0
  726 023e 1A46     		mov	r2, r3
-ARM GAS  /tmp/ccKRVJ90.s 			page 39
+ARM GAS  /tmp/ccsCQoVy.s 			page 39
 
 
  727 0240 00F57871 		add	r1, r0, #992
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  764              		.loc 1 1105 17 is_stmt 0 view .LVU296
  765 026a 0328     		cmp	r0, #3
  766 026c 01D0     		beq	.L54
-ARM GAS  /tmp/ccKRVJ90.s 			page 40
+ARM GAS  /tmp/ccsCQoVy.s 			page 40
 
 
  845:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   USBH_StatusTypeDef ReqStatus = USBH_BUSY;
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1130:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (osCMSIS < 0x20000U)
  804              		.loc 1 1130 9 is_stmt 1 view .LVU314
 1130:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (osCMSIS < 0x20000U)
-ARM GAS  /tmp/ccKRVJ90.s 			page 41
+ARM GAS  /tmp/ccsCQoVy.s 			page 41
 
 
  805              		.loc 1 1130 23 is_stmt 0 view .LVU315
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  848 02c2 FFF7FEFF 		bl	USBH_Get_StringDesc
  849              	.LVL65:
 1146:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
-ARM GAS  /tmp/ccKRVJ90.s 			page 42
+ARM GAS  /tmp/ccsCQoVy.s 			page 42
 
 
  850              		.loc 1 1146 9 is_stmt 1 view .LVU327
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  895              		.loc 1 101 6 is_stmt 0 view .LVU336
  896 0000 78B3     		cbz	r0, .L59
   99:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   /* Check whether the USB Host handle is valid */
-ARM GAS  /tmp/ccKRVJ90.s 			page 43
+ARM GAS  /tmp/ccsCQoVy.s 			page 43
 
 
  897              		.loc 1 99 1 view .LVU337
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  124:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
  934              		.loc 1 124 6 is_stmt 0 view .LVU355
  935 002a 0EB1     		cbz	r6, .L58
-ARM GAS  /tmp/ccKRVJ90.s 			page 44
+ARM GAS  /tmp/ccsCQoVy.s 			page 44
 
 
  126:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   }
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  974              	.LVL72:
  168:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** }
  975              		.loc 1 168 3 is_stmt 1 view .LVU372
-ARM GAS  /tmp/ccKRVJ90.s 			page 45
+ARM GAS  /tmp/ccsCQoVy.s 			page 45
 
 
  168:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** }
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  180:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  1025              		.loc 1 180 9 is_stmt 0 view .LVU380
  1026 0004 FFF7FEFF 		bl	DeInitStateMachine
-ARM GAS  /tmp/ccKRVJ90.s 			page 46
+ARM GAS  /tmp/ccsCQoVy.s 			page 46
 
 
  1027              	.LVL76:
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1062              	.LVL78:
  206:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  1063              		.loc 1 206 3 is_stmt 1 view .LVU400
-ARM GAS  /tmp/ccKRVJ90.s 			page 47
+ARM GAS  /tmp/ccsCQoVy.s 			page 47
 
 
  206:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1106              		.loc 1 270 39 view .LVU414
  1107 000c C0F88013 		str	r1, [r0, #896]
  270:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       status = USBH_OK;
-ARM GAS  /tmp/ccKRVJ90.s 			page 48
+ARM GAS  /tmp/ccsCQoVy.s 			page 48
 
 
  1108              		.loc 1 270 43 view .LVU415
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  300:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
  1153              		.loc 1 300 40 is_stmt 0 view .LVU427
  1154 0000 90F83C33 		ldrb	r3, [r0, #828]	@ zero_extendqisi2
-ARM GAS  /tmp/ccKRVJ90.s 			page 49
+ARM GAS  /tmp/ccsCQoVy.s 			page 49
 
 
  300:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1190              		.align	1
  1191              		.global	USBH_GetActiveClass
  1192              		.syntax unified
-ARM GAS  /tmp/ccKRVJ90.s 			page 50
+ARM GAS  /tmp/ccsCQoVy.s 			page 50
 
 
  1193              		.thumb
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1241              	.LVL94:
  347:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   pcfg = &phost->device.CfgDesc;
  1242              		.loc 1 347 3 view .LVU457
-ARM GAS  /tmp/ccKRVJ90.s 			page 51
+ARM GAS  /tmp/ccsCQoVy.s 			page 51
 
 
  348:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1282 002a 94F84743 		ldrb	r4, [r4, #839]	@ zero_extendqisi2
  353:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         ((pif->bInterfaceSubClass == SubClass) || (SubClass == 0xFFU)) &&
  1283              		.loc 1 353 8 view .LVU473
-ARM GAS  /tmp/ccKRVJ90.s 			page 52
+ARM GAS  /tmp/ccsCQoVy.s 			page 52
 
 
  1284 002e 8C42     		cmp	r4, r1
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1332              		.cfi_startproc
  1333              		@ args = 0, pretend = 0, frame = 0
  1334              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccKRVJ90.s 			page 53
+ARM GAS  /tmp/ccsCQoVy.s 			page 53
 
 
  1335              		@ link register save eliminated.
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1373 0016 93F84433 		ldrb	r3, [r3, #836]	@ zero_extendqisi2
  386:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****     {
  1374              		.loc 1 386 8 view .LVU498
-ARM GAS  /tmp/ccKRVJ90.s 			page 54
+ARM GAS  /tmp/ccsCQoVy.s 			page 54
 
 
  1375 001a 8B42     		cmp	r3, r1
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  405:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  1424              		.loc 1 405 3 is_stmt 1 view .LVU506
  405:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
-ARM GAS  /tmp/ccKRVJ90.s 			page 55
+ARM GAS  /tmp/ccsCQoVy.s 			page 55
 
 
  1425              		.loc 1 405 9 is_stmt 0 view .LVU507
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1470              		.loc 1 426 9 is_stmt 0 view .LVU518
  1471 000a 2046     		mov	r0, r4
  1472 000c FFF7FEFF 		bl	USBH_LL_Stop
-ARM GAS  /tmp/ccKRVJ90.s 			page 56
+ARM GAS  /tmp/ccsCQoVy.s 			page 56
 
 
  1473              	.LVL118:
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  475:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   uint8_t idx = 0U;
  1520              		.loc 1 475 3 is_stmt 1 view .LVU528
  475:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   uint8_t idx = 0U;
-ARM GAS  /tmp/ccKRVJ90.s 			page 57
+ARM GAS  /tmp/ccsCQoVy.s 			page 57
 
 
  1521              		.loc 1 475 27 is_stmt 0 view .LVU529
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  488:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
  1565              		.loc 1 488 10 view .LVU540
  1566 0044 D3B3     		cbz	r3, .L99
-ARM GAS  /tmp/ccKRVJ90.s 			page 58
+ARM GAS  /tmp/ccsCQoVy.s 			page 58
 
 
  490:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1604              	.L110:
  514:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
  1605              		.loc 1 514 7 is_stmt 1 view .LVU558
-ARM GAS  /tmp/ccKRVJ90.s 			page 59
+ARM GAS  /tmp/ccsCQoVy.s 			page 59
 
 
  514:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  517:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         phost->gState = HOST_DEV_ATTACHED;
  1641              		.loc 1 517 30 is_stmt 0 view .LVU578
  1642 009c 0023     		movs	r3, #0
-ARM GAS  /tmp/ccKRVJ90.s 			page 60
+ARM GAS  /tmp/ccsCQoVy.s 			page 60
 
 
  1643 009e 84F81F33 		strb	r3, [r4, #799]
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1684              		.loc 1 538 26 is_stmt 0 view .LVU591
  1685 00c8 0A33     		adds	r3, r3, #10
  1686 00ca C4F8C833 		str	r3, [r4, #968]
-ARM GAS  /tmp/ccKRVJ90.s 			page 61
+ARM GAS  /tmp/ccsCQoVy.s 			page 61
 
 
  539:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1726 00f6 0021     		movs	r1, #0
  1727 00f8 2046     		mov	r0, r4
  1728 00fa FFF7FEFF 		bl	USBH_AllocPipe
-ARM GAS  /tmp/ccKRVJ90.s 			page 62
+ARM GAS  /tmp/ccsCQoVy.s 			page 62
 
 
  1729              	.LVL138:
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  584:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #endif
  1772              		.loc 1 584 13 is_stmt 0 view .LVU618
  1773 0146 2B46     		mov	r3, r5
-ARM GAS  /tmp/ccKRVJ90.s 			page 63
+ARM GAS  /tmp/ccsCQoVy.s 			page 63
 
 
  1774 0148 2A46     		mov	r2, r5
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  606:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         }
  1811              		.loc 1 606 25 is_stmt 0 view .LVU636
  1812 0176 0723     		movs	r3, #7
-ARM GAS  /tmp/ccKRVJ90.s 			page 64
+ARM GAS  /tmp/ccsCQoVy.s 			page 64
 
 
  1813 0178 2370     		strb	r3, [r4]
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1852              		.loc 1 625 9 is_stmt 1 view .LVU651
  625:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  1853              		.loc 1 625 23 is_stmt 0 view .LVU652
-ARM GAS  /tmp/ccKRVJ90.s 			page 65
+ARM GAS  /tmp/ccsCQoVy.s 			page 65
 
 
  1854 01a6 0823     		movs	r3, #8
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  652:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #endif
  1893              		.loc 1 652 7 is_stmt 1 view .LVU668
  652:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #endif
-ARM GAS  /tmp/ccKRVJ90.s 			page 66
+ARM GAS  /tmp/ccsCQoVy.s 			page 66
 
 
  1894              		.loc 1 652 13 is_stmt 0 view .LVU669
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  1935 0210 0121     		movs	r1, #1
  1936 0212 2046     		mov	r0, r4
  1937              	.LVL159:
-ARM GAS  /tmp/ccKRVJ90.s 			page 67
+ARM GAS  /tmp/ccsCQoVy.s 			page 67
 
 
  661:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  695:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
  1974              		.loc 1 695 7 is_stmt 1 view .LVU701
  695:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
-ARM GAS  /tmp/ccKRVJ90.s 			page 68
+ARM GAS  /tmp/ccsCQoVy.s 			page 68
 
 
  1975              		.loc 1 695 16 is_stmt 0 view .LVU702
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2011              		.loc 1 717 13 view .LVU720
  720:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           }
  2012              		.loc 1 720 13 view .LVU721
-ARM GAS  /tmp/ccKRVJ90.s 			page 69
+ARM GAS  /tmp/ccsCQoVy.s 			page 69
 
 
  720:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****           }
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  703:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
  2052              		.loc 1 703 60 is_stmt 1 discriminator 2 view .LVU737
  703:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
-ARM GAS  /tmp/ccKRVJ90.s 			page 70
+ARM GAS  /tmp/ccsCQoVy.s 			page 70
 
 
  2053              		.loc 1 703 63 is_stmt 0 discriminator 2 view .LVU738
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2092 02b2 1B69     		ldr	r3, [r3, #16]
  749:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  2093              		.loc 1 749 18 view .LVU754
-ARM GAS  /tmp/ccKRVJ90.s 			page 71
+ARM GAS  /tmp/ccsCQoVy.s 			page 71
 
 
  2094 02b4 2046     		mov	r0, r4
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2131 02de 9DF81730 		ldrb	r3, [sp, #23]	@ zero_extendqisi2
  2132 02e2 DBB2     		uxtb	r3, r3
  755:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****         {
-ARM GAS  /tmp/ccKRVJ90.s 			page 72
+ARM GAS  /tmp/ccsCQoVy.s 			page 72
 
 
  2133              		.loc 1 755 17 view .LVU772
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2171              		.loc 1 789 37 is_stmt 0 view .LVU788
  2172 0306 0023     		movs	r3, #0
  2173 0308 84F82133 		strb	r3, [r4, #801]
-ARM GAS  /tmp/ccKRVJ90.s 			page 73
+ARM GAS  /tmp/ccsCQoVy.s 			page 73
 
 
  791:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  804:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
  2211              		.loc 1 804 7 view .LVU806
  806:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****       {
-ARM GAS  /tmp/ccKRVJ90.s 			page 74
+ARM GAS  /tmp/ccsCQoVy.s 			page 74
 
 
  2212              		.loc 1 806 7 view .LVU807
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2254              		.align	1
  2255              		.syntax unified
  2256              		.thumb
-ARM GAS  /tmp/ccKRVJ90.s 			page 75
+ARM GAS  /tmp/ccsCQoVy.s 			page 75
 
 
  2257              		.thumb_func
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1263:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
 1264:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
 1265:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** /**
-ARM GAS  /tmp/ccKRVJ90.s 			page 76
+ARM GAS  /tmp/ccsCQoVy.s 			page 76
 
 
 1266:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   * @brief  USBH_LL_Connect
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1320:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** }
 1321:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
 1322:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** 
-ARM GAS  /tmp/ccKRVJ90.s 			page 77
+ARM GAS  /tmp/ccsCQoVy.s 			page 77
 
 
 1323:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (USBH_USE_OS == 1U)
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1347:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   osStatus_t status;
  2284              		.loc 1 1347 3 is_stmt 1 view .LVU825
 1349:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
-ARM GAS  /tmp/ccKRVJ90.s 			page 78
+ARM GAS  /tmp/ccsCQoVy.s 			page 78
 
 
  2285              		.loc 1 1349 3 view .LVU826
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2335              	.LVL192:
  2336              	.LFB256:
 1195:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   phost->Timer++;
-ARM GAS  /tmp/ccKRVJ90.s 			page 79
+ARM GAS  /tmp/ccsCQoVy.s 			page 79
 
 
  2337              		.loc 1 1195 1 is_stmt 1 view -0
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2383              		.loc 1 1224 29 is_stmt 0 view .LVU845
  2384 0002 0123     		movs	r3, #1
  2385 0004 80F82333 		strb	r3, [r0, #803]
-ARM GAS  /tmp/ccKRVJ90.s 			page 80
+ARM GAS  /tmp/ccsCQoVy.s 			page 80
 
 
 1227:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (osCMSIS < 0x20000U)
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2431              		.section	.text.USBH_IsPortEnabled,"ax",%progbits
  2432              		.align	1
  2433              		.global	USBH_IsPortEnabled
-ARM GAS  /tmp/ccKRVJ90.s 			page 81
+ARM GAS  /tmp/ccsCQoVy.s 			page 81
 
 
  2434              		.syntax unified
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2483              	.LVL201:
  444:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   {
  2484              		.loc 1 444 6 view .LVU866
-ARM GAS  /tmp/ccKRVJ90.s 			page 82
+ARM GAS  /tmp/ccsCQoVy.s 			page 82
 
 
  2485 0008 60B9     		cbnz	r0, .L159
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2529              	USBH_LL_Connect:
  2530              	.LVL205:
  2531              	.LFB261:
-ARM GAS  /tmp/ccKRVJ90.s 			page 83
+ARM GAS  /tmp/ccsCQoVy.s 			page 83
 
 
 1272:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c ****   phost->device.is_connected = 1U;
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2571              	.LFE261:
  2573              		.section	.text.USBH_LL_Disconnect,"ax",%progbits
  2574              		.align	1
-ARM GAS  /tmp/ccKRVJ90.s 			page 84
+ARM GAS  /tmp/ccsCQoVy.s 			page 84
 
 
  2575              		.global	USBH_LL_Disconnect
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
 1309:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (USBH_USE_OS == 1U)
  2618              		.loc 1 1309 3 is_stmt 1 view .LVU906
 1309:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.c **** #if (USBH_USE_OS == 1U)
-ARM GAS  /tmp/ccKRVJ90.s 			page 85
+ARM GAS  /tmp/ccsCQoVy.s 			page 85
 
 
  2619              		.loc 1 1309 9 is_stmt 0 view .LVU907
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2654              		.loc 1 1369 1 is_stmt 1 view -0
  2655              		.cfi_startproc
  2656              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccKRVJ90.s 			page 86
+ARM GAS  /tmp/ccsCQoVy.s 			page 86
 
 
  2657              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -5156,67 +5156,67 @@ ARM GAS  /tmp/ccKRVJ90.s 			page 1
  2700              		.file 14 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ctlreq.h"
  2701              		.file 15 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.h"
  2702              		.file 16 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_pipes.h"
-ARM GAS  /tmp/ccKRVJ90.s 			page 87
+ARM GAS  /tmp/ccsCQoVy.s 			page 87
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usbh_core.c
-     /tmp/ccKRVJ90.s:18     .text.DeInitStateMachine:0000000000000000 $t
-     /tmp/ccKRVJ90.s:25     .text.DeInitStateMachine:0000000000000000 DeInitStateMachine
-     /tmp/ccKRVJ90.s:137    .text.USBH_HandleSof:0000000000000000 $t
-     /tmp/ccKRVJ90.s:143    .text.USBH_HandleSof:0000000000000000 USBH_HandleSof
-     /tmp/ccKRVJ90.s:186    .text.USBH_HandleEnum:0000000000000000 $t
-     /tmp/ccKRVJ90.s:192    .text.USBH_HandleEnum:0000000000000000 USBH_HandleEnum
-     /tmp/ccKRVJ90.s:221    .text.USBH_HandleEnum:0000000000000012 $d
-     /tmp/ccKRVJ90.s:229    .text.USBH_HandleEnum:0000000000000022 $t
-     /tmp/ccKRVJ90.s:876    .rodata.USBH_Init.str1.4:0000000000000000 $d
-     /tmp/ccKRVJ90.s:880    .text.USBH_Init:0000000000000000 $t
-     /tmp/ccKRVJ90.s:887    .text.USBH_Init:0000000000000000 USBH_Init
-     /tmp/ccKRVJ90.s:996    .text.USBH_Init:0000000000000068 $d
+     /tmp/ccsCQoVy.s:18     .text.DeInitStateMachine:0000000000000000 $t
+     /tmp/ccsCQoVy.s:25     .text.DeInitStateMachine:0000000000000000 DeInitStateMachine
+     /tmp/ccsCQoVy.s:137    .text.USBH_HandleSof:0000000000000000 $t
+     /tmp/ccsCQoVy.s:143    .text.USBH_HandleSof:0000000000000000 USBH_HandleSof
+     /tmp/ccsCQoVy.s:186    .text.USBH_HandleEnum:0000000000000000 $t
+     /tmp/ccsCQoVy.s:192    .text.USBH_HandleEnum:0000000000000000 USBH_HandleEnum
+     /tmp/ccsCQoVy.s:221    .text.USBH_HandleEnum:0000000000000012 $d
+     /tmp/ccsCQoVy.s:229    .text.USBH_HandleEnum:0000000000000022 $t
+     /tmp/ccsCQoVy.s:876    .rodata.USBH_Init.str1.4:0000000000000000 $d
+     /tmp/ccsCQoVy.s:880    .text.USBH_Init:0000000000000000 $t
+     /tmp/ccsCQoVy.s:887    .text.USBH_Init:0000000000000000 USBH_Init
+     /tmp/ccsCQoVy.s:996    .text.USBH_Init:0000000000000068 $d
                             *COM*:0000000000000024 USBH_Thread_Atrr
-     /tmp/ccKRVJ90.s:2260   .text.USBH_Process_OS:0000000000000000 USBH_Process_OS
-     /tmp/ccKRVJ90.s:1003   .text.USBH_DeInit:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1010   .text.USBH_DeInit:0000000000000000 USBH_DeInit
-     /tmp/ccKRVJ90.s:1077   .text.USBH_RegisterClass:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1084   .text.USBH_RegisterClass:0000000000000000 USBH_RegisterClass
-     /tmp/ccKRVJ90.s:1136   .text.USBH_SelectInterface:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1143   .text.USBH_SelectInterface:0000000000000000 USBH_SelectInterface
-     /tmp/ccKRVJ90.s:1190   .text.USBH_GetActiveClass:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1197   .text.USBH_GetActiveClass:0000000000000000 USBH_GetActiveClass
-     /tmp/ccKRVJ90.s:1215   .text.USBH_FindInterface:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1222   .text.USBH_FindInterface:0000000000000000 USBH_FindInterface
-     /tmp/ccKRVJ90.s:1321   .text.USBH_FindInterfaceIndex:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1328   .text.USBH_FindInterfaceIndex:0000000000000000 USBH_FindInterfaceIndex
-     /tmp/ccKRVJ90.s:1403   .text.USBH_Start:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1410   .text.USBH_Start:0000000000000000 USBH_Start
-     /tmp/ccKRVJ90.s:1443   .text.USBH_Stop:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1450   .text.USBH_Stop:0000000000000000 USBH_Stop
-     /tmp/ccKRVJ90.s:1495   .text.USBH_Process:0000000000000000 $t
-     /tmp/ccKRVJ90.s:1502   .text.USBH_Process:0000000000000000 USBH_Process
-     /tmp/ccKRVJ90.s:1542   .text.USBH_Process:0000000000000022 $d
-     /tmp/ccKRVJ90.s:1554   .text.USBH_Process:000000000000003a $t
-     /tmp/ccKRVJ90.s:2254   .text.USBH_Process_OS:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2303   .text.USBH_LL_SetTimer:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2310   .text.USBH_LL_SetTimer:0000000000000000 USBH_LL_SetTimer
-     /tmp/ccKRVJ90.s:2327   .text.USBH_LL_IncTimer:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2334   .text.USBH_LL_IncTimer:0000000000000000 USBH_LL_IncTimer
-     /tmp/ccKRVJ90.s:2362   .text.USBH_LL_PortEnabled:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2369   .text.USBH_LL_PortEnabled:0000000000000000 USBH_LL_PortEnabled
-     /tmp/ccKRVJ90.s:2406   .text.USBH_LL_PortDisabled:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2413   .text.USBH_LL_PortDisabled:0000000000000000 USBH_LL_PortDisabled
-     /tmp/ccKRVJ90.s:2432   .text.USBH_IsPortEnabled:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2439   .text.USBH_IsPortEnabled:0000000000000000 USBH_IsPortEnabled
-     /tmp/ccKRVJ90.s:2457   .text.USBH_ReEnumerate:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2464   .text.USBH_ReEnumerate:0000000000000000 USBH_ReEnumerate
-     /tmp/ccKRVJ90.s:2522   .text.USBH_LL_Connect:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2529   .text.USBH_LL_Connect:0000000000000000 USBH_LL_Connect
-     /tmp/ccKRVJ90.s:2574   .text.USBH_LL_Disconnect:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2581   .text.USBH_LL_Disconnect:0000000000000000 USBH_LL_Disconnect
-     /tmp/ccKRVJ90.s:2644   .text.USBH_LL_NotifyURBChange:0000000000000000 $t
-     /tmp/ccKRVJ90.s:2651   .text.USBH_LL_NotifyURBChange:0000000000000000 USBH_LL_NotifyURBChange
+     /tmp/ccsCQoVy.s:2260   .text.USBH_Process_OS:0000000000000000 USBH_Process_OS
+     /tmp/ccsCQoVy.s:1003   .text.USBH_DeInit:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1010   .text.USBH_DeInit:0000000000000000 USBH_DeInit
+     /tmp/ccsCQoVy.s:1077   .text.USBH_RegisterClass:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1084   .text.USBH_RegisterClass:0000000000000000 USBH_RegisterClass
+     /tmp/ccsCQoVy.s:1136   .text.USBH_SelectInterface:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1143   .text.USBH_SelectInterface:0000000000000000 USBH_SelectInterface
+     /tmp/ccsCQoVy.s:1190   .text.USBH_GetActiveClass:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1197   .text.USBH_GetActiveClass:0000000000000000 USBH_GetActiveClass
+     /tmp/ccsCQoVy.s:1215   .text.USBH_FindInterface:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1222   .text.USBH_FindInterface:0000000000000000 USBH_FindInterface
+     /tmp/ccsCQoVy.s:1321   .text.USBH_FindInterfaceIndex:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1328   .text.USBH_FindInterfaceIndex:0000000000000000 USBH_FindInterfaceIndex
+     /tmp/ccsCQoVy.s:1403   .text.USBH_Start:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1410   .text.USBH_Start:0000000000000000 USBH_Start
+     /tmp/ccsCQoVy.s:1443   .text.USBH_Stop:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1450   .text.USBH_Stop:0000000000000000 USBH_Stop
+     /tmp/ccsCQoVy.s:1495   .text.USBH_Process:0000000000000000 $t
+     /tmp/ccsCQoVy.s:1502   .text.USBH_Process:0000000000000000 USBH_Process
+     /tmp/ccsCQoVy.s:1542   .text.USBH_Process:0000000000000022 $d
+     /tmp/ccsCQoVy.s:1554   .text.USBH_Process:000000000000003a $t
+     /tmp/ccsCQoVy.s:2254   .text.USBH_Process_OS:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2303   .text.USBH_LL_SetTimer:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2310   .text.USBH_LL_SetTimer:0000000000000000 USBH_LL_SetTimer
+     /tmp/ccsCQoVy.s:2327   .text.USBH_LL_IncTimer:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2334   .text.USBH_LL_IncTimer:0000000000000000 USBH_LL_IncTimer
+     /tmp/ccsCQoVy.s:2362   .text.USBH_LL_PortEnabled:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2369   .text.USBH_LL_PortEnabled:0000000000000000 USBH_LL_PortEnabled
+     /tmp/ccsCQoVy.s:2406   .text.USBH_LL_PortDisabled:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2413   .text.USBH_LL_PortDisabled:0000000000000000 USBH_LL_PortDisabled
+     /tmp/ccsCQoVy.s:2432   .text.USBH_IsPortEnabled:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2439   .text.USBH_IsPortEnabled:0000000000000000 USBH_IsPortEnabled
+     /tmp/ccsCQoVy.s:2457   .text.USBH_ReEnumerate:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2464   .text.USBH_ReEnumerate:0000000000000000 USBH_ReEnumerate
+     /tmp/ccsCQoVy.s:2522   .text.USBH_LL_Connect:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2529   .text.USBH_LL_Connect:0000000000000000 USBH_LL_Connect
+     /tmp/ccsCQoVy.s:2574   .text.USBH_LL_Disconnect:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2581   .text.USBH_LL_Disconnect:0000000000000000 USBH_LL_Disconnect
+     /tmp/ccsCQoVy.s:2644   .text.USBH_LL_NotifyURBChange:0000000000000000 $t
+     /tmp/ccsCQoVy.s:2651   .text.USBH_LL_NotifyURBChange:0000000000000000 USBH_LL_NotifyURBChange
 
 UNDEFINED SYMBOLS
-ARM GAS  /tmp/ccKRVJ90.s 			page 88
+ARM GAS  /tmp/ccsCQoVy.s 			page 88
 
 
 USBH_Get_DevDesc

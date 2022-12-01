@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccapfRJn.s 			page 1
+ARM GAS  /tmp/ccVExS0p.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
   28:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   * @{
   29:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   */
   30:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
-ARM GAS  /tmp/ccapfRJn.s 			page 2
+ARM GAS  /tmp/ccVExS0p.s 			page 2
 
 
   31:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** /** @defgroup USBH_CTLREQ
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
   85:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** /**
   86:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   * @}
   87:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   */
-ARM GAS  /tmp/ccapfRJn.s 			page 3
+ARM GAS  /tmp/ccVExS0p.s 			page 3
 
 
   88:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  142:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   if (status == USBH_OK)
  143:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   {
  144:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     /* Commands successfully sent and Response Received  */
-ARM GAS  /tmp/ccapfRJn.s 			page 4
+ARM GAS  /tmp/ccVExS0p.s 			page 4
 
 
  145:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     status = USBH_ParseCfgDesc(phost, pData, length);
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  199:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** {
  200:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   if (phost->RequestState == CMD_SEND)
  201:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   {
-ARM GAS  /tmp/ccapfRJn.s 			page 5
+ARM GAS  /tmp/ccVExS0p.s 			page 5
 
 
  202:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     phost->Control.setup.b.bmRequestType = USB_D2H | req_type;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  256:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   if (phost->RequestState == CMD_SEND)
  257:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   {
  258:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     phost->Control.setup.b.bmRequestType = USB_H2D | USB_REQ_RECIPIENT_DEVICE
-ARM GAS  /tmp/ccapfRJn.s 			page 6
+ARM GAS  /tmp/ccVExS0p.s 			page 6
 
 
  259:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                                            | USB_REQ_TYPE_STANDARD;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  313:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     phost->Control.setup.b.wLength.w = 0U;
  314:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
  315:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
-ARM GAS  /tmp/ccapfRJn.s 			page 7
+ARM GAS  /tmp/ccVExS0p.s 			page 7
 
 
  316:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   return USBH_CtlReq(phost, NULL, 0U);
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
   43 0004 0370     		strb	r3, [r0]
  356:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   dev_desc->bDescriptorType    = *(uint8_t *)(buf +  1);
   44              		.loc 1 356 3 is_stmt 1 view .LVU5
-ARM GAS  /tmp/ccapfRJn.s 			page 8
+ARM GAS  /tmp/ccVExS0p.s 			page 8
 
 
   45              		.loc 1 356 32 is_stmt 0 view .LVU6
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  368:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     case 32:
  369:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     case 64:
  370:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       dev_desc->bMaxPacketSize = dev_desc->bMaxPacketSize;
-ARM GAS  /tmp/ccapfRJn.s 			page 9
+ARM GAS  /tmp/ccVExS0p.s 			page 9
 
 
  371:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       break;
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  125              		.loc 1 387 5 is_stmt 1 view .LVU36
  126              		.loc 1 387 34 is_stmt 0 view .LVU37
  127 0070 CB7B     		ldrb	r3, [r1, #15]	@ zero_extendqisi2
-ARM GAS  /tmp/ccapfRJn.s 			page 10
+ARM GAS  /tmp/ccVExS0p.s 			page 10
 
 
  128 0072 C373     		strb	r3, [r0, #15]
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  415:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   /* Parse configuration descriptor */
  416:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   cfg_desc->bLength             = *(uint8_t *)(buf + 0);
  417:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   cfg_desc->bDescriptorType     = *(uint8_t *)(buf + 1);
-ARM GAS  /tmp/ccapfRJn.s 			page 11
+ARM GAS  /tmp/ccVExS0p.s 			page 11
 
 
  418:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   cfg_desc->wTotalLength        = MIN(((uint16_t) LE16(buf + 2)), ((uint16_t)USBH_MAX_SIZE_CONFIGUR
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  472:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****               pdesc->bLength = USB_ENDPOINT_DESC_SIZE;
  473:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****             }
  474:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****             else
-ARM GAS  /tmp/ccapfRJn.s 			page 12
+ARM GAS  /tmp/ccVExS0p.s 			page 12
 
 
  475:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****             {
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  519:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   if_descriptor->bDescriptorType    = *(uint8_t *)(buf + 1);
  167              		.loc 1 519 3 is_stmt 1 view .LVU47
  168              		.loc 1 519 37 is_stmt 0 view .LVU48
-ARM GAS  /tmp/ccapfRJn.s 			page 13
+ARM GAS  /tmp/ccVExS0p.s 			page 13
 
 
  169 0004 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  531:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   * @brief  USBH_ParseEPDesc
  532:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   *         This function Parses the endpoint descriptor
  533:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   * @param  phost: USB Host handler
-ARM GAS  /tmp/ccapfRJn.s 			page 14
+ARM GAS  /tmp/ccVExS0p.s 			page 14
 
 
  534:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   * @param  ep_descriptor: Endpoint descriptor destination address
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  547:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   ep_descriptor->bInterval        = *(uint8_t *)(buf + 6);
  255              		.loc 1 547 3 is_stmt 1 view .LVU80
  256              		.loc 1 547 35 is_stmt 0 view .LVU81
-ARM GAS  /tmp/ccapfRJn.s 			page 15
+ARM GAS  /tmp/ccVExS0p.s 			page 15
 
 
  257 001e 9579     		ldrb	r5, [r2, #6]	@ zero_extendqisi2
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  292              	.L9:
  293              	.LVL7:
  566:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
-ARM GAS  /tmp/ccapfRJn.s 			page 16
+ARM GAS  /tmp/ccVExS0p.s 			page 16
 
 
  567:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   else
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  605:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     }
  310              		.loc 1 605 5 is_stmt 1 view .LVU104
  606:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
-ARM GAS  /tmp/ccapfRJn.s 			page 17
+ARM GAS  /tmp/ccVExS0p.s 			page 17
 
 
  607:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  352              		.loc 1 595 13 is_stmt 0 view .LVU117
  353 0078 032C     		cmp	r4, #3
  354 007a EFD1     		bne	.L13
-ARM GAS  /tmp/ccapfRJn.s 			page 18
+ARM GAS  /tmp/ccVExS0p.s 			page 18
 
 
  597:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       {
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  621:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** {
  391              		.loc 1 621 1 is_stmt 1 view -0
  392              		.cfi_startproc
-ARM GAS  /tmp/ccapfRJn.s 			page 19
+ARM GAS  /tmp/ccVExS0p.s 			page 19
 
 
  393              		@ args = 0, pretend = 0, frame = 0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  426 0016 9342     		cmp	r3, r2
  427 0018 0DD2     		bcs	.L33
  621:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   uint16_t strlength;
-ARM GAS  /tmp/ccapfRJn.s 			page 20
+ARM GAS  /tmp/ccVExS0p.s 			page 20
 
 
  428              		.loc 1 621 1 view .LVU143
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  648:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
  468              		.loc 1 648 12 is_stmt 0 view .LVU158
  469 0036 0023     		movs	r3, #0
-ARM GAS  /tmp/ccapfRJn.s 			page 21
+ARM GAS  /tmp/ccVExS0p.s 			page 21
 
 
  648:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  690:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     case CMD_SEND:
  691:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       /* Start a SETUP transfer */
  692:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       phost->Control.buff = buff;
-ARM GAS  /tmp/ccapfRJn.s 			page 22
+ARM GAS  /tmp/ccVExS0p.s 			page 22
 
 
  693:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       phost->Control.length = length;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  747:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   */
  748:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** static USBH_StatusTypeDef USBH_HandleControl(USBH_HandleTypeDef *phost)
  749:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** {
-ARM GAS  /tmp/ccapfRJn.s 			page 23
+ARM GAS  /tmp/ccVExS0p.s 			page 23
 
 
  486              		.loc 1 749 1 is_stmt 1 view -0
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  531              	.LVL28:
  759:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                               phost->Control.pipe_out);
  760:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
-ARM GAS  /tmp/ccapfRJn.s 			page 24
+ARM GAS  /tmp/ccVExS0p.s 			page 24
 
 
  761:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       phost->Control.state = CTRL_SETUP_WAIT;
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  808:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #endif
  809:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #endif
  810:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       }
-ARM GAS  /tmp/ccapfRJn.s 			page 25
+ARM GAS  /tmp/ccVExS0p.s 			page 25
 
 
  811:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       else
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  865:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #if (osCMSIS < 0x20000U)
  866:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         (void)osMessagePut(phost->os_event, phost->os_msg, 0U);
  867:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #else
-ARM GAS  /tmp/ccapfRJn.s 			page 26
+ARM GAS  /tmp/ccVExS0p.s 			page 26
 
 
  868:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         (void)osMessageQueuePut(phost->os_event, &phost->os_msg, 0U, 0U);
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  922:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         /* In stall case, return to previous machine state*/
  923:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         phost->Control.state = CTRL_STALLED;
  924:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         status = USBH_NOT_SUPPORTED;
-ARM GAS  /tmp/ccapfRJn.s 			page 27
+ARM GAS  /tmp/ccVExS0p.s 			page 27
 
 
  925:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  979:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
  980:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       URB_Status = USBH_LL_GetURBState(phost, phost->Control.pipe_in);
  981:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
-ARM GAS  /tmp/ccapfRJn.s 			page 28
+ARM GAS  /tmp/ccVExS0p.s 			page 28
 
 
  982:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       if (URB_Status == USBH_URB_DONE)
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
 1036:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     case CTRL_STATUS_OUT_WAIT:
 1037:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       URB_Status = USBH_LL_GetURBState(phost, phost->Control.pipe_out);
 1038:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       if (URB_Status == USBH_URB_DONE)
-ARM GAS  /tmp/ccapfRJn.s 			page 29
+ARM GAS  /tmp/ccVExS0p.s 			page 29
 
 
 1039:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       {
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
 1093:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       {
 1094:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         /* Do the transmission again, starting from SETUP Packet */
 1095:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         phost->Control.state = CTRL_SETUP;
-ARM GAS  /tmp/ccapfRJn.s 			page 30
+ARM GAS  /tmp/ccVExS0p.s 			page 30
 
 
 1096:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         phost->RequestState = CMD_SEND;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  564              		.loc 1 813 9 is_stmt 1 view .LVU179
  813:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         {
  565              		.loc 1 813 12 is_stmt 0 view .LVU180
-ARM GAS  /tmp/ccapfRJn.s 			page 31
+ARM GAS  /tmp/ccVExS0p.s 			page 31
 
 
  566 004a 0428     		cmp	r0, #4
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  604 0074 D4F8D803 		ldr	r0, [r4, #984]
  605              	.LVL35:
  807:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #endif
-ARM GAS  /tmp/ccapfRJn.s 			page 32
+ARM GAS  /tmp/ccVExS0p.s 			page 32
 
 
  606              		.loc 1 807 15 view .LVU197
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  646 0096 0B23     		movs	r3, #11
  647 0098 2376     		strb	r3, [r4, #24]
  818:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #if (osCMSIS < 0x20000U)
-ARM GAS  /tmp/ccapfRJn.s 			page 33
+ARM GAS  /tmp/ccVExS0p.s 			page 33
 
 
  648              		.loc 1 818 11 is_stmt 1 view .LVU212
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  687 00ca B5E7     		b	.L35
  688              	.LVL48:
  689              	.L44:
-ARM GAS  /tmp/ccapfRJn.s 			page 34
+ARM GAS  /tmp/ccVExS0p.s 			page 34
 
 
  840:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  728 00f0 1A46     		mov	r2, r3
  729 00f2 04F57871 		add	r1, r4, #992
  730 00f6 D4F8D803 		ldr	r0, [r4, #984]
-ARM GAS  /tmp/ccapfRJn.s 			page 35
+ARM GAS  /tmp/ccVExS0p.s 			page 35
 
 
  731              	.LVL53:
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  772 0134 80E7     		b	.L35
  773              	.LVL59:
  774              	.L43:
-ARM GAS  /tmp/ccapfRJn.s 			page 36
+ARM GAS  /tmp/ccVExS0p.s 			page 36
 
 
  893:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                              phost->Control.pipe_out, 1U);
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  813              		.loc 1 935 12 is_stmt 1 view .LVU272
  935:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       {
  814              		.loc 1 935 15 is_stmt 0 view .LVU273
-ARM GAS  /tmp/ccapfRJn.s 			page 37
+ARM GAS  /tmp/ccVExS0p.s 			page 37
 
 
  815 0160 0228     		cmp	r0, #2
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  854 018c 0325     		movs	r5, #3
  855 018e C4F8E053 		str	r5, [r4, #992]
  931:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #endif
-ARM GAS  /tmp/ccapfRJn.s 			page 38
+ARM GAS  /tmp/ccVExS0p.s 			page 38
 
 
  856              		.loc 1 931 9 is_stmt 1 view .LVU289
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  897              	.LVL74:
  958:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #if (osCMSIS < 0x20000U)
  898              		.loc 1 958 11 view .LVU303
-ARM GAS  /tmp/ccapfRJn.s 			page 39
+ARM GAS  /tmp/ccVExS0p.s 			page 39
 
 
  958:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #if (osCMSIS < 0x20000U)
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  938              	.LVL79:
  939              	.L40:
  980:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
-ARM GAS  /tmp/ccapfRJn.s 			page 40
+ARM GAS  /tmp/ccVExS0p.s 			page 40
 
 
  940              		.loc 1 980 7 is_stmt 1 view .LVU319
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  978              		.loc 1 993 15 view .LVU335
  979 0224 FFF7FEFF 		bl	osMessageQueuePut
  980              	.LVL83:
-ARM GAS  /tmp/ccapfRJn.s 			page 41
+ARM GAS  /tmp/ccVExS0p.s 			page 41
 
 
  986:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
 1022:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #endif
  1021              		.loc 1 1022 17 view .LVU350
  1022 025c FFF7FEFF 		bl	osMessageQueuePut
-ARM GAS  /tmp/ccapfRJn.s 			page 42
+ARM GAS  /tmp/ccVExS0p.s 			page 42
 
 
  1023              	.LVL89:
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1062              		.loc 1 1067 9 is_stmt 1 view .LVU365
 1067:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         {
  1063              		.loc 1 1067 12 is_stmt 0 view .LVU366
-ARM GAS  /tmp/ccapfRJn.s 			page 43
+ARM GAS  /tmp/ccVExS0p.s 			page 43
 
 
  1064 028a 0428     		cmp	r0, #4
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1103              		.loc 1 1061 9 is_stmt 1 view .LVU381
 1061:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #endif
  1104              		.loc 1 1061 15 is_stmt 0 view .LVU382
-ARM GAS  /tmp/ccapfRJn.s 			page 44
+ARM GAS  /tmp/ccVExS0p.s 			page 44
 
 
  1105 02ba 0023     		movs	r3, #0
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1146 02f0 DBB2     		uxtb	r3, r3
 1092:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       {
  1147              		.loc 1 1092 10 view .LVU396
-ARM GAS  /tmp/ccapfRJn.s 			page 45
+ARM GAS  /tmp/ccVExS0p.s 			page 45
 
 
  1148 02f2 4376     		strb	r3, [r0, #25]
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
 1108:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         status = USBH_FAIL;
  1186              		.loc 1 1108 9 is_stmt 1 view .LVU413
 1108:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         status = USBH_FAIL;
-ARM GAS  /tmp/ccapfRJn.s 			page 46
+ARM GAS  /tmp/ccVExS0p.s 			page 46
 
 
  1187              		.loc 1 1108 23 is_stmt 0 view .LVU414
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1231              		.loc 1 669 1 is_stmt 0 view .LVU426
  1232 000a 1844     		add	r0, r0, r3
  1233              	.LVL111:
-ARM GAS  /tmp/ccapfRJn.s 			page 47
+ARM GAS  /tmp/ccVExS0p.s 			page 47
 
 
  669:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1278              		.loc 1 413 3 view .LVU438
  416:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   cfg_desc->bDescriptorType     = *(uint8_t *)(buf + 1);
  1279              		.loc 1 416 3 view .LVU439
-ARM GAS  /tmp/ccapfRJn.s 			page 48
+ARM GAS  /tmp/ccVExS0p.s 			page 48
 
 
  416:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   cfg_desc->bDescriptorType     = *(uint8_t *)(buf + 1);
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1317              		.loc 1 423 3 is_stmt 1 view .LVU456
  423:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
  1318              		.loc 1 423 33 is_stmt 0 view .LVU457
-ARM GAS  /tmp/ccapfRJn.s 			page 49
+ARM GAS  /tmp/ccVExS0p.s 			page 49
 
 
  1319 0044 237A     		ldrb	r3, [r4, #8]	@ zero_extendqisi2
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  438:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       if (pdesc->bDescriptorType == USB_DESC_TYPE_INTERFACE)
  1357              		.loc 1 438 7 is_stmt 1 view .LVU474
  438:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****       if (pdesc->bDescriptorType == USB_DESC_TYPE_INTERFACE)
-ARM GAS  /tmp/ccapfRJn.s 			page 50
+ARM GAS  /tmp/ccVExS0p.s 			page 50
 
 
  1358              		.loc 1 438 15 is_stmt 0 view .LVU475
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1398              		.loc 1 448 9 is_stmt 0 view .LVU489
  1399 00a4 FFF7FEFF 		bl	USBH_ParseInterfaceDesc
  1400              	.LVL123:
-ARM GAS  /tmp/ccapfRJn.s 			page 51
+ARM GAS  /tmp/ccVExS0p.s 			page 51
 
 
  450:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         pep = (USBH_EpDescTypeDef *)NULL;
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  465:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****               }
  1438              		.loc 1 465 32 is_stmt 0 view .LVU507
  1439 00ce 0923     		movs	r3, #9
-ARM GAS  /tmp/ccapfRJn.s 			page 52
+ARM GAS  /tmp/ccVExS0p.s 			page 52
 
 
  1440 00d0 0370     		strb	r3, [r0]
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  483:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****           }
  1480              		.loc 1 483 18 is_stmt 0 view .LVU522
  1481 00fa 5FFA88F8 		uxtb	r8, r8
-ARM GAS  /tmp/ccapfRJn.s 			page 53
+ARM GAS  /tmp/ccVExS0p.s 			page 53
 
 
  1482              	.LVL137:
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  460:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****             {
  1521              		.loc 1 460 21 view .LVU538
  1522 012c 03FB0953 		mla	r3, r3, r9, r5
-ARM GAS  /tmp/ccapfRJn.s 			page 54
+ARM GAS  /tmp/ccVExS0p.s 			page 54
 
 
  1523              	.LVL143:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  500:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****     }
  1563              		.loc 1 500 14 view .LVU553
  1564 0158 0327     		movs	r7, #3
-ARM GAS  /tmp/ccapfRJn.s 			page 55
+ARM GAS  /tmp/ccVExS0p.s 			page 55
 
 
  1565              	.LVL148:
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1614              		.cfi_offset 4, -12
  1615              		.cfi_offset 5, -8
  1616              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccapfRJn.s 			page 56
+ARM GAS  /tmp/ccVExS0p.s 			page 56
 
 
  1617 0002 0446     		mov	r4, r0
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  699:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** #if (osCMSIS < 0x20000U)
  1654              		.loc 1 699 21 is_stmt 0 view .LVU578
  1655 0020 0323     		movs	r3, #3
-ARM GAS  /tmp/ccapfRJn.s 			page 57
+ARM GAS  /tmp/ccVExS0p.s 			page 57
 
 
  1656 0022 C0F8E033 		str	r3, [r0, #992]
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1695              	.L112:
  713:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         phost->Control.state = CTRL_IDLE;
  1696              		.loc 1 713 9 is_stmt 1 view .LVU594
-ARM GAS  /tmp/ccapfRJn.s 			page 58
+ARM GAS  /tmp/ccVExS0p.s 			page 58
 
 
  713:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****         phost->Control.state = CTRL_IDLE;
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1741 0000 38B5     		push	{r3, r4, r5, lr}
  1742              	.LCFI16:
  1743              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccapfRJn.s 			page 59
+ARM GAS  /tmp/ccVExS0p.s 			page 59
 
 
  1744              		.cfi_offset 3, -16
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1783              		.loc 1 206 8 is_stmt 0 view .LVU621
  1784 0024 04F47F44 		and	r4, r4, #65280
  1785 0028 B4F5407F 		cmp	r4, #768
-ARM GAS  /tmp/ccapfRJn.s 			page 60
+ARM GAS  /tmp/ccVExS0p.s 			page 60
 
 
  1786 002c 03D0     		beq	.L122
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1833              		.loc 1 105 3 is_stmt 1 view .LVU630
  107:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                               USB_REQ_RECIPIENT_DEVICE | USB_REQ_TYPE_STANDARD,
  1834              		.loc 1 107 3 view .LVU631
-ARM GAS  /tmp/ccapfRJn.s 			page 61
+ARM GAS  /tmp/ccVExS0p.s 			page 61
 
 
  109:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                               (uint16_t)length);
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1881              		.syntax unified
  1882              		.thumb
  1883              		.thumb_func
-ARM GAS  /tmp/ccapfRJn.s 			page 62
+ARM GAS  /tmp/ccVExS0p.s 			page 62
 
 
  1884              		.fpu fpv4-sp-d16
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  1927              		.loc 1 149 1 is_stmt 0 view .LVU652
  1928 001c 02B0     		add	sp, sp, #8
  1929              	.LCFI23:
-ARM GAS  /tmp/ccapfRJn.s 			page 63
+ARM GAS  /tmp/ccVExS0p.s 			page 63
 
 
  1930              		.cfi_remember_state
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  168:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                               USB_REQ_RECIPIENT_DEVICE | USB_REQ_TYPE_STANDARD,
  1980              		.loc 1 168 3 view .LVU659
  171:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
-ARM GAS  /tmp/ccapfRJn.s 			page 64
+ARM GAS  /tmp/ccVExS0p.s 			page 64
 
 
  1981              		.loc 1 171 44 is_stmt 0 view .LVU660
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2025              	.LFE244:
  2027              		.section	.text.USBH_SetAddress,"ax",%progbits
  2028              		.align	1
-ARM GAS  /tmp/ccapfRJn.s 			page 65
+ARM GAS  /tmp/ccVExS0p.s 			page 65
 
 
  2029              		.global	USBH_SetAddress
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  236:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c **** 
  2072              		.loc 1 236 37 is_stmt 0 view .LVU683
  2073 0016 0522     		movs	r2, #5
-ARM GAS  /tmp/ccapfRJn.s 			page 66
+ARM GAS  /tmp/ccVExS0p.s 			page 66
 
 
  2074 0018 4274     		strb	r2, [r0, #17]
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2117              		.loc 1 267 10 is_stmt 0 view .LVU696
  2118 0008 0022     		movs	r2, #0
  2119 000a 1146     		mov	r1, r2
-ARM GAS  /tmp/ccapfRJn.s 			page 67
+ARM GAS  /tmp/ccVExS0p.s 			page 67
 
 
  2120              	.LVL199:
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2163              		@ frame_needed = 0, uses_anonymous_args = 0
  280:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   if (phost->RequestState == CMD_SEND)
  2164              		.loc 1 280 1 is_stmt 0 view .LVU710
-ARM GAS  /tmp/ccapfRJn.s 			page 68
+ARM GAS  /tmp/ccVExS0p.s 			page 68
 
 
  2165 0000 08B5     		push	{r3, lr}
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2203 001a 8182     		strh	r1, [r0, #20]	@ movhi
  289:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
  2204              		.loc 1 289 5 is_stmt 1 view .LVU727
-ARM GAS  /tmp/ccapfRJn.s 			page 69
+ARM GAS  /tmp/ccVExS0p.s 			page 69
 
 
  289:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   }
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2251              	.L150:
  307:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                                            | USB_REQ_TYPE_STANDARD;
  2252              		.loc 1 307 5 is_stmt 1 view .LVU738
-ARM GAS  /tmp/ccapfRJn.s 			page 70
+ARM GAS  /tmp/ccVExS0p.s 			page 70
 
 
  307:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****                                            | USB_REQ_TYPE_STANDARD;
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2296 0002 8378     		ldrb	r3, [r0, #2]	@ zero_extendqisi2
  330:Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.c ****   {
  2297              		.loc 1 330 6 view .LVU752
-ARM GAS  /tmp/ccapfRJn.s 			page 71
+ARM GAS  /tmp/ccVExS0p.s 			page 71
 
 
  2298 0004 012B     		cmp	r3, #1
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2339              		.file 4 "/usr/include/newlib/sys/_types.h"
  2340              		.file 5 "/usr/include/newlib/sys/reent.h"
  2341              		.file 6 "/usr/include/newlib/sys/lock.h"
-ARM GAS  /tmp/ccapfRJn.s 			page 72
+ARM GAS  /tmp/ccVExS0p.s 			page 72
 
 
  2342              		.file 7 "/usr/include/newlib/sys/_stdint.h"
@@ -4272,47 +4272,47 @@ ARM GAS  /tmp/ccapfRJn.s 			page 1
  2350              		.file 15 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_ioreq.h"
  2351              		.file 16 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_core.h"
  2352              		.file 17 "Middlewares/ST/STM32_USB_Host_Library/Core/Inc/usbh_pipes.h"
-ARM GAS  /tmp/ccapfRJn.s 			page 73
+ARM GAS  /tmp/ccVExS0p.s 			page 73
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 usbh_ctlreq.c
-     /tmp/ccapfRJn.s:18     .text.USBH_ParseDevDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:25     .text.USBH_ParseDevDesc:0000000000000000 USBH_ParseDevDesc
-     /tmp/ccapfRJn.s:148    .text.USBH_ParseInterfaceDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:154    .text.USBH_ParseInterfaceDesc:0000000000000000 USBH_ParseInterfaceDesc
-     /tmp/ccapfRJn.s:205    .text.USBH_ParseEPDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:211    .text.USBH_ParseEPDesc:0000000000000000 USBH_ParseEPDesc
-     /tmp/ccapfRJn.s:382    .text.USBH_ParseStringDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:388    .text.USBH_ParseStringDesc:0000000000000000 USBH_ParseStringDesc
-     /tmp/ccapfRJn.s:477    .text.USBH_HandleControl:0000000000000000 $t
-     /tmp/ccapfRJn.s:483    .text.USBH_HandleControl:0000000000000000 USBH_HandleControl
-     /tmp/ccapfRJn.s:513    .text.USBH_HandleControl:0000000000000014 $d
-     /tmp/ccapfRJn.s:524    .text.USBH_HandleControl:000000000000002a $t
-     /tmp/ccapfRJn.s:1203   .text.USBH_GetNextDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:1210   .text.USBH_GetNextDesc:0000000000000000 USBH_GetNextDesc
-     /tmp/ccapfRJn.s:1240   .text.USBH_ParseCfgDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:1246   .text.USBH_ParseCfgDesc:0000000000000000 USBH_ParseCfgDesc
-     /tmp/ccapfRJn.s:1595   .text.USBH_CtlReq:0000000000000000 $t
-     /tmp/ccapfRJn.s:1602   .text.USBH_CtlReq:0000000000000000 USBH_CtlReq
-     /tmp/ccapfRJn.s:1726   .text.USBH_GetDescriptor:0000000000000000 $t
-     /tmp/ccapfRJn.s:1733   .text.USBH_GetDescriptor:0000000000000000 USBH_GetDescriptor
-     /tmp/ccapfRJn.s:1806   .text.USBH_Get_DevDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:1813   .text.USBH_Get_DevDesc:0000000000000000 USBH_Get_DevDesc
-     /tmp/ccapfRJn.s:1879   .text.USBH_Get_CfgDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:1886   .text.USBH_Get_CfgDesc:0000000000000000 USBH_Get_CfgDesc
-     /tmp/ccapfRJn.s:1951   .text.USBH_Get_StringDesc:0000000000000000 $t
-     /tmp/ccapfRJn.s:1958   .text.USBH_Get_StringDesc:0000000000000000 USBH_Get_StringDesc
-     /tmp/ccapfRJn.s:2028   .text.USBH_SetAddress:0000000000000000 $t
-     /tmp/ccapfRJn.s:2035   .text.USBH_SetAddress:0000000000000000 USBH_SetAddress
-     /tmp/ccapfRJn.s:2089   .text.USBH_SetCfg:0000000000000000 $t
-     /tmp/ccapfRJn.s:2096   .text.USBH_SetCfg:0000000000000000 USBH_SetCfg
-     /tmp/ccapfRJn.s:2150   .text.USBH_SetInterface:0000000000000000 $t
-     /tmp/ccapfRJn.s:2157   .text.USBH_SetInterface:0000000000000000 USBH_SetInterface
-     /tmp/ccapfRJn.s:2213   .text.USBH_SetFeature:0000000000000000 $t
-     /tmp/ccapfRJn.s:2220   .text.USBH_SetFeature:0000000000000000 USBH_SetFeature
-     /tmp/ccapfRJn.s:2274   .text.USBH_ClrFeature:0000000000000000 $t
-     /tmp/ccapfRJn.s:2281   .text.USBH_ClrFeature:0000000000000000 USBH_ClrFeature
+     /tmp/ccVExS0p.s:18     .text.USBH_ParseDevDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:25     .text.USBH_ParseDevDesc:0000000000000000 USBH_ParseDevDesc
+     /tmp/ccVExS0p.s:148    .text.USBH_ParseInterfaceDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:154    .text.USBH_ParseInterfaceDesc:0000000000000000 USBH_ParseInterfaceDesc
+     /tmp/ccVExS0p.s:205    .text.USBH_ParseEPDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:211    .text.USBH_ParseEPDesc:0000000000000000 USBH_ParseEPDesc
+     /tmp/ccVExS0p.s:382    .text.USBH_ParseStringDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:388    .text.USBH_ParseStringDesc:0000000000000000 USBH_ParseStringDesc
+     /tmp/ccVExS0p.s:477    .text.USBH_HandleControl:0000000000000000 $t
+     /tmp/ccVExS0p.s:483    .text.USBH_HandleControl:0000000000000000 USBH_HandleControl
+     /tmp/ccVExS0p.s:513    .text.USBH_HandleControl:0000000000000014 $d
+     /tmp/ccVExS0p.s:524    .text.USBH_HandleControl:000000000000002a $t
+     /tmp/ccVExS0p.s:1203   .text.USBH_GetNextDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:1210   .text.USBH_GetNextDesc:0000000000000000 USBH_GetNextDesc
+     /tmp/ccVExS0p.s:1240   .text.USBH_ParseCfgDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:1246   .text.USBH_ParseCfgDesc:0000000000000000 USBH_ParseCfgDesc
+     /tmp/ccVExS0p.s:1595   .text.USBH_CtlReq:0000000000000000 $t
+     /tmp/ccVExS0p.s:1602   .text.USBH_CtlReq:0000000000000000 USBH_CtlReq
+     /tmp/ccVExS0p.s:1726   .text.USBH_GetDescriptor:0000000000000000 $t
+     /tmp/ccVExS0p.s:1733   .text.USBH_GetDescriptor:0000000000000000 USBH_GetDescriptor
+     /tmp/ccVExS0p.s:1806   .text.USBH_Get_DevDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:1813   .text.USBH_Get_DevDesc:0000000000000000 USBH_Get_DevDesc
+     /tmp/ccVExS0p.s:1879   .text.USBH_Get_CfgDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:1886   .text.USBH_Get_CfgDesc:0000000000000000 USBH_Get_CfgDesc
+     /tmp/ccVExS0p.s:1951   .text.USBH_Get_StringDesc:0000000000000000 $t
+     /tmp/ccVExS0p.s:1958   .text.USBH_Get_StringDesc:0000000000000000 USBH_Get_StringDesc
+     /tmp/ccVExS0p.s:2028   .text.USBH_SetAddress:0000000000000000 $t
+     /tmp/ccVExS0p.s:2035   .text.USBH_SetAddress:0000000000000000 USBH_SetAddress
+     /tmp/ccVExS0p.s:2089   .text.USBH_SetCfg:0000000000000000 $t
+     /tmp/ccVExS0p.s:2096   .text.USBH_SetCfg:0000000000000000 USBH_SetCfg
+     /tmp/ccVExS0p.s:2150   .text.USBH_SetInterface:0000000000000000 $t
+     /tmp/ccVExS0p.s:2157   .text.USBH_SetInterface:0000000000000000 USBH_SetInterface
+     /tmp/ccVExS0p.s:2213   .text.USBH_SetFeature:0000000000000000 $t
+     /tmp/ccVExS0p.s:2220   .text.USBH_SetFeature:0000000000000000 USBH_SetFeature
+     /tmp/ccVExS0p.s:2274   .text.USBH_ClrFeature:0000000000000000 $t
+     /tmp/ccVExS0p.s:2281   .text.USBH_ClrFeature:0000000000000000 USBH_ClrFeature
 
 UNDEFINED SYMBOLS
 USBH_CtlSendSetup
